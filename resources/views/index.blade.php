@@ -104,7 +104,7 @@
         <div class="d-flex mt-3 mb-1 bottom-text">
             <p class="mx-auto mb-0" style="color:#FF335C">Privacy policy</p>
             <p class="mx-auto mb-0" style="color:#FF335C">Terms of service</p>
-        </div>
+        </div>fdsafdsafds
     </div>
 </div>
 @endsection
