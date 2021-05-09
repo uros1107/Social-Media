@@ -1,0 +1,249 @@
+
+.bottom-text {
+    color:#FF335C;
+    margin-left: 20px;
+    margin-right: 40px;
+}
+.top {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+}
+.bottom {
+    position: absolute;
+    bottom: 50px;
+    left: 70px;
+    width: 92%;
+}
+.bottom-right-text {
+    position: absolute;
+    right: 0px;
+}
+.middle {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    padding: 0px 60px;
+    height: 450px;
+}
+.container-fluid {
+    height: 100vh;
+}
+.middle-left {
+    width: 30%;
+}
+.middle-center {
+    width: 60%;
+}
+.middle-right {
+    width: 10%;
+    text-align: right;
+    padding-top: 100px;
+}
+.month {
+    font-size: 140px;
+    font-weight: 100;
+    letter-spacing: 20px;
+    text-align: center;
+    margin-bottom: -20px;
+}
+.day {
+    text-align: center;
+    font-size: 100px;
+}
+.comming {
+    font-size: 23px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+.red-bar {
+    height: 5px;
+    background: #FF335C;
+}
+.main-text {
+    letter-spacing: 4px;
+    font-size: 66px;
+    margin-bottom: 26px;
+    margin-top: 24px;
+}
+.description {
+    font-size: 24px;
+    color: #868686 !important;
+    font-weight: 400;
+}
+.social-icon {
+    margin: 26px 0px;
+}
+.email-address, .email-address:focus {
+    width: 30% !important;
+    flex: inherit !important;
+    background: #272626d9;
+    border: 0px;
+    box-shadow: 0 0 0 0 rgb(0 0 0);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.btn-primary {
+    width: 160px;
+    background: #FF335C;
+    border-color: #FF335C;
+    border-top-right-radius: 10px!important;
+    border-bottom-right-radius: 10px!important;
+}
+.btn-primary:hover, .btn-primary:focus {
+    width: 160px;
+    background: #FF335C;
+    border-color: #FF335C;
+    box-shadow: 0 0 0 0 rgb(0 0 0);
+    border-top-right-radius: 10px!important;
+    border-bottom-right-radius: 10px!important;
+}
+.comming::before {
+    content: "this this this this";
+    color: #FF335C;
+    height: 0px;
+    background: #FF335C;
+    font-size: 2px;
+    margin-right: 20px;
+}
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 1530px) and (min-width: 1228px) {
+    .main-text {
+        font-size: 50px;
+    }
+    .description {
+        font-size: 20px;
+    }
+    .month {
+        font-size: 100px;
+    }
+    .day {
+        font-size: 70px;
+    }
+} 
+
+@media only screen and (max-width: 1227px) and (min-width: 1110px) {
+    .main-text {
+        font-size: 35px;
+    }
+    .description {
+        font-size: 18px;
+    }
+    .comming {
+        font-size: 16px;
+    }
+    .month {
+        font-size: 80px;
+    }
+    .day {
+        font-size: 60px;
+    }
+}   
+
+@media(max-width:1110px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+
+    .top-bar {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        height: 60px;
+        width: 100%;
+        background: #000;
+        margin-top: -5px;
+        margin-left: -5px;
+    }
+    .logo-img {
+        height: 40px;
+        position: absolute;
+        top: 10px;
+        left: 18px;
+    }
+    .right-side-icons {
+        position: absolute;
+        right: 8px;
+        top: 18px;
+    }
+    .right-side-icons .fa {
+        margin: 0px 10px;
+        font-size: 20px;
+    }
+    .m-middle {
+        position: relative;
+        top: 20%;
+        transform: translateY(-50%);
+    }
+    .m-comming {
+        font-size: 15px;
+        margin-bottom: 0px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .m-month {
+        font-size: 60px;
+        font-weight: 100;
+        letter-spacing: 7px;
+    }
+    .m-year {
+        font-size: 44px;
+    }
+    .m-welcome {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .m-welcome:before {
+        content: 'this this';
+        color: #FF335C;
+        background: #FF335C;
+        font-size: 2px;
+        margin-right: 10px;
+    }
+    .m-main-title {
+        font-size: 20px;
+    }
+    .m-description {
+        font-size: 12px;
+    }
+    .m-btn {
+        font-size: 10px !important;
+        width:  100px!important;
+    }
+    .m-email, .m-email:focus {
+        width: 65% !important;
+    }
+    .m-social-icon {
+        font-size: 24px;
+        margin: 0px 8px;
+    }
+
+}
+
+@media(max-width:320px) {
+    .m-middle {
+        top: 16%;
+    }
+    .email-part {
+        margin-top: 5px!important;
+        margin-bottom: 10px!important;
+    }
+    .copyright {
+        margin-top: 10px !important;
+    }
+    .bottom-text {
+        margin-top: 10px!important;
+    }
+    .m-social {
+        margin-top: 15px!important;
+    }
+}
