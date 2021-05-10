@@ -95,6 +95,7 @@
                     </div>
                 </div>
             </div>  
+            <button class="btn btn-primary m-btn" type="button" style="font-size:14px;width:300px!important">REQUEST INVITE</button>
             <div class="m-social text-center">
                 <i class="fa fa-facebook-f text-white m-social-icon"></i>
                 <i class="fa fa-twitter text-white m-social-icon"></i>
