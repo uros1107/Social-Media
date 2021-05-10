@@ -242,6 +242,7 @@
     .m-btn {
         font-size: 10px !important;
         width:  100px!important;
+        padding: .375rem 5px!important;
     }
 
     .m-middle {
