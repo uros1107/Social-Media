@@ -79,7 +79,7 @@
 .email-address, .email-address:focus {
     width: 30% !important;
     flex: inherit !important;
-    background-color: #272626d9;
+    background-color: rgb(39 38 38 / 85%)!important;
     border: 0px;
     box-shadow: 0 0 0 0 rgb(0 0 0);
     border-top-left-radius: 10px;
