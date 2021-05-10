@@ -78,7 +78,7 @@
     <div class="m-middle mobile">
         <div>
             <div class="comming-part text-center">
-                <p class="text-white m-comming">comming soon</p>
+                <p class="text-white m-comming">coming soon</p>
                 <h2 class="text-white m-month">JULY</h2>
                 <h2 class="text-white m-year">2021</h2>
             </div>
