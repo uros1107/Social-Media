@@ -87,12 +87,12 @@
                 <h3 class="text-white m-main-title">Be The First To Know<br> When MillionK Launches</h3>
                 <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
             </div>
-            <div class="input-group mb-5 mt-4 email-part">
+            <!-- <div class="input-group mb-5 mt-4 email-part">
                 <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary m-btn" type="button" style="font-size:14px;width:100px!important">REQUEST INVITE</button>
-                </div>
-            </div>
+                <div class="input-group-append"> -->
+                    <button class="btn btn-primary m-btn" type="button" style="font-size:14px;width:400px!important">REQUEST INVITE</button>
+                <!-- </div>
+            </div> -->
             <div class="m-social text-center">
                 <i class="fa fa-facebook-f text-white m-social-icon"></i>
                 <i class="fa fa-twitter text-white m-social-icon"></i>
