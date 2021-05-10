@@ -20,8 +20,8 @@
 
         <style>
             .content {
-                /* background: url(http://127.0.0.1:8001/assets/images/bg.png) no-repeat center center; */
-                background: url(https://millionk.com/assets/images/bg.png) no-repeat center center;
+                background: url(http://127.0.0.1:8001/assets/images/bg.png) no-repeat center center;
+                /* background: url(https://millionk.com/assets/images/bg.png) no-repeat center center; */
                 background-size: cover;
                 height: 100vh;
             }

@@ -76,34 +76,36 @@
         </div>
     </div>
     <div class="m-middle mobile">
-        <div class="comming-part text-center">
-            <p class="text-white m-comming">comming soon</p>
-            <h2 class="text-white m-month">JULY</h2>
-            <h2 class="text-white m-year">2021</h2>
-        </div>
-        <div class="welcome-part text-center">
-            <span class="text-white m-welcome">Wecome to millionk</span>
-            <h3 class="text-white m-main-title">Be The First To Know<br> When MillionK Launches</h3>
-            <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
-        </div>
-        <div class="mx-auto">
-            <div class="input-group mb-5 mt-4 email-part">
-                <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary m-btn" type="button" style="font-size:14px">REQUEST INVITE</button>
-                </div>
+        <div>
+            <div class="comming-part text-center">
+                <p class="text-white m-comming">comming soon</p>
+                <h2 class="text-white m-month">JULY</h2>
+                <h2 class="text-white m-year">2021</h2>
             </div>
-        </div>  
-        <div class="m-social text-center">
-            <i class="fa fa-facebook-f text-white m-social-icon"></i>
-            <i class="fa fa-twitter text-white m-social-icon"></i>
-            <i class="fa fa-instagram text-white m-social-icon"></i>
-            <i class="fa fa-youtube-play text-white m-social-icon"></i>
-        </div>     
-        <h4 class="text-center mt-3 copyright" style="color:#868686;font-size:14px">Copyright © 2021 Lumiworks Pte. Ltd.<br>All rights reserved.</h4>
-        <div class="d-flex mt-3 mb-1 bottom-text">
-            <p class="mx-auto mb-0" style="color:#FF335C">Privacy policy</p>
-            <p class="mx-auto mb-0" style="color:#FF335C">Terms of service</p>
+            <div class="welcome-part text-center">
+                <span class="text-white m-welcome">Wecome to millionk</span>
+                <h3 class="text-white m-main-title">Be The First To Know<br> When MillionK Launches</h3>
+                <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
+            </div>
+            <div class="mx-auto">
+                <div class="input-group mb-5 mt-4 email-part">
+                    <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary m-btn" type="button" style="font-size:14px">REQUEST INVITE</button>
+                    </div>
+                </div>
+            </div>  
+            <div class="m-social text-center">
+                <i class="fa fa-facebook-f text-white m-social-icon"></i>
+                <i class="fa fa-twitter text-white m-social-icon"></i>
+                <i class="fa fa-instagram text-white m-social-icon"></i>
+                <i class="fa fa-youtube-play text-white m-social-icon"></i>
+            </div>     
+            <h4 class="text-center mt-3 copyright" style="color:#868686;font-size:14px">Copyright © 2021 Lumiworks Pte. Ltd.<br>All rights reserved.</h4>
+            <div class="d-flex mt-3 mb-1 bottom-text">
+                <p class="mx-auto mb-0" style="color:#FF335C">Privacy policy</p>
+                <p class="mx-auto mb-0" style="color:#FF335C">Terms of service</p>
+            </div>
         </div>
     </div>
 </div>
