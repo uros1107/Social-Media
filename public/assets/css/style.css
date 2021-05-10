@@ -79,7 +79,7 @@
 .email-address, .email-address:focus {
     width: 30% !important;
     flex: inherit !important;
-    background: #272626d9;
+    background-color: #272626d9;
     border: 0px;
     box-shadow: 0 0 0 0 rgb(0 0 0);
     border-top-left-radius: 10px;
@@ -180,7 +180,7 @@
     }
     .m-middle {
         position: relative;
-        top: 20%;
+        top: 20%!important;
         transform: translateY(-50%);
     }
     .m-comming {
@@ -229,7 +229,22 @@
 
 }
 
-@media(max-width:320px) {
+@media screen and (max-width:380px) {
+    .bottom-text {
+        margin-right: 20px!important;
+    }
+    .m-middle {
+        position: relative;
+        top: 20%!important;
+        transform: translateY(-50%);
+    }
+    .m-btn {
+        font-size: 10px !important;
+        width:  100px!important;
+    }
+}
+
+@media screen and (max-width:320px) {
     .m-middle {
         top: 16%;
     }
@@ -242,6 +257,7 @@
     }
     .bottom-text {
         margin-top: 10px!important;
+        margin-right: 20px!important;
     }
     .m-social {
         margin-top: 15px!important;
