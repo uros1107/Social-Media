@@ -220,7 +220,7 @@
     }
     .m-btn {
         font-size: 10px !important;
-        width:  100px!important;
+        width:  100%!important;
     }
     .m-email, .m-email:focus {
         width: 65% !important;
@@ -241,7 +241,7 @@
     }
     .m-btn {
         font-size: 10px !important;
-        width:  100px!important;
+        width:  100%!important;
     }
 
     .m-middle {
@@ -249,6 +249,7 @@
     }
     .email-part {
         justify-content: center;
+        width: 35% !important;
     }
 }
 
