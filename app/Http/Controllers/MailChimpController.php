@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mailchimp;
 
 class MailChimpController extends Controller
 {
@@ -20,8 +21,8 @@ class MailChimpController extends Controller
             'to_name' => 'Nazreen'
 
         ], [
-            'html' => $request->input('content'),
-            'text' => strip_tags($request->input('content'))
+            'html' => "<h1>Test<h1>",
+            'text' => strip_tags("Test")
         ]);
 
         //Send campaign
