@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use mailchimp\Mailchimp;
 
 class MailChimpController extends Controller
 {
+
     public function send_mail(Request $request)
     {
         $listId = env('MAILCHIMP_LIST_ID');
