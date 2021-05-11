@@ -1,9 +1,10 @@
 <?php
+namespace Vendor\Mailchimp\Mailchimp\Src;
+use Mailchimp;
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Vendor\Mailchimp\Mailchimp\Src\Mailchimp;
 
 class MailChimpController extends Controller
 {
