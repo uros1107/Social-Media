@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+@section('title', 'Welcome to MillionK')
+
 @section('styles')
 <style>
 
@@ -31,10 +33,12 @@
             <h1 class="text-white main-text">Be The First To Know<br> When MillionK Launches</h1>
             <h3 class="description">Sign up to reserve your spot. We'll let you know how to get up close and<br> personal with your favourite Korean Wave Idols & Influencers.</h3>
             <div class="input-group mb-3 mt-5">
-                <input type="text" class="form-control email-address" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">REQUEST INVITE</button>
-                </div>
+                <form style="display:flex!important;width:100%;" action="{{ route('send-mail') }}" method="get">
+                    <input type="text" class="form-control email-address" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">REQUEST INVITE</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="middle-right">
@@ -88,10 +92,12 @@
                 <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
             </div>
             <div class="input-group mb-5 mt-4 email-part">
-                <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary m-btn" type="button" style="font-size:14px;">REQUEST INVITE</button>
-                </div>
+                <form style="display:flex!important;width:100%;" action="{{ route('send-mail') }}" method="get">
+                    <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary m-btn" type="submit" style="font-size:14px;">REQUEST INVITE</button>
+                    </div>
+                </form>
             </div>
             <div class="m-social text-center">
                 <i class="fa fa-facebook-f text-white m-social-icon"></i>
