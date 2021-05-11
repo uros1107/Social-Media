@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Config;
+use Mailchimp\Mailchimp\Mailchimp;
 
 class MailChimpController extends Controller
 {
