@@ -43,17 +43,17 @@
         </div>
         <div class="middle-right">
             <div class="social-icon">
-                <i class="fa fa-facebook-f text-white" style="font-size:24px"></i>
+                <a href="https://www.facebook.com/MillionK.official"><i class="fa fa-facebook-f text-white" style="font-size:24px"></i></a>
             </div>
-            <div class="social-icon">
+            <!-- <div class="social-icon">
                 <i class="fa fa-twitter text-white" style="font-size:24px"></i>
-            </div>
+            </div> -->
             <div class="social-icon">
-                <i class="fa fa-instagram text-white" style="font-size:24px"></i>
+                <a href="https://www.instagram.com/millionk.official/"><i class="fa fa-instagram text-white" style="font-size:24px"></i>
             </div>
-            <div class="social-icon">
+            <!-- <div class="social-icon">
                 <i class="fa fa-youtube-play text-white" style="font-size:24px"></i>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="bottom desktop">
