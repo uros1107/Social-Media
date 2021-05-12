@@ -3,32 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mailchimp;
+use Newsletter;
 
 class MailChimpController extends Controller
 {
-
     public function send_mail(Request $request)
     {
-        $listId = env('MAILCHIMP_LIST_ID');
-
-        $mailchimp = new \Mailchimp(env('MAILCHIMP_KEY'));
-
-        $campaign = $mailchimp->campaigns->create('regular', [
-            'list_id' => $listId,
-            'subject' => 'Example Mail',
-            'from_email' => $request->email,
-            'from_name' => 'Aleksandr',
-            'to_name' => 'Nazreen'
-
-        ], [
-            'html' => "<h1>Test<h1>",
-            'text' => strip_tags("Test")
-        ]);
-
-        //Send campaign
-        $mailchimp->campaigns->send($campaign['id']);
-
-        dd('Campaign send successfully.');
+        if ( !Newsletter::isSubscribed($request->email) ) 
+        {
+            Newsletter::subscribePending($request->email);
+            return redirect('newsletter')->with('success', 'Thanks For Subscribe');
+        }
+        return redirect('newsletter')->with('failure', 'Sorry! You have already subscribed ');
     }
 }
