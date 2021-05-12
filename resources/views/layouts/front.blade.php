@@ -18,14 +18,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <style>
-            .content {
-                /* background: url(http://127.0.0.1:8002/assets/images/bg.png) no-repeat center center; */
-                background: url(https://millionk.com/assets/images/bg.png) no-repeat center center;
-                background-size: cover;
-                height: 100vh;
-            }
-        </style>
         @yield('styles')
 
     </head>
