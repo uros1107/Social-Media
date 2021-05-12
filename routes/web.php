@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
+Route::get('/idol-register', 'IdolController@idol_register')->name('idol-register');

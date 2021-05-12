@@ -1,10 +1,10 @@
 <?php
-namespace Vendor\Mailchimp\Mailchimp\Src;
-use Mailchimp;
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+include dirname(dirname(__FILE__)).'/mailchimp/mailchimp/src/Mailchimp.php';
+use Mailchimp;
 
 class MailChimpController extends Controller
 {
