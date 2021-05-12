@@ -100,10 +100,10 @@
                 </form>
             </div>
             <div class="m-social text-center">
-                <i class="fa fa-facebook-f text-white m-social-icon"></i>
-                <i class="fa fa-twitter text-white m-social-icon"></i>
-                <i class="fa fa-instagram text-white m-social-icon"></i>
-                <i class="fa fa-youtube-play text-white m-social-icon"></i>
+                <a href="https://www.facebook.com/MillionK.official"><i class="fa fa-facebook-f text-white m-social-icon"></i></a>
+                <!-- <i class="fa fa-twitter text-white m-social-icon"></i> -->
+                <a href="https://www.instagram.com/millionk.official/"><i class="fa fa-instagram text-white m-social-icon"></i></a>
+                <!-- <i class="fa fa-youtube-play text-white m-social-icon"></i> -->
             </div>     
             <h4 class="text-center mt-3 copyright" style="color:#868686;font-size:14px">Copyright © 2021 Lumiworks Pte. Ltd.<br>All rights reserved.</h4>
             <div class="d-flex mt-3 mb-1 bottom-text">
