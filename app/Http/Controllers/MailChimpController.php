@@ -12,8 +12,8 @@ class MailChimpController extends Controller
         if ( !Newsletter::isSubscribed($request->email) ) 
         {
             Newsletter::subscribePending($request->email);
-            return redirect('newsletter')->with('success', 'Thanks For Subscribe');
+            return redirect('/')->with('success', 'Thanks For Subscribe');
         }
-        return redirect('newsletter')->with('failure', 'Sorry! You have already subscribed ');
+        return redirect('/')->with('failure', 'Sorry! You have already subscribed ');
     }
 }
