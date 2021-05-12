@@ -12,7 +12,7 @@ class MailChimpController extends Controller
     {
         $listId = env('MAILCHIMP_LIST_ID');
 
-        $mailchimp = new Mailchimp(env('MAILCHIMP_KEY'));
+        $mailchimp = new \Mailchimp(env('MAILCHIMP_KEY'));
 
         $campaign = $mailchimp->campaigns->create('regular', [
             'list_id' => $listId,
