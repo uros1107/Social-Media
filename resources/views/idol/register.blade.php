@@ -98,7 +98,7 @@
         padding-bottom: 30px;
     }
     .footer-subscribe {
-        width: 345px!important;
+        width: 100%!important;
     }
     .footer-subscribe-part {
         padding: 10px 0px 0px!important;
@@ -313,13 +313,13 @@
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
                 </div>
                 <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
-                    <form class="custom-form d-flex my-auto footer-subscribe">
+                    <!-- <form class="custom-form d-flex my-auto footer-subscribe">
                         <div class="inputWithIcon" style="width: 73%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
                         <button class="btn btn-primary custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%" type="submit">Subscribe</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
             <div class="row desktop" style="padding: 10px 30px;background:#171717">
