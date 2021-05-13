@@ -5,33 +5,45 @@
 @section('styles')
 <style>
 .block-1 {
-    height: 850px;
+    height: 100vh;
 }
 .block-2 {
     background: #121212;
-    padding-top: 190px;
+    padding-top: 70px;
     padding-bottom: 110px;
 }
 .block-3 {
     background: #171717;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
+    padding-top: 70px;
 }
 .bg-img {
     height: 100vh;
     object-fit: cover;
     position: absolute;
+    z-index: -1;
 }
 .hand-img {
     position: absolute;
     top: 35px;
     right: 0px;
 }
+.gradient {
+    margin-top: -126px;
+    height: 160px;
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(180deg, rgb(19 19 19 / 67%) 30%, rgb(18 18 18) 70%);
+}
 .welcome-millionk {
     margin-top: 300px;
     margin-left: 70px;
 }
+.block-3-text {
+    margin-bottom: 60px;
+}
 .block-title {
-    font-size: 36px;
+    font-size: 40px;
     letter-spacing: 6px;
     margin-bottom: 50px;
 }
@@ -45,8 +57,12 @@
 .text-color {
     color: #fcfcfc!important;
 }
+.font-16 {
+    font-size: 16px;
+}
 .item-title {
     margin: 30px 0px 20px;
+    font-size: 18px;
 }
 .footer-text {
     padding: 10px;
@@ -64,6 +80,11 @@
 }
 
 @media screen and (max-width:425px) {
+    .block-2 {
+        background: #121212;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
     .footer-subscribe {
         width: 100%!important;
     }
@@ -84,20 +105,44 @@
     .footer-text {
         margin-left: 0px!important;
     }
+    .block-3-text {
+        margin-bottom: 30px;
+    }
     .block-title {
         font-size: 18px;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+    }
+    .horizontal-red-bar {
+        margin-bottom: 30px;
     }
     .item-title {
         font-size: 16px;
     }
     p, h5 {
-        font-size: 14px;
+        font-size: 14px!important;
     }
     .create-showcase {
         margin-bottom: 35px;
     }
     a {
         font-size: 14px;
+    }
+    .welcome-millionk {
+        margin-top: 200px;
+        margin-left: 0px;
+    }
+    .comming {
+        font-size: 10px;
+    }
+    .comming:before {
+        content: "this this"
+    }
+    .main-text {
+        font-size: 20px;
+    }
+    .description {
+        font-size: 12px;
     }
 }
 </style>
@@ -130,7 +175,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row mobile m-0">
+                <div class="col-12 d-flex">
+                    <div class="welcome-millionk text-center">
+                        <div class="">
+                            <span class="comming text-white">Welcome to Millionk</span>
+                        </div>
+                        <h1 class="text-white main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h1>
+                        <h3 class="description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
+                        <div class="input-group mb-3 mt-5" style="justify-content: center">
+                            <button class="btn btn-primary custom-btn" style="height: 30px;font-size: 10px" type="submit">APPLY NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>  
+        <div class="gradient"></div>
         <div class="block-2 text-center">
             <h1 class="text-color block-title">CONNECT WITH YOUR FRIENDS WORLDWIDE</h1>
             <div class="horizontal-red-bar"></div>
@@ -139,26 +199,27 @@
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/create_showcase.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Create Showcase</h4>
-                        <p class="text-color">Your own pricing for personalized videos<br>for your fans</p>
+                        <p class="text-color font-16">Your own pricing for personalized videos<br>for your fans</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/showcase.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Showcase</h4>
-                        <p class="text-color">Choosen personalized videos you have<br>given for your fans</p>
+                        <p class="text-color font-16">Choosen personalized videos you have<br>given for your fans</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Next-Gen</h4>
-                        <p class="text-color">Take the next step in connecting with<br>your fans through personalized videos</p>
+                        <p class="text-color font-16">Take the next step in connecting with<br>your fans through personalized videos</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="block-3">
-            <div class="text-center" style="margin-bottom: 60px">
-                <h1 class="text-color block-title" style="padding-top: 100px">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h1>
+            <div class="text-center block-3-text">
+                <h1 class="text-color block-title">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h1>
                 <div class="horizontal-red-bar"></div>
-                <h5 class="text-color">If you are part of the Korean Wave sweeping the globe, you can apply<br>here and we will get in touch with you within 72hours.</h5>
+                <h5 class="text-color desktop" style="font-size: 24px;">If you are part of the Korean Wave sweeping the globe, you can apply<br>here and we will get in touch with you within 72hours.</h5>
+                <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
             </div>
             <div class="container">
                 <form class="custom-form">
