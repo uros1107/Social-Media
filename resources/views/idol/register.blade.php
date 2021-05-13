@@ -98,7 +98,7 @@
         padding-bottom: 30px;
     }
     .footer-subscribe {
-        width: unset%!important;
+        width: unset!important;
     }
     .footer-subscribe-part {
         padding: 10px 0px 0px!important;
