@@ -312,7 +312,7 @@
                     <h5 class="text-color">Join our mailing list</h5>
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
                 </div>
-                <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
+                <div class="col-12 col-sm-8 col-md-8">
                     <form class="custom-form d-flex my-auto footer-subscribe">
                         <div class="inputWithIcon" style="width: 75%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
