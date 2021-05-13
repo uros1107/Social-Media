@@ -79,6 +79,18 @@
     padding: 10px 30px 0px;
 }
 
+@media screen and (max-width:768px) {
+    .footer-subscribe {
+        width: 460px!important;
+    }
+    .welcome-millionk {
+        margin-left: 0px!important;
+    }
+    .main-text {
+        font-size: 46px!important;
+    }
+}
+
 @media screen and (max-width:425px) {
     .block-2 {
         background: #121212;
@@ -139,7 +151,7 @@
         content: "this this"
     }
     .main-text {
-        font-size: 20px;
+        font-size: 20px!important;
     }
     .description {
         font-size: 12px;
