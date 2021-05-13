@@ -119,7 +119,7 @@
 .custom-form {
     width: 100%;
 }
-input[type="text"], .custom-textarea {
+.custom-input, .custom-textarea {
     width: 100%;
     border: 0px solid #aaa;
     border-radius: 4px;
@@ -134,12 +134,12 @@ input[type="text"], .custom-textarea {
     color: #fcfcfc;
   }
   
-  input[type="text"]:focus, .custom-textarea:focus {
+  .custom-input:focus, .custom-textarea:focus {
     border-color: dodgerBlue;
     box-shadow: 0 0 15px 0 #545454;
   }
   
-  .inputWithIcon input[type="text"] {
+  .inputWithIcon .custom-input {
     padding-left: 40px;
   }
   

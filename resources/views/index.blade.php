@@ -98,7 +98,7 @@
                 </div>
                 <div class="input-group mb-5 mt-4 email-part">
                     <form style="display:flex!important;width:100%;justify-content: center;" action="{{ route('send-mail') }}" method="get">
-                        <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
                             <button class="btn btn-primary m-btn" type="submit" style="font-size:14px;">REQUEST INVITE</button>
                         </div>

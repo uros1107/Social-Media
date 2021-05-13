@@ -166,7 +166,7 @@
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Your Name</label>
-                                <input type="text" placeholder="Your name">
+                                <input type="text" placeholder="Your name" class="custom-input">
                                 <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                             </div>
@@ -174,35 +174,35 @@
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Phone Number(Never Shared)</label>
-                                <input type="text" placeholder="Phone number">
+                                <input type="text" placeholder="Phone number" class="custom-input">
                                 <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">Email</label>
-                                <input type="text" placeholder="Email">
+                                <input type="text" placeholder="Email" class="custom-input">
                                 <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">Where can we find you?</label>
-                                <input type="text" placeholder="Twitter">
+                                <input type="text" placeholder="Twitter" class="custom-input">
                                 <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Your handle/Username</label>
-                                <input type="text" placeholder="User name">
+                                <input type="text" placeholder="User name" class="custom-input">
                                 <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">How many followers do you have?</label>
-                                <input type="text" placeholder="20">
+                                <input type="text" placeholder="20" class="custom-input">
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
                             </div>
                         </div>
