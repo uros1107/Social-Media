@@ -81,7 +81,7 @@
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
-        /* width: 460px!important; */
+        width: 460px!important;
     }
     .welcome-millionk {
         margin-left: 0px!important;
@@ -98,7 +98,7 @@
         padding-bottom: 30px;
     }
     .footer-subscribe {
-        width: 100%!important;
+        width: unset%!important;
     }
     .footer-subscribe-part {
         padding: 10px 0px 0px!important;
