@@ -81,7 +81,7 @@
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
-        width: 460px!important;
+        /* width: 460px!important; */
     }
     .welcome-millionk {
         margin-left: 0px!important;
@@ -307,14 +307,14 @@
     </div>
     <div class="footer">
         <div class="container-fluid m-0" style="height: 100%!important">
-            <div class="row footer-subscribe-part m-0">
+            <div class="row footer-subscribe-part">
                 <div class="col-12 col-sm-4 col-md-4 my-auto">
                     <h5 class="text-color">Join our mailing list</h5>
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
                 </div>
                 <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
                     <form class="custom-form d-flex my-auto footer-subscribe">
-                        <div class="inputWithIcon" style="width: 75%">
+                        <div class="inputWithIcon" style="width: 73%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
