@@ -314,7 +314,7 @@
                 </div>
                 <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
                     <form class="custom-form d-flex my-auto footer-subscribe">
-                        <div class="inputWithIcon" style="width: 73%">
+                        <div class="inputWithIcon" style="width: 75%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
