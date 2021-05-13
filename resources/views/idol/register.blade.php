@@ -305,14 +305,14 @@
             </div>
         </div>
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
         <div class="container-fluid m-0" style="height: 100%!important">
             <div class="row footer-subscribe-part">
                 <div class="col-12 col-sm-4 col-md-4 my-auto">
                     <h5 class="text-color">Join our mailing list</h5>
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
                 </div>
-                <div class="col-12 col-sm-8 col-md-8">
+                <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
                     <form class="custom-form d-flex my-auto footer-subscribe">
                         <div class="inputWithIcon" style="width: 75%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
@@ -408,7 +408,6 @@
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <!-- <p class="text-main-color mb-0">About</p> -->
                         </div>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px;border-top: 1px solid #2b2b2b;">
@@ -423,7 +422,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 @endsection
