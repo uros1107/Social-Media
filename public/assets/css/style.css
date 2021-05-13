@@ -115,6 +115,79 @@
     display: none;
 }
 
+/* input box css start */
+.custom-form {
+    width: 100%;
+}
+input[type="text"], .custom-textarea {
+    width: 100%;
+    border: 0px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    border-radius: 15px;
+    height: 50px;
+    background: #2B2B2B;
+    color: #fcfcfc;
+  }
+  
+  input[type="text"]:focus, .custom-textarea:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 15px 0 #545454;
+  }
+  
+  .inputWithIcon input[type="text"] {
+    padding-left: 40px;
+  }
+  
+  .inputWithIcon {
+    position: relative;
+    margin: 10px 0px;
+  }
+  
+  .inputWithIcon i {
+    position: absolute;
+    left: 0;
+    top: 33px;
+    padding: 9px 8px;
+    color: #aaa;
+    transition: 0.3s;
+    margin: auto;
+  }
+  .input-label {
+      color: #fcfcfc;
+      margin-left: 16px;
+      margin-bottom: 0px;
+  }
+  .input-icon {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    padding: 9px 10px;
+    color: #aaa;
+    transition: 0.3s;
+    margin: auto;
+  }
+/* input box css end */
+
+/* button css */
+.custom-btn {
+    height: 50px;
+    background-color: #FF335C;
+    border-radius: 20px!important;
+}
+
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+    height: 50px;
+    background-color: #FF335C!important;
+    border-color: #FF335C!important;
+    border-radius: 20px!important;
+}
+  
+
 @media only screen and (max-width: 1530px) and (min-width: 1228px) {
     .main-text {
         font-size: 50px;
