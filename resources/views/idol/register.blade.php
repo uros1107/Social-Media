@@ -305,9 +305,9 @@
             </div>
         </div>
     </div>
-    <!-- <div class="footer">
+    <div class="footer">
         <div class="container-fluid m-0" style="height: 100%!important">
-            <div class="row footer-subscribe-part">
+            <div class="row footer-subscribe-part m-0">
                 <div class="col-12 col-sm-4 col-md-4 my-auto">
                     <h5 class="text-color">Join our mailing list</h5>
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
@@ -422,7 +422,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 
 @endsection
