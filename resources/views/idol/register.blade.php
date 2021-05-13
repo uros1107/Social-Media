@@ -91,7 +91,7 @@
     }
 }
 
-@media screen and (max-width:425px) {
+@media screen and (max-width:475px) {
     .block-2 {
         background: #121212;
         padding-top: 30px;
