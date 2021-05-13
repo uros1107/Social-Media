@@ -4,159 +4,7 @@
 
 @section('styles')
 <style>
-.block-1 {
-    height: 100vh;
-}
-.block-2 {
-    background: #121212;
-    padding-top: 70px;
-    padding-bottom: 110px;
-}
-.block-3 {
-    background: #171717;
-    padding-bottom: 70px;
-    padding-top: 70px;
-}
-.bg-img {
-    height: 100vh;
-    object-fit: cover;
-    position: absolute;
-    z-index: -1;
-}
-.hand-img {
-    position: absolute;
-    top: 35px;
-    right: 0px;
-}
-.gradient {
-    margin-top: -126px;
-    height: 160px;
-    width: 100%;
-    z-index: 999;
-    background: linear-gradient(180deg, rgb(19 19 19 / 67%) 30%, rgb(18 18 18) 70%);
-}
-.welcome-millionk {
-    margin-top: 300px;
-    margin-left: 70px;
-}
-.block-3-text {
-    margin-bottom: 60px;
-}
-.block-title {
-    font-size: 40px;
-    letter-spacing: 6px;
-    margin-bottom: 50px;
-}
-.horizontal-red-bar {
-    width: 100px;
-    height: 3px;
-    background-color: #FF335C;
-    margin: auto;
-    margin-bottom: 40px;
-}
-.text-color {
-    color: #fcfcfc!important;
-}
-.font-16 {
-    font-size: 16px;
-}
-.item-title {
-    margin: 30px 0px 20px;
-    font-size: 18px;
-}
-.footer-text {
-    padding: 10px;
-    margin-left: 15px;
-}
-.footer-social {
-    padding: 10px;
-}
-.footer-subscribe {
-    width: 600px;
-}
-.footer-subscribe-part {
-    background: #121212;
-    padding: 10px 30px 0px;
-}
 
-@media screen and (max-width:768px) {
-    .footer-subscribe {
-        width: 460px!important;
-    }
-    .welcome-millionk {
-        margin-left: 0px!important;
-    }
-    .main-text {
-        font-size: 46px!important;
-    }
-}
-
-@media screen and (max-width:475px) {
-    .block-2 {
-        background: #121212;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-    .footer-subscribe {
-        width: 100%!important;
-    }
-    .footer-subscribe-part {
-        padding: 10px 0px 0px!important;
-    }
-    .footer-subscribe-input {
-        height: 36px!important;
-        font-size: 12px!important;
-    }
-    .footer-subscribe-btn {
-        height: 36px!important;
-        font-size: 12px!important;
-    }
-    .footer-subscribe-icon {
-        top: 9px!important;
-    }
-    .footer-text {
-        margin-left: 0px!important;
-    }
-    .block-3-text {
-        margin-bottom: 30px;
-    }
-    .block-title {
-        font-size: 18px!important;
-        letter-spacing: 4px;
-        margin-bottom: 30px;
-    }
-    .horizontal-red-bar {
-        margin-bottom: 30px;
-    }
-    .item-title {
-        font-size: 16px;
-    }
-    p, h5 {
-        font-size: 14px!important;
-    }
-    .create-showcase {
-        margin-bottom: 35px;
-    }
-    a {
-        font-size: 14px;
-    }
-    .welcome-millionk {
-        margin-top: 200px;
-        margin-left: 0px;
-    }
-    .comming {
-        font-size: 10px;
-    }
-    .comming:before {
-        content: "this this"
-    }
-    .main-text {
-        font-size: 20px!important;
-    }
-    .description {
-        font-size: 12px;
-    }
-}
 </style>
 @endsection
 
@@ -313,13 +161,13 @@
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>
                 </div>
                 <div class="col-12 col-sm-8 col-md-8" style="text-align: -webkit-right;">
-                    <!-- <form class="custom-form d-flex my-auto footer-subscribe">
+                    <form class="custom-form d-flex my-auto footer-subscribe">
                         <div class="inputWithIcon" style="width: 73%">
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
                         <button class="btn btn-primary custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%" type="submit">Subscribe</button>
-                    </form> -->
+                    </form>
                 </div>
             </div>
             <div class="row desktop" style="padding: 10px 30px;background:#171717">
