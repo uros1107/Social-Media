@@ -121,7 +121,7 @@
         margin-bottom: 30px;
     }
     .block-title {
-        font-size: 18px;
+        font-size: 18px!important;
         letter-spacing: 4px;
         margin-bottom: 30px;
     }
