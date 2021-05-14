@@ -87,7 +87,7 @@
         margin-left: 0px!important;
     }
     .m-main-text {
-        font-size: 46px!important;
+        /* font-size: 46px!important; */
         letter-spacing: 4px;
         margin-bottom: 26px;
         margin-top: 24px;
