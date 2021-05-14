@@ -155,7 +155,7 @@
         content: "this this"
     }
     .m-main-text {
-        font-size: 40px!important;
+        font-size: 20px!important;
     }
     .m-description {
         font-size: 12px;
