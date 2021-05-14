@@ -88,6 +88,9 @@
     }
     .m-main-text {
         font-size: 46px!important;
+        letter-spacing: 4px;
+        margin-bottom: 26px;
+        margin-top: 24px;
     }
 }
 
@@ -194,7 +197,7 @@
                         <div class="">
                             <span class="comming text-white m-comming">Welcome to Millionk</span>
                         </div>
-                        <h1 class="text-white main-text m-main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h1>
+                        <h1 class="text-white m-main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h1>
                         <h3 class="description m-description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5" style="justify-content: center">
                             <button class="btn btn-primary custom-btn" style="height: 30px;font-size: 10px" type="submit">APPLY NOW</button>
