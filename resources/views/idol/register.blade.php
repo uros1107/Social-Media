@@ -130,7 +130,7 @@
         margin-bottom: 30px;
     }
     .horizontal-red-bar {
-        margin-top: 30px;
+        margin-bottom: 30px;
     }
     .item-title {
         font-size: 16px;
