@@ -54,6 +54,14 @@
     margin: auto;
     margin-bottom: 40px;
 }
+.m-horizontal-red-bar {
+    width: 100px;
+    height: 3px;
+    background-color: #FF335C;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
 .text-color {
     color: #fcfcfc!important;
 }
@@ -211,7 +219,7 @@
             <h1 class="text-color block-title desktop">CONNECT WITH YOUR FRIENDS WORLDWIDE</h1>
             <h3 class="text-color mobile">CONNECT WITH YOUR FRIENDS WORLDWIDE</h3>
             <div class="horizontal-red-bar desktop"></div>
-            <div class="horizontal-red-bar mobile" style="margin-top: 30px"></div>
+            <div class="m-horizontal-red-bar mobile"></div>
             <div class="container">
                 <div class="row m-0">
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
@@ -237,7 +245,7 @@
                 <h1 class="text-color block-title desktop">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h1>
                 <h3 class="text-color mobile">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h3>
                 <div class="horizontal-red-bar desktop"></div>
-                <div class="horizontal-red-bar mobile" style="margin-top: 30px"></div>
+                <div class="horizontal-red-bar mobile"></div>
                 <h5 class="text-color desktop" style="font-size: 24px;">If you are part of the Korean Wave sweeping the globe, you can apply<br>here and we will get in touch with you within 72hours.</h5>
                 <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
             </div>
