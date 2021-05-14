@@ -4,6 +4,159 @@
 
 @section('styles')
 <style>
+.block-1 {
+    height: 100vh;
+}
+.block-2 {
+    background: #121212;
+    padding-top: 70px;
+    padding-bottom: 110px;
+}
+.block-3 {
+    background: #171717;
+    padding-bottom: 70px;
+    padding-top: 70px;
+}
+.bg-img {
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+.hand-img {
+    position: absolute;
+    top: 35px;
+    right: 0px;
+}
+.gradient {
+    margin-top: -126px;
+    height: 160px;
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(180deg, rgb(19 19 19 / 67%) 30%, rgb(18 18 18) 70%);
+}
+.welcome-millionk {
+    margin-top: 300px;
+    margin-left: 70px;
+}
+.block-3-text {
+    margin-bottom: 60px;
+}
+.block-title {
+    font-size: 40px;
+    letter-spacing: 6px;
+    margin-bottom: 50px;
+}
+.horizontal-red-bar {
+    width: 100px;
+    height: 3px;
+    background-color: #FF335C;
+    margin: auto;
+    margin-bottom: 40px;
+}
+.text-color {
+    color: #fcfcfc!important;
+}
+.font-16 {
+    font-size: 16px;
+}
+.item-title {
+    margin: 30px 0px 20px;
+    font-size: 18px;
+}
+.footer-text {
+    padding: 10px;
+    margin-left: 15px;
+}
+.footer-social {
+    padding: 10px;
+}
+.footer-subscribe {
+    width: 600px;
+}
+.footer-subscribe-part {
+    background: #121212;
+    padding: 10px 30px 0px;
+}
+
+@media screen and (max-width:768px) {
+    .footer-subscribe {
+        width: 460px!important;
+    }
+    .welcome-millionk {
+        margin-left: 0px!important;
+    }
+    .m-main-text {
+        font-size: 46px!important;
+    }
+}
+
+@media screen and (max-width:475px) {
+    .block-2 {
+        background: #121212;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .footer-subscribe {
+        width: 100%!important;
+    }
+    .footer-subscribe-part {
+        padding: 10px 0px 0px!important;
+    }
+    .footer-subscribe-input {
+        height: 36px!important;
+        font-size: 12px!important;
+    }
+    .footer-subscribe-btn {
+        height: 36px!important;
+        font-size: 12px!important;
+    }
+    .footer-subscribe-icon {
+        top: 9px!important;
+    }
+    .footer-text {
+        margin-left: 0px!important;
+    }
+    .block-3-text {
+        margin-bottom: 30px;
+    }
+    .block-title {
+        font-size: 18px!important;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+    }
+    .horizontal-red-bar {
+        margin-bottom: 30px;
+    }
+    .item-title {
+        font-size: 16px;
+    }
+    p, h5 {
+        font-size: 14px!important;
+    }
+    .create-showcase {
+        margin-bottom: 35px;
+    }
+    a {
+        font-size: 14px;
+    }
+    .welcome-millionk {
+        margin-top: 200px;
+        margin-left: 0px;
+    }
+    .m-comming {
+        font-size: 10px;
+    }
+    .m-comming:before {
+        content: "this this"
+    }
+    .m-main-text {
+        font-size: 20px!important;
+    }
+    .m-description {
+        font-size: 12px;
+    }
+}
 
 </style>
 @endsection
@@ -39,10 +192,10 @@
                 <div class="col-12 d-flex">
                     <div class="welcome-millionk text-center">
                         <div class="">
-                            <span class="comming text-white">Welcome to Millionk</span>
+                            <span class="comming text-white m-comming">Welcome to Millionk</span>
                         </div>
-                        <h1 class="text-white main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h1>
-                        <h3 class="description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
+                        <h1 class="text-white main-text m-main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h1>
+                        <h3 class="description m-description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5" style="justify-content: center">
                             <button class="btn btn-primary custom-btn" style="height: 30px;font-size: 10px" type="submit">APPLY NOW</button>
                         </div>
