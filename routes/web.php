@@ -40,6 +40,7 @@ Route::get('/', function() {
 Route::get('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
 Route::get('/idol-registration', 'IdolController@registration')->name('idol-registration');
 Route::get('/idol-register', 'IdolController@idol_register')->name('idol-register');
+Route::get('/idol', 'IdolController@index')->name('idol-index');
 
 // ================== Fans route ==================
 Route::get('/fans-signin', 'FansController@signin')->name('fans-signin');

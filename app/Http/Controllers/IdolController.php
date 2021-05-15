@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class IdolController extends Controller
 {
+    public function index()
+    {
+        return view('idol.home');
+    }
+
     public function registration()
     {
         return view('idol.registration');

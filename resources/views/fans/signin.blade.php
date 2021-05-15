@@ -25,7 +25,7 @@
 @section('content')
 <div class="content">
     <div class="container-fluid p-0 idol-registration">
-        <div class="row m-0 fans">
+        <div class="row m-0 fans desktop">
             <div class="col-12 col-sm-8 col-md-8 image-block">
                 <div class="top">
                     <img src="{{ asset('assets/images/top-left-img.png') }}">

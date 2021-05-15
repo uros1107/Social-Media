@@ -1,0 +1,309 @@
+
+.text-main-color {
+    color: #FF335C!important;
+}
+.text-grey {
+    color: #898989;
+}
+
+/* button css */
+.custom-btn {
+    height: 50px;
+    background-color: #FF335C;
+    border-radius: 25px!important;
+    color: #fff;
+    font-size: 18px;
+}
+
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+    height: 50px;
+    background-color: #FF335C!important;
+    border-color: #FF335C!important;
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+    color: #fff;
+}
+p {
+    font-size: 18px;
+}
+
+/* ------------------------- input box css start -------------------- */
+.custom-form {
+    width: 100%;
+}
+.custom-input, .custom-textarea {
+    width: 100%;
+    border: 0px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    border-radius: 15px;
+    height: 50px;
+    background: rgb(43, 43, 43);
+    color: #fcfcfc;
+  }
+  
+  .custom-input:focus, .custom-textarea:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 15px 0 #545454;
+  }
+  
+  .inputWithIcon .custom-input {
+    padding-left: 40px;
+  }
+  
+  .inputWithIcon {
+    position: relative;
+    margin: 10px 0px;
+  }
+  
+  .inputWithIcon i {
+    position: absolute;
+    left: 0;
+    top: 33px;
+    padding: 9px 8px;
+    color: #aaa;
+    transition: 0.3s;
+    margin: auto;
+  }
+  .input-label {
+      color: #fcfcfc;
+      margin-left: 16px;
+      margin-bottom: 0px;
+  }
+  .input-icon {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    padding: 9px 10px;
+    color: #aaa;
+    transition: 0.3s;
+    margin: auto;
+  }
+/* ------------------------- input box css end -------------------- */
+
+/* ================================================== Layout Css Start ================================================= */
+.main {
+    margin-left:280px!important;
+    margin-top: 100px;
+    background: #171717;
+}
+.sidebar {
+    width: 280px!important;
+    background:#121212;
+    height:100%!important;
+    z-index:1100!important;
+}
+.sidebar .nav-link {
+    font-size: 18px;
+}
+.sidebar .nav-link:hover {
+    background: #2b2b2b!important;
+    border-radius: 20px!important;
+}
+.person-img {
+    width: 40px!important;
+}
+.person-link {
+    font-size: 14px!important;
+    padding: 2px 10px!important;
+}
+.has-search .form-control {
+    padding-left: 50px;
+    height: 55px;
+    border-radius: 25px;
+    width: 448px;
+    background: #121212;
+    border-color: #121212;
+    color: #898989;
+}
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.app-header .has-search .search-icon {
+    width: 20px;
+    position: absolute;
+    top: 17px;
+    left: 18px;
+}
+.app-header .header-right {
+    position: absolute;
+    right: 30px;
+}
+.deactive {
+    background: #171717;
+}
+
+/* --------------------------- footer css start -------------------------- */
+.footer-text {
+    padding: 10px;
+    margin-left: 15px;
+}
+.footer-social {
+    padding: 10px;
+}
+.footer-subscribe {
+    width: 600px;
+}
+.footer-subscribe-part {
+    background: #121212;
+    padding: 10px 30px 0px;
+}
+.mobile {
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+    .footer-subscribe {
+        width: 400px!important;
+    }
+    .main {
+        margin-left:0px!important;
+    }
+    .sidebar {
+        margin-left: -280px!important;
+    }
+}
+
+@media screen and (max-width:475px) {
+    .footer-subscribe {
+        width: 100%!important;
+    }
+    .footer-subscribe-part {
+        padding: 10px 0px 0px!important;
+    }
+    .footer-subscribe-input {
+        height: 36px!important;
+        font-size: 12px!important;
+    }
+    .footer-subscribe-btn {
+        height: 36px!important;
+        font-size: 12px!important;
+    }
+    .footer-subscribe-icon {
+        top: 9px!important;
+    }
+    .footer-text {
+        margin-left: 0px!important;
+    }
+    p, h5 {
+        font-size: 14px!important;
+    }
+    .create-showcase {
+        margin-bottom: 35px;
+    }
+    a {
+        font-size: 14px;
+    }
+}
+@media (max-width: 992px) {
+    .sidebar {
+        margin-left: -280px;
+    }
+}
+/* ------------------------------- footer css end --------------------- */
+/* ================================================== Layout Css End ================================================= */
+
+/* ================================================== Idol Homepage Css Start ================================================= */
+.discover-favourite .image-title {
+    position: absolute;
+    top: 25%;
+    margin-left: 30px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.discover-favourite .discover {
+    background:#ff335c;
+    border-radius:20px;
+    border-radius: 20px
+}
+.discover-favourite .discover > img {
+    opacity: 45%;
+    object-fit:cover;
+    border-radius: 20px;
+    height: 250px;
+}
+.featured .gradient {
+    position: absolute;
+    bottom: 0px;
+    height: 200px;
+    width: 100%;
+    background: linear-gradient(0deg, #FF335C -19.53%, rgba(255, 51, 92, 0) 34.33%);
+    border-radius: 20px;
+}
+.featured .image-item {
+    position: relative;
+}
+.featured .image-item > img {
+    border-radius: 20px;
+}
+.featured .image-item .image-profile {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 15px;
+}
+.featured .image-item .image-profile p {
+    font-size: 14px;
+}
+.featured .image-item .image-profile h5 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+}
+.featured .title-part > .divider {
+    border: 1px solid #2b2b2b;
+    width: 100%;
+}
+.featured .title-part > h2{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+.featured .title-part > p{
+    font-size: 15px;
+    line-height: 18px;
+}
+.featured .idol-search .image-item {
+    border-radius: 25px;
+    background: #FF335C;
+}
+.featured .idol-search .image-item > img {
+    border-radius: 20px;
+    object-fit: cover;
+    opacity: 50%;
+}
+.featured .idol-search .image-item > div {
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    top:0;
+}
+
+@media screen and (min-width:900px) {
+    .featured .custom-col {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+/* ================================================== Idol Homepage Css End ================================================= */
