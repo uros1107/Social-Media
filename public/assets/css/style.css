@@ -1,7 +1,30 @@
 
+/* ================================================= basic css start ================================================ */
 .text-main-color {
     color: #FF335C;
 }
+.text-grey {
+    color: #898989;
+}
+
+/* button css */
+.custom-btn {
+    height: 50px;
+    background-color: #FF335C;
+    border-radius: 20px!important;
+    color: #fff;
+    font-size: 18px;
+}
+
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+    height: 50px;
+    background-color: #FF335C!important;
+    border-color: #FF335C!important;
+    border-radius: 20px!important;
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+}
+/* ================================================= basic css end ================================================ */
+
 .bottom-text {
     color:#FF335C;
     margin-left: 20px;
@@ -115,7 +138,7 @@
     display: none;
 }
 
-/* input box css start */
+/* ------------------------- input box css start -------------------- */
 .custom-form {
     width: 100%;
 }
@@ -171,186 +194,163 @@
     transition: 0.3s;
     margin: auto;
   }
-/* input box css end */
+/* ------------------------- input box css end -------------------- */
 
-/* button css */
-.custom-btn {
-    height: 50px;
-    background-color: #FF335C;
-    border-radius: 20px!important;
+
+/* ====================================== Idol Registration start ==================================== */
+.idol-registration .form-block {
+    background: #2b2b2b;
+    height: 100vh;
+    padding: 60px 40px;
+}
+.idol-registration .title-part {
+    margin: 50px 0px 30px;
+}
+.idol-registration .title {
+    font-size: 42px;
+}
+.idol-registration .sub-title {
+    font-size: 24px;
+}
+.idol-registration .wizard {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.idol-registration ul {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.idol-registration ul li {
+    display: table-cell;
+    width: auto;
+    vertical-align: top;
+    text-align: center;
+    position: relative;
 }
 
-.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+.idol-registration .register-part .wizard ul > li {
+    display: table-cell;
+    width: auto;
+    vertical-align: top;
+    text-align: center;
+    position: relative;
+}
+.idol-registration .register-part .wizard ul > li > a {
+    color: #FF335C;
+    cursor: default;
+    position: relative;
+    padding-top: 52px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+.idol-registration .register-part .wizard ul > li span {
+    border-color: #7367f0;
+    background-color: #7367f0;
+    color: #fff;
+    width: 50px;
     height: 50px;
-    background-color: #FF335C!important;
-    border-color: #FF335C!important;
-    border-radius: 20px!important;
+    line-height: 3rem;
+    border: 3px solid #b8c2cc;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 50%;
+}
+.idol-registration .register-part .wizard ul > li:after {
+    top: 43px;
+    width: 50%;
+    height: 3px;
+    background-color: #7367f0;
+}
+.idol-registration .image-block {
+    display: table;
+}
+.idol-registration .image-block .image-title {
+    padding-left: 70px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.idol-registration .image-block .image-title h1 {
+    font-size: 60px;
+    letter-spacing: 4px;
+}
+.idol-registration .image-block .image-title h4 {
+    font-size: 16px;
 }
   
+  .stepwizard-row {
+    display: table-row;
+  }
+  
+  .stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+  }
+  
+  .stepwizard-step button[disabled] {
+    background-color:red;
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  
+  .stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+  }
+  
+  .btn-circle {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 20px;
+    color: #fff;
+    background: #FF335C;
+    font-size: 20px;
+  }
 
-@media only screen and (max-width: 1530px) and (min-width: 1228px) {
-    .main-text {
-        font-size: 50px;
-    }
-    .description {
-        font-size: 20px;
-    }
-    .month {
-        font-size: 100px;
-    }
-    .day {
-        font-size: 70px;
-    }
-} 
-
-@media only screen and (max-width: 1227px) and (min-width: 1110px) {
-    .main-text {
-        font-size: 35px;
-    }
-    .description {
-        font-size: 18px;
-    }
-    .comming {
-        font-size: 16px;
-    }
-    .month {
-        font-size: 80px;
-    }
-    .day {
-        font-size: 60px;
-    }
-}   
-
-@media(max-width:1110px) {
-    .desktop {
-        display: none;
-    }
-    .mobile {
-        display: initial;
-    }
-
-    .top-bar {
-        position: fixed;
-        top: 5px;
-        left: 5px;
-        height: 60px;
-        width: 100%;
-        background: #000;
-        margin-top: -5px;
-        margin-left: -5px;
-    }
-    .logo-img {
-        height: 40px;
-        position: absolute;
-        top: 10px;
-        left: 18px;
-    }
-    .right-side-icons {
-        position: absolute;
-        right: 8px;
-        top: 18px;
-    }
-    .right-side-icons .fa {
-        margin: 0px 10px;
-        font-size: 20px;
-    }
-    .m-middle {
-        display: block;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        padding-top: 150px;
-    }
-    .m-comming {
-        font-size: 15px;
-        margin-bottom: 0px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    .m-month {
-        font-size: 60px;
-        font-weight: 100;
-        letter-spacing: 7px;
-    }
-    .m-year {
-        font-size: 44px;
-    }
-    .m-welcome {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    .m-welcome:before {
-        content: 'this this';
-        color: #FF335C;
-        background: #FF335C;
-        font-size: 2px;
-        margin-right: 10px;
-    }
-    .m-main-title {
-        font-size: 20px;
-    }
-    .m-description {
-        font-size: 12px;
-    }
-    .m-btn {
-        font-size: 10px !important;
-        width:  100%!important;
-    }
-    .m-email, .m-email:focus {
-        width: 65% !important;
-    }
-    .m-social-icon {
-        font-size: 24px;
-        margin: 0px 8px;
-    }
-    .email-part {
-        justify-content: center;
-    }
-
-}
-
-@media screen and (max-width:425px) {
-    .bottom-text {
-        margin-right: 20px!important;
-    }
-    .m-btn {
-        font-size: 10px !important;
-        width:  100%!important;
-    }
-
-    .m-middle {
-        padding-top: 120px;
-    }
-    .email-part {
-        justify-content: center;
-    }
-}
-
-@media screen and (max-width:320px) {
-    .m-middle {
-        top: 16%;
-    }
-    .email-part {
-        margin-top: 5px!important;
-        margin-bottom: 10px!important;
-        justify-content: center;
-    }
-    .copyright {
-        margin-top: 10px !important;
-    }
-    .bottom-text {
-        margin-top: 10px!important;
-        margin-right: 20px!important;
-    }
-    .m-social {
-        margin-top: 15px!important;
-    }
-    .m-middle {
-        padding-top: 90px;
-    }
-}
+/* ====================================== Idol Registration end ==================================== */
 
 
-/* ----------------------------------------- Idol Register --------------------------------------- */
+/* ====================================== Fans sign in start ==================================== */
+.black-checkbox .fill-control-input:checked~.fill-control-indicator{
+    background-color: #000;
+    border-color: #000;
+  }
+.fill-control-indicator{
+    border-radius: 3px;
+    display: inline-block;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #aaa;
+    transition: .3s;
+    background: transperent;
+    background-size: 0%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+  }
+  .google-btn, .facebook-btn {
+      background: #2b2b2b!important;
+      color: white;
+      border: 1px solid #898989!important;
+      font-size: 14px;
+  }
+  .google-btn:hover, .facebook-btn:hover {
+        background: #2b2b2b!important;
+        color: white;
+        border: 1px solid #898989!important;
+    }
+/* ====================================== Fans sign in end ==================================== */
