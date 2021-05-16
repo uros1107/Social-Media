@@ -143,6 +143,9 @@ p {
 .deactive {
     background: #171717;
 }
+.show-sidebar {
+    margin-left: 0px!important;
+}
 
 /* --------------------------- footer css start -------------------------- */
 .footer-text {
@@ -175,9 +178,35 @@ p {
     }
     .main {
         margin-left:0px!important;
+        margin-top:60px!important;
     }
-    .sidebar {
+    .m-sidebar {
         margin-left: -280px!important;
+    }
+    .top-bar {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        height: 60px;
+        width: 100%;
+        background: #000;
+        margin-top: -5px;
+        margin-left: -5px;
+    }
+    .logo-img {
+        height: 40px;
+        position: absolute;
+        top: 10px;
+        left: 18px;
+    }
+    .right-side-icons {
+        position: absolute;
+        right: 8px;
+        top: 18px;
+    }
+    .right-side-icons .fa {
+        margin: 0px 10px;
+        font-size: 20px;
     }
 }
 
@@ -202,8 +231,14 @@ p {
     .footer-text {
         margin-left: 0px!important;
     }
-    p, h5 {
-        font-size: 14px!important;
+    .footer-subscribe-part h5 {
+        font-size: 14px;
+        line-height: 23px;
+    }
+    .footer-subscribe-part p {
+        font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 0px;
     }
     .create-showcase {
         margin-bottom: 35px;
@@ -238,6 +273,11 @@ p {
     object-fit:cover;
     border-radius: 20px;
     height: 250px;
+}
+.discover-favourite .tab-btn button {
+    width: 125px;
+    height:40px;
+    font-size:14px;
 }
 .featured .gradient {
     position: absolute;
@@ -297,6 +337,66 @@ p {
     justify-content:center;
     align-items:center;
     top:0;
+}
+
+@media screen and (max-width:475px) {
+    .main .container-fluid {
+        padding: 10px!important;
+    }
+    .discover-favourite, .featured {
+        margin-bottom: 1rem!important;
+    }
+    .discover-favourite .discover > img {
+        height: 145px;
+    }
+    .discover-favourite .image-title {
+        margin-left: 10px;
+    }
+    .discover-favourite .image-title > h2 {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 16px;
+    }
+    .discover-favourite .image-title > p {
+        font-size: 12px;
+        line-height: 12px;
+    }
+    .featured .title-part > h2 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .featured .title-part > p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .custom-col {
+        padding: 0px 3px;
+    }
+    .featured .image-item .image-profile {
+        padding: 7px;
+    }
+    .featured .image-item .image-profile h5 {
+        font-size: 14px;
+        line-height: 0px;
+    }
+    .featured .image-item .image-profile p {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .featured .image-part .row {
+        overflow: auto;
+        flex-wrap: inherit;
+    }
+    .idol-search .image-item h4 {
+        font-size: 14px;
+        line-height: 15px;
+    }
+    .idol-search .row .col-6 {
+        padding: 0px 3px;
+    }
+    .idol-search .row .col-6 .image-item:first-child {
+        margin-bottom: 6px!important;
+    }
 }
 
 @media screen and (min-width:900px) {

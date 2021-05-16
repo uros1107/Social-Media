@@ -11,7 +11,7 @@
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
-                        <button class="btn custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%" type="submit">Subscribe</button>
+                        <button class="btn custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%;font-size:12px" type="submit">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                         <a href="#" class="text-main-color">Tearms of service</a>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px;margin-bottom:20px">
-                        <p class="mb-0" style="color:#898989">Copyright © 2021 Lumiworks.pte.Ltd<br>All rights reserved.</p>
+                        <p class="mb-0" style="color:#898989;font-size: 15px;line-height: 22px;">Copyright © 2021 Lumiworks.pte.Ltd<br>All rights reserved.</p>
                     </div>
                 </div>
             </div>

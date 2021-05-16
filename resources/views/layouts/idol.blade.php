@@ -28,15 +28,8 @@
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed pace-done sidebar-lg-show">
-    <header class="app-header navbar" style="height:100px;background: #171717;padding-left:280px;border-bottom: 0px solid #c8ced3;">
-        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" style="right:0px;position:absolute" type="button" data-toggle="sidebar-show">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- <a class="navbar-brand" href="#">
-            <span class="navbar-brand-full">Project</span>
-            <span class="navbar-brand-minimized">P</span>
-        </a> -->
-        <!-- <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+    <header class="app-header navbar desktop" style="height:100px;background: #171717;padding-left:280px;border-bottom: 0px solid #c8ced3;">
+        <!-- <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" style="right:0px;position:absolute" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
         </button> -->
 
@@ -56,10 +49,10 @@
                 </a>
             </div>
             <div class="my-auto" style="margin-left: 20px;margin-right: 20px">
-                <button class="btn custom-btn deactive" style="width:125px">Login</button>
+                <button class="btn custom-btn deactive" style="width:125px;font-size:16px">Login</button>
             </div>
             <div class="m-auto">
-                <button class="btn custom-btn" style="width:125px">Sign Up</button>
+                <button class="btn custom-btn" style="width:125px;font-size:16px">Sign Up</button>
             </div>
         </div>
 
@@ -81,6 +74,19 @@
             @endif
         </ul>
     </header>
+
+    <div class="m-top mobile" style="z-index:999">
+        <div class="top-bar">
+            <img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}">
+            <div class="right-side-icons">
+                <i class="fa fa-search" style="color: #FF335C"></i>
+                <i class="fa fa-bell-o text-white"></i>
+                <a class="sidebar-toggler d-lg-none mr-auto" type="button">
+                    <i class="fa fa-navicon text-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="app-body mt-0">
         @include('partials.idol-menu')
@@ -122,6 +128,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     
+    <script>
+        $(document).ready(function() {
+            var sidebar_flag = true;
+            $('.sidebar-toggler').on('click', function() {
+                if(sidebar_flag) {
+                    $('.sidebar').removeClass('m-sidebar');
+                    $('.sidebar').addClass('show-sidebar');
+                    sidebar_flag = false;
+                } else {
+                    $('.sidebar').addClass('m-sidebar');
+                    $('.sidebar').removeClass('show-sidebar');
+                    sidebar_flag = true;
+                }
+                
+            })
+        })
+    </script>
     @yield('scripts')
 </body>
 

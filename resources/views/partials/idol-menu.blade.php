@@ -1,4 +1,4 @@
-<div class="sidebar" style="">
+<div class="sidebar m-sidebar" style="">
     <nav class="sidebar-nav ps ps--active-y" style="width: 280px!important">
         <div class="logo" style="margin:30px 0px;text-align:center">
             <img src="{{ asset('assets/images/logo.png') }}">
