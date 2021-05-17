@@ -20,4 +20,14 @@ class FansController extends Controller
     {
         return view('fans.signup');
     }
+
+    public function index()
+    {
+        return view('fans.home');
+    }
+
+    public function profile()
+    {
+        return view('fans.profile');
+    }
 }
