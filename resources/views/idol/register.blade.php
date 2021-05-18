@@ -229,7 +229,7 @@
         <div class="gradient"></div>
         <div class="block-2 text-center">
             <h1 class="text-color block-title desktop">CONNECT WITH YOUR FRIENDS WORLDWIDE</h1>
-            <h3 class="text-color mobile" style="margin-bottom: 30px!important">CONNECT WITH YOUR FRIENDS WORLDWIDE</h3>
+            <h3 class="text-color mobile" style="margin-bottom: 30px!important">CONNECT WITH YOUR<br>FRIENDS WORLDWIDE</h3>
             <div class="horizontal-red-bar"></div>
             <div class="container">
                 <div class="row m-0">
@@ -312,7 +312,7 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3">
-                            <button class="btn btn-primary custom-btn w-100" type="submit">Submit</button>
+                            <button class="btn custom-btn w-100" type="submit">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -344,7 +344,7 @@
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
-                        <button class="btn btn-primary custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%" type="submit">Subscribe</button>
+                        <button class="btn custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%" type="submit">Subscribe</button>
                     </form>
                 </div>
             </div>
