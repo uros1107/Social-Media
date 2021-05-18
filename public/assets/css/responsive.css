@@ -31,7 +31,7 @@
     }
 }   
 
-@media(max-width:1110px) {
+@media(max-width:1024px) {
     .desktop {
         display: none;
     }
