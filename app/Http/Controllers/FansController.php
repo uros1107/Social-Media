@@ -18,7 +18,7 @@ class FansController extends Controller
 
     public function forgot_password()
     {
-        return view('fans.signup');
+        return view('fans.forgot-password');
     }
 
     public function index()

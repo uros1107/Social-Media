@@ -78,6 +78,21 @@
     background: #121212;
     padding: 10px 30px 0px;
 }
+.apply-btn {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    width: 178px;
+    border-radius: 10px!important;
+    height: 45px;
+}
+.apply-btn:hover, .apply-btn:before {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    width: 178px;
+    border-radius: 10px!important;
+}
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
@@ -160,6 +175,11 @@
     .m-description {
         font-size: 12px;
     }
+    .apply-btn {
+        font-size: 10px;
+        height: 30px!important;
+        width: 120px;
+    }
 }
 </style>
 @endsection
@@ -183,7 +203,7 @@
                         <h1 class="text-white main-text">MEET THE WORLD'S FIRST<br> HALLYU CELEBRITY PLATFORM</h1>
                         <h3 class="description">Create & Earn by Fulfilling personalized<br> videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5">
-                            <button class="btn btn-primary custom-btn" style="height: 45px" type="submit">APPLY NOW</button>
+                            <button class="btn custom-btn apply-btn" type="submit">APPLY NOW</button>
                         </div>
                     </div>
                     <div class="middle-hand">
@@ -200,7 +220,7 @@
                         <h3 class="text-white m-main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h3>
                         <h3 class="description m-description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5" style="justify-content: center">
-                            <button class="btn btn-primary custom-btn" style="height: 30px;font-size: 10px" type="submit">APPLY NOW</button>
+                            <button class="btn custom-btn apply-btn" type="submit">APPLY NOW</button>
                         </div>
                     </div>
                 </div>

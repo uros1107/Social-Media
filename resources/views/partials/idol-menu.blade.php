@@ -1,5 +1,5 @@
 <div class="sidebar m-sidebar" style="">
-    <nav class="sidebar-nav ps ps--active-y" style="width: 280px!important">
+    <nav class="sidebar-nav ps" style="width: 280px!important;overflow-y: auto!important;">
         <div class="logo" style="margin:30px 0px;text-align:center">
             <img src="{{ asset('assets/images/logo.png') }}">
         </div>

@@ -146,6 +146,22 @@ p {
 .show-sidebar {
     margin-left: 0px!important;
 }
+.sidebar-minimizer {
+    display: none;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 15px;
+}
+
+::-webkit-scrollbar-track-piece  {
+    background-color: #474747;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background-color: #2b2b2b;
+}
 
 /* --------------------------- footer css start -------------------------- */
 .footer-text {
