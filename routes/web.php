@@ -50,5 +50,8 @@ Route::get('/fans-forgot-password', 'FansController@forgot_password')->name('fan
 
 Route::get('/fans', 'FansController@index')->name('fans-index');
 Route::get('/fans-profile', 'FansController@profile')->name('fans-profile');
+Route::get('/fans-activity', 'FansController@activity')->name('fans-activity');
+Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
+Route::get('/new-request', 'FansController@new_request')->name('new-request');
 
 

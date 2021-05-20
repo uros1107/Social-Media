@@ -92,9 +92,9 @@ p {
 }
 .sidebar {
     width: 280px!important;
-    background:#121212;
-    height:100%!important;
-    z-index:1100!important;
+    background: #121212;
+    height: 100%!important;
+    z-index: 1033!important;
 }
 .sidebar .nav-link {
     font-size: 18px;
@@ -102,6 +102,11 @@ p {
 .sidebar .nav-link:hover {
     background: #2b2b2b!important;
     border-radius: 20px!important;
+}
+.sidebar .nav-link.active {
+    color: #fff;
+    background: #2b2b2b!important;
+    border-radius: 20px;
 }
 .person-img {
     width: 40px!important;
@@ -151,7 +156,7 @@ p {
 }
 ::-webkit-scrollbar {
     width: 5px;
-    height: 15px;
+    height: 0px;
 }
 
 ::-webkit-scrollbar-track-piece  {
@@ -425,6 +430,10 @@ p {
 /* ================================================== Idol Homepage Css End ================================================= */
 
 /* ================================================== Idol Profile Css Start ================================================= */
+.discover-favourite .user-profile {
+    height:198px;
+    background:#2b2b2b;
+}
 .discover-favourite .user-profile .profile-img {
     margin:36px 30px;
 }
@@ -451,7 +460,7 @@ p {
 .discover-favourite .user-profile .profile-action {
     margin:36px 10px;
 }
-.discover-favourite .user-profile .profile-action .grey-btn > .btn {
+.discover-favourite .profile-action .grey-btn .btn {
     background: #2b2b2b!important;
     font-size: 14px;
     height: 35px;
@@ -461,11 +470,499 @@ p {
 .discover-favourite .user-profile .profile-action .fandom > .btn {
     height: 40px;
     font-size: 16px;
+    padding-left: 20px
 }
-.discover-favourite .user-profile .profile-action .fandom span {
+.discover-favourite .fandom span {
     background: #2b2b2b;
     padding: 5px 11px;
     border-radius: 20px;
     margin-left: 25px;
 }
+.discover-favourite .user-profile .profile-action .grey-btn {
+    position: absolute;
+    right: 40px;
+}
+.discover-favourite .user-profile .profile-action .fandom {
+    bottom: 35px;
+    position: absolute;
+    right: 40px;
+}
+.discover-favourite .mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .discover-favourite .desktop {
+        display: none!important;
+    }
+    .discover-favourite .mobile {
+        display: initial;
+    }
+    .discover-favourite .mobile .profile-img img {
+        width: 60px;
+    }
+    .discover-favourite .profile-action .grey-btn .btn {
+        border-radius: 20px!important;
+    }
+    .discover-favourite .m-fandom button {
+        position: relative;
+        height: 40px;
+        font-size:16px;
+    }
+    .discover-favourite .m-fandom span {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+    }
+    .discover-favourite .m-user-profile h4:first-child {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .discover-favourite .m-user-profile h4:nth-child(2) {
+        color:#898989;
+        font-size: 14px;
+        position:absolute;
+        right:20px;
+    }
+}
 /* ================================================== Idol Profile Css End ================================================= */
+
+/* ================================================== Idol Activity Css Start ================================================= */
+.featured .order-history .history-row {
+    padding:10px 15px;
+    position: relative;
+    background: #121212;
+}
+.featured .order-history .history-row .title h4 {
+    font-size:16px;
+}
+.featured .order-history .history-row .title p {
+    color:#898989;
+    font-size:14px;
+}
+.featured .order-history .history-row .date {
+    position: absolute;
+    right: 15px;
+    top: 16px;
+}
+.featured .order-history .history-row .date p {
+    color:#898989;
+    font-size: 14px;
+}
+/* ================================================== Idol Activity Css End ================================================= */
+
+/* ================================================== Follow Idol Css Start ================================================= */
+.follow-idol {
+    position: relative;
+}
+.follow-idol .bg-img {
+    object-fit: cover;
+    height: 293px;
+}
+.follow-idol .gradient {
+    position: absolute;
+    top: 145px;
+    height: 150px;
+    width: 100%;
+    background: linear-gradient(0deg, #171717 10.47%, rgba(255, 51, 92, 0) 96.33%);
+}
+.follow-idol .idol-profile .idol-image img {
+    width: 192px;
+}
+.follow-idol .idol-profile {
+    padding: 0px 50px;
+}
+.follow-idol .idol-information {
+    padding: 10px 30px;
+}
+.follow-idol .idol-profile .tik-tok > button {
+    width: 75px;
+    height: 28px;
+    border-radius: 25px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #FCFCFC;
+    background: transparent!important;
+    border: 1px solid #FCFCFC;
+}
+.follow-idol .idol-profile .name-action h3 {
+    font-size: 30px;
+    line-height: 49px;
+    color: #FCFCFC;
+}
+.follow-idol .idol-profile .name-action h5 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    color: #898989;
+}
+.follow-idol .idol-profile .name-action p {
+    font-size: 14px;
+    line-height: 16px;
+    color: #FCFCFC;
+    max-width: 400px;
+}
+.follow-idol .idol-profile .name-action .description {
+    max-width: 400px;
+}
+.follow-idol .idol-profile .action-part {
+    position: absolute;
+    right: 65px;
+    bottom: 86px;
+}
+.follow-idol .idol-profile .action-part button {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 16px;
+}
+.follow-idol .idol-profile .review-part span {
+    font-size: 15px;
+    line-height: 25px;
+    color: #898989;
+}
+.follow-idol .idol-profile .review-part i {
+    font-size:12px;
+    color:#FFC107;
+}
+.follow-idol .idol-profile .review-part .how {
+    position: absolute;
+    right: 65px;
+}
+.featured .featured-video {
+    padding: 0px 65px;
+}
+.featured .featured-video .video-item .video-title h5 {
+    font-size: 14px;
+    line-height: 23px;
+    color: #FCFCFC;
+}
+.featured .featured-video .video-title {
+    position: relative;
+}
+.featured .featured-video .video-title h5:nth-child(2) {
+    position: absolute;
+    right: 0px;
+}
+.featured .featured-video .video-item p {
+    font-size: 12px;
+    color: #FCFCFC;
+}
+.featured .featured-video .video-item span {
+    font-size: 12px;
+}
+.featured .featured-video .video-item img {
+    border-radius: 15px;
+    width: 100%;
+}
+.featured .featured-video .review-img img {
+    width: 100%;
+}
+.featured .featured-video .review-img {
+    width: 20%;
+}
+.featured .featured-video .review-content h4 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    color: #FCFCFC;
+}
+.featured .featured-video .review-content p {
+    font-size: 16px;
+    line-height: 20px;
+    color: #898989;
+}
+.featured .featured-video .review-content {
+    color: #FFC107;
+    width: 80%;
+}
+.featured .featured-video .review-item {
+    background: #121212;
+    border-radius: 10px;
+    display: flex;
+    padding: 25px;
+}  
+.featured .featured-video .col-12,
+.featured .featured-video .col-sm-6
+.featured .featured-video .col-md-6 {
+    padding: 5px;
+}    
+.follow-idol .idol-profile .idol-image {
+    border-radius: 50%;
+    padding: 10px;
+    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+}
+.follow-idol .active {
+    background: #171717;
+    border: 1px solid #ff335c;
+}
+.follow-idol .how-work-view {
+    padding: 20px;
+    background: #2b2b2b;
+    border-radius: 20px;
+    position: absolute;
+    right: 65px;
+    top: 170px;
+    height: 370px;
+    max-width: 360px;
+    z-index: 10;
+}
+.follow-idol .how-work-view .close-btn {
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.follow-idol .how-work-view .title h4 {
+    font-size: 18px;
+}
+.follow-idol .how-work-view .title p {
+    font-size: 14px;
+}
+.follow-idol .how-work-view .content-item img {
+    height: 20px;
+}
+.follow-idol .how-work-view .content-item p {
+    font-size: 14px;
+}
+@media (max-width: 1370px) { 
+    .featured .featured-video {
+        padding: 0px 20px;
+    }
+    .follow-idol .idol-profile {
+        padding: 0px 10px;
+    }
+    .follow-idol .idol-profile .action-part {
+        right: 20px;
+    }
+    .follow-idol .idol-profile .review-part .how {
+        right: 20px;
+    }
+    .follow-idol .how-work-view {
+        right: 20px;
+        bottom: -75px;
+    }
+}
+
+@media (max-width: 360px) {
+    .follow-idol .mobile .col-4 span,
+    .follow-idol .mobile .col-4 span,
+    .follow-idol .mobile .col-4 span {
+        font-size: 10px!important;
+    }
+    .follow-idol .idol-profile .tik-tok > button {
+        width: 65px;
+        height: 25px;
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 574px) {
+    .featured .featured-video {
+        padding: 0px;
+    }
+    .featured .col-12 {
+        margin-bottom: 10px;
+    }
+    .featured .video-list {
+        overflow: auto;
+        flex-wrap: inherit;
+    }
+    .featured .video-list .col-6 {
+        flex: 0 0 75%;
+        max-width: 75%;
+        padding: 0px 5px;
+    }
+    .featured .featured-video .review-content h4 {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: unset;
+        color: #FCFCFC;
+    }
+    .featured .featured-video .title-part .text-grey {
+        margin-bottom: 0px;
+    }
+    .featured .featured-video .review-content p {
+        font-size: 12px;
+        line-height: 20px;
+        color: #898989;
+    }
+    .featured .featured-video .review-content .rating i {
+        font-size: 12px;
+    }
+    .featured .featured-video .video-item img {
+        border-radius: 15px;
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+    }
+    .follow-idol .bg-img {
+        object-fit: cover;
+        height: 355px;
+    }
+    .follow-idol .gradient {
+        position: absolute;
+        top: 167px;
+        height: 190px;
+        width: 100%;
+        background: linear-gradient(0deg, #171717 7.47%, rgba(255, 51, 92, 0) 100.33%);
+    }
+    .follow-idol .idol-profile {
+        padding: 0px;
+    }
+    .follow-idol .idol-profile .idol-image {
+        padding: 6px;
+    }
+    .follow-idol .idol-profile .idol-image img {
+        width: 100px;
+    }
+    .follow-idol .rating i {
+        font-size: 12px;
+        color:#FFC107;
+    }
+    .follow-idol .mobile .col-4 span,
+    .follow-idol .mobile .col-4 span,
+    .follow-idol .mobile .col-4 span {
+        font-size: 12px;
+    }
+}
+
+
+/* ================================================== Follow Idol Css End ================================================= */
+
+/* ================================================== New Request Css Start ================================================= */
+/* ---------- radio button start ------------- */
+.language-setting ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.language-setting ul li{
+    color: #AAAAAA;
+    display: block;
+    position: relative;
+    float: left;
+}
+  
+.language-setting ul li input[type=radio]{
+    position: absolute;
+    visibility: hidden;
+  }
+  
+.language-setting ul li label{
+    display: block;
+    position: relative;
+    font-weight: 200;
+    padding: 0px 25px;
+    z-index: 9;
+    cursor: pointer;
+    margin-bottom: 0px;
+    -webkit-transition: all 0.25s linear;
+  }
+  
+.language-setting ul li:hover label{
+      color: #FFFFFF;
+  }
+  
+.language-setting ul li .check{
+    display: block;
+    position: absolute;
+    border: 2px solid #AAAAAA;
+    border-radius: 100%;
+    height: 18px;
+    width: 18px;
+    top: 1px;
+    left: 0px;
+    z-index: 5;
+    transition: border .25s linear;
+    -webkit-transition: border .25s linear;
+  }
+  
+.language-setting ul li:hover .check {
+    border: 2px solid #FF335C;
+}
+  
+.language-setting ul li .check::before {
+    display: block;
+    position: absolute;
+    content: '';
+    border-radius: 100%;
+    height: 10px;
+    width: 10px;
+    top: 2px;
+    left: 2px;
+    margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+  
+input[type=radio]:checked ~ .check {
+    border: 2px solid #FF335C;
+}
+  
+input[type=radio]:checked ~ .check::before{
+    background: #FF335C;
+}
+  
+input[type=radio]:checked ~ label{
+    color: #FF335C;
+}
+/* ---------- radio button end ------------- */
+
+.lang-preference {
+    padding: 20px;
+    background: #2b2b2b;
+    border-radius: 20px;
+}
+.lang-preference h4 {
+    font-size: 18px;
+}
+.lang-preference p {
+    font-size: 14px;
+    color: #898989;
+}
+.lang-preference .introduction {
+    border-width: 0px;
+    background: #171717;
+    border-radius: 15px;
+    color: white;
+}
+.lang-preference .introduction:focus {
+    box-shadow: 0 0 0 0.2rem rgb(155 165 169 / 25%);
+
+}
+.lang-preference .divider {
+    height: 1px;
+    background: #171717;
+    width: 140%;
+    margin-left: -25px;
+}
+.featured-video .user-block {
+    margin-right: 25px!important;
+    margin: auto;
+}
+.featured-video .divider {
+    border: 1px solid #2b2b2b;
+    width: 100%;
+}
+.featured-video .user-block .first-block {
+    width: 100%;
+    border-radius: 15px;
+    background: #ff335c;
+    /* margin: 10px; */
+    height: 90px;
+    /* text-align: center; */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.featured-video .user-block .deactive {
+    background: #2b2b2b!important;
+}
+.featured-video .vertical-line {
+    border-left: 1px solid #2b2b2b;
+    height: 111px;
+    margin-right: 23px;
+}
+/* ================================================== New Request Css End ================================================= */

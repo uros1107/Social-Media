@@ -30,4 +30,19 @@ class FansController extends Controller
     {
         return view('fans.profile');
     }
+
+    public function activity()
+    {
+        return view('fans.activity');
+    }
+
+    public function follow_idol()
+    {
+        return view('fans.follow-idol');
+    }
+
+    public function new_request()
+    {
+        return view('fans.new-request');
+    }
 }
