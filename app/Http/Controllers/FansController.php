@@ -45,4 +45,29 @@ class FansController extends Controller
     {
         return view('fans.new-request');
     }
+
+    public function payment()
+    {
+        return view('fans.payment');
+    }
+
+    public function payment_success()
+    {
+        return view('fans.payment-success');
+    }
+
+    public function payment_cancel()
+    {
+        return view('fans.payment-cancel');
+    }
+
+    public function view_video()
+    {
+        return view('fans.view-video');
+    }
+
+    public function order_list()
+    {
+        return view('fans.order-list');
+    }
 }

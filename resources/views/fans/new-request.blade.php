@@ -137,18 +137,16 @@
 <div class="row featured mb-5 m-0">
     <div class="col-12 col-sm-8 col-md-8 featured-video">
         <div class="title-part">
-            <h2 class="text-white">Featured Videos</h2>
-            <p class="text-grey">All videos</p>
-            <div class="divider mb-4 desktop"></div>
+            <h2 class="text-white">New request from John Doe</h2>
+            <p class="text-grey">Tell the Influencer what is your idea to make request video</p>
+            <div class="divider mt-2 mb-4"></div>
         </div>
-        <div class="who-is w-100 mb-4">
+        <div class="who-is w-100 mb-3">
             <h4 class="text-white w-100">Who is this for?</h4>
             <div class="d-flex">
-                <div class="w-50 user-block d-flex">
+                <div class="col-12 col-sm-6 col-md-6 user-block d-flex">
                     <div class="first-block mr-2">
-                        <div>
-                            <img src="{{ asset('assets/images/icons/users.png') }}">
-                        </div>
+                        <img src="{{ asset('assets/images/icons/users.png') }}">
                         <div>
                             <span class="text-white">Someone else</span>
                         </div>
@@ -160,16 +158,69 @@
                         </div>
                     </div>
                 </div>
-                <div class="vertical-line"></div>
-                <div class="w-50 to">
-                    <div class="form-group">
+                <div class="vertical-line desktop"></div>
+                <div class="col-12 col-sm-6 col-md-6 to">
+                    <div class="form-group" style="width: 80%">
                         <label for="usr" class="text-white">To:</label>
                         <input type="text" class="custom-input" id="usr">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="divider mb-4"></div>
+        <div class="divider mb-3"></div>
+        <div class="who-is w-100 mb-4">
+            <h4 class="text-white w-100">Select on Occasion</h4>
+            <div class="row m-0 occasion">
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-1.png') }}">
+                        <span class="text-white">None</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item active">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-2.png') }}">
+                        <span class="text-white">Encouragement</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-3.png') }}">
+                        <span class="text-white">Birthday</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-4.png') }}">
+                        <span class="text-white">Gift</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-5.png') }}">
+                        <span class="text-white">Advice</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-6.png') }}">
+                        <span class="text-white">Congrats</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-7.png') }}">
+                        <span class="text-white">Valentine’s</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item">
+                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-8.png') }}">
+                        <span class="text-white">Other</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4 featured-video">
         <div class="lang-preference">
@@ -181,7 +232,8 @@
                     <p class="mb-0">Your idol will use the language you choose here</p>
                 </div>
                 <div class="col-12 how-content">
-                    <form>
+                    <form action="{{ route('payment') }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="language-setting mb-3">
                             <ul>
                                 <li>
@@ -210,60 +262,33 @@
                         <div class="submit">
                             <button type="submit" class="btn custom-btn w-100" style="font-size: 14px">Continue</button>
                         </div>
-                    </from>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>        
-        <!-- 16:9 aspect ratio -->
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> 
-
 @endsection
 
 @section('scripts')
-
 <script>
 $(document).ready(function() {
-
-    $(document).on('click', '.video-item', function() {
-        var videoSrc = $(this).data('src');
-        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
-        $('#myModal').modal('toggle');
-    })
-
-    var show = false;
-    $(document).on('click', '.how', function() {
-        show = !show;
-        if(show) {
-            $('.how-work-view').removeClass('d-none');    
+    $(document).on('click', '.occasion-item', function() {
+        if($(this).hasClass('active')) {
+            $(this).removeClass('active');
         } else {
-            $('.how-work-view').addClass('d-none');
+            $(this).addClass('active');
         }
-    })
-
-    $(document).on('click', '.close-btn', function() {
-        $('.how-work-view').addClass('d-none');
-    })
-
-    $(document).on('click', '#new-quest, #m-new-request', function() {
-        location.href = "{{ route('new-request') }}";
-    })
-})
+    });
+    $(document).on('click', '.first-block', function() {
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.first-block').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
+    });
+});
 </script>
 @endsection

@@ -287,4 +287,11 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.custom-col').on('click', function() {
+            location.href = "{{ route('follow-idol') }}";
+        })
+    })
+</script>
 @endsection

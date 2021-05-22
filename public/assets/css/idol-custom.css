@@ -270,7 +270,7 @@ p {
 }
 @media (max-width: 992px) {
     .sidebar {
-        margin-left: -280px;
+        margin-left: 0px;
     }
 }
 /* ------------------------------- footer css end --------------------- */
@@ -725,7 +725,7 @@ p {
 .follow-idol .how-work-view .content-item p {
     font-size: 14px;
 }
-@media (max-width: 1370px) { 
+@media (max-width: 1500px) { 
     .featured .featured-video {
         padding: 0px 20px;
     }
@@ -933,10 +933,9 @@ input[type=radio]:checked ~ label{
 
 }
 .lang-preference .divider {
-    height: 1px;
-    background: #171717;
-    width: 140%;
+    width: 140%!important;
     margin-left: -25px;
+    border: 1px solid #171717!important;
 }
 .featured-video .user-block {
     margin-right: 25px!important;
@@ -950,12 +949,13 @@ input[type=radio]:checked ~ label{
     width: 100%;
     border-radius: 15px;
     background: #ff335c;
-    /* margin: 10px; */
+    /* margin-top: 22px; */
     height: 90px;
-    /* text-align: center; */
-    align-items: center;
-    display: flex;
+    text-align: center;
     justify-content: center;
+}
+.featured-video .user-block .first-block img {
+    margin-top: 22px;
 }
 .featured-video .user-block .deactive {
     background: #2b2b2b!important;
@@ -965,4 +965,453 @@ input[type=radio]:checked ~ label{
     height: 111px;
     margin-right: 23px;
 }
+.featured-video .occasion-item {
+    background: #2b2b2b;
+    height: 50px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding-top: 5px;
+}
+.featured-video .occasion .col-md-6 {
+    padding: 0px 5px;
+}
+.featured-video .occasion .active {
+    background: #FF335C;
+}
+
+@media screen and (max-width: 1600px) {
+    .featured-video .occasion-item > span {
+        font-size: 11px!important;
+    }
+}
+@media screen and (max-width: 1245px) {
+    .featured-video .lang-preference {
+        padding: 20px 10px;
+    }
+    .footer-subscribe {
+        width: 500px;
+    }
+}
+@media (max-width: 574px) { 
+    .featured-video .who-is h4 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 360px) {
+    .featured-video .occasion-item span {
+        font-size: 11px!important;
+    }
+}
+
 /* ================================================== New Request Css End ================================================= */
+
+/* ================================================== Payment Css Start ================================================= */
+.featured-video .payment-method {
+    border-radius: 15px;
+    background: #2b2b2b;
+}
+.featured-video .payment-method .first-block {
+    height: 50px;
+}
+.featured-video .payment-method .first-block > div {
+    padding-top: 13px;
+}
+.featured-video .card-item .occasion-item {
+    height: 85px;
+    padding: 12px 20px;
+}
+.featured-video .card-item .occasion-item > span {
+    font-size: 18px!important;
+    font-weight: 600;
+}
+.featured-video .card-item .occasion-item .delete {
+    width: 20px;
+    position: absolute;
+    right: 20px;
+    top: 42px;
+}
+.featured-video .add-card {
+    height: 40px;
+    border-radius: 10px!important;
+    background: #171717;
+    border: 1px solid #ff335c;
+    font-size: 14px;
+}
+.featured-video .card-item .occasion-item .card-number span {
+    font-size: 16px;
+}
+.featured-video .payment-info h5 {
+    font-size: 15px;
+    font-weight: 400;
+}
+.featured-video .payment-info h5:nth-child(2) {
+    position: absolute;
+    right: 0px;
+}
+.featured-video .total h5:nth-child(2) {
+    position: absolute;
+    right: 0px;
+}
+.featured-video .lang-preference .standard-delivery {
+    margin: 0px -20px;
+    height: 45px;
+    background: #FFC107;
+    border-radius: 0px 0px 15px 15px;
+    text-align: center;
+    padding-top: 11px;
+}
+.featured-video .lang-preference .standard-delivery > span {
+    font-weight: 600;
+    font-size: 15px;
+    color: #2b2b2b;
+}
+
+/* ------------ Modal ---------- */
+.form-control {
+    background-color: #2b2b2b;
+    border: 1px solid #898989;
+    color: white;
+}
+.form-control:focus {
+    color: #5c6873;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(119 119 119 / 25%);
+}
+@media (max-width: 1245px) { 
+    .featured-video .lang-preference .standard-delivery {
+        margin: 0px -10px;
+    }
+}
+@media (max-width: 574px) { 
+    .featured-video .payment-method .first-block {
+        height: 40px;
+    }
+    .featured-video .payment-method .first-block > div {
+        padding-top: 9px;
+    }
+    .featured-video .payment-method .first-block div > span {
+        font-size: 12px;
+    }
+    .featured-video .add-card {
+        height: 35px;
+    }
+    .featured-video .card-item .occasion-item {
+        margin: 10px 0px 0px;
+    }
+}
+/* ================================================== Payment Css End ================================================= */
+
+/* ================================================== Payment Succes Css Start ================================================= */
+.payment-success {
+    padding: 0px 20px;
+}
+.payment-next .lang-preference {
+    background: #121212;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+.payment-next .lang-preference .how-content .content-item .bg-circle > img {
+    height: 20px;
+}
+.payment-next .lang-preference .how-content .content-item .desc {
+    color: #898989!important;
+    font-size: 16px;
+    line-height: 18px;
+    padding-right: 45px;
+}
+.how-content .content-item .bg-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: #2b2b2b;
+    text-align: center;
+    padding-top: 12px;
+}
+.payment-next .content-item {
+    display: -webkit-inline-box;
+    width: 100%;
+}
+.payment-next .lang-preference .user-img img {
+    width: 50px;
+    object-fit:cover;
+}
+.payment-next .lang-preference .user-name p {
+    font-size: 16px;
+}
+.payment-next .lang-preference .user-rating p {
+    font-size: 14px;
+}
+.payment-next .lang-preference .transaction p {
+    font-size: 14px!important;
+}
+.image-text {
+    position: absolute;
+    top: 45px;
+}
+.image-text button {
+    max-width: 310px;
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+}
+.image-text button:hover,
+.image-text button:focus,
+.image-text button {
+    max-width: 310px;
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 15px!important;
+}
+.payment-success .w-40 {
+    width: 40%;
+    padding-top: 28px;
+}
+.payment-success .w-40 .title-part h2 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 39px;
+}   
+.payment-success .w-40 .title-part p {
+    font-size: 15px;
+    line-height: 25px;
+}
+.payment-success .w-60 {
+    width: 60%;
+}
+.payment-success .image-item-list {
+    flex-wrap: wrap;
+}
+.payment-success .image-item-list {
+    flex-wrap: wrap;
+}
+.payment-success .image-item-list button {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px!important;
+    font-size: 14px;
+}
+.payment-success .instruction {
+    background: #121212;
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+}
+@media (max-width: 574px) { 
+    .follow-idol .image-text h3 {
+        font-size: 20px;
+    }
+    .follow-idol .image-text p {
+        font-size:12px;
+    }
+    .follow-idol .image-text {
+        position: absolute;
+        top: 70px;
+    }
+    .payment-success .col-12 {
+        padding: 0px;
+    }
+    .payment-success .w-40 {
+        width: 100%;
+        padding-top: 28px;
+        margin-bottom: 20px;
+    }
+    .payment-success .w-60 {
+        width: 100%;
+    }
+    .payment-success {
+        padding: 0px;
+    }
+    .payment-success .image-item-list button {
+        width: 100%;
+    }
+    .payment-success .title-part div h2 {
+        font-size: 16px;
+        line-height: 20px;
+    }   
+    .payment-success .title-part div p {
+        font-size: 12px!important;
+        line-height: 15px;
+    }
+    .payment-success .image-item-list .save-btn {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+/* ================================================== Payment Succes Css End ================================================= */
+
+/* ================================================== Video Views Css Start ================================================= */
+
+.payment-success .title-part div h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+.payment-success .title-part div p {
+    font-size: 15px;
+    line-height: 18px;
+}
+.payment-success .title-part .share img {
+    margin: 0px 5px;
+    height: 18px;
+}
+.payment-success .title-part .share p {
+    font-size: 16px;
+}
+.payment-success .divider {
+    border: 1px solid #2b2b2b;
+    width: 100%;
+}
+.view-video .payment-next .lang-preference .user-name h4 {
+    font-size: 18px!important;
+}
+.view-video .payment-next .lang-preference .user-name p:nth-child(2) {
+    font-size: 14px!important;
+}
+.view-video .payment-next .lang-preference .user-name p:nth-child(3) {
+    font-size: 20px!important;
+}
+.view-video .lang-preference {
+    background: #171717!important;
+    padding: 0px!important;
+}
+.view-video .payment-next .lang-preference .stars  {
+    font-size: 30px!important;
+    color: #FFC107;
+}
+.view-video .lang-preference .send-feedback-btn {
+    border-radius: 15px!important;
+    font-size: 14px;
+}
+@media (max-width: 574px) { 
+    .view-video .title-part div h2 {
+        font-size: 16px!important;
+        line-height: 20px!important;
+    }
+}
+
+/* ================================================== Video Views Css End ================================================= */
+
+/* ================================================== Order List Css Start ================================================= */
+.order-list .tab-btn-group button {
+    font-size: 14px;
+    height: 40px;
+    min-width: 100px;
+}
+.order-list .tab-btn-group {
+    overflow-y: auto;
+}
+.order-list .tab-btn-group .deactive {
+    background: #171717;
+}
+.datatable td .active {
+    background: #171717;
+    border: 1px solid #ff335c;
+    height: 25px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 50px;
+    padding: 0px;
+    width: 70px;
+}
+.datatable td {
+    vertical-align: middle;
+}
+.datatable .user h4 {
+    font-size: 16px;
+}
+.datatable .user p {
+    font-size: 12px;
+}
+.datatable .description {
+    color:#898989;
+    max-width: 300px;
+    font-size: 12px;
+}
+.datatable .date {
+    font-size: 16px;
+}
+.datatable .price {
+    font-size: 25px;
+    font-weight: bold;
+}
+.datatable .more {
+    width: 20px;
+}
+.datatable table, th, td {
+    border-color: #e20e0e;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border-radius: 25px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 5px;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    *cursor: hand;
+    color: #333 !important;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+.page-item.active .page-link {
+    border-radius: 25px;
+    z-index: 1;
+    color: #fff;
+    background-color: #ff335c;
+    border-color: #ff335c;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color: #171717;
+    border: 1px solid #171717;
+}
+.page-link:hover {
+    border-radius: 25px;
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color: #171717;
+    border: 1px solid #171717;
+}
+.page-item.disabled .page-link {
+    color: #ffffff;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #171717;
+    border-color: #171717;
+}
+@media (max-width: 574px) { 
+    .datatable td .active {
+        height: 21px;
+        font-size: 12px;
+        width: 50px;
+    }
+    .datatable .user h4 {
+        font-size: 14px;
+    }
+    .datatable .user p {
+        font-size: 12px;
+    }
+    .datatable .date {
+        font-size: 12px;
+    }
+    .datatable .price {
+        font-size: 16px;
+    }
+}
+/* ================================================== Order List Css End ================================================= */

@@ -1,6 +1,6 @@
 <div class="footer">
         <div class="container-fluid m-0" style="height: 100%!important;padding: 0 15px;">
-            <div class="row footer-subscribe-part">
+            <div class="row footer-subscribe-part m-0">
                 <div class="col-12 col-sm-4 col-md-4 my-auto">
                     <h5 class="text-white">Join our mailing list</h5>
                     <p style="color:#898989">Be the first to know about the newest<br>stars & talents coming on MillionK</p>

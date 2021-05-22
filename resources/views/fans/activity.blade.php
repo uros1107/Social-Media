@@ -97,4 +97,11 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.history-row').on('click', function() {
+            location.href = "{{ route('view-video') }}";
+        })
+    })
+</script>
 @endsection
