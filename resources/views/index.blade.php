@@ -26,8 +26,8 @@
                         <span class="comming text-white">coming soon</span>
                     </div>
                 </div>
-                <h1 class="text-white month">JULY</h1>
-                <h3 class="text-white day">2021</h3>
+                <h1 class="text-white welcome-month">JULY</h1>
+                <h3 class="text-white welcome-day">2021</h3>
             </div>
             <div class="middle-center">
                 <div class="">
