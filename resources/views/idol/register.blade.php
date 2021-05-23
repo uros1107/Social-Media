@@ -9,8 +9,8 @@
 }
 .block-2 {
     background: #121212;
-    padding-top: 70px;
-    padding-bottom: 110px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 .block-3 {
     background: #171717;
@@ -59,6 +59,10 @@
 }
 .font-16 {
     font-size: 16px;
+}
+.create-showcase > p {
+    max-width: 210px;
+    margin: auto;
 }
 .item-title {
     margin: 30px 0px 20px;
@@ -113,7 +117,7 @@
 @media screen and (max-width:475px) {
     .block-2 {
         background: #121212;
-        padding-top: 30px;
+        padding-top: 60px;
         padding-bottom: 30px;
     }
     .footer-subscribe {
@@ -146,6 +150,7 @@
     }
     .horizontal-red-bar {
         margin-bottom: 30px;
+        margin-top: 20px;
     }
     .item-title {
         font-size: 16px;
@@ -155,6 +160,10 @@
     }
     .create-showcase {
         margin-bottom: 35px;
+    }
+    .create-showcase > p {
+        max-width: 100%;
+        margin: auto;
     }
     a {
         font-size: 14px;
@@ -174,11 +183,16 @@
     }
     .m-description {
         font-size: 12px;
+        max-width: 240px;
+        margin: auto;
     }
     .apply-btn {
         font-size: 10px;
         height: 30px!important;
         width: 120px!important;
+    }
+    .custom-form .col-12 {
+        padding: 0px;
     }
 }
 </style>
@@ -229,24 +243,50 @@
         <div class="gradient"></div>
         <div class="block-2 text-center">
             <h1 class="text-color block-title desktop">CONNECT WITH YOUR FRIENDS WORLDWIDE</h1>
-            <h3 class="text-color mobile" style="margin-bottom: 30px!important">CONNECT WITH YOUR<br>FRIENDS WORLDWIDE</h3>
+            <div class="mobile" style="margin-bottom: 30px!important;max-width: 240px">
+                <h3 class="text-color" style="font-size: 18px">CONNECT WITH YOUR FRIENDS WORLDWIDE</h3>
+            </div>
             <div class="horizontal-red-bar"></div>
             <div class="container">
                 <div class="row m-0">
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/create_showcase.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Create Showcase</h4>
-                        <p class="text-color font-16">Your own pricing for personalized videos<br>for your fans</p>
+                        <p class="text-color font-16">Your own pricing for personalized videos for your fans</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/showcase.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Showcase</h4>
-                        <p class="text-color font-16">Choosen personalized videos you have<br>given for your fans</p>
+                        <p class="text-color font-16">Choosen personalized videos you have given for your fans</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">Next-Gen</h4>
-                        <p class="text-color font-16">Take the next step in connecting with<br>your fans through personalized videos</p>
+                        <p class="text-color font-16">Take the next step in connecting with your fans through personalized videos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-2 text-center" style="background: #2b2b2b">
+            <h1 class="text-color block-title desktop">HOW DOES IT WORK?</h1>
+            <h3 class="text-color mobile" style="margin-bottom: 30px!important;font-size: 18px">HOW DOES IT WORK?</h3>
+            <div class="horizontal-red-bar"></div>
+            <div class="container">
+                <div class="row m-0">
+                    <div class="col-12 col-sm-4 col-md-4 create-showcase">
+                        <img src="{{ asset('assets/images/create_showcase.png') }}" style="border-radius: 50%">
+                        <h4 class="text-main-color text-uppercase item-title">STEP 1</h4>
+                        <p class="text-color font-16">Sign up on this page and set up your profile once you have been approved on the platform</p>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-4 create-showcase">
+                        <img src="{{ asset('assets/images/showcase.png') }}" style="border-radius: 50%">
+                        <h4 class="text-main-color text-uppercase item-title">STEP 2</h4>
+                        <p class="text-color font-16">Fans wil be able to view your profile and request a video (e.g. for a birthday celebration, etc)</p>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-4 create-showcase">
+                        <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
+                        <h4 class="text-main-color text-uppercase item-title">STEP 3</h4>
+                        <p class="text-color font-16">Once a request has been filled, 75% of the fee you set will be forwarded to you. You can choose to decline requests as well</p>
                     </div>
                 </div>
             </div>
@@ -254,10 +294,12 @@
         <div class="block-3">
             <div class="text-center block-3-text">
                 <h1 class="text-color block-title desktop">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h1>
-                <h3 class="text-color mobile">APPLY TO JOIN MILLIONK<br>AS AN IDOL NOW</h3>
+                <div class="mobile" style="margin-bottom: 30px!important;max-width: 240px">
+                    <h3 class="text-color mobile" style="max-width: 220px;font-size: 18px">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h3>
+                </div>
                 <div class="horizontal-red-bar"></div>
-                <h5 class="text-color desktop" style="font-size: 24px;">If you are part of the Korean Wave sweeping the globe, you can apply<br>here and we will get in touch with you within 72hours.</h5>
-                <h5 class="text-color mobile">If you are part of the Korean Wave sweeping<br>the globe, you can apply here and we will get in<br>touch with you within 72hours.</h5>
+                <h5 class="text-color desktop" style="font-size: 24px;max-width: 55%;margin: auto">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
+                <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
             </div>
             <div class="container">
                 <form class="custom-form">
