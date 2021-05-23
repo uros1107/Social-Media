@@ -161,7 +161,7 @@
                     <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
                 </div>
             </div>
-            <div class="col-12 col-sm-4 col-md-4 form-block" style="display: table;">
+            <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div style="display: table-cell;vertical-align: middle;">
                     <div class="title-part text-center">
                         <h2 class="text-white title">Forgot Password!</h2>

@@ -23,6 +23,20 @@
     border-radius: 20px!important;
     box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-track-piece  {
+    background-color: #474747;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background-color: #3b3b3b;
+}
 /* ================================================= basic css end ================================================ */
 
 .bottom-text {
@@ -202,6 +216,7 @@
     background: #2b2b2b;
     height: 100vh;
     padding: 50px 40px;
+    overflow-y: auto;
 }
 .idol-registration .title-part {
     margin: 50px 0px 30px;
