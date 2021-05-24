@@ -274,17 +274,17 @@
             <div class="container">
                 <div class="row m-0">
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
-                        <img src="{{ asset('assets/images/create_showcase.png') }}" style="border-radius: 50%">
+                        <img src="{{ asset('assets/images/icons/s_search.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">STEP 1</h4>
                         <p class="text-color font-16">Sign up on this page and set up your profile once you have been approved on the platform</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
-                        <img src="{{ asset('assets/images/showcase.png') }}" style="border-radius: 50%">
+                        <img src="{{ asset('assets/images/icons/s_cart.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">STEP 2</h4>
                         <p class="text-color font-16">Fans wil be able to view your profile and request a video (e.g. for a birthday celebration, etc)</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
-                        <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
+                        <img src="{{ asset('assets/images/icons/s_wallet.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">STEP 3</h4>
                         <p class="text-color font-16">Once a request has been filled, 75% of the fee you set will be forwarded to you. You can choose to decline requests as well</p>
                     </div>
