@@ -36,7 +36,7 @@ h3 {
         </div>
         <div class="row" style="padding-top: 120px">
             <div class="col-12 col-sm-12 col-md-12 text-center mb-5">
-                <h3>PRIVACY POLICY</h3>
+                <h3>TERMS OF SERVICE</h3>
             </div>
             <div class="col-12 col-sm-12 col-md-12">
                 <h4>Last Updated: March 27, 2021</h4>
