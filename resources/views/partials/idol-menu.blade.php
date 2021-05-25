@@ -12,76 +12,28 @@
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route("fans-activity") }}" class="nav-link">
-                    <img src="{{ asset('assets/images/icons/notification.png') }}" class="mr-3" style="width:20px">
-                    My Activity
+                    <img src="{{ asset('assets/images/icons/camera.png') }}" class="mr-3" style="width:20px">
+                    Request
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route("follow-idol") }}" class="nav-link">
-                    <img src="{{ asset('assets/images/icons/heart.png') }}" class="mr-3" style="width:20px">
-                    My Fandoms
+                    <img src="{{ asset('assets/images/icons/earning.png') }}" class="mr-3" style="width:20px">
+                    Earnings
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route("order-list") }}" class="nav-link">
-                    <img src="{{ asset('assets/images/icons/swap.png') }}" class="mr-3" style="width:20px">
-                    My Orders
-                </a>
-            </li>
-
-            <div style="padding: 15px 20px">
-                <h5>Browse categories</h5>
-            </div>
-
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person1.png') }}" class="mr-3 person-img" style="width:20px">
-                    Actors
+                    <img src="{{ asset('assets/images/icons/white-wallet.png') }}" class="mr-3" style="width:20px">
+                    Payment Method
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person2.png') }}" class="mr-3 person-img" style="width:20px">
-                    TV Host
+                <a href="{{ route("order-list") }}" class="nav-link">
+                    <img src="{{ asset('assets/images/icons/user-3.png') }}" class="mr-3" style="width:20px">
+                    Concierge
                 </a>
             </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person3.png') }}" class="mr-3 person-img" style="width:20px">
-                    Models
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person4.png') }}" class="mr-3 person-img" style="width:20px">
-                    Musicians
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person5.png') }}" class="mr-3 person-img" style="width:20px">
-                    Comedians
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person6.png') }}" class="mr-3 person-img" style="width:20px">
-                    KPDP
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person7.png') }}" class="mr-3 person-img" style="width:20px">
-                    Youtuber
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person8.png') }}" class="mr-3 person-img" style="width:20px">
-                    All categories
-                </a>
-            </li>
-
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

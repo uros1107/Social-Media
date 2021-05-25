@@ -15,4 +15,14 @@ class IdolController extends Controller
     {
         return view('idol.register');
     }
+
+    public function index()
+    {
+        return view('idol.index');
+    }
+
+    public function wizard()
+    {
+        return view('idol.wizard');
+    }
 }

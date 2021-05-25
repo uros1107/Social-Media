@@ -1,4 +1,4 @@
-@extends('layouts.idol')
+@extends('layouts.fans')
 
 @section('title', 'Welcome to MillionK')
 

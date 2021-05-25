@@ -14,7 +14,7 @@
 
 @section('content')
 <div class="content">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: rgb(0 0 0 / 70%);">
         <!-- desktop -->
         <div class="top desktop">
             <img src="{{ asset('assets/images/top-left-img.png') }}">

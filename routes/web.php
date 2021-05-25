@@ -38,11 +38,17 @@ Route::get('/', function() {
 });
 
 Route::get('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
+
+
+// ================== Idol route ==================
+
 Route::get('/idol-registration', 'IdolController@registration')->name('idol-registration');
 Route::get('/idol-register', 'IdolController@idol_register')->name('idol-register');
 
-// ================== Fans route ==================
+Route::get('/idol', 'IdolController@index')->name('idol-index');
+Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
 
+// ================== Fans route ==================
 
 Route::get('/fans-login', 'FansController@signin')->name('fans-signin');
 Route::get('/fans-signup', 'FansController@signup')->name('fans-signup');
