@@ -24,6 +24,19 @@ h3 {
 .container {
     height: 100%;
 }
+@media (max-width: 574px) { 
+    .top {
+        text-align: center;
+        padding-top: 45px;
+        position: initial!important;
+    }
+    h3 {
+        font-size: 32px!important;
+    }
+    .row {
+        padding-top: 35px!important;
+    }
+}
 </style>
 @endsection
 
@@ -31,7 +44,7 @@ h3 {
 <div class="content">
     <div class="container">
         <!-- desktop -->
-        <div class="top desktop">
+        <div class="top">
             <img src="{{ asset('assets/images/top-left-img.png') }}">
         </div>
         <div class="row" style="padding-top: 120px">
