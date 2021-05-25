@@ -38,6 +38,8 @@ Route::get('/', function() {
 });
 
 Route::get('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
+Route::get('/privacy', 'MailChimpController@privacy')->name('privacy');
+Route::get('/terms', 'MailChimpController@terms')->name('terms');
 
 
 // ================== Idol route ==================
@@ -47,6 +49,7 @@ Route::get('/idol-register', 'IdolController@idol_register')->name('idol-registe
 
 Route::get('/idol', 'IdolController@index')->name('idol-index');
 Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
+Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
 
 // ================== Fans route ==================
 

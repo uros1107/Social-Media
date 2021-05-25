@@ -25,4 +25,9 @@ class IdolController extends Controller
     {
         return view('idol.wizard');
     }
+
+    public function setup_submit()
+    {
+        return view('idol.payment-completed');
+    }
 }

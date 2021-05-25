@@ -16,4 +16,15 @@ class MailChimpController extends Controller
         }
         return redirect('/')->with('failure', 'Sorry! You have already subscribed ');
     }
+
+    public function privacy(Request $request)
+    {
+        return view('privacy');
+    }
+
+    public function terms(Request $request)
+    {
+        return view('terms');
+    }
+    
 }

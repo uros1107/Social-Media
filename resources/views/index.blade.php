@@ -67,8 +67,8 @@
                     <span style="color:#868686">Copyright © 2021 Lumiworks Pte. Ltd. All rights reserved.</span>
                 </div>
                 <div class="bottom-right-text">
-                    <span class="bottom-text">Privacy policy</span>
-                    <span class="bottom-text" style="margin-right: 40px">Terms of service</span>
+                    <a href="{{ route('privacy') }}" target="_blank"><span class="bottom-text">Privacy policy</span></a>
+                    <a href="{{ route('terms') }}" target="_blank"><span class="bottom-text" style="margin-right: 40px">Terms of service</span></a>
                 </div>
             </div>
         </div>
@@ -112,8 +112,8 @@
                 </div>     
                 <h4 class="text-center mt-3 copyright" style="color:#868686;font-size:14px">Copyright © 2021 Lumiworks Pte. Ltd.<br>All rights reserved.</h4>
                 <div class="d-flex mt-3 mb-1 bottom-text">
-                    <p class="mx-auto mb-0" style="color:#FF335C">Privacy policy</p>
-                    <p class="mx-auto mb-0" style="color:#FF335C">Terms of service</p>
+                    <a href="{{ route('privacy') }}" target="_blank">p class="mx-auto mb-0" style="color:#FF335C">Privacy policy</p></a>
+                    <a href="{{ route('terms') }}" target="_blank"><p class="mx-auto mb-0" style="color:#FF335C">Terms of service</p></a>
                 </div>
             </div>
         </div>

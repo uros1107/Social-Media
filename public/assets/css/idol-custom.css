@@ -1804,6 +1804,7 @@ input[type=radio]:checked ~ label{
 }
 /* ------------- custom input box start ---------------- */
 
+/* ---------------- profile information css start ------------- */
 
 .wizard .title {
     padding: 0px 30px;
@@ -1824,11 +1825,17 @@ input[type=radio]:checked ~ label{
     border-bottom-right-radius: 15px;
     padding: 40px 20px;
 }
-.wizard .wizard-block .right-part .sub-title h4 {
+.wizard .wizard-block .right-part .sub-title > h4 {
     font-size: 22px;
 }
 .wizard .wizard-block .right-part .img-upload label {
     color: #898989;
+}
+.wizard .wizard-block button {
+    font-size: 14px;
+    width: 125px;
+    height: 40px;
+    border-radius: 8px!important;
 }
 .wizard .wizard-block .right-part .img-upload .upload-btn {
     width: 100%;
@@ -1877,4 +1884,209 @@ input[type=radio]:checked ~ label{
     font-weight: 900;
     font-size: 40px;
 }
+
+@media (max-width: 574px) { 
+    .wizard .title {
+        padding: 0px 10px;
+        display: block!important;
+    }
+    .wizard .title p {
+        position: unset;
+        font-size: 14px;
+    }
+    .wizard .title h3 {
+        font-size: 16px;
+    }
+    .wizard .wizard-block {
+        padding: 0px 10px;
+    }
+    .wizard .wizard-block .left-part {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 0px;
+    }
+    .wizard .wizard-block .right-part {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 0px;
+    }
+    .wizard .wizard-block .right-part .sub-title > h4 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 330px) { 
+    .wizard .wizard-block .right-part .img-upload .upload-btn > span {
+        font-size: 11px;
+    }
+}
+
+/* ---------------- profile information css end ------------- */
+
+/* ---------------- request video css start ------------- */
+
+/* Basic Rules */
+.switch input { 
+    display:none;
+}
+.switch {
+    display:inline-block;
+    width:60px;
+    height:30px;
+    margin:8px;
+    transform:translateY(50%);
+    position:relative;
+}
+/* Style Wired */
+.slider {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border-radius:30px;
+    box-shadow:0 0 0 2px #FF335C, 0 0 4px #FF335C;
+    cursor:pointer;
+    border:4px solid transparent;
+    overflow:hidden;
+     transition:.4s;
+     background: #FF335C;
+}
+.slider:before {
+    position:absolute;
+    content:"";
+    width:100%;
+    height:100%;
+    background:#777;
+    border-radius:30px;
+    transform:translateX(-30px);
+    transition:.4s;
+}
+
+input:checked + .slider:before {
+    transform:translateX(30px);
+    background: #f8f8f8;
+}
+input:checked + .slider {
+    box-shadow:0 0 0 2px #FF335C,0 0 2px #FF335C;
+}
+
+/* Style Flat */
+.switch.flat .slider {
+ box-shadow:none;
+}
+.switch.flat .slider:before {
+  background:#FFF;
+}
+.switch.flat input:checked + .slider:before {
+ background:white;
+}
+.switch.flat input:checked + .slider {
+  background:limeGreen;
+}
+.switch-label {
+    font-size: 16px;
+    color: #898989;
+}
+
+.black-checkbox .fill-control-input:checked~.fill-control-indicator{
+    background-color: #000;
+    border-color: #000;
+  }
+.fill-control-indicator{
+    border-radius: 3px;
+    display: inline-block;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #aaa;
+    transition: .3s;
+    background: transperent;
+    background-size: 0%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+  }
+#request_video .sub-title-1 {
+    font-size: 18px;
+}
+#request_video .sub-description-1 {
+    font-size: 16px;
+    color: #898989;
+}
+#video_introduction .upload-video {
+    background: #E5E5E5;
+    border-radius: 15px;
+    height: 200px;
+    padding-top: 45px;
+}
+#video_introduction .upload-video h5 {
+    font-size: 17px;
+    color: #2B2B2B;
+}
+#video_introduction .upload-video p {
+    font-weight: normal;
+    font-size: 17px;
+    color: #898989;
+}
+#payment_method .stripe h4 {
+    font-size: 20px;
+}
+#payment_method .stripe p {
+    font-size: 16px;
+}
+#payment_method .stripe span {
+    color: #898989!important;
+}
+
+@media (max-width: 574px) { 
+    #request_video .lang {
+        margin-bottom: 12px;
+        display: block !important;
+        margin-left: 15px;
+    }
+    #request_video .lang label {
+        margin-bottom: 8px!important;
+    }
+    #request_video .pure-material-textfield-outlined {
+        margin-left: 15px!important;
+        margin-bottom: 15px!important;
+    }
+    #video_introduction .upload-video {
+        background: #121212;
+    }
+    #video_introduction .upload-video h5 {
+        color: #898989;
+    }
+    #payment_method .stripe .mobile-view {
+        text-align: center;
+    }
+}
+/* ---------------- request video css end ------------- */
 /* ================================================== Idol Wizard Css End ================================================= */
+
+
+/* ================================================== Payment complete Css Start ================================================= */
+.payment-completed .success {
+    background: #2b2b2b;
+    border-radius: 15px;
+    padding: 100px 20px;
+}
+.payment-completed .success h4 {
+    font-weight: 600;
+    font-size: 28px;
+}
+.payment-completed .success p {
+    font-size: 16px;
+}
+@media (max-width: 574px) { 
+    .payment-completed .success h4 {
+        font-size: 16px;
+    }
+    .payment-completed .success p {
+        font-size: 14px;
+    }
+}
+/* ================================================== Payment complete Css End ================================================= */
