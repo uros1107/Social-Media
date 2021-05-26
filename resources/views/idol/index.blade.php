@@ -42,7 +42,7 @@
                     <div class="w-40">
                         <div class="total-item d-flex mb-3">
                             <div class="my-auto">
-                                <h3 class="text-main-color mb-0">0</h3>
+                                <h3 class="text-main-color mb-0">25</h3>
                             </div>
                             <div class="my-auto">
                                 <p class="text-main-color mb-0 font-weight-bold">Total</p>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="total-item d-flex mb-3">
                             <div class="my-auto">
-                                <h3 class="text-main-color mb-0">0</h3>
+                                <h3 class="text-main-color mb-0">10</h3>
                             </div>
                             <div class="my-auto">
                                 <p class="text-main-color mb-0 font-weight-bold">Pending</p>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="total-item d-flex mb-3">
                             <div class="my-auto">
-                                <h3 class="text-main-color mb-0">0</h3>
+                                <h3 class="text-main-color mb-0">13</h3>
                             </div>
                             <div class="my-auto">
                                 <p class="text-main-color mb-0 font-weight-bold">Completed</p>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="total-item d-flex mb-3">
                             <div class="my-auto">
-                                <h3 class="text-main-color mb-0">0</h3>
+                                <h3 class="text-main-color mb-0">2</h3>
                             </div>
                             <div class="my-auto">
                                 <p class="text-main-color mb-0 font-weight-bold">PaidOut</p>
@@ -92,11 +92,11 @@
                                         <div class="d-flex mb-2">
                                             <div class="col-sm-6 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
                                                 <h5 class="text-white">Total Booking</h5>
-                                                <h5 class="text-main-color">$0</h5>
+                                                <h5 class="text-main-color">$3,000</h5>
                                             </div>
                                             <div class="col-sm-6 text-center m-auto p-0">
                                                 <h5 class="text-white">Pending Booking</h5>
-                                                <h5 class="text-main-color">$0</h5>
+                                                <h5 class="text-main-color">$1,000</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -105,11 +105,11 @@
                                         <div class="d-flex mb-2">
                                             <div class="col-sm-6 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
                                                 <h5 class="text-white">Net Earnings</h5>
-                                                <h5 class="text-main-color">$0</h5>
+                                                <h5 class="text-main-color">$1,500</h5>
                                             </div>
                                             <div class="col-sm-6 text-center m-auto p-0">
                                                 <h5 class="text-white">Paid Out</h5>
-                                                <h5 class="text-main-color">$0</h5>
+                                                <h5 class="text-main-color">$2,000</h5>
                                             </div>
                                         </div>
                                         <div class="divider mb-3"></div>
@@ -178,8 +178,231 @@
                                 <a class="mr-3" style="color:#898989">Refunded</a>
                                 <a class="mr-3" style="color:#898989">Fulfilled</a>
                             </div>
-                            <div class="w-100 text-center" style="height: 390px;padding-top:150px">
-                                <p class="mb-0 text-white">You have no request yet</p>
+                            <div class="w-100" style="height: 390px;overflow:auto">
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-notification-item">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5 d-flex my-auto">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            <div class="new-msg my-auto">
+                                                <h4 class="text-white">New Request</h4>
+                                                <p class="text-white">from <span class="text-main-color">JohnDoe</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 col-md-5 m-auto">
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/chat.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">English</span>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="my-auto" style="width:20px;height:20px">
+                                                    <img class="mb-1" src="{{ asset('assets/images/icons/fire.png') }}">
+                                                </div>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Encouragement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-2 pl-0 m-auto">
+                                            <button type="button" class="btn custom-btn w-100 view">View</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -200,8 +423,49 @@
         </div>
         <div class="image-part">
             <div class="row m-0 mb-4">
-                <div class="col-12 colsm-12 text-center">
-                    <p class="mb-5 mt-5 text-white">You have no Featured Videos Yet</p>
+                <div class="col-12 col-sm-12 text-center p-0 featured-video">
+                    <div class="row m-0 video-list">
+                        <div class="col-6 col-sm-3 col-md-3">
+                            <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
+                                <img src="{{ asset('assets/images/follow-actor.png') }}">
+                                <div class="video-title d-flex mt-1">
+                                    <h5 class="mb-0">Congratulation Melissa</h5>
+                                    <h5 class="mb-0">02:20</h5>
+                                </div>
+                                <p class="mb-0 text-left">From <span class="text-main-color">John Doe</span></p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-3">
+                            <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
+                                <img src="{{ asset('assets/images/follow-actor.png') }}">
+                                <div class="video-title d-flex mt-1">
+                                    <h5 class="mb-0">Congratulation Melissa</h5>
+                                    <h5 class="mb-0">02:20</h5>
+                                </div>
+                                <p class="mb-0 text-left">From <span class="text-main-color">John Doe</span></p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-3">
+                            <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
+                                <img src="{{ asset('assets/images/follow-actor.png') }}">
+                                <div class="video-title d-flex mt-1">
+                                    <h5 class="mb-0">Congratulation Melissa</h5>
+                                    <h5 class="mb-0">02:20</h5>
+                                </div>
+                                <p class="mb-0 text-left">From <span class="text-main-color">John Doe</span></p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-3">
+                            <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
+                                <img src="{{ asset('assets/images/follow-actor.png') }}">
+                                <div class="video-title d-flex mt-1">
+                                    <h5 class="mb-0">Congratulation Melissa</h5>
+                                    <h5 class="mb-0">02:20</h5>
+                                </div>
+                                <p class="mb-0 text-left">From <span class="text-main-color">John Doe</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -215,6 +479,10 @@
     $(document).ready(function() {
         $('.custom-col').on('click', function() {
             location.href = "{{ route('follow-idol') }}";
+        })
+
+        $(document).on('click', '.get-started', function() {
+            location.href = "{{ route('idol-wizard') }}";
         })
     })
 </script>

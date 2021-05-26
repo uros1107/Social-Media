@@ -12,9 +12,11 @@ class MailChimpController extends Controller
         if ( !Newsletter::isSubscribed($request->email) ) 
         {
             Newsletter::subscribePending($request->email);
-            return redirect('/')->with('success', 'Thanks For Subscribe');
+            // return redirect('/')->with('success', 'Thanks For Subscribe');
+            return response()->json(['success' => true]);
         }
-        return redirect('/')->with('failure', 'Sorry! You have already subscribed ');
+        // return redirect('/')->with('failure', 'Sorry! You have already subscribed ');
+        return response()->json(['success' => false]);
     }
 
     public function privacy(Request $request)

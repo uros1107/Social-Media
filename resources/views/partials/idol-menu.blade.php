@@ -5,31 +5,31 @@
         </div>
         <ul class="nav" style="width: 280px!important">
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("fans-index") }}" class="nav-link">
+                <a href="{{ route('idol-index') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/home.png') }}" class="mr-3" style="width:20px">
                     Home
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("fans-activity") }}" class="nav-link">
+                <a href="{{ route('idol-video-request') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/camera.png') }}" class="mr-3" style="width:20px">
                     Request
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("follow-idol") }}" class="nav-link">
+                <a href="#3" class="nav-link">
                     <img src="{{ asset('assets/images/icons/earning.png') }}" class="mr-3" style="width:20px">
                     Earnings
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("order-list") }}" class="nav-link">
+                <a href="#4" class="nav-link">
                     <img src="{{ asset('assets/images/icons/white-wallet.png') }}" class="mr-3" style="width:20px">
                     Payment Method
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("order-list") }}" class="nav-link">
+                <a href="#5" class="nav-link">
                     <img src="{{ asset('assets/images/icons/user-3.png') }}" class="mr-3" style="width:20px">
                     Concierge
                 </a>

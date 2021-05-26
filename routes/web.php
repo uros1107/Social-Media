@@ -37,35 +37,41 @@ Route::get('/', function() {
     return view('index');
 });
 
-Route::get('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
+Route::post('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
 Route::get('/privacy', 'MailChimpController@privacy')->name('privacy');
 Route::get('/terms', 'MailChimpController@terms')->name('terms');
 
 
 // ================== Idol route ==================
 
-Route::get('/idol-registration', 'IdolController@registration')->name('idol-registration');
-Route::get('/idol-register', 'IdolController@idol_register')->name('idol-register');
+Route::prefix('idol')->group(function() {
+    Route::get('/registration', 'IdolController@registration')->name('idol-registration');
+    Route::get('/register', 'IdolController@idol_register')->name('idol-register');
 
-Route::get('/idol', 'IdolController@index')->name('idol-index');
-Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
-Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
+    Route::get('/', 'IdolController@index')->name('idol-index');
+    Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
+    Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
+    Route::get('/profile', 'IdolController@profile')->name('idol-profile');
+    Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
+    Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
+});
 
 // ================== Fans route ==================
 
-Route::get('/fans-login', 'FansController@signin')->name('fans-signin');
-Route::get('/fans-signup', 'FansController@signup')->name('fans-signup');
-Route::get('/fans-forgot-password', 'FansController@forgot_password')->name('fans-forgot-password');
-
-Route::get('/fans', 'FansController@index')->name('fans-index');
-Route::get('/fans-profile', 'FansController@profile')->name('fans-profile');
-Route::get('/fans-activity', 'FansController@activity')->name('fans-activity');
-Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
-Route::get('/new-request', 'FansController@new_request')->name('new-request');
-Route::POST('/payment', 'FansController@payment')->name('payment');
-Route::get('/payment-success', 'FansController@payment_success')->name('payment-success');
-Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
-Route::get('/view-video', 'FansController@view_video')->name('view-video');
-Route::get('/order-list', 'FansController@order_list')->name('order-list');
-
+Route::prefix('fans')->group(function() {
+    Route::get('/login', 'FansController@signin')->name('fans-signin');
+    Route::get('/signup', 'FansController@signup')->name('fans-signup');
+    Route::get('/forgot-password', 'FansController@forgot_password')->name('fans-forgot-password');
+    
+    Route::get('/', 'FansController@index')->name('fans-index');
+    Route::get('/profile', 'FansController@profile')->name('fans-profile');
+    Route::get('/activity', 'FansController@activity')->name('fans-activity');
+    Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
+    Route::get('/new-request', 'FansController@new_request')->name('new-request');
+    Route::POST('/payment', 'FansController@payment')->name('payment');
+    Route::get('/payment-success', 'FansController@payment_success')->name('payment-success');
+    Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
+    Route::get('/view-video', 'FansController@view_video')->name('view-video');
+    Route::get('/order-list', 'FansController@order_list')->name('order-list');
+});
 

@@ -569,6 +569,18 @@ p {
 .follow-idol .idol-profile .idol-image img {
     width: 192px;
 }
+.follow-idol .idol-profile .idol-image {
+    position: relative;
+}
+.follow-idol .idol-profile .idol-image .add-img {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
 .follow-idol .idol-profile {
     padding: 0px 50px;
 }
@@ -689,8 +701,8 @@ p {
 }    
 .follow-idol .idol-profile .idol-image {
     border-radius: 50%;
-    padding: 10px;
-    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+    padding: 7px;
+    background-image: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
 }
 .follow-idol .active {
     background: #171717;
@@ -824,6 +836,15 @@ p {
     .follow-idol .mobile .col-4 span,
     .follow-idol .mobile .col-4 span {
         font-size: 12px;
+    }
+    .follow-idol .idol-profile .idol-image .add-img {
+        width: 32px;
+        height: 32px;
+        bottom: 5px;
+        right: 10px;
+    }
+    .follow-idol .idol-profile .idol-image .add-img p{
+        font-size: 19px!important;
     }
 }
 
@@ -1470,9 +1491,18 @@ input[type=radio]:checked ~ label{
     width: 100%;
     height: 107px;
 }
+.idol .total-item > div {
+    width: 50%;
+}
+.idol .total-item > div:first-child {
+    text-align: center;
+}
+.idol .total-item > div:nth-child(2) {
+    margin-left: 0px!important;
+}
 .idol .total-item div:first-child {
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .idol .total-item h3 {
     font-size: 64px;
@@ -1524,6 +1554,30 @@ input[type=radio]:checked ~ label{
 }
 .idol .total-card {
     display: flex;
+}
+.idol .video-notification-item {
+    border-radius: 14px;
+    background: #2B2B2B;
+    padding: 15px;
+    margin: 8px 0px;
+}
+.idol .video-notification-item button {
+    font-size: 13px;
+    border-radius: 8px!important;
+    height: 40px;
+}
+.idol .video-notification-item .profile-img {
+    width: 40px;
+    height: 40px;
+}
+.idol .video-notification-item .new-msg h4 {
+    font-size: 16px;
+    margin-bottom: 0px!important;
+}
+.idol .video-notification-item .new-msg p {
+    font-size: 13px;
+    margin-bottom: 0px!important;
+    text-align: left;
 }
 
 @media (max-width: 574px) { 
@@ -1591,6 +1645,23 @@ input[type=radio]:checked ~ label{
     }
     .featured .title-part > h2 {
         font-size: 20px;
+    }
+    .idol .video-notification-item {
+        padding: 15px 8px;
+    }
+    .idol .video-notification-item .row > div:first-child {
+        padding-right: 0px;
+    }
+    .idol .video-notification-item .new-msg h4 {
+        font-size: 12px;
+    }
+    .idol .video-notification-item .new-msg p {
+        font-size: 10px;
+    }
+    .idol .video-notification-item button {
+        font-size: 10px;
+        height: 30px;
+        padding: 5px;
     }
 }
 /* ================================================== Idol Index Css End ================================================= */
@@ -2090,3 +2161,42 @@ input:checked + .slider {
     }
 }
 /* ================================================== Payment complete Css End ================================================= */
+
+/* ================================================== Idol profile Css Start ================================================= */
+.action-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+.action-btn button,
+.action-btn button:hover {
+    height: 35px;
+    background:#2B2B2B;
+    font-size: 14px;
+    border-radius: 10px!important;
+    padding: 0px 25px;
+}
+@media (max-width: 574px) { 
+    .action-btn button,
+    .action-btn button:hover {
+        border-radius: 25px!important;
+    }
+}
+/* ================================================== Idol profile Css End ================================================= */
+
+/* ================================================== Video Detail Css Start ================================================= */
+.video-detail .request > h4 {
+ font-size: 18px;
+}
+.video-detail .request img {
+    width: 60px;
+    height: 60px;
+}
+.video-detail .request .user > p {
+    font-size: 16px;
+    color: #898989;
+}
+.video-detail .request .user > h4 {
+    font-size: 20px;
+}
+/* ================================================== Video Detail Css End ================================================= */

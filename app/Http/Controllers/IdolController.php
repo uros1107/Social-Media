@@ -30,4 +30,19 @@ class IdolController extends Controller
     {
         return view('idol.payment-completed');
     }
+
+    public function profile()
+    {
+        return view('idol.profile');
+    }
+
+    public function video_request()
+    {
+        return view('idol.video-request');
+    }
+
+    public function video_request_detail()
+    {
+        return view('idol.video-request-detail');
+    }
 }

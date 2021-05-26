@@ -3,6 +3,8 @@
 @section('title', 'Welcome to MillionK')
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/toastr1.css') }}">
 <style>
 .content {
     background: url("{{ asset('assets/images/bg.png') }}") no-repeat center center;
@@ -38,7 +40,8 @@
                 <h1 class="text-white main-text">Be The First To Know<br> When MillionK Launches</h1>
                 <h3 class="description">Sign up to reserve your spot. We'll let you know how to get up close and<br> personal with your favourite Korean Wave Idols & Influencers.</h3>
                 <div class="input-group mb-3 mt-5">
-                    <form style="display:flex!important;width:100%;" action="{{ route('send-mail') }}" method="get">
+                    <form style="display:flex!important;width:100%;" id="request_invite">
+                        {{ csrf_field() }}
                         <input type="text" class="form-control email-address" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">REQUEST INVITE</button>
@@ -97,8 +100,9 @@
                     <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
                 </div>
                 <div class="input-group mb-5 mt-4 email-part">
-                    <form style="display:flex!important;width:100%;justify-content: center;" action="{{ route('send-mail') }}" method="get">
-                        <input type="text" class="form-control email-address m-email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                    <form style="display:flex!important;width:100%;justify-content: center;" id="request_invite">
+                        {{ csrf_field() }}
+                        <input type="text" class="form-control email-address m-email" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
                             <button class="btn btn-primary m-btn" type="submit" style="font-size:14px;">REQUEST INVITE</button>
                         </div>
@@ -123,4 +127,33 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('assets/js/toastr.min.js') }}"></script>
+<script>
+$(document).ready(function() {
+    $('#request_invite').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('send-mail') }}",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(data) {
+                if(data['success']) {
+                    toastr.success('Thanks For Subscribe');
+                } else {
+                    toastr.error('Sorry! You have already subscribed');
+                }
+            },
+            error: function() {
+                toastr.error('Server error!');
+            }
+        })
+    })
+})
+</script>
 @endsection
