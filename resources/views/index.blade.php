@@ -80,7 +80,7 @@
         <div class="m-top mobile">
             <div class="top-bar">
                 <img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}">
-                <div class="right-side-icons">
+                <div class="right-side-icons d-none">
                     <i class="fa fa-search" style="color: #FF335C"></i>
                     <i class="fa fa-bell-o text-white"></i>
                     <i class="fa fa-navicon text-white"></i>
