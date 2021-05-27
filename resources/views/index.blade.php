@@ -116,7 +116,7 @@
                 </div>     
                 <h4 class="text-center mt-3 copyright" style="color:#868686;font-size:14px">Copyright © 2021 Lumiworks Pte. Ltd.<br>All rights reserved.</h4>
                 <div class="d-flex mt-3 mb-1 bottom-text">
-                    <a href="{{ route('privacy') }}" target="_blank">p class="mx-auto mb-0" style="color:#FF335C">Privacy Policy</p></a>
+                    <a href="{{ route('privacy') }}" target="_blank"><p class="mx-auto mb-0" style="color:#FF335C">Privacy Policy</p></a>
                     <a href="{{ route('terms') }}" target="_blank"><p class="mx-auto mb-0" style="color:#FF335C">Terms Of Service</p></a>
                 </div>
             </div>
