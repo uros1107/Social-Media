@@ -60,4 +60,14 @@ class IdolController extends Controller
     {
         return view('idol.video-request-detail');
     }
+
+    public function payment_method()
+    {
+        return view('idol.payment-method');
+    }
+
+    public function concierge()
+    {
+        return view('idol.concierge');
+    }
 }

@@ -57,6 +57,8 @@ Route::prefix('idol')->group(function() {
     Route::get('/video-record', 'IdolController@video_record')->name('idol-video-record');
     Route::get('/earning', 'IdolController@earning')->name('idol-earning');
     Route::get('/earning-per', 'IdolController@earning_per')->name('idol-earning-per');
+    Route::get('/payment-method', 'IdolController@payment_method')->name('idol-payment-method');
+    Route::get('/concierge', 'IdolController@concierge')->name('idol-concierge');
 });
 
 // ================== Fans route ==================

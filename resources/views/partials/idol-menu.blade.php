@@ -17,19 +17,19 @@
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#3" class="nav-link">
+                <a href="{{ route('idol-earning') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/earning.png') }}" class="mr-3" style="width:20px">
                     Earnings
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#4" class="nav-link">
+                <a href="{{ route('idol-payment-method') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/white-wallet.png') }}" class="mr-3" style="width:20px">
                     Payment Method
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#5" class="nav-link">
+                <a href="{{ route('idol-concierge') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/user-3.png') }}" class="mr-3" style="width:20px">
                     Concierge
                 </a>
