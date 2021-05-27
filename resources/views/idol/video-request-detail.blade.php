@@ -21,6 +21,11 @@
     background: #2b2b2b;
     border: 1px solid #ff335c;
 }
+@media (max-width: 574px) {
+    .payment-success .col-12 {
+        padding: 0px 10px;
+    }
+}
 </style>
 @endsection
 
@@ -62,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 video-detail">
+    <div class="col-12 col-sm-12 col-md-12 video-detail mt-3">
         <div class="row">
             <div class="col-12 col-md-3 col-sm-3">
                 <div class="request">
@@ -77,7 +82,37 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 col-sm-3">
-
+                <div class="request">
+                    <h4 class="text-white mb-3">Occasion</h4>
+                    <div class="d-flex">
+                        <div class="user">
+                            <p class="mb-0">Occasion Type</p>
+                            <h4 class="text-main-color">Encouragement</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 col-sm-3">
+                <div class="request">
+                    <h4 class="text-white mb-3">For who?</h4>
+                    <div class="d-flex">
+                        <div class="user">
+                            <p class="mb-0">Someone else</p>
+                            <h4 class="text-main-color">Melissa</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 col-sm-3">
+                <div class="request">
+                    <h4 class="text-white mb-3">Language</h4>
+                    <div class="d-flex">
+                        <div class="user">
+                            <p class="mb-0">Language request for this personalized video</p>
+                            <h4 class="text-main-color">English</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -41,6 +41,21 @@ class IdolController extends Controller
         return view('idol.video-request');
     }
 
+    public function earning_per()
+    {
+        return view('idol.earning-per');
+    }
+
+    public function earning()
+    {
+        return view('idol.earning');
+    }
+
+    public function video_record()
+    {
+        return view('idol.video-record');
+    }
+
     public function video_request_detail()
     {
         return view('idol.video-request-detail');
