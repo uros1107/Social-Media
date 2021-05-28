@@ -11,7 +11,7 @@
     background-size: cover;
     height: 100vh;
 }
-#request_invite {
+#request_invite, #m_request_invite {
     display:flex!important;
     width:100%;
 }
