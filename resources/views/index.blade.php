@@ -11,6 +11,10 @@
     background-size: cover;
     height: 100vh;
 }
+#request_invite {
+    display:flex!important;
+    width:100%;
+}
 </style>
 @endsection
 
@@ -40,13 +44,15 @@
                 <h1 class="text-white main-text">Be The First To Know<br> When MillionK Launches</h1>
                 <h3 class="description">Sign up to reserve your spot. We'll let you know how to get up close and<br> personal with your favourite Korean Wave Idols & Influencers.</h3>
                 <div class="input-group mb-3 mt-5">
-                    <form style="display:flex!important;width:100%;" id="request_invite">
+                    <form id="request_invite">
                         {{ csrf_field() }}
-                        <input type="text" class="form-control email-address" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control email-address" style="color:#dcdcdc!important" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">REQUEST INVITE</button>
                         </div>
                     </form>
+                    <p class="text-white mb-0 d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
+                    <p class="text-white mb-0 d-none repeat-msg">We have already subscribed to your email address.</p>
                 </div>
             </div>
             <div class="middle-right">
@@ -100,13 +106,15 @@
                     <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
                 </div>
                 <div class="input-group mb-5 mt-4 email-part">
-                    <form style="display:flex!important;width:100%;justify-content: center;" id="request_invite">
+                    <form style="justify-content: center;" id="request_invite">
                         {{ csrf_field() }}
-                        <input type="text" class="form-control email-address m-email" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                        <input type="text" class="form-control email-address m-email text-white" style="color:#dcdcdc!important" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
                             <button class="btn btn-primary m-btn" type="submit" style="font-size:14px;">REQUEST INVITE</button>
                         </div>
                     </form>
+                    <p class="text-white mb-0 text-center d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
+                    <p class="text-white mb-0 d-none text-center repeat-msg">We have already subscribed to your email address.</p>
                 </div>
                 <div class="m-social text-center">
                     <a href="https://www.facebook.com/MillionK.official"><i class="fa fa-facebook-f text-white m-social-icon"></i></a>
@@ -144,9 +152,11 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(data) {
                 if(data['success']) {
-                    toastr.success('Thanks For Subscribe');
+                    $('#request_invite').addClass('d-none');
+                    $('.success-msg').removeClass('d-none');
                 } else {
-                    toastr.error('Sorry! You have already subscribed');
+                    $('#request_invite').addClass('d-none');
+                    $('.repeat-msg').removeClass('d-none');
                 }
             },
             error: function() {
