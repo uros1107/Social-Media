@@ -52,7 +52,7 @@
                         </div>
                     </form>
                 </div>
-                <p class="text-white mt-5 d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
+                <p class="text-white mt-5 d-none success-msg">Open up your email and click the subscribe button to confirm your email address.</p>
                 <p class="text-white mt-5 d-none repeat-msg">We have already subscribed to your email address.</p>
             </div>
             <div class="middle-right">
@@ -114,7 +114,7 @@
                         </div>
                     </form>
                 </div>
-                <p class="text-white mt-4 d-none text-center success-msg">We have just subscribed to your email address. Please check your email.</p>
+                <p class="text-white mt-4 d-none text-center success-msg">Open up your email and click the subscribe button to confirm your email address.</p>
                 <p class="text-white mt-4 d-none text-center repeat-msg">We have already subscribed to your email address.</p>
                 <div class="m-social text-center">
                     <a href="https://www.facebook.com/MillionK.official"><i class="fa fa-facebook-f text-white m-social-icon"></i></a>
