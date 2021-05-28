@@ -106,7 +106,7 @@
                     <p class="text-white m-description">Sign up to reserve your spot. We'll let you know how to get up close and personal with your favourite Korean Wave Idols & Influencers.</p>
                 </div>
                 <div class="input-group mb-5 mt-4 email-part">
-                    <form style="justify-content: center;" id="request_invite">
+                    <form style="justify-content: center;" id="m_request_invite">
                         {{ csrf_field() }}
                         <input type="text" class="form-control email-address m-email text-white" style="color:#dcdcdc!important" name="email" placeholder="Email address" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
@@ -138,7 +138,7 @@
 <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    $('#request_invite').on('submit', function(e) {
+    $('#request_invite, #m_request_invite').on('submit', function(e) {
         e.preventDefault();
 
         $.ajaxSetup({
