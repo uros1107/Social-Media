@@ -51,9 +51,9 @@
                             <button class="btn btn-primary" type="submit">REQUEST INVITE</button>
                         </div>
                     </form>
-                    <p class="text-white mb-0 d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
-                    <p class="text-white mb-0 d-none repeat-msg">We have already subscribed to your email address.</p>
                 </div>
+                <p class="text-white d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
+                <p class="text-white d-none repeat-msg">We have already subscribed to your email address.</p>
             </div>
             <div class="middle-right">
                 <div class="social-icon">
@@ -113,9 +113,9 @@
                             <button class="btn btn-primary m-btn" type="submit" style="font-size:14px;">REQUEST INVITE</button>
                         </div>
                     </form>
-                    <p class="text-white mb-0 text-center d-none success-msg">We have just subscribed to your email address. Please check your email.</p>
-                    <p class="text-white mb-0 d-none text-center repeat-msg">We have already subscribed to your email address.</p>
                 </div>
+                <p class="text-white d-none text-center success-msg">We have just subscribed to your email address. Please check your email.</p>
+                <p class="text-white d-none text-center repeat-msg">We have already subscribed to your email address.</p>
                 <div class="m-social text-center">
                     <a href="https://www.facebook.com/MillionK.official"><i class="fa fa-facebook-f text-white m-social-icon"></i></a>
                     <!-- <i class="fa fa-twitter text-white m-social-icon"></i> -->
@@ -152,10 +152,10 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(data) {
                 if(data['success']) {
-                    $('#request_invite').addClass('d-none');
+                    $('.input-group').addClass('d-none');
                     $('.success-msg').removeClass('d-none');
                 } else {
-                    $('#request_invite').addClass('d-none');
+                    $('.input-group').addClass('d-none');
                     $('.repeat-msg').removeClass('d-none');
                 }
             },
