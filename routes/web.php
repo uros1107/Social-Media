@@ -1,5 +1,10 @@
 <?php
 
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
+
 Route::redirect('/login', '/login');
 
 Route::redirect('/home', '/admin');
@@ -28,6 +33,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 });
 
 
+
+Route::prefix('admin')->group(function() {
+    Route::get('/dashboard', 'Admin\HomeController@index')->name('admin-dashboard');
+    Route::get('/orders', 'Admin\HomeController@order')->name('admin-order');
+    Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
+    Route::get('/add-idol', 'Admin\HomeController@add_idol')->name('admin-add-idol');
+    Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
+});
 
 
 // ------------------------------------ me -------------------------------------
