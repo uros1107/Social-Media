@@ -13,6 +13,13 @@ class HomeController
     {
         // $tabledata = file_get_contents(base_path('resources/json/table.json'));
 
+        return view('admin.order-list');
+    }
+
+    public function order_id()
+    {
+        // $tabledata = file_get_contents(base_path('resources/json/table.json'));
+
         return view('admin.order');
     }
 

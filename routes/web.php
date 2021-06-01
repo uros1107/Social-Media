@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Route::prefix('admin')->group(function() {
     Route::get('/dashboard', 'Admin\HomeController@index')->name('admin-dashboard');
     Route::get('/orders', 'Admin\HomeController@order')->name('admin-order');
+    Route::get('/orders-id', 'Admin\HomeController@order_id')->name('admin-order-id');
     Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
     Route::get('/add-idol', 'Admin\HomeController@add_idol')->name('admin-add-idol');
     Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
