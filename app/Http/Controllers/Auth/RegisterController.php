@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -61,6 +63,53 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+    protected function idol_register(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|unique:users',
+            'phone' => 'required|string|unique:users',
+            'followers' => 'required|numeric ',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => $request->password,
+            'where_find' => $request->where_find,
+            'handle_name' => $request->handle_name,
+            'followers' => $request->followers,
+            'info' => $request->followers,
+            'role' => 1
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        Auth::login($user);
+
+        return redirect()->route('idol-index');
+    }
+
+    protected function fans_signup(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|unique:users',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 2
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        Auth::login($user);
+
+        return redirect()->route('fans-index');
+    }
+
     protected function create(array $data)
     {
         return User::create([

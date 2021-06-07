@@ -33,7 +33,7 @@
     height: 160px;
     width: 100%;
     z-index: 999;
-    background: linear-gradient(180deg, rgb(19 19 19 / 67%) 30%, rgb(18 18 18) 70%);
+    background: linear-gradient(180deg, rgb(19 19 19 / 6%) 30%, rgb(18 18 18) 70%);
 }
 .welcome-millionk {
     margin-top: 300px;
@@ -203,7 +203,7 @@
     <div>
         <img class="bg-img w-100" src="{{ asset('assets/images/bg.png') }}">
     </div>
-    <div class="container-fluid p-0" style="height: 100%!important">
+    <div class="container-fluid p-0" style="height: 100%!important;background-color: rgb(0 0 0 / 70%);">
         <div class="block-1">  
             <div class="top desktop">
                 <img src="{{ asset('assets/images/top-left-img.png') }}">
@@ -302,12 +302,13 @@
                 <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
             </div>
             <div class="container">
-                <form class="custom-form">
+                <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
+                    {{ csrf_field() }}
                     <div class="row m-0">
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Your Name</label>
-                                <input type="text" placeholder="Your name" class="custom-input">
+                                <input type="text" name="name" placeholder="Your name" class="custom-input" required>
                                 <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                             </div>
@@ -315,42 +316,64 @@
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Phone Number(Never Shared)</label>
-                                <input type="text" placeholder="Phone number" class="custom-input">
+                                <input type="text" name="phone" placeholder="Phone number" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                             </div>
+                            @if ($errors->has('phone'))
+                                <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('phone') }}</p>
+                                </span>
+                            @endif
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Email</label>
-                                <input type="text" placeholder="Email" class="custom-input">
+                                <input type="text" name="email" placeholder="Email" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
+                            </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('email') }}</p>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="inputWithIcon">
+                                <label class="input-label">Password</label>
+                                <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">Where can we find you?</label>
-                                <input type="text" placeholder="Twitter" class="custom-input">
+                                <input type="text" name="where_find" placeholder="Twitter" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Your handle/Username</label>
-                                <input type="text" placeholder="User name" class="custom-input">
+                                <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
                                 <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">How many followers do you have?</label>
-                                <input type="text" placeholder="20" class="custom-input">
+                                <input type="text" name="followers" placeholder="20" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
                             </div>
+                            @if ($errors->has('followers'))
+                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('followers') }}</p>
+                                </span>
+                            @endif
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">Anything else we should know about you?</label>
-                                <textarea class="custom-textarea" style="height:120px!important" placeholder="Let us know about you..."></textarea>
+                                <textarea class="custom-textarea" name="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
                             </div>
                         </div>
                         <div class="col-12 mt-3">

@@ -166,34 +166,40 @@
                     <h4 class="text-grey sub-title">Start meet your favourite Korean idol.</h4>
                 </div>
                 <div class="register-part">
-                    <form class="custom-form">
+                    <form class="custom-form" action="{{ route('fans-signup') }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="row m-0">
                             <div class="col-12 col-sm-12 col-md-7">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your name</label>
-                                    <input type="text" placeholder="Your name" class="custom-input">
+                                    <input type="text" name="name" placeholder="Your name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-5">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Date Birth</label>
-                                    <input type="text" placeholder="24 March 2021" class="custom-input" id="datepicker">
+                                    <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="text" placeholder="Email" class="custom-input">
+                                    <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('email') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                    <input type="password" placeholder="Password" class="custom-input">
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                 </div>
                             </div>
@@ -203,13 +209,13 @@
                                     <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
                                 </div> -->
                                 <label class="custom-control black-checkbox">
-                                    <input type="checkbox" class="fill-control-input d-none">
+                                    <input type="checkbox" name="remember_token" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Remember me</span>
                                 </label>
                             </div>
                             <div class="col-12 mt-4 mb-5">
-                                <button class="btn custom-btn w-100" type="button" id="next">Register</button>
+                                <button class="btn custom-btn w-100">Register</button>
                             </div>
                             <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                 <!-- <div class="divider-text">OR</div> -->
@@ -251,27 +257,33 @@
                         <h4 class="text-grey sub-title">Start to meet your favourite Korean idol.</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form">
+                        <form class="custom-form" action="{{ route('fans-signup') }}" method="POST">
+                            {{ csrf_field() }}
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Your Name</label>
-                                        <input type="text" placeholder="Your Name" class="custom-input">
+                                        <input type="text" name="name" placeholder="Your Name" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="text" placeholder="Email" class="custom-input">
+                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                            <p class="mb-0">{{ $errors->first('email') }}</p>
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                        <input type="password" placeholder="Password" class="custom-input">
+                                        <input type="password" name="password" placeholder="Password" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                     </div>
                                 </div>
@@ -281,7 +293,7 @@
                                         <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
                                     </div> -->
                                     <label class="custom-control black-checkbox">
-                                        <input type="checkbox" class="fill-control-input d-none">
+                                        <input type="checkbox" name="remember_token" class="fill-control-input d-none">
                                         <span class="fill-control-indicator"></span>
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
@@ -290,7 +302,7 @@
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
                                 </div>
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
-                                    <button class="btn custom-btn w-100" type="button" id="next">Register</button>
+                                    <button class="btn custom-btn w-100">Register</button>
                                 </div>
                                 <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                     <!-- <div class="divider-text">OR</div> -->

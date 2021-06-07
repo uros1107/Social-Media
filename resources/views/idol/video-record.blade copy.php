@@ -7,58 +7,43 @@
 .container-fluid {
     padding: 0px!important;
 }
-.calculate {
-    position: absolute;
-    right: 0px;
-    top: 10px;
+.modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
 }
-.total-item {
-    margin-left: 30px;
+.modal-body {
+  position:relative;
+  padding:0px;
 }
-.total-item h4 {
-    font-size: 14px;
+.close {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
 }
-.total-item p {
-    font-size: 20px;
-    margin-bottom: 0px!important;
+#myModal {
+    top: 25%;
 }
-.top-title {
-    display: flex;
+.modal-backdrop {
+    background-color: #FF335C;
 }
-.top-divider {
-    width: 100%;
-    height: 1px;
-    background:#2b2b2b
-    ;margin-bottom: 15px;
+.video-part {
+    height: 290px;
+    background: #2B2B2B;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 80px;
 }
-.mid-divider {
-    width: 100%;
-    height: 1px;
-    background:#2b2b2b;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.bot-divider {
-    width: 100%;
-    height: 1px;
-    background:#2b2b2b;
-    margin-top: 15px;
-}
-.v-divider {
-    width: 1px;
-    height: 54px;
-    background: #2b2b2b;
-}
-.create-btn,
-.create-btn:hover {
-    height: 40px;
-    border-radius: 8px!important;
-    font-size: 14px;
+.submit-video {
+    border-radius: 12px!important;
+    font-size: 16px;
+    width: 290px;
 }
 @media (max-width: 574px) {
-    .top-title {
-        display: initial;
-    }
     .video-part,
     .share {
         display: none!important;
@@ -81,103 +66,71 @@
         text-align: center;
         color: #898989;
     }
-    .total-item {
-        margin-left: 0px;
-    }
 }
 </style>
 @endsection
 
 @section('content')
-<div class="row follow-idol view-video payment-success m-0 mb-0">
-    @php
-        $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
-    @endphp
-    <div class="col-12 col-sm-12 col-md-12 top-title">
+<div class="row follow-idol view-video payment-success m-0 mb-4">
+    <div class="col-12 col-sm-12 col-md-12">
+        @php
+            $fans =  DB::table('users')->where('id', $order->order_fans_id)->first();
+        @endphp
         <div class="title-part d-flex">
             <div>
-                <h2 class="text-white">Encourage her</h2>
-                <p class="text-grey">{{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
+                <h2 class="text-white">Take your video or upload video</h2>
+                <p class="text-grey">Personalized video for <span class="text-main-color">{{ $fans->name }}</span></p>
+                @if ($errors->has('upload_video'))
+                    <p style="color:red">{{ $errors->first('upload_video') }}</p>
+                @endif
+            </div>
+            <div class="m-auto d-flex share" style="margin-right: 0px!important">
+                <form action="{{ route('idol-submit-video') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="order_id" value="{{ $order->order_id }}">
+                    <input type="file" name="upload_video" class="d-none" id="upload_video">
+                    <button type="submit" class="btn custom-btn submit-video">Submit Video</button>
+                </form>
             </div>
         </div>
-        <div class="calculate desktop">
-            <div class="d-flex">
-                <div class="total-item text-center">
-                    <h4 class="text-white">Total Price</h4>
-                    <p class="text-main-color">$200</p>
-                </div>
-                <div class="total-item text-center">
-                    <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$160</p>
-                </div>
-                <div class="total-item text-center">
-                    <h4 class="text-white">Paid Out</h4>
-                    <p class="text-main-color">$0</p>
-                </div>
+        <div class="divider"></div>
+    </div>
+    <div class="col-12 col-sm-12 mobile">
+        <div class="d-flex mt-3 mb-3">
+            <div class="record-video ml-0">
+                <img class="mb-2" style="margin-top: 35px" src="{{ asset('assets/images/icons/dark-camera.png') }}">
+                <h4 class="">Record Video</h4>
             </div>
-        </div>
-        <div class="mobile">
-            <div class="top-divider"></div>
-            <div class="d-flex mb-3">
-                <div class="total-item text-center w-100">
-                    <h4 class="text-white">Total Price</h4>
-                    <p class="text-main-color">$200</p>
-                </div>
-            </div>
-            <div class="mid-divider"></div>
-            <div class="d-flex">
-                <div class="total-item text-center w-50">
-                    <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$160</p>
-                </div>
-                <div class="v-divider"></div>
-                <div class="total-item text-center w-50">
-                    <h4 class="text-white">Paid Out</h4>
-                    <p class="text-main-color">$0</p>
-                </div>
-            </div>
-            <div class="bot-divider"></div>
-            <div class="w-100 mt-3">
-                <button type="button" class="btn custom-btn w-100 create-btn" data-id="{{ $order->order_id }}">Create Video</button>
+            <div class="record-video mr-0">
+                <img class="mb-2" style="margin-top: 20px" src="{{ asset('assets/images/icons/dark-upload.png') }}">
+                <h4 class="">Upload Video</h4>
+                <p class="mb-0">Format ( .mp4 , .mkv )</p>
             </div>
         </div>
     </div>
-    <div class="top-divider mt-0"></div>
-    <div class="col-12 col-sm-12 col-md-12 desktop">
-        <div class="d-flex">
-            <div class="text-white text-center my-auto mr-3" style="border-radius: 20px;width: 70px;border: 1px solid #FF335C;height:24px">
-                Active
-            </div>
-            <div class="title-part d-flex">
-                <div>
-                    <h2 class="text-white" style="font-size:16px">Encourage her</h2>
-                    <p class="text-grey" style="font-size:13px">from <span class="text-main-color">{{ $fans->name }}<span></p>
-                </div>
-            </div>
-            <div class="calculate">
-                <div class="d-flex">
-                    <div class="total-item text-center">
-                        <h4 class="text-white" style="font-size:12px">Create video before</h4>
-                        <p class="text-main-color" style="font-size:14px">{{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
-                    </div>
-                    <div class="total-item text-center">
-                        <button class="btn custom-btn create-btn" data-id="{{ $order->order_id }}">Create Video</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col-12 col-sm-12 mobile">
+        <button type="button" class="btn custom-btn submit-video w-100">Submit Video</buttton>
     </div>
-    <div class="top-divider mt-0"></div>
 </div>
 <div class="row featured view-video payment-success mb-5 m-0">
     <div class="col-12 col-sm-8 col-md-8">
+        <div class="video-part w-100 mb-3">
+            <!-- <video width="100%" height="290" controls>
+                <source src="https://www.youtube.com/watch?v=ImtZ5yENzgE" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> -->
+            <div class="record-video ml-0">
+                <img class="mb-2" style="margin-top: 35px" src="{{ asset('assets/images/icons/dark-camera.png') }}">
+                <h4 style="color:#898989;font-size: 16px">Record Video</h4>
+            </div>
+        </div>
         <div class="title-part d-flex">
             <div>
                 <h2 class="text-white">Personalized video request detail</h2>
                 <p class="text-grey">Let see what do you want</p>
             </div>
             <div class="m-auto" style="margin-right: 0px!important">
-                <p class="mb-0" style="font-size: 16px;color:#898989">{{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
+                <p class="mb-0" style="font-size: 16px;color:#898989">{{  Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
             </div>
         </div>
         <div class="w-100">
@@ -190,6 +143,16 @@
         </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4 payment-next">
+        <div class="lang-preference mb-3 desktop" style="height:290px;background: #e5e5e5!important;padding-top:80px!important">
+            <div class="row m-0">
+                <div class="col-12 title mb-3 text-center upload-video">
+                    <img class="mb-2" src="{{ asset('assets/images/icons/upload-video.png') }}">
+                    <h4 style="color:#2b2b2b" id="video-name">Upload Video</h4>
+                    <p class="mb-0" style="color:#898989">Drag & Drop your files here</p>
+                    <p class="mb-0" style="color:#898989">Format ( .mp4 , .mkv )</p>
+                </div>
+            </div>
+        </div>
         <div class="lang-preference mb-3">
             <div class="row m-0">
                 <div class="col-12 title mb-2">
@@ -231,9 +194,9 @@
                             @if($order->order_lang == 1)
                             <p class="text-main-color mb-0">English</p>
                             @elseif($order->order_lang == 2)
-                            <p class="text-main-color mb-0">Korean</p>
+                            <h4 class="text-main-color">Korean</h4>
                             @else
-                            <p class="text-main-color mb-0">Mix(English and Korean)</p>
+                            <h4 class="text-main-color">Mix(English and Korean)</h4>
                             @endif
                         </div>
                     </div>
@@ -263,9 +226,12 @@ $(document).ready(function() {
             });
         }
     });
-    $(document).on('click', '.create-btn', function() {
-        location.href = "{{ route('idol-video-record') }}" + '?order_id=' + $(this).data('id');
-    })
+    $(document).on('click', '.upload-video', function() {
+        $('#upload_video').click();
+    });
+    $(document).on('change', '#upload_video', function() {
+        $('#video-name').html($(this)[0].files[0].name);
+    });
 });
 </script>
 @endsection

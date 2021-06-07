@@ -78,6 +78,10 @@ div.dataTables_wrapper div.dataTables_filter input {
     height: 54px;
     background: #2b2b2b;
 }
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 
 @media (max-width: 574px) { 
     .col-md-7, .col-md-5 {
@@ -121,19 +125,19 @@ div.dataTables_wrapper div.dataTables_filter input {
             <div class="d-flex">
                 <div class="total-item text-center">
                     <h4 class="text-white">Pending Bookings</h4>
-                    <p class="text-main-color">15</p>
+                    <p class="text-main-color">${{ $pending_booking }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Total Bookings</h4>
-                    <p class="text-main-color">$2,000</p>
+                    <p class="text-main-color">${{ $total_booking }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$1,600</p>
+                    <p class="text-main-color">${{ $completed_booking }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Paid Out</h4>
-                    <p class="text-main-color">$1,000</p>
+                    <p class="text-main-color">${{ $paidout_booking }}</p>
                 </div>
             </div>
         </div>
@@ -142,24 +146,24 @@ div.dataTables_wrapper div.dataTables_filter input {
             <div class="d-flex mb-3">
                 <div class="total-item text-center w-50">
                     <h4 class="text-white">Pending Bookings</h4>
-                    <p class="text-main-color">15</p>
+                    <p class="text-main-color">${{ $pending_booking }}</p>
                 </div>
                 <div class="v-divider"></div>
                 <div class="total-item text-center w-50">
                     <h4 class="text-white">Total Bookings</h4>
-                    <p class="text-main-color">$2,000</p>
+                    <p class="text-main-color">${{ $total_booking }}</p>
                 </div>
             </div>
             <div class="mid-divider"></div>
             <div class="d-flex">
                 <div class="total-item text-center w-50">
                     <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$1,600</p>
+                    <p class="text-main-color">${{ $completed_booking }}</p>
                 </div>
                 <div class="v-divider"></div>
                 <div class="total-item text-center w-50">
                     <h4 class="text-white">Paid Out</h4>
-                    <p class="text-main-color">$1,000</p>
+                    <p class="text-main-color">${{ $paidout_booking }}</p>
                 </div>
             </div>
             <div class="bot-divider"></div>
@@ -189,279 +193,32 @@ div.dataTables_wrapper div.dataTables_filter input {
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($orders as $order)
+                        @php
+                            $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+                        @endphp
                         <tr>
                             <td>
                                 <div class="active">Active</div>
                             </td>
                             <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
+                                <a href="{{ route('idol-earning-per').'?order_id='.$order->order_id }}"><h4 class="mb-0 text-white">Encourage her</h4></a>
+                                <p class="mb-0">from <span class="text-main-color">{{ $fans->name }}</span></p>
                             </td>
                             <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
+                                <p class="mb-0 description">{{ $order->order_introduction }}</p>
                             </td>
                             <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
+                                <p class="date mb-0">Due<span class="text-main-color"> {{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</span></p>
                             </td> 
                             <td>
-                                $250
+                                ${{ $order->order_price }}
                             </td>
                             <td>
                                 <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="active">Active</div>
-                            </td>
-                            <td class="user">
-                                <h4 class="mb-0">Encourage her</h4>
-                                <p class="mb-0">from <span class="text-main-color">John Doe</span></p>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td>
-                                <p class="date mb-0">Due<span class="text-main-color"> 4 April 2021</span></p>
-                            </td> 
-                            <td>
-                                $250
-                            </td>
-                            <td>
-                                <img src="{{ asset('assets/images/icons/more.png') }}" class="more">
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot class="d-none">
                         <tr>

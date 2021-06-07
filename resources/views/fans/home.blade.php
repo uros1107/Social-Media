@@ -34,56 +34,27 @@
         </div>
         <div class="image-part">
             <div class="row m-0">
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
+                @if(count($idols))
+                @foreach($idols as $idol)
+                @php
+                    $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                @endphp
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
+                        <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
+                            <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
                             <p class="text-white mb-0">Dancer, TikTok</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
+                @endforeach
+                @else
+                <div class="col-12 col-sm-12 col-md-12 d-flex" style="height: 200px">
+                    <p class="text-white mb-0 text-center m-auto">No idols yet</p>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -97,62 +68,29 @@
         </div>
         <div class="image-part idol-search">
             <div class="row m-0">
+                @php
+                    $cats = DB::table('categories')->get()->toArray();
+                @endphp
+                @for($i = 0; $i < count($cats); $i = $i+2)
                 <div class="col-6 col-sm-4 col-md-3">
-                    <div class="image-item mb-4">
-                        <img src="{{ asset('assets/images/idol1.png') }}" class="w-100"> 
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>  
-                    </div>
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/idol2.png') }}" class="w-100">   
-                        <div>
-                            <h4 class="text-white">Actors</h4>
+                    <a href="#1">
+                        <div class="image-item mb-4" style="height: unset">
+                            <img src="{{ asset('assets/images/idol1.png') }}" class="w-100"> 
+                            <div>
+                                <h4 class="text-white mb-0">{{ $cats[$i]->cat_name }}</h4>
+                            </div>  
                         </div>
-                    </div>
+                    </a>
+                    <a href="#2">
+                        <div class="image-item" style="height: unset">
+                            <img src="{{ asset('assets/images/idol2.png') }}" class="w-100">   
+                            <div>
+                                <h4 class="text-white mb-0">{{ $cats[$i+1]->cat_name }}</h4>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3">
-                    <div class="image-item mb-4">
-                        <img src="{{ asset('assets/images/idol3.png') }}" class="w-100">  
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>
-                    </div>
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/idol4.png') }}" class="w-100">   
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3">
-                    <div class="image-item mb-4">
-                        <img src="{{ asset('assets/images/idol5.png') }}" class="w-100">   
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>
-                    </div>
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/idol6.png') }}" class="w-100">   
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3">
-                    <div class="image-item mb-4">
-                        <img src="{{ asset('assets/images/idol7.png') }}" class="w-100">  
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div>
-                    </div>
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/idol8.png') }}" class="w-100">  
-                        <div>
-                            <h4 class="text-white">Actors</h4>
-                        </div> 
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
     </div>
@@ -166,56 +104,27 @@
         </div>
         <div class="image-part">
             <div class="row m-0">
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
+                @if(count($idols))
+                @foreach($idols as $idol)
+                @php
+                    $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                @endphp
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
+                        <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
+                            <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
                             <p class="text-white mb-0">Dancer, TikTok</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
+                @endforeach
+                @else
+                <div class="col-12 col-sm-12 col-md-12 d-flex" style="height: 200px">
+                    <p class="text-white mb-0 text-center m-auto">No idols yet</p>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -229,56 +138,27 @@
         </div>
         <div class="image-part">
             <div class="row m-0">
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
+                @if(count($idols))
+                @foreach($idols as $idol)
+                @php
+                    $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                @endphp
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
+                        <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
+                            <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
                             <p class="text-white mb-0">Dancer, TikTok</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
+                @endforeach
+                @else
+                <div class="col-12 col-sm-12 col-md-12 d-flex" style="height: 200px">
+                    <p class="text-white mb-0 text-center m-auto">No idols yet</p>
                 </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-sm-3 col-md-3 custom-col">
-                    <div class="image-item">
-                        <img src="{{ asset('assets/images/actor.png') }}" class="w-100">    
-                        <div class="gradient"></div>
-                        <div class="image-profile">
-                            <h5 class="text-white">John Doe</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -290,7 +170,8 @@
 <script>
     $(document).ready(function() {
         $('.custom-col').on('click', function() {
-            location.href = "{{ route('follow-idol') }}";
+            var id = $(this).data('id');
+            location.href = "{{ route('follow-idol')}}" + '?id=' + id;
         })
     })
 </script>

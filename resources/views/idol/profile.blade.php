@@ -53,6 +53,10 @@
 
 @section('content')
 <div class="row idol follow-idol mb-4 m-0">
+    @php
+        $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
+        $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+    @endphp
     <div class="desktop w-100">
         <img class="bg-img w-100" src="{{ asset('assets/images/follow-bg.png') }}" class="w-100">
         <div class="action-btn">
@@ -76,15 +80,15 @@
                     <div class="name-action d-flex">
                         <div class="name-part">
                             <div class="name d-flex">
-                                <h3>John Doe</h3>
-                                <h5 class="my-auto ml-3">@pakmiyong</h5>
+                                <h3>{{ $idol_info->idol_full_name }}</h3>
+                                <h5 class="my-auto ml-3">{{ '@'.$idol_info->idol_user_name }}</h5>
                             </div>
                             <div class="description">
-                                <p>I’m dance studio teacher with millions of views on TikTok. 50% of fees will go to dog charities</p>
+                                <p>{{ $idol_info->idol_bio }}</p>
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn" id="new-request">Reqeuest - $190</button>
+                            <button type="button" class="btn custom-btn" id="new-request">Reqeuest - ${{ $request_video->request_video_price }}</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -98,7 +102,7 @@
                         </div>
                         <div class="fans mr-4">
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                            <span>3.7k Fans</span>
+                            <span>{{ $idol_info->idol_fans }} Fans</span>
                         </div>
                         <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
@@ -196,7 +200,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100" id="m-new-request">Reqeuest - $190</button>
+            <button type="button" class="btn custom-btn w-100" id="m-new-request">Reqeuest - ${{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>

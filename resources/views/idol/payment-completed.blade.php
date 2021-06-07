@@ -24,7 +24,7 @@
                 <img class="mb-3" src="{{ asset('assets/images/tick.png') }}">
                 <h4 class="text-white">Your Setup is Completed</h4>
                 <p class="text-white">Your fans can now request personalized videos from you</p>
-                <button class="btn custom-btn" style="width: 300px">Back to Dashboard</button>
+                <button class="btn custom-btn back_dashboard" style="width: 300px">Back to Dashboard</button>
             </div>
         </div>
     </div>
@@ -34,65 +34,9 @@
 @section('scripts')
 <script>
 $(document).ready(function(){
-    $(document).on('click', '#photo_btn', function() {
-        $('#photo_img').click();
+    $(document).on('click', '.back_dashboard', function() {
+        location.href = "{{ route('idol-index') }}";
     });
-
-    $(document).on('click', '#banner_btn', function() {
-        $('#banner_img').click();
-    })
-
-    $(document).on('click', '.upload-video', function() {
-        $('#upload-video').click();
-    })
-
-    $(document).on('click', '#profile_btn', function() {
-        $('#profile_information').addClass('d-none');
-        $('#request_video').removeClass('d-none');
-        $('#profile_step').removeClass('active');
-        $('#request_step').addClass('active');
-        $('#step_number').html('2');
-    })
-
-    $(document).on('click', '#to_profile', function() {
-        $('#profile_information').removeClass('d-none');
-        $('#request_video').addClass('d-none');
-        $('#profile_step').addClass('active');
-        $('#request_step').removeClass('active');
-        $('#step_number').html('1');
-    })
-
-    $(document).on('click', '#request_btn', function() {
-        $('#request_video').addClass('d-none');
-        $('#video_introduction').removeClass('d-none');
-        $('#request_step').removeClass('active');
-        $('#introduction_step').addClass('active');
-        $('#step_number').html('3');
-    })
-
-    $(document).on('click', '#to_request', function() {
-        $('#request_video').removeClass('d-none');
-        $('#video_introduction').addClass('d-none');
-        $('#request_step').addClass('active');
-        $('#introduction_step').removeClass('active');
-        $('#step_number').html('2');
-    })
-
-    $(document).on('click', '#introduction_btn', function() {
-        $('#video_introduction').addClass('d-none');
-        $('#payment_method').removeClass('d-none');
-        $('#introduction_step').removeClass('active');
-        $('#payment_step').addClass('active');
-        $('#step_number').html('4');
-    })
-
-    $(document).on('click', '#to_introduction', function() {
-        $('#video_introduction').removeClass('d-none');
-        $('#payment_method').addClass('d-none');
-        $('#introduction_step').addClass('active');
-        $('#payment_step').removeClass('active');
-        $('#step_number').html('3');
-    })
 })
 </script>
 @endsection

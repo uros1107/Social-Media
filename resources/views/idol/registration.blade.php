@@ -42,7 +42,8 @@
                     <h4 class="text-grey sub-title">Start to meet your fans</h4>
                 </div>
                 <div class="register-part">
-                    <form class="custom-form">
+                    <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="stepwizard col-md-offset-3 mb-3">
                             <div class="stepwizard-row setup-panel">
                                 <div class="stepwizard-step">
@@ -62,23 +63,29 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Name</label>
-                                    <input type="text" placeholder="Your name" class="custom-input">
-                                    <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
+                                    <input type="text" name="name" placeholder="Your name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="text" placeholder="Email" class="custom-input">
+                                    <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
+                                    <label class="input-label">Password</label>
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
                                     <label class="input-label">Phone Number(Never Shared)</label>
-                                    <input type="text" placeholder="Phone number" class="custom-input">
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
+                                    <input type="text" name="phone" placeholder="Phone number" class="custom-input">
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}" required>
                                 </div>
                             </div>
                             <div class="col-12 mt-4 mb-4">
@@ -91,28 +98,38 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Where can we find you?</label>
-                                    <input type="text" placeholder="Twitter" class="custom-input">
+                                    <input type="text" name="where_find" placeholder="Twitter" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your handle/Username</label>
-                                    <input type="text" placeholder="User name" class="custom-input">
+                                    <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
                                     <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">How many followers do you have?</label>
-                                    <input type="text" placeholder="20" class="custom-input">
+                                    <input type="text" name="followers" placeholder="20" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="text-white" style="margin-left: 16px">Category</label>
+                                    <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                        @foreach(DB::table('categories')->get() as $cat)
+                                        <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Anything else we should know about you?</label>
-                                    <textarea class="custom-textarea" placeholder="Let us know about you..."></textarea>
+                                    <textarea class="custom-textarea" name="info" placeholder="Let us know about you..." required></textarea>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">

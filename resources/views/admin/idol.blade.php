@@ -62,6 +62,10 @@ option:before {
 .expand .fans:last-child {
     border-right: 0px solid #e5e5e5!important;
 }
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 @media (max-width: 574px) { 
     .expand-content {
         flex-wrap: inherit !important;

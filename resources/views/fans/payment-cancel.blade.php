@@ -112,7 +112,7 @@
             <div class="instruction">
                 <h5 class="text-white">Instruction</h5>
                 <br>
-                <p class="text-white" style="font-size: 16px">Here is the instruction from you for your idols</p><br>
+                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
                 <p class="text-white" style="font-size: 16px">Hi, John</p><br>
                 <p class="text-white" style="font-size: 16px">Please make video for Melissa, Encourage her for her exam next month.</p>
                 <p class="text-white" style="font-size: 16px">Thank you so much.</p><br>

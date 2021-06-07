@@ -147,15 +147,6 @@
 <div class="content">
     <div class="container-fluid p-0 idol-registration">
         <div class="row m-0 fans desktop">
-            <div class="col-12 col-sm-8 col-md-8 image-block">
-                <div class="top">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}">
-                </div>
-                <div class="image-title">
-                    <h1 class="text-main-color mb-4">Reach<br>your idols</h1>
-                    <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
-                </div>
-            </div>
             <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div>
                     <div class="title-part text-center">
@@ -167,7 +158,7 @@
                             {{ csrf_field() }}
                             @if (Session::has('unsuccess'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                    <p class="mb-0">{{ Session::get('unsuccess') }}</p>
+                                    <p class="mb-0 text-center">{{ Session::get('unsuccess') }}</p>
                                 </span>
                             @endif
                             <div class="row m-0">
@@ -197,9 +188,9 @@
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
                                 </div>
-                                <div class="col-6 text-right">
+                                <!-- <div class="col-6 text-right">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white">Forgot password?</a>
-                                </div>
+                                </div> -->
                                 <div class="col-12 mt-4 mb-5">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
@@ -228,11 +219,20 @@
                                 </div>
                                 <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have account?</a>
-                                    <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-8 col-md-8 image-block">
+                <div class="top">
+                    <img src="{{ asset('assets/images/top-left-img.png') }}">
+                </div>
+                <div class="image-title">
+                    <h1 class="text-main-color mb-4">Reach<br>your idols</h1>
+                    <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
                 </div>
             </div>
         </div>
@@ -273,9 +273,9 @@
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
                                 </div>
-                                <div class="col-6 text-right p-0">
+                                <!-- <div class="col-6 text-right p-0">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
-                                </div>
+                                </div> -->
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have account?</a>
-                                    <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
                                 </div>
                             </div>
                         </form>

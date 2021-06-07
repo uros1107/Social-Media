@@ -31,16 +31,23 @@
 .modal-backdrop {
     background-color: #FF335C;
 }
+.video-part video {
+    border-radius: 15px;
+}
 </style>
 @endsection
 
 @section('content')
 <div class="row follow-idol view-video payment-success m-0 mb-4">
+    @php
+        $idol_info = DB::table('idol_info')->where('idol_user_id', $order->order_idol_id)->first();
+        $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+    @endphp
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part d-flex">
             <div>
                 <h2 class="text-white">Congratulation Melissa</h2>
-                <p class="text-grey">From <span class="text-main-color">John</span></p>
+                <p class="text-grey">From <span class="text-main-color">{{ $idol_info->idol_full_name }}</span></p>
             </div>
             <div class="m-auto d-flex share" style="margin-right: 0px!important">
                 <p class="mb-0 text-white mr-4 desktop">Share to:</p>
@@ -57,7 +64,8 @@
     <div class="col-12 col-sm-8 col-md-8">
         <div class="video-part w-100 mb-3">
             <video width="100%" height="290" controls>
-                <source src="https://www.youtube.com/watch?v=ImtZ5yENzgE" type="video/mp4">
+                <!-- <source src="{{ asset('assets/videos/').$order->order_video }}" type="video/mp4"> -->
+                <source src="{{ asset('assets/videos/'.$order->order_video) }}">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -67,19 +75,15 @@
                 <p class="text-grey">Let see what do you want</p>
             </div>
             <div class="m-auto" style="margin-right: 0px!important">
-                <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p>
+                <p class="mb-0" style="font-size: 16px;color:#898989">{{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
             </div>
         </div>
         <div class="w-100">
             <div class="instruction">
                 <h5 class="text-white">Instruction</h5>
                 <br>
-                <p class="text-white" style="font-size: 16px">Here is the instruction from you for your idols</p><br>
-                <p class="text-white" style="font-size: 16px">Hi, John</p><br>
-                <p class="text-white" style="font-size: 16px">Please make video for Melissa, Encourage her for her exam next month.</p>
-                <p class="text-white" style="font-size: 16px">Thank you so much.</p><br>
-                <p class="text-white" style="font-size: 16px">Regards</p>
-                <p class="text-white" style="font-size: 16px">John Doe</p>
+                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <p class="text-white" style="font-size: 16px">{{ $order->order_introduction }}</p>
             </div>
         </div>
     </div>
@@ -107,7 +111,7 @@
             <div class="row m-0">
                 <div class="col-12 title mb-2">
                     <div class="d-flex">
-                        <h4 class="text-white">Request from</h4>
+                        <h4 class="text-white">Requested from</h4>
                     </div>
                 </div>
                 <div class="col-12 how-content">
@@ -116,29 +120,38 @@
                             <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
                         </div>
                         <div class="ml-3 my-auto user-name">
-                            <p class="mb-0">@johndoe</p>
-                            <p class="text-main-color mb-0">John Doe</p>
+                            <p class="mb-0 text-lowercase">{{ '@'.$fans->name }}</p>
+                            <p class="text-main-color mb-0">{{ $fans->name }}</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
+                            @php
+                                $occasion = DB::table('occasions')->where('occasion_id', $order->order_occasion)->first();
+                            @endphp
                             <h4 class="text-white mb-3">Occasion</h4>
                             <p class="mb-0">Occasion Type</p>
-                            <p class="text-main-color mb-0">Encouragement</p>
+                            <p class="text-main-color mb-0">{{ $occasion->occasion_name }}</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <h4 class="text-white">For who?</h4>
-                            <p class="mb-0">Someone else</p>
-                            <p class="text-main-color mb-0">Melissa</p>
+                            <p class="mb-0">{{ $order->order_who_for == 1? 'For me' : 'Someone else' }}</p>
+                            <p class="text-main-color mb-0">{{ $order->order_to }}</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <h4 class="text-white">Language</h4>
                             <p class="mb-0">Language request for this personalized video</p>
+                            @if($order->order_lang == 1)
                             <p class="text-main-color mb-0">English</p>
+                            @elseif($order->order_lang == 2)
+                            <p class="text-main-color mb-0">Korean</p>
+                            @else
+                            <p class="text-main-color mb-0">Mix(English and Korean)</p>
+                            @endif
                         </div>
                     </div>
                 </div>

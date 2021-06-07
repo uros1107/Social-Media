@@ -47,6 +47,10 @@ div.dataTables_wrapper div.dataTables_filter input {
     border-radius: 8px;
     border-color: #2b2b2b;
 }
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 @media (max-width: 574px) { 
     .order-list .col-12 {
         padding: 0px;
@@ -124,326 +128,49 @@ div.dataTables_wrapper div.dataTables_filter input {
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($orders as $order)
+                        @php
+                            $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+                        @endphp
                         <tr>
                             <td>
                                 <div class="d-flex new-request">
                                     <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
                                     <div class="msg my-auto">
                                         <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
+                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">{{ $fans->name }}</span></p>
                                     </div>
                                 </div>
                             </td>
                             <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
+                                <p class="mb-0 description">{{ $order->order_introduction }}</p>
                             </td>
                             <td class="user">
                                 <div class="lang">
                                     <div class="d-flex mb-1">
                                         <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
+                                        @if($order->order_lang == 1)
                                         <p class="mb-0" style="color:#898989">English</p>
+                                        @elseif($order->order_lang == 2)
+                                        <p class="mb-0" style="color:#898989">Korean</p>
+                                        @else
+                                        <p class="mb-0" style="color:#898989">Mix(English and Korean)</p>
+                                        @endif
                                     </div>
                                     <div class="d-flex">
+                                        @php
+                                            $occasion = DB::table('occasions')->where('occasion_id', $order->order_occasion)->first();
+                                        @endphp
                                         <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
+                                        <p class="mb-0" style="color:#898989">{{ $occasion->occasion_name }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
+                                <button type="button" class="btn custom-btn view-request view-btn" data-id="{{ $order->order_id }}">View Request</button>
                             </td> 
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
-                                    <div class="msg my-auto">
-                                        <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">John Doe</span></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="desktop">
-                                <p class="mb-0 description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                            </td>
-                            <td class="user">
-                                <div class="lang">
-                                    <div class="d-flex mb-1">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/chat.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">English</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img class="mr-2" src="{{ asset('assets/images/icons/fire.png') }}" style="width: 15px;height: 15px">
-                                        <p class="mb-0" style="color:#898989">Encouragement</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn custom-btn view-request">View Request</button>
-                            </td> 
-                        </tr>
-
+                        @endforeach
                     </tbody>
                     <tfoot class="d-none">
                         <tr>
@@ -478,6 +205,9 @@ $(document).ready(function() {
     $(document).on('click', '.view-request', function() {
         location.href = "{{ route('idol-v-request-detail') }}";
     })
+    $(document).on('click', '.view-btn', function() {
+        location.href = "{{ route('idol-v-request-detail') }}" + '?order_id=' + $(this).data('id');
+    });
 });
 </script>
 @endsection

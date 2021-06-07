@@ -25,6 +25,10 @@ option:before {
 .order-id {
     color: #2178F9;
 }
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 20px 10px!important;

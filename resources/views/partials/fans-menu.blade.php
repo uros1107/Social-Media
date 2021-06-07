@@ -16,8 +16,9 @@
                     My Activity
                 </a>
             </li>
+            @if(Auth::check() && Auth::user()->role == 2)
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("follow-idol") }}" class="nav-link">
+                <a href="#1" class="nav-link">
                     <img src="{{ asset('assets/images/icons/heart.png') }}" class="mr-3" style="width:20px">
                     My Fandoms
                 </a>
@@ -28,55 +29,56 @@
                     My Orders
                 </a>
             </li>
+            @endif
 
             <div style="padding: 15px 20px">
                 <h5>Browse categories</h5>
             </div>
 
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#1" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person1.png') }}" class="mr-3 person-img" style="width:20px">
                     Actors
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#2" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person2.png') }}" class="mr-3 person-img" style="width:20px">
                     TV Host
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#3" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person3.png') }}" class="mr-3 person-img" style="width:20px">
                     Models
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#4" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person4.png') }}" class="mr-3 person-img" style="width:20px">
                     Musicians
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#5" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person5.png') }}" class="mr-3 person-img" style="width:20px">
                     Comedians
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#6" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person6.png') }}" class="mr-3 person-img" style="width:20px">
                     KPDP
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#7" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person7.png') }}" class="mr-3 person-img" style="width:20px">
                     Youtuber
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("admin.home") }}" class="nav-link person-link">
+                <a href="#8" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person8.png') }}" class="mr-3 person-img" style="width:20px">
                     All categories
                 </a>

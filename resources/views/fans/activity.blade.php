@@ -19,78 +19,20 @@
             <div class="w-100">
                 <p class="mb-0 pl-2 text-white" style="background:#2b2b2b">Today</p>
             </div>
-            <div class="history-row w-100 d-flex">
+            @foreach($orders as $order)
+            @php
+                $idol_info = DB::table('idol_info')->where('idol_user_id', $order->order_idol_id)->first();
+            @endphp
+            <div class="history-row w-100 d-flex" data-id="{{ $order->order_id }}">
                 <div class="title">
                     <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
+                    <p class="mb-0">{{ $idol_info->idol_full_name }}</p>
                 </div>
                 <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
+                    <p class="mb-0">{{ Carbon\Carbon::parse($order->updateed_at)->format('d F Y h m') }}</p>
                 </div>
             </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
-            <div class="history-row w-100 d-flex">
-                <div class="title">
-                    <h4 class="text-white">Video Request</h4>
-                    <p class="mb-0">John Doe</p>
-                </div>
-                <div class="date">
-                    <p class="mb-0">28 March 2021 01.45</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -100,7 +42,7 @@
 <script>
     $(document).ready(function() {
         $('.history-row').on('click', function() {
-            location.href = "{{ route('view-video') }}";
+            location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
         })
     })
 </script>

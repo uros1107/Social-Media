@@ -90,6 +90,16 @@ p {
     margin-top: 100px;
     background: #171717;
 }
+.sub-menu {
+    position: absolute;
+    right: 0px;
+    background: #292929;
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+.sub-menu > a {
+    font-size: 16px;
+}
 .sidebar {
     width: 280px!important;
     background: #121212;
@@ -310,9 +320,12 @@ p {
 }
 .featured .image-item {
     position: relative;
+    height: 100%;
 }
 .featured .image-item > img {
     border-radius: 20px;
+    height: 100%;
+    object-fit: cover;
 }
 .featured .image-item .image-profile {
     position: absolute;
@@ -358,6 +371,13 @@ p {
     justify-content:center;
     align-items:center;
     top:0;
+}
+.featured .image-part .row {
+    overflow: auto;
+    flex-wrap: inherit;
+}
+.idol-search .image-item h4 {
+    font-size: 20px;
 }
 
 @media screen and (max-width:475px) {
@@ -568,6 +588,8 @@ p {
 }
 .follow-idol .idol-profile .idol-image img {
     width: 192px;
+    height: 192px;
+    object-fit: cover;
 }
 .follow-idol .idol-profile .idol-image {
     position: relative;
@@ -617,6 +639,7 @@ p {
 }
 .follow-idol .idol-profile .name-action .description {
     max-width: 400px;
+    height: 50px;
 }
 .follow-idol .idol-profile .action-part {
     position: absolute;
@@ -664,6 +687,10 @@ p {
     font-size: 12px;
 }
 .featured .featured-video .video-item img {
+    border-radius: 15px;
+    width: 100%;
+}
+.featured .featured-video .video-item video {
     border-radius: 15px;
     width: 100%;
 }
@@ -827,6 +854,7 @@ p {
     }
     .follow-idol .idol-profile .idol-image img {
         width: 100px;
+        height: 100px;
     }
     .follow-idol .rating i {
         font-size: 12px;
@@ -2170,7 +2198,8 @@ input:checked + .slider {
     right: 25px;
 }
 .action-btn button,
-.action-btn button:hover {
+.action-btn button:hover,
+.action-btn button:focus {
     height: 35px;
     background:#2B2B2B;
     font-size: 14px;

@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+@if(!Auth::user()->is_setup)
 <div class="row idol discover-favourite mb-4">
     <div class="col-12 col-sm-12 col-md-12 d-flex user-profile">
         <div class="profile-info">
@@ -30,12 +31,13 @@
         </div>
     </div>
 </div>
+@endif
 <div class="row idol">
     <div class="col-12 col-sm-12 col-md-12 p-0">
         <div class="row m-0">
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="grey-part w-100 mb-3">
-                    <p class="mb-0 text-white">Hi, John Doe,</p>
+                    <p class="mb-0 text-white">Hi, {{ Auth::user()->name }},</p>
                     <h4 class="mb-0 text-white">What's new on your dashboard Idol?</h4>
                 </div>
                 <div class="total-card">

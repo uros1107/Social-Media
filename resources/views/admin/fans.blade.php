@@ -70,6 +70,10 @@ option:before {
     border-radius: 8px;
     text-align: center;
 }
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 @media (max-width: 574px) { 
     .expand-content {
         flex-wrap: inherit !important;

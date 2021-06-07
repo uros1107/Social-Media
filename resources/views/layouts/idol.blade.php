@@ -23,6 +23,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
         rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" integrity="sha512-oe8OpYjBaDWPt2VmSFR+qYOdnTjeV9QPLJUeqZyprDEQvQLJ9C5PCFclxwNuvb/GQgQngdCXzKSFltuHD3eCxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('assets/css/idol-custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
@@ -48,12 +49,21 @@
                     <img src="{{ asset('assets/images/icons/notification.png') }}" style="width: 24px">
                 </a>
             </div>
-            <div class="my-auto" style="margin-left: 20px;margin-right: 20px">
-                <button class="btn custom-btn deactive" style="width:125px;font-size:16px">Login</button>
+            @if(Auth::check())
+            <div class="my-auto" style="position:relative">
+                <img src="{{ asset('assets/images/profile.png') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px">
+                <span class="text-white" style="font-size:16px">{{ Auth::user()->name }}</span>
+                <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
+                <div class="sub-menu d-none">
+                    <div class="mb-2">
+                        <a href="{{ route('idol-profile') }}" class="text-white">Profile</a>
+                    </div>
+                    <div>
+                        <a href="{{ route('logout') }}" class="text-white">Logout</a>
+                    </div>
+                </div>
             </div>
-            <div class="m-auto">
-                <button class="btn custom-btn" style="width:125px;font-size:16px">Sign Up</button>
-            </div>
+            @endif
         </div>
 
         <ul class="nav navbar-nav ml-auto">
@@ -126,6 +136,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     
     <script>
@@ -142,6 +153,13 @@
                     sidebar_flag = true;
                 }
                 
+            })
+            $('#sub-menu').on('click', function() {
+                if($('.sub-menu').hasClass('d-none')) {
+                    $('.sub-menu').removeClass('d-none')
+                } else {
+                    $('.sub-menu').addClass('d-none')
+                }
             })
         })
     </script>

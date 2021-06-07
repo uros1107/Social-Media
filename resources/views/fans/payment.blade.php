@@ -54,6 +54,10 @@
 
 @section('content')
 <div class="row featured mb-5 m-0 mt-3">
+    @php
+        $idol_info = DB::table('idol_info')->where('idol_user_id', $idol_id)->first();
+        $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+    @endphp
     <div class="col-12 col-sm-8 col-md-8 featured-video">
         <div class="title-part">
             <h2 class="text-white">Payment Info</h2>
@@ -123,23 +127,30 @@
                     <div class="payment-info mb-2">
                         <div class="d-flex" style="position: relative">
                             <h5 class="text-white">Request Fee</h5>
-                            <h5 class="text-white">$190</h5>
+                            <h5 class="text-white">${{ $request_video->request_video_price }}</h5>
                         </div>
                         <div class="d-flex" style="position: relative">
                             <h5 class="text-white">Platform Fee(5%)</h5>
-                            <h5 class="text-white">$9,5</h5>
+                            <h5 class="text-white">${{ $request_video->request_video_price * 0.05 }}</h5>
                         </div>
                     </div>
                     <div class="divider mb-3 ml-0" style="width:100%!important"></div>
                     <div class="d-flex mb-2 total">
                         <h5 class="text-white">Total</h5>
-                        <h5 class="text-main-color">$190</h5>
+                        <h5 class="text-main-color">${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</h5>
                     </div>
                     <div class="divider mb-3"></div>
-                    <div class="submit">
-                        <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Book Now -
-                            $46</button>
-                    </div>
+                    <form action="{{ route('payment-success') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="order_payment_method" id="payment_method" value="1">
+                        <input type="hidden" name="order_total_price" id="payment_method" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
+                        <input type="hidden" name="order_price" id="payment_method" value="{{ $request_video->request_video_price }}">
+                        <input type="hidden" name="order_fee" id="payment_method" value="{{ $request_video->request_video_price * 0.05 }}">
+                        <div class="submit">
+                            <button type="submit" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Book Now -
+                                ${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="standard-delivery">
@@ -241,6 +252,11 @@ $(document).ready(function() {
             $('.first-block').not(this).each(function() {
                 $(this).addClass('deactive');
             });
+            if($('#payment_method').val() == 1) {
+                $('#payment_method').val(2)
+            } else {
+                $('#payment_method').val(1)
+            }
         }
     });
 
@@ -250,10 +266,6 @@ $(document).ready(function() {
 
     $(document).on('click', '.add-card', function() {
         $('#myModal').modal('toggle');
-    })
-
-    $(document).on('click', '#book_now', function() {
-        location.href = "{{ route('payment-success') }}";
     })
 
     new Card({

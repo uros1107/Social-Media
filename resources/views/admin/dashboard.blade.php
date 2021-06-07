@@ -6,7 +6,10 @@
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">
 
 <style>
-
+.table-responsive {
+    padding-top: 5px;
+    padding-right: 5px;
+}
 </style>
 @endsection
 

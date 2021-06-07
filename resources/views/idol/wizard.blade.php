@@ -49,61 +49,97 @@
                 </div>
             </div>
             <div class="col-12 col-sm-8 col-md-8 right-part">
-                <form action="{{ route('setup-submit') }}" method="POST">
+                <form action="{{ route('setup-submit') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="sub-title" id="profile_information">
                         <h4 class="text-white mb-4">Profile <span class="text-main-color">Information</span></h4>
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input placeholder="">
+                                    <input type="text" placeholder="" name="idol_full_name">
                                     <span>Full Name</span>
                                 </label>
+                                @if ($errors->has('idol_full_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_full_name') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input placeholder="">
+                                    <input type="text" placeholder="" name="idol_user_name">
                                     <span>Username</span>
                                 </label>
+                                @if ($errors->has('idol_user_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_user_name') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input placeholder="" style="padding-right: 90px;">
+                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;">
                                     <span>Email</span>
                                     <img src="{{ asset('assets/images/icons/verified.png') }}">
                                     <span class="text-white mb-0 verified">Verified!</span>
                                 </label>
+                                @if ($errors->has('idol_email'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_email') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input placeholder="" style="padding-right: 90px;">
+                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;">
                                     <span>Phone Number</span>
                                     <img src="{{ asset('assets/images/icons/verified.png') }}">
                                     <span class="text-white mb-0 verified">Verified!</span>
                                 </label>
+                                @if ($errors->has('idol_phone'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_phone') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <label class="pure-material-textfield-outlined w-100 mb-0">
-                                    <textarea placeholder="" rows="5" style="height:100px"></textarea>
+                                    <textarea placeholder="" name="idol_bio" rows="5" style="height:100px"></textarea>
                                     <span>Bio</span>
                                 </label>
+                                @if ($errors->has('idol_bio'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 img-upload">
                                 <label class="ml-2">Upload Photo Profile (500px x 500px)</label>
                                 <div class="upload-btn text-center" id="photo_btn">
                                     <img src="{{ asset('assets/images/icons/upload.png') }}">
-                                    <span class="text-white ml-1">Upload or Drag & Drop your image here</span>
+                                    <span class="ml-1 photo_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
                                 </div>
-                                <input type="file" id="photo_img" class="d-none">
+                                @if ($errors->has('idol_photo'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_photo') }}</p>
+                                    </span>
+                                @endif
+                                <input type="file" name="idol_photo" id="photo_img" class="d-none" >
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 img-upload">
                                 <label class="ml-2">Upload Banner (1100px x 200px)</label>
                                 <div class="upload-btn text-center" id="banner_btn">
                                     <img src="{{ asset('assets/images/icons/upload.png') }}">
-                                    <span class="text-white ml-1">Upload or Drag & Drop your image here</span>
+                                    <span class="ml-1 banner_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
                                 </div>
-                                <input type="file" id="banner_img" class="d-none">
+                                @if ($errors->has('idol_banner'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_banner') }}</p>
+                                    </span>
+                                @endif
+                                <input type="file" name="idol_banner" id="banner_img" class="d-none" >
                             </div>
+                            <input type="hidden" name="idol_user_id" value="{{ Auth::user()->id }}">
                             <div class="col-12 col-sm-12 col-md-12 text-right mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px" id="profile_btn">Next</button>
                             </div>
@@ -118,17 +154,17 @@
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex lang">
                                 <label class="custom-control black-checkbox mr-4 m-auto">
-                                    <input type="checkbox" class="fill-control-input d-none">
+                                    <input type="checkbox" name="request_lang" value="1" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Engilsh</span>
                                 </label>
                                 <label class="custom-control black-checkbox mr-4 m-auto">
-                                    <input type="checkbox" class="fill-control-input d-none">
+                                    <input type="checkbox" name="request_lang" value="2" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Korean</span>
                                 </label>
                                 <label class="custom-control black-checkbox m-auto">
-                                    <input type="checkbox" class="fill-control-input d-none">
+                                    <input type="checkbox" name="request_lang" value="3" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Mix (English + Korean)</span>
                                 </label>
@@ -139,9 +175,14 @@
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
                                 <label class="pure-material-textfield-outlined w-100  m-auto">
-                                    <input placeholder="" class="text-main-color" value="$190">
+                                    <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="190">
                                     <span>My Request Price</span>
                                 </label>
+                                @if ($errors->has('request_video_price'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video_price') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-5 col-md-5">
                                 <h4 class="text-white sub-title-1">On Vacation?</h4>
@@ -150,7 +191,7 @@
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
                                 <div class="m-auto">
                                     <label class="switch">
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="request_vocation" value="0">
                                         <span class="slider"></span>
                                     </label>
                                     <span class="switch-label">Allow fans to request videos</span>
@@ -173,10 +214,15 @@
                                     <h5>Upload Video</h5>
                                     <p class="mb-0">Format ( .mp4 , .mkv )</p>
                                 </div>
-                                <input type="file" id="upload-video" class="d-none">
+                                @if ($errors->has('request_video'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video') }}</p>
+                                    </span>
+                                @endif
+                                <input type="file" name="request_video" id="upload-video" class="d-none">
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
-                                <button type="button" class="btn custom-btn w-100">Upload</button>
+                                <button type="button" class="btn custom-btn w-100 upload-video-btn">Upload</button>
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
@@ -202,7 +248,8 @@
                                         <p class="mb-0 text-white">Stripe may charge additional fees for you to withdraw additional funds. Funds withdrawn will be in your local currency.</p>
                                     </li>
                                 </ul>
-                                <button type="button" class="btn custom-btn">Set Up Payment</button>
+                                <button type="button" class="btn custom-btn setup_payment_btn">Set Up Payment</button>
+                                <input type="hidden" name="request_payment_method" id="setup_payment" value="1">
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_introduction">Back</button>
@@ -226,13 +273,25 @@ $(document).ready(function(){
         $('#photo_img').click();
     });
 
+    $(document).on('change', '#photo_img', function() {
+        $('.photo_img_label').html($(this)[0].files[0].name);
+    });
+
     $(document).on('click', '#banner_btn', function() {
         $('#banner_img').click();
     })
 
-    $(document).on('click', '.upload-video', function() {
+    $(document).on('change', '#banner_img', function() {
+        $('.banner_img_label').html($(this)[0].files[0].name);
+    });
+
+    $(document).on('click', '.upload-video, .upload-video-btn', function() {
         $('#upload-video').click();
     })
+
+    $(document).on('change', '#upload-video', function() {
+        $('.upload-video > h5').html($(this)[0].files[0].name);
+    });
 
     $(document).on('click', '#profile_btn', function() {
         $('#profile_information').addClass('d-none');

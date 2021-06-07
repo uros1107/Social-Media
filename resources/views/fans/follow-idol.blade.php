@@ -37,12 +37,16 @@
 @section('content')
 <div class="row follow-idol mb-4 m-0">
     <div class="desktop w-100">
-        <img class="bg-img w-100" src="{{ asset('assets/images/follow-bg.png') }}" class="w-100">
+        @php
+            $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+            $idol_request = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+        @endphp
+        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
             <div class="idol-profile d-flex">
                 <div class="idol-image">
-                    <img src="{{ asset('assets/images/actor1.png') }}" class='img-circle'>
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
                 </div>
                 <div class="idol-information">
                     <div class="tik-tok">
@@ -52,16 +56,16 @@
                     <div class="name-action d-flex">
                         <div class="name-part">
                             <div class="name d-flex">
-                                <h3>John Doe</h3>
-                                <h5 class="my-auto ml-3">@pakmiyong</h5>
+                                <h3>{{ $idol_info->idol_full_name }}</h3>
+                                <h5 class="my-auto ml-3">{{ '@'.$idol_info->idol_user_name }}</h5>
                             </div>
                             <div class="description">
-                                <p>I’m dance studio teacher with millions of views on TikTok. 50% of fees will go to dog charities</p>
+                                <p>{{ $idol_info->idol_bio }}</p>
                             </div>
                         </div>
                         <div class="action-part d-flex">
                             <button type="button" class="btn custom-btn mr-2 active">Join Fandom</button>
-                            <button type="button" class="btn custom-btn" id="new-request">Reqeuest - $190</button>
+                            <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -75,7 +79,7 @@
                         </div>
                         <div class="fans mr-4">
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                            <span>3.7k Fans</span>
+                            <span>{{ $idol_info->idol_fans }} Fans</span>
                         </div>
                         <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
@@ -120,16 +124,16 @@
         </div>
     </div>
     <div class="mobile w-100">
-        <img class="bg-img w-100" src="{{ asset('assets/images/mobile-follow-bg.png') }}" class="w-100">
+        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
             <div class="idol-profile d-flex">
                 <div class="idol-image">
-                    <img src="{{ asset('assets/images/actor1.png') }}" class='img-circle'>
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
                 </div>
                 <div class="ml-3">
-                    <h5 class="text-white mt-2">@pakmiyong</h5>
-                    <h3 class="text-white">John Doe</h3>
+                    <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
+                    <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                     <div class="tik-tok">
                         <button class="btn custom-btn mr-2">TIK - TOK</button>
                         <button class="btn custom-btn">STEAMER</button>
@@ -153,7 +157,7 @@
                     <div class="fans">
                         <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                     </div>
-                    <span class="text-white">3.7k Fans</span>
+                    <span class="text-white">{{ $idol_info->idol_fans }} Fans</span>
                 </div>
                 <div class="col-4 p-0 text-center">
                     <div class="day">
@@ -165,7 +169,7 @@
         </div>
         <div class="col-12 mt-3">
             <button type="button" class="btn custom-btn w-100 mb-2 active">Join Fandom</button>
-            <button type="button" class="btn custom-btn w-100" id="m-new-request">Reqeuest - $190</button>
+            <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
         </div>
     </div>
 </div>
@@ -179,7 +183,33 @@
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0 video-list">
+            @if(count($orders))
+            @foreach($orders as $order)
+            @php
+                $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+            @endphp
             <div class="col-6 col-sm-3 col-md-3">
+                <div class="video-item" data-id="{{ $order->order_id }}">
+                    <video id="video_{{ $order->order_id }}">
+                        <!-- <source src="{{ asset('assets/videos/').$order->order_video }}" type="video/mp4"> -->
+                        <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">
+                        <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-title d-flex mt-1">
+                        <h5 class="mb-0">Congratulation Melissa</h5>
+                        <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
+                    </div>
+                    <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p>
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="col-12 col-sm-12 col-md-12 d-flex" style="height:100px">
+                <p class="text-white m-auto" style="font-size: 16px">No video yet.</p>
+            </div>
+            @endif
+            <!-- <div class="col-6 col-sm-3 col-md-3">
                 <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
                     <img src="{{ asset('assets/images/follow-actor.png') }}">
                     <div class="video-title d-flex mt-1">
@@ -208,17 +238,7 @@
                     </div>
                     <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
                 </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -226,7 +246,7 @@
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
             <h2 class="text-white">Review</h2>
-            <p class="text-grey">Review about John Doe</p>
+            <p class="text-grey">Review about {{ $idol_info->idol_full_name }}</p>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
@@ -293,12 +313,26 @@
 @section('scripts')
 
 <script>
+function format(s) {
+    var m = Math.floor(s / 60);
+    m = (m >= 10) ? m : "0" + m;
+    s = Math.floor(s % 60);
+    s = (s >= 10) ? s : "0" + s;
+    return m + ":" + s;
+}
+
 $(document).ready(function() {
 
+    $(".video-item").each(function() {
+        var id = $(this).data('id');
+        var myVideo = document.getElementById("video_" + id);
+        myVideo.onloadedmetadata = function() {
+            $('#duration_' + id).html(format(this.duration));
+        };
+    });
+
     $(document).on('click', '.video-item', function() {
-        var videoSrc = $(this).data('src');
-        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
-        $('#myModal').modal('toggle');
+        location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
     })
 
     var show = false;
@@ -316,8 +350,13 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '#new-request, #m-new-request', function() {
-        console.log(123)
-        location.href = "{{ route('new-request') }}";
+        @if(Auth::check())
+            var id = $(this).data('id');
+            location.href = "{{ route('new-request') }}" + '?id=' + id;
+        @else
+            location.href = "{{ route('fans-signin') }}";
+            // toastr.error('You should login for this!');
+        @endif
     })
 })
 </script>
