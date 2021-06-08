@@ -214,7 +214,32 @@
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0 video-list">
+            @if(count($orders))
+            @foreach($orders as $order)
+            @php
+                $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+            @endphp
             <div class="col-6 col-sm-3 col-md-3">
+                <div class="video-item" data-id="{{ $order->order_id }}" data-src="{{ asset('assets/videos/'.$order->order_video) }}">
+                    <video id="video_{{ $order->order_id }}" controls>
+                        <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">
+                        <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-title d-flex mt-1">
+                        <h5 class="mb-0">Congratulation Melissa</h5>
+                        <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
+                    </div>
+                    <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p>
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="col-12 col-sm-12 col-md-12 d-flex" style="height:100px">
+                <p class="text-white m-auto" style="font-size: 16px">No video yet.</p>
+            </div>
+            @endif
+            <!-- <div class="col-6 col-sm-3 col-md-3">
                 <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
                     <img src="{{ asset('assets/images/follow-actor.png') }}">
                     <div class="video-title d-flex mt-1">
@@ -243,17 +268,7 @@
                     </div>
                     <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
                 </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -353,7 +368,22 @@
 @section('scripts')
 
 <script>
+function format(s) {
+    var m = Math.floor(s / 60);
+    m = (m >= 10) ? m : "0" + m;
+    s = Math.floor(s % 60);
+    s = (s >= 10) ? s : "0" + s;
+    return m + ":" + s;
+}
 $(document).ready(function() {
+
+    $(".video-item").each(function() {
+        var id = $(this).data('id');
+        var myVideo = document.getElementById("video_" + id);
+        myVideo.onloadedmetadata = function() {
+            $('#duration_' + id).html(format(this.duration));
+        };
+    });
 
     $(document).on('click', '.video-item', function() {
         var videoSrc = $(this).data('src');

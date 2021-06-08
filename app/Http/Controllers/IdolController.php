@@ -137,7 +137,9 @@ class IdolController extends Controller
 
     public function profile()
     {
-        return view('idol.profile');
+        $orders =  Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->get();
+
+        return view('idol.profile', compact('orders'));
     }
 
     public function video_request()
