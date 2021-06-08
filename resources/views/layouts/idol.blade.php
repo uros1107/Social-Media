@@ -55,9 +55,11 @@
                 <span class="text-white" style="font-size:16px">{{ Auth::user()->name }}</span>
                 <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
                 <div class="sub-menu d-none">
+                    @if(Auth::user()->is_setup)
                     <div class="mb-2">
                         <a href="{{ route('idol-profile') }}" class="text-white">Profile</a>
                     </div>
+                    @endif
                     <div>
                         <a href="{{ route('logout') }}" class="text-white">Logout</a>
                     </div>
