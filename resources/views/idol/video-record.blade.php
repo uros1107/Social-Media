@@ -287,6 +287,9 @@ $(document).ready(function() {
         }
 
         if(formData.get('video')) {
+            $('.submit-video').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
+            $('.submit-video').prop('disabled', true);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

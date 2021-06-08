@@ -2249,7 +2249,7 @@ input:checked + .slider {
     height: 100px;
     object-fit: cover;
 }
-.edit-profile .left > button {
+.edit-profile .left button {
     padding: 4px 14px;
     height: 28px;
     border: 2px solid #898989;

@@ -4,7 +4,7 @@
 
 @section('styles')
 <style>
-.container-fluid {
+.footer .container-fluid {
     padding: 0px!important;
 }
 
@@ -16,9 +16,13 @@
     <div class="col-12 col-sm-3 col-md-3">
         <div class="text-center block left">
             <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle mb-3 mt-4">
-            <button class="btn custom-btn mb-3">Change Photo Profile</button>
-            <button class="btn custom-btn mb-3">Change Password</button>
-            <h3 class="text-white mb-3">{{ $idol_info->idol_full_name }}<h3>
+            <div>
+                <button class="btn custom-btn mb-3">Change Photo Profile</button>
+            </div>
+            <div>
+                <button class="btn custom-btn mb-3">Change Password</button>
+            </div>
+            <h3 class="text-white mb-2">{{ $idol_info->idol_full_name }}<h3>
             <h4 class="mb-3">{{ '@'.$idol_info->idol_user_name }}</h4>
             <div class="rating mb-3">
                 <span class="mr-2">Rating</span>
