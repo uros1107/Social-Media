@@ -49,14 +49,14 @@
                 </div>
             </div>
             <div class="col-12 col-sm-8 col-md-8 right-part">
-                <form action="{{ route('setup-submit') }}" method="POST" enctype="multipart/form-data">
+                <form action="" id="setup-submit" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="sub-title" id="profile_information">
                         <h4 class="text-white mb-4">Profile <span class="text-main-color">Information</span></h4>
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_full_name">
+                                    <input type="text" placeholder="" name="idol_full_name" value="{{ Auth::user()->name }}">
                                     <span>Full Name</span>
                                 </label>
                                 @if ($errors->has('idol_full_name'))
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_user_name">
+                                    <input type="text" placeholder="" name="idol_user_name" value="{{ Auth::user()->handle_name }}">
                                     <span>Username</span>
                                 </label>
                                 @if ($errors->has('idol_user_name'))
@@ -78,10 +78,10 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;">
+                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;" value="{{ Auth::user()->email }}">
                                     <span>Email</span>
-                                    <img src="{{ asset('assets/images/icons/verified.png') }}">
-                                    <span class="text-white mb-0 verified">Verified!</span>
+                                    <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
+                                    <span class="text-white mb-0 verified d-none">Verified!</span>
                                 </label>
                                 @if ($errors->has('idol_email'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -91,10 +91,10 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;">
+                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;" value="{{ Auth::user()->phone }}">
                                     <span>Phone Number</span>
-                                    <img src="{{ asset('assets/images/icons/verified.png') }}">
-                                    <span class="text-white mb-0 verified">Verified!</span>
+                                    <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
+                                    <span class="text-white mb-0 verified d-none">Verified!</span>
                                 </label>
                                 @if ($errors->has('idol_phone'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <label class="pure-material-textfield-outlined w-100 mb-0">
-                                    <textarea placeholder="" name="idol_bio" rows="5" style="height:100px"></textarea>
+                                    <textarea placeholder="" name="idol_bio" rows="5" style="height:100px">{{ Auth::user()->info }}</textarea>
                                     <span>Bio</span>
                                 </label>
                                 @if ($errors->has('idol_bio'))
@@ -154,17 +154,17 @@
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex lang">
                                 <label class="custom-control black-checkbox mr-4 m-auto">
-                                    <input type="checkbox" name="request_lang" value="1" class="fill-control-input d-none">
+                                    <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" checked>
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Engilsh</span>
                                 </label>
                                 <label class="custom-control black-checkbox mr-4 m-auto">
-                                    <input type="checkbox" name="request_lang" value="2" class="fill-control-input d-none">
+                                    <input type="radio" name="request_lang" value="2" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Korean</span>
                                 </label>
                                 <label class="custom-control black-checkbox m-auto">
-                                    <input type="checkbox" name="request_lang" value="3" class="fill-control-input d-none">
+                                    <input type="radio" name="request_lang" value="3" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
                                     <span class="fill-control-description text-white">Mix (English + Korean)</span>
                                 </label>
@@ -255,7 +255,7 @@
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_introduction">Back</button>
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
-                                <button type="submit" class="btn custom-btn" style="font-size: 14px">Submit</button>
+                                <button type="submit" class="btn custom-btn submit-btn" style="font-size: 14px">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -273,16 +273,89 @@ $(document).ready(function(){
         $('#photo_img').click();
     });
 
+    $(document).on('submit', '#setup-submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+
+        $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
+        $('.submit-btn').prop('disabled', true);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('setup-submit') }}",
+            method: 'POST',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if(res.success) {
+                    location.href = "{{ route('idol-payment-completed') }}";
+                } else {
+                    toastr.error('Server error! Please try again later!');
+                }
+            }
+        });
+    });
+
+    var _URL = window.URL || window.webkitURL;
+    var photo_img = false;
     $(document).on('change', '#photo_img', function() {
-        $('.photo_img_label').html($(this)[0].files[0].name);
+        const  fileType = $('#photo_img')[0].files[0].type;
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+        var file, img;
+
+        if (!validImageTypes.includes(fileType)) {
+            toastr.error("You should input valid image file!");
+            photo_img = false;
+        } else if((file = this.files[0])) {
+            img = new Image();
+            var objectUrl = _URL.createObjectURL(file);
+            img.onload = function () {
+                if(this.width != 500 || this.height != 500) {
+                    toastr.error("Image size must be 500px * 500px!");
+                    photo_img = false;
+                } else {
+                    $('.photo_img_label').html($('#photo_img')[0].files[0].name);
+                    photo_img = true;
+                    _URL.revokeObjectURL(objectUrl);
+                }
+            };
+            img.src = objectUrl;
+        }
     });
 
     $(document).on('click', '#banner_btn', function() {
         $('#banner_img').click();
     })
 
+    var banner_img = false;
     $(document).on('change', '#banner_img', function() {
-        $('.banner_img_label').html($(this)[0].files[0].name);
+        const  fileType = $('#banner_img')[0].files[0].type;
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+        var file, img;
+
+        if (!validImageTypes.includes(fileType)) {
+            toastr.error("You should input valid image file!");
+            banner_img = false;
+        } else if((file = this.files[0])) {
+            img = new Image();
+            var objectUrl = _URL.createObjectURL(file);
+            img.onload = function () {
+                if(this.width != 1100 || this.height != 200) {
+                    toastr.error("Image size must be 1100px * 200px!");
+                    banner_img = false;
+                } else {
+                    $('.banner_img_label').html($('#banner_img')[0].files[0].name);
+                    _URL.revokeObjectURL(objectUrl);
+                    banner_img = true;
+                }
+            };
+            img.src = objectUrl;
+        }
     });
 
     $(document).on('click', '.upload-video, .upload-video-btn', function() {
@@ -290,21 +363,35 @@ $(document).ready(function(){
     })
 
     $(document).on('change', '#upload-video', function() {
-        $('.upload-video > h5').html($(this)[0].files[0].name);
+        const  fileType = $('#upload-video')[0].files[0].type;
+        const validVideoTypes = ['video/mp4', 'video/mkv'];
+        var file;
+
+        if (!validVideoTypes.includes(fileType)) {
+            toastr.error("You should input valid video file!");
+        } else if((file = this.files[0])) {
+            $('.upload-video > h5').html($(this)[0].files[0].name);
+        }
     });
 
     $(document).on('click', '#profile_btn', function() {
-        $('#profile_information').addClass('d-none');
-        $('#request_video').removeClass('d-none');
-        $('#profile_step').removeClass('active');
-        $('#request_step').addClass('active');
-        $('#step_number').html('2');
+        if(!photo_img || !banner_img) {
+            toastr.error("You should input all fileds correctly!");
+        } else {
+            $('#profile_information').addClass('d-none');
+            $('#request_video').removeClass('d-none');
+            $('#profile_step').removeClass('active');
+            $('#profile_step').addClass('completed');
+            $('#request_step').addClass('active');
+            $('#step_number').html('2');
+        }
     })
 
     $(document).on('click', '#to_profile', function() {
         $('#profile_information').removeClass('d-none');
         $('#request_video').addClass('d-none');
         $('#profile_step').addClass('active');
+        $('#profile_step').removeClass('completed');
         $('#request_step').removeClass('active');
         $('#step_number').html('1');
     })
@@ -313,6 +400,7 @@ $(document).ready(function(){
         $('#request_video').addClass('d-none');
         $('#video_introduction').removeClass('d-none');
         $('#request_step').removeClass('active');
+        $('#request_step').addClass('completed');
         $('#introduction_step').addClass('active');
         $('#step_number').html('3');
     })
@@ -321,22 +409,29 @@ $(document).ready(function(){
         $('#request_video').removeClass('d-none');
         $('#video_introduction').addClass('d-none');
         $('#request_step').addClass('active');
+        $('#request_step').removeClass('completed');
         $('#introduction_step').removeClass('active');
         $('#step_number').html('2');
     })
 
     $(document).on('click', '#introduction_btn', function() {
-        $('#video_introduction').addClass('d-none');
-        $('#payment_method').removeClass('d-none');
-        $('#introduction_step').removeClass('active');
-        $('#payment_step').addClass('active');
-        $('#step_number').html('4');
+        if(!$('#upload-video').val()) {
+            toastr.error("You should upload video file!");
+        } else {
+            $('#video_introduction').addClass('d-none');
+            $('#payment_method').removeClass('d-none');
+            $('#introduction_step').removeClass('active');
+            $('#introduction_step').addClass('completed');
+            $('#payment_step').addClass('active');
+            $('#step_number').html('4');
+        }
     })
 
     $(document).on('click', '#to_introduction', function() {
         $('#video_introduction').removeClass('d-none');
         $('#payment_method').addClass('d-none');
         $('#introduction_step').addClass('active');
+        $('#introduction_step').removeClass('completed');
         $('#payment_step').removeClass('active');
         $('#step_number').html('3');
     })

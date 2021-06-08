@@ -78,21 +78,21 @@ class IdolController extends Controller
         $idol_info = $request->all();
         $video_request = $request->all();
         
-        $request->validate([
-            'idol_full_name' => 'required|string',
-            'idol_user_name' => 'required|string',
-            'idol_bio' => 'required|string',
-            'idol_email' => 'required|string|email|unique:idol_info',
-            'idol_phone' => 'required|string|unique:idol_info',
+        // $request->validate([
+            // 'idol_full_name' => 'required|string',
+            // 'idol_user_name' => 'required|string',
+            // 'idol_bio' => 'required|string',
+            // 'idol_email' => 'required|string|email|unique:idol_info',
+            // 'idol_phone' => 'required|string|unique:idol_info',
             // 'idol_photo' => 'required|image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=500',
             // 'idol_banner' => 'required|image|mimes:jpeg,png,jpg,gif|dimensions:min_width=1100,min_height=200',
-            'idol_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'idol_banner' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'request_lang' => 'required',
-            'request_video_price' => 'required',
+            // 'idol_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
+            // 'idol_banner' => 'required|image|mimes:jpeg,png,jpg,gif',
+            // 'request_lang' => 'required',
+            // 'request_video_price' => 'required',
             // 'request_vocation' => 'required',
-            'request_video' => 'required|mimes:mp4,mkv',
-        ]);
+            // 'request_video' => 'required|mimes:mp4,mkv',
+        // ]);
         
         $photo_img_name = $request->idol_photo->getClientOriginalName();
         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
@@ -130,8 +130,16 @@ class IdolController extends Controller
 
         $user = User::where('id', $request->idol_user_id)->first();
         $user->is_setup = 1;
-        $user->save();
 
+        if($user->save()) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+    }
+
+    public function payment_completed()
+    {
         return view('idol.payment-completed');
     }
 

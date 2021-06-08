@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'where_find' => $request->where_find,
             'handle_name' => $request->handle_name,
             'followers' => $request->followers,
-            'info' => $request->followers,
+            'info' => $request->info,
             'role' => 1
         ]);
 

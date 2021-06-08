@@ -45,6 +45,7 @@ Route::prefix('idol')->group(function() {
         Route::POST('/submit-video', 'IdolController@submit_video')->name('idol-submit-video');
         Route::get('/earning-per', 'IdolController@earning_per')->name('idol-earning-per');
         Route::get('/payment-method', 'IdolController@payment_method')->name('idol-payment-method');
+        Route::get('/payment-completed', 'IdolController@payment_completed')->name('idol-payment-completed');
         Route::get('/concierge', 'IdolController@concierge')->name('idol-concierge');
         Route::get('/store', 'IdolController@store')->name('videos.store');
         Route::get('/test', function() {
