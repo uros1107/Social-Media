@@ -37,6 +37,7 @@ Route::prefix('idol')->group(function() {
         Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
         Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
         Route::get('/profile', 'IdolController@profile')->name('idol-profile');
+        Route::get('/edit-profile', 'IdolController@edit_profile')->name('idol-edit-profile');
         Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
         Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
         Route::get('/video-record', 'IdolController@video_record')->name('idol-video-record');

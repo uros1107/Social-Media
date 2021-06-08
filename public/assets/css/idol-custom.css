@@ -2230,3 +2230,41 @@ input:checked + .slider {
     font-size: 20px;
 }
 /* ================================================== Video Detail Css End ================================================= */
+
+/* ================================================== Edit Profile Css Start ================================================= */
+.block {
+    background: #2B2B2B;
+    border-radius: 14px;
+}
+.edit-profile .left {
+    padding: 15px;
+}
+.edit-profile .left > img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.edit-profile .left > button {
+    padding: 4px 14px;
+    height: 28px;
+    border: 2px solid #898989;
+    border-radius: 25px;
+    background: #2B2B2B;
+    font-size: 9px;
+}
+.edit-profile .left > h3 {
+    font-weight: 500;
+    font-size: 20px;
+}
+.edit-profile .left > h4 {
+    color: #898989;
+    font-size: 16px;
+}
+.edit-profile .left span {
+    color: #898989;
+    font-size: 16px;
+}
+.edit-profile .left .rating i {
+    color: #FFC107;
+} 
+/* ================================================== Edit Profile Css End ================================================= */

@@ -61,7 +61,7 @@
         <img class="bg-img w-100" src="{{ asset('assets/images/follow-bg.png') }}" class="w-100">
         <div class="action-btn">
             <button type="button" class="btn custom-btn mr-3">Change Password</button>
-            <button type="button" class="btn custom-btn">Edit Profile</button>
+            <button type="button" class="btn custom-btn edit-btn">Edit Profile</button>
         </div>
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
@@ -389,7 +389,7 @@ $(document).ready(function() {
         var videoSrc = $(this).data('src');
         $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
         $('#myModal').modal('toggle');
-    })
+    });
 
     var show = false;
     $(document).on('click', '.how', function() {
@@ -399,20 +399,23 @@ $(document).ready(function() {
         } else {
             $('.how-work-view').addClass('d-none');
         }
-    })
+    });
 
     $(document).on('click', '.close-btn', function() {
         $('.how-work-view').addClass('d-none');
-    })
+    });
 
     $(document).on('click', '#new-request, #m-new-request', function() {
         console.log(123)
         location.href = "{{ route('new-request') }}";
-    })
+    });
 
     $(document).on('click', '.add-img', function() {
         $('#uploadModal').modal('toggle');
-    })
+    });
+    $(document).on('click', '.edit-btn', function() {
+        location.href = "{{ route('idol-edit-profile') }}";
+    });
 })
 </script>
 @endsection

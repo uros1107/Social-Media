@@ -142,6 +142,15 @@ class IdolController extends Controller
         return view('idol.profile', compact('orders'));
     }
 
+    public function edit_profile()
+    {
+        $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+        $video_request = VideoRequest::where('request_idol_id', $idol_info->idol_id)->first();
+        $orders = Order::where('order_idol_id', $idol_info->idol_user_id)->where('order_status', 1)->get();
+
+        return view('idol.edit-profile', compact('idol_info', 'video_request', 'orders'));
+    }
+
     public function video_request()
     {
         $orders = Order::where('order_idol_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
