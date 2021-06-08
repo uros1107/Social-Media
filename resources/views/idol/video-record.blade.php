@@ -264,8 +264,16 @@ $(document).ready(function() {
         $('#upload_video').click();
     });
     $(document).on('change', '#upload_video', function() {
-        $('#video-name').html($(this)[0].files[0].name);
-        formData.append('video', $(this)[0].files[0]);
+        const  fileType = $(this)[0].files[0].type;
+        const validVideoTypes = ['video/mp4', 'video/mkv'];
+        var file;
+
+        if (!validVideoTypes.includes(fileType)) {
+            toastr.error("You should input valid video file!");
+        } else if((file = this.files[0])) {
+            $('#video-name').html($(this)[0].files[0].name);
+            formData.append('video', $(this)[0].files[0]);
+        }
     });
     $(document).on('click', '.record-btn', function() {
         $('#show_record').removeClass('d-none');
