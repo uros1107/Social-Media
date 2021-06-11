@@ -310,6 +310,11 @@ $(document).ready(function() {
                     } else {
                         toastr.error('Server error');
                     }
+                },
+                error: function (error) {
+                    toastr.error('Upload size was exceeds!');
+                    $('.submit-video').html("Submit Video");
+                    $('.submit-video').prop('disabled', false);
                 }
             });
         } else {

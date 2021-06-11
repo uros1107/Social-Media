@@ -34,6 +34,27 @@
 .video-part video {
     border-radius: 15px;
 }
+.stars {
+    color: unset!important;
+}
+.alert-success {
+    color: #45f10c;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+}
+.alert-unsuccess {
+    color: #FF335C;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+}
+@media (max-width: 574px) { 
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
+}
 </style>
 @endsection
 
@@ -51,16 +72,29 @@
             </div>
             <div class="m-auto d-flex share" style="margin-right: 0px!important">
                 <p class="mb-0 text-white mr-4 desktop">Share to:</p>
-                <img src="{{ asset('assets/images/icons/facebook.png') }}">
-                <img src="{{ asset('assets/images/icons/instagram.png') }}">
-                <img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 20px!important">
-                <img src="{{ asset('assets/images/icons/cloud.png') }}" style="height: 24px!important">
+                <a href="https://www.facebook.com/sharer/sharer.php"><img src="{{ asset('assets/images/icons/facebook.png') }}"></a>
+                <a href="https://www.instagram.com/sharer.php"><img src="{{ asset('assets/images/icons/instagram.png') }}"></a>
+                <a href="https://mail.google.com/mail/"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 20px!important"></a>
+                <a href="https://www.facebook.com/sharer/sharer.php"><img src="{{ asset('assets/images/icons/cloud.png') }}" style="height: 24px!important"></a>
             </div>
         </div>
         <div class="divider"></div>
     </div>
 </div>
 <div class="row featured view-video payment-success mb-5 m-0">
+    @if(Session::has('success'))
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> {{ Session::get('success') }}
+        </div>
+    </div>
+    @elseif(Session::has('unsuccess'))
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="alert alert-unsuccess" role="alert">
+            <strong>Unsuccess!</strong> {{ Session::get('unsuccess') }}
+        </div>
+    </div>
+    @endif
     <div class="col-12 col-sm-8 col-md-8">
         <div class="video-part w-100 mb-3">
             <video width="100%" height="290" controls>
@@ -90,21 +124,27 @@
     <div class="col-12 col-sm-4 col-md-4 payment-next">
         <div class="lang-preference mb-3">
             <div class="row m-0">
-                <div class="col-12 title mb-3 text-center">
-                    <h4 class="text-white">Your Review</h4>
-                    <div class="stars">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                <form class="w-100" id="send-review" action="{{ route('send-review') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="col-12 title mb-3 text-center">
+                        <h4 class="text-white">Your Review</h4>
+                        <div class="stars">
+                            <i class="fa fa-star 1-star" data-value="1"></i>
+                            <i class="fa fa-star 2-star" data-value="2"></i>
+                            <i class="fa fa-star 3-star" data-value="3"></i>
+                            <i class="fa fa-star 4-star" data-value="4"></i>
+                            <i class="fa fa-star 5-star" data-value="5"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 title mb-3 text-center">
-                    <h4 class="text-white mb-3">Leave Feedback</h4>
-                    <textarea style="background:#2b2b2b!important" class="form-control introduction mb-3" rows="5" id="comment" placeholder="Tell your idol what they want to say on the video"></textarea>
-                    <button type="button" class="btn custom-btn w-100 send-feedback-btn">Send Feedback</button>
-                </div>
+                    <div class="col-12 title mb-3 text-center">
+                        <h4 class="text-white mb-3">Leave Feedback</h4>
+                        <input type="hidden" name="review_rating" value="0" id="review_rating">
+                        <input type="hidden" name="review_fans_id" value="{{ $order->order_fans_id }}">
+                        <input type="hidden" name="review_idol_id" value="{{ $order->order_idol_id }}">
+                        <textarea style="background:#2b2b2b!important" name="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Tell your idol what they want to say on the video" required></textarea>
+                        <button type="submit" class="btn custom-btn w-100 send-feedback-btn">Send Feedback</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="lang-preference mb-3 desktop">
@@ -180,6 +220,25 @@ $(document).ready(function() {
             });
         }
     });
+    $(document).on('click', '.fa-star', function() {
+        var count = $(this).data('value');
+        $('#review_rating').val(count);
+        for (let i = 1; i <= count; i++) {
+            $('.' + i + '-star').css('color', '#FFC107');
+        }
+        for (let i = count + 1; i <= 5; i++) {
+            $('.' + i + '-star').css('color', '#23282c');
+        }
+    });
+    $(document).on('submit', '#send-review', function(e) {
+        e.preventDefault();
+
+        @if(!Auth::check())
+            toastr.error('You should login for this!');
+        @else
+            $(this).submit();
+        @endif
+    })
 });
 </script>
 @endsection

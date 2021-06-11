@@ -37,6 +37,14 @@
 .main {
     margin-left: 0px!important;
 }
+@media (max-width: 574px) {
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
+}
 </style>
 @endsection
 

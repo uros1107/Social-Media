@@ -31,6 +31,14 @@
 .modal-backdrop {
     background-color: #FF335C;
 }
+.featured .featured-video .review-content {
+    color: unset;
+}
+@media (max-width: 574px) {
+    .featured {
+        padding: 0px 10px!important;
+    }
+}
 </style>
 @endsection
 
@@ -64,7 +72,7 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn mr-2 active">Join Fandom</button>
+                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
                         </div>
                     </div>
@@ -79,7 +87,7 @@
                         </div>
                         <div class="fans mr-4">
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                            <span>{{ $idol_info->idol_fans }} Fans</span>
+                            <span>{{ $fans_count }} Fans</span>
                         </div>
                         <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
@@ -126,7 +134,7 @@
     <div class="mobile w-100">
         <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="gradient"></div>
-        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
+        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-210px">
             <div class="idol-profile d-flex">
                 <div class="idol-image">
                     <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
@@ -157,7 +165,7 @@
                     <div class="fans">
                         <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                     </div>
-                    <span class="text-white">{{ $idol_info->idol_fans }} Fans</span>
+                    <span class="text-white">{{ $fans_count }} Fans</span>
                 </div>
                 <div class="col-4 p-0 text-center">
                     <div class="day">
@@ -168,7 +176,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100 mb-2 active">Join Fandom</button>
+            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
             <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
         </div>
     </div>
@@ -251,42 +259,40 @@
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0">
+            @if(count($reviews))
+            @foreach($reviews as $review)
+            @php
+                $fans = DB::table('users')->where('id', $review->review_fans_id)->first();
+            @endphp
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="review-item">
                     <div class="review-img mr-3">
-                        <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
+                        @if(!$fans->photo)
+                        <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle">
+                        @else
+                        <img src="{{ asset('assets/images/'.$fans->photo) }}" class="img-circle">
+                        @endif
                     </div>
                     <div class="review-content">
                         <h4>Unbelieavale I can’t see another world</h4>
-                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. - <span class="text-main-color">John Doe</span></p>
+                        <p class="mb-0">{{ $review->review_feedback }} - <span class="text-main-color">{{ $fans->name }}</span></p>
                         <div class="rating mt-2">
+                            @for($i = 1 ; $i <= $review->review_rating ; $i++)
+                            <i class="fa fa-star" style="color:#FFC107"></i>
+                            @endfor
+                            @for($i = 1 ; $i <= 5 - $review->review_rating ; $i++)
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            @endfor
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6">
-                <div class="review-item">
-                    <div class="review-img mr-3">
-                        <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
-                    </div>
-                    <div class="review-content">
-                        <h4>Unbelieavale I can’t see another world</h4>
-                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. - <span class="text-main-color">John Doe</span></p>
-                        <div class="rating mt-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
+            @else
+            <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4">
+                <p class="text-white mb-0 text-center">No review yet.</p>
             </div>
+            @endif
         </div>
     </div>
 </div>
@@ -358,6 +364,35 @@ $(document).ready(function() {
             // toastr.error('You should login for this!');
         @endif
     })
+
+    $(document).on('click', '.join-fandom', function() {
+        var id = $(this).data('id');
+
+        @if(!Auth::check())
+            toastr.error('You should login!');
+        @else
+            $.ajaxSetup({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+                url: "{{ route('join-fandom') }}",
+                method: 'POST',
+                data: { idol_user_id: id },
+                success: function (res) {
+                    if(res['success']) {
+                        toastr.success('Successfully added!');
+                    } else {
+                        toastr.error('You have already added this idol!');
+                    }
+                },
+                error: function (error) {
+                    toastr.error(error);
+                }
+            });
+        @endif
+    });
 })
 </script>
 @endsection

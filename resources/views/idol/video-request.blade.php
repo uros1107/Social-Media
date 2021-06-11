@@ -52,6 +52,12 @@ div.dataTables_wrapper div.dataTables_filter input {
     padding-right: 5px;
 }
 @media (max-width: 574px) { 
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
     .order-list .col-12 {
         padding: 0px;
     }
@@ -118,7 +124,7 @@ div.dataTables_wrapper div.dataTables_filter input {
         </div>
         <div class="datatable">
             <div class="table-responsive">
-                <table class="table zero-configuration">
+                <table class="table zero-configuration w-100">
                     <thead class="d-none">
                         <tr>
                             <th>Status</th>
@@ -166,7 +172,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <button type="button" class="btn custom-btn view-request view-btn" data-id="{{ $order->order_id }}">View Request</button>
                             </td> 
                         </tr>

@@ -8,6 +8,14 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+@media (max-width: 574px) {
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
+}
 </style>
 @endsection
 
@@ -181,6 +189,7 @@
                                 <a class="mr-3" style="color:#898989">Fulfilled</a>
                             </div>
                             <div class="w-100" style="height: 390px;overflow:auto">
+                                @if(count($orders))
                                 @foreach($orders as $order)
                                 @php
                                     $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
@@ -223,6 +232,13 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                @else
+                                <div class="row m-0">
+                                    <div class="col-12 text-center">
+                                        <p class="text-white mt-5">No request video yet.</p>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

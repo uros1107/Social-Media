@@ -30,6 +30,38 @@ table.dataTable tbody td {
     padding-top: 5px;
     padding-right: 5px;
 }
+div.dataTables_wrapper div.dataTables_filter input {
+    border-radius: 8px;
+    border-color: #2b2b2b;
+}
+@media (max-width: 574px) {
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
+    .order-list > .col-12 {
+        padding: 0px;
+    }
+    #DataTables_Table_0_wrapper .row:first-child .col-md-6 {
+        width: 50%;
+        margin: auto;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 60%;
+    }
+    div.dataTables_wrapper div.dataTables_length label {
+        margin-bottom: 0px!important;
+        font-size: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        justify-content: center;
+    }
+    .col-md-7, .col-md-5 {
+        padding: 0px;
+    }
+}
 </style>
 @endsection
 
@@ -55,7 +87,7 @@ table.dataTable tbody td {
         </div>
         <div class="datatable">
             <div class="table-responsive">
-                <table class="table zero-configuration">
+                <table class="table zero-configuration w-100">
                     <thead class="d-none">
                         <tr>
                             <th>Status</th>

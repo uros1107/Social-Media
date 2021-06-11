@@ -50,8 +50,20 @@
     border-radius: 15px!important;
     font-size: 14px;
 }
+.alert-success {
+    color: #45f10c;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    border-radius: 10px;
+}
 
 @media (max-width: 574px) {
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
     .w-50 {
         width: 100%!important;
     }
@@ -91,6 +103,13 @@
        <p class="mb-0 text-white">Facing an issue with requests, billing or your account? Reach out to our friendly VIP service officers and we will be in touch with you shortly</p>
        <div class="divider"></div>
     </div>
+    @if(Session::has('success'))
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="alert alert-success mb-0" role="alert">
+                <strong>Success!</strong> {{ Session::get('success') }}
+            </div>
+        </div>
+    @endif
 </div>
 <div class="row m-3 mb-4 block">
     <div class="col-12 col-sm-8 col-md-8">
@@ -136,28 +155,36 @@
     </div>
     <!-- <div class="v-divider"></div> -->
     <div class="col-12 col-sm-4 col-md-4">
-        <h4 class="text-white service">Send Message To Our Customer Services</h4>
-        <div class="w-100">
-            <label class="pure-material-textfield-outlined w-100">
-                <input placeholder="" value="Payment Issues">
-                <span>Issues Type</span>
-            </label>
-        </div>
-        <div class="w-100">
-            <label class="pure-material-textfield-outlined w-100">
-                <input placeholder="" value="user@gmail.com">
-                <span>Email</span>
-            </label>
-        </div>
-        <div class="w-100">
-            <label class="pure-material-textfield-outlined w-100 mb-0">
-                <textarea placeholder="" rows="5" style="height:100px"></textarea>
-                <span>Your messages</span>
-            </label>
-        </div>
-        <div class="w-100">
-            <button type="button" class="btn custom-btn w-100 send-msg">Send Message</button>
-        </div>
+        <form action="{{ route('idol-send-concierge') }}" method="POST">
+            {{ csrf_field() }}
+            <h4 class="text-white service mb-3">Send Message To Our Customer Services</h4>
+            @php
+                $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
+            @endphp
+            <div class="w-100 mb-3">
+                <div class="select">
+                    <select class="select-text" name="issue_type">
+                        <option value="1">Payment Issue</option>
+                    </select>
+                    <label class="select-label">Issue Type</label>
+                </div>
+            </div>
+            <div class="w-100">
+                <label class="pure-material-textfield-outlined w-100">
+                    <input placeholder="" name="email" value="{{ $idol_info->idol_email }}">
+                    <span>Email</span>
+                </label>
+            </div>
+            <div class="w-100">
+                <label class="pure-material-textfield-outlined w-100 mb-0">
+                    <textarea placeholder="" name="message" rows="5" style="height:100px" required></textarea>
+                    <span>Your messages</span>
+                </label>
+            </div>
+            <div class="w-100">
+                <button type="submit" class="btn custom-btn w-100 send-msg">Send Message</button>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

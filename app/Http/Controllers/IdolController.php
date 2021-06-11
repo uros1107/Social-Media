@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\SendConcierge;
+use Illuminate\Support\Facades\Mail;
 use Auth;
 use App\User;
 use App\IdolInfo;
 use App\VideoRequest;
 use App\Order;
+use App\Review;
 use Validator;
 use Response;
+use Hash;
 
 class IdolController extends Controller
 {
@@ -121,7 +125,8 @@ class IdolController extends Controller
             $video_request['idol_phone'], 
             $video_request['idol_bio'], 
             $video_request['idol_photo'], 
-            $video_request['idol_banner']
+            $video_request['idol_banner'],
+            $video_request['idol_cat_id'],
         );
         $video_request['request_idol_id'] = $idol_info->id;
         $video_request['request_video'] = $video_name;
@@ -146,8 +151,90 @@ class IdolController extends Controller
     public function profile()
     {
         $orders =  Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->get();
+        $reviews = Review::where('review_idol_id', Auth::user()->id)->get();
 
-        return view('idol.profile', compact('orders'));
+        $fans_count = 0;
+        foreach (User::all() as $user) {
+            $array = json_decode($user->fandom_lists);
+            if($array) {
+                $has_idol = in_array(Auth::user()->id, $array);
+                if($has_idol) {
+                    $fans_count++;
+                }
+            }
+        }
+
+        return view('idol.profile', ['orders' => $orders, 'reviews' => $reviews, 'fans_count' => $fans_count]);
+    }
+
+    public function profile_update(Request $request)
+    {
+        $idol_info = $request->all();
+        $request_info = $request->all();
+
+        $request->validate([
+            'idol_full_name' => 'required|string',
+            'idol_user_name' => 'required|string',
+            'idol_bio' => 'required|string',
+            'idol_email' => 'required|string|email',
+            'idol_phone' => 'required|string'
+        ]);
+        
+        $idol = IdolInfo::where('idol_user_id', Auth::user()->id);
+
+        if($request->idol_photo) {
+            $photo_img_name = $request->idol_photo->getClientOriginalName();
+            $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+            $idol_info['idol_photo'] = $photo_img_name;
+        } else {
+            unset($idol_info['idol_photo']);
+        }
+
+        if($request->idol_banner) {
+            $banner_img_name = $request->idol_banner->getClientOriginalName();
+            $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
+            $idol_info['idol_banner'] = $banner_img_name;
+        } else {
+            unset($idol_info['idol_banner']);
+        }
+
+        unset(
+            $idol_info['_token'], 
+            $idol_info['request_lang'], 
+            $idol_info['request_video_price'], 
+            $idol_info['request_vocation'], 
+            $idol_info['request_video'], 
+            $idol_info['password'], 
+        );
+        $idol->update($idol_info);
+
+        $video_request = VideoRequest::where('request_idol_id', $idol->first()->idol_id);
+        unset(
+            $request_info['_token'], 
+            $request_info['idol_full_name'], 
+            $request_info['idol_user_name'], 
+            $request_info['idol_email'], 
+            $request_info['idol_phone'], 
+            $request_info['idol_bio'], 
+            $request_info['idol_photo'], 
+            $request_info['idol_banner'],
+            $request_info['idol_cat_id'],
+            $request_info['password'],
+        );
+        if(!isset($request_info['request_vocation'])) {
+            $request_info['request_vocation'] = 0;
+        } else {
+            $request_info['request_vocation'] = 1;
+        }
+        $video_request->update($request_info);
+
+        if($request->password) {
+            $user = User::where('id', Auth::user()->id);
+            $password = ['password' => Hash::make($request->password)];
+            $user->update($password);
+        }
+
+        return redirect()->back()->with('success', 'Successfully updated!');
     }
 
     public function edit_profile()
@@ -155,8 +242,26 @@ class IdolController extends Controller
         $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
         $video_request = VideoRequest::where('request_idol_id', $idol_info->idol_id)->first();
         $orders = Order::where('order_idol_id', $idol_info->idol_user_id)->where('order_status', 1)->get();
+        $reviews = Review::where('review_idol_id', $idol_info->idol_user_id)->get();
 
-        return view('idol.edit-profile', compact('idol_info', 'video_request', 'orders'));
+        $fans_count = 0;
+        foreach (User::all() as $user) {
+            $array = json_decode($user->fandom_lists);
+            if($array) {
+                $has_idol = in_array(Auth::user()->id, $array);
+                if($has_idol) {
+                    $fans_count++;
+                }
+            }
+        }
+
+        return view('idol.edit-profile', [
+            'idol_info' => $idol_info, 
+            'video_request' => $video_request, 
+            'orders' => $orders, 
+            'reviews' => $reviews, 
+            'fans_count' => $fans_count
+        ]);
     }
 
     public function video_request()
@@ -240,9 +345,34 @@ class IdolController extends Controller
         }
     }
 
+    public function update_video(Request $request)
+    {
+        $video_name = $request->video->getClientOriginalName();
+        $request->video->move(public_path('assets/videos'), $video_name);
+
+        $info = ['request_video' => $video_name];
+        $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+        $video_request = VideoRequest::where('request_idol_id', $idol_info->idol_id);
+
+        if($video_request->update($info)) {
+            return redirect()->back()->with('success', 'Successfully uploaded!');
+        } else {
+            return redirect()->back()->with('unsuccess', 'Failed video upload. Please try again later!');
+        }
+    }
+
     public function video_record(Request $request)
     {
         $order = Order::where('order_id', $request->order_id)->first();
+
+        return view('idol.video-record', compact('order'));
+    }
+
+    public function video_decline(Request $request)
+    {
+        $order = Order::where('order_id', $request->order_id)->first();
+        $order->order_status = 3;
+        $order->save();
 
         return view('idol.video-record', compact('order'));
     }
@@ -264,22 +394,11 @@ class IdolController extends Controller
         return view('idol.concierge');
     }
 
-    public function store(Request $request)
+    public function send_concierge(Request $request)
     {
-        if ($request->hasFile('video')) {
+        $info = $request->all();
 
-            $file = $request->file('video');
-            $path = 'videos/';
-            $filenameWithExt = $file->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = 'mp4';
-            $fileNameToStore = preg_replace('/\s+/', '_', $filename . '_' . time() . '.' . $extension);
-
-            \Storage::disk('public')->putFileAs($path, $file, $fileNameToStore);
-
-            $media = Media::create(['file_name' => $fileNameToStore]);
-
-            return  response()->json(['success' => ($media) ? 1 : 0, 'message' => ($media) ? 'Video uploaded successfully.' : "Some thing went wrong. Try again !."]);
-        }
+        Mail::to('amar.chan9655@gmail.com')->send(new SendConcierge($info));
+        return redirect()->back()->with('success', 'Thanks for contacting us!');
     }
 }

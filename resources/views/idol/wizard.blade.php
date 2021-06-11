@@ -103,6 +103,16 @@
                                 @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
+                                <div class="select mt-1">
+                                    <select class="select-text" name="idol_cat_id" required>
+                                        @foreach(DB::table('categories')->get() as $cat)
+                                        <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == Auth::user()->cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label class="select-label">Category</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 mt-3">
                                 <label class="pure-material-textfield-outlined w-100 mb-0">
                                     <textarea placeholder="" name="idol_bio" rows="5" style="height:100px">{{ Auth::user()->info }}</textarea>
                                     <span>Bio</span>
@@ -297,6 +307,11 @@ $(document).ready(function(){
                 } else {
                     toastr.error('Server error! Please try again later!');
                 }
+            },
+            error: function (error) {
+                toastr.error('Upload size was exceeds!');
+                $('.submit-btn').html("Submit");
+                $('.submit-btn').prop('disabled', false);
             }
         });
     });

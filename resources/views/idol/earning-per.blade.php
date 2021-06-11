@@ -104,11 +104,11 @@
             <div class="d-flex">
                 <div class="total-item text-center">
                     <h4 class="text-white">Total Price</h4>
-                    <p class="text-main-color">$200</p>
+                    <p class="text-main-color">$0</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$160</p>
+                    <p class="text-main-color">$0</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Paid Out</h4>
@@ -121,14 +121,14 @@
             <div class="d-flex mb-3">
                 <div class="total-item text-center w-100">
                     <h4 class="text-white">Total Price</h4>
-                    <p class="text-main-color">$200</p>
+                    <p class="text-main-color">$0</p>
                 </div>
             </div>
             <div class="mid-divider"></div>
             <div class="d-flex">
                 <div class="total-item text-center w-50">
                     <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">$160</p>
+                    <p class="text-main-color">$0</p>
                 </div>
                 <div class="v-divider"></div>
                 <div class="total-item text-center w-50">
@@ -161,7 +161,11 @@
                         <p class="text-main-color" style="font-size:14px">{{ Carbon\Carbon::parse($order->created_at)->format('d F Y') }}</p>
                     </div>
                     <div class="total-item text-center">
+                        @if($order->order_status == 1)
+                        <button class="btn custom-btn create-btn" data-id="{{ $order->order_id }}" disabled>Create Video</button>
+                        @else
                         <button class="btn custom-btn create-btn" data-id="{{ $order->order_id }}">Create Video</button>
+                        @endif
                     </div>
                 </div>
             </div>

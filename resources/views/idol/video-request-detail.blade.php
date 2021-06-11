@@ -25,6 +25,9 @@
     .payment-success .col-12 {
         padding: 0px 10px;
     }
+    .container-fluid {
+        padding: 10px!important;
+    }
 }
 </style>
 @endsection
@@ -57,8 +60,13 @@
                     <h4 class="text-white mb-3">Accept this offers?</h4>
                     <p style="color:#898989">Your fans want to hear your replies.</p>
                     <h3 class="text-main-color price">${{ $order->order_price }}</h3>
+                    @if($order->order_status == 1)
+                    <button type="button" class="btn custom-btn w-100 send-feedback-btn mb-3 accept-btn" disabled>Accept</button>
+                    <button type="button" class="btn custom-btn w-100 send-feedback-btn deactive decline-btn" disabled>Decline</button>
+                    @else
                     <button type="button" class="btn custom-btn w-100 send-feedback-btn mb-3 accept-btn">Accept</button>
                     <button type="button" class="btn custom-btn w-100 send-feedback-btn deactive decline-btn">Decline</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -148,6 +156,9 @@ $(document).ready(function() {
     });
     $(document).on('click', '.accept-btn', function() {
         location.href = "{{ route('idol-video-record').'?order_id='.$order->order_id }}";
+    })
+    $(document).on('click', '.decline-btn', function() {
+        location.href = "{{ route('idol-video-decline').'?order_id='.$order->order_id }}";
     })
 });
 </script>

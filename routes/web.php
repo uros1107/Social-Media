@@ -37,20 +37,20 @@ Route::prefix('idol')->group(function() {
         Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
         Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
         Route::get('/profile', 'IdolController@profile')->name('idol-profile');
+        Route::POST('/profile-update', 'IdolController@profile_update')->name('idol-profile-update');
         Route::get('/edit-profile', 'IdolController@edit_profile')->name('idol-edit-profile');
         Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
         Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
         Route::get('/video-record', 'IdolController@video_record')->name('idol-video-record');
+        Route::get('/video-decline', 'IdolController@video_decline')->name('idol-video-decline');
         Route::get('/earning', 'IdolController@earning')->name('idol-earning');
         Route::POST('/submit-video', 'IdolController@submit_video')->name('idol-submit-video');
         Route::get('/earning-per', 'IdolController@earning_per')->name('idol-earning-per');
         Route::get('/payment-method', 'IdolController@payment_method')->name('idol-payment-method');
         Route::get('/payment-completed', 'IdolController@payment_completed')->name('idol-payment-completed');
         Route::get('/concierge', 'IdolController@concierge')->name('idol-concierge');
-        Route::get('/store', 'IdolController@store')->name('videos.store');
-        Route::get('/test', function() {
-            return view('idol.test');
-        });
+        Route::POST('/send-concierge', 'IdolController@send_concierge')->name('idol-send-concierge');
+        Route::POST('/update-video', 'IdolController@update_video')->name('idol-update-video');
     });
 });
 
@@ -66,6 +66,7 @@ Route::prefix('fans')->group(function() {
     
     Route::get('/', 'FansController@index')->name('fans-index');
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
+    Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
     Route::get('/activity', 'FansController@activity')->name('fans-activity');
     Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
@@ -74,5 +75,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
     Route::get('/view-video', 'FansController@view_video')->name('view-video');
     Route::get('/order-list', 'FansController@order_list')->name('order-list');
+    Route::POST('/send-review', 'FansController@send_review')->name('send-review');
+    Route::POST('/join-fandom', 'FansController@join_fandom')->name('join-fandom');
 });
 

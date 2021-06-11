@@ -48,6 +48,26 @@
     right: 15px;
     top: 5px;
 }
+.featured .featured-video .review-content {
+    color: unset;
+}
+.alert-success {
+    color: #45f10c;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    border-radius: 10px;
+}
+.alert-unsuccess {
+    color: #FF335C;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    border-radius: 10px;
+}
+@media (max-width: 574px) { 
+    .featured {
+        padding: 0px 15px;
+    }
+}
 </style>
 @endsection
 
@@ -58,16 +78,16 @@
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
     @endphp
     <div class="desktop w-100">
-        <img class="bg-img w-100" src="{{ asset('assets/images/follow-bg.png') }}" class="w-100">
+        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="action-btn">
-            <button type="button" class="btn custom-btn mr-3">Change Password</button>
+            <button type="button" class="btn custom-btn mr-3 edit-btn">Change Password</button>
             <button type="button" class="btn custom-btn edit-btn">Edit Profile</button>
         </div>
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
             <div class="idol-profile d-flex">
                 <div class="idol-image" style="background-image:unset">
-                    <img src="{{ asset('assets/images/actor1.png') }}" class='img-circle'>
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
                     <div class="add-img">
                         <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
                     </div>
@@ -88,7 +108,7 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn" id="new-request">Reqeuest - ${{ $request_video->request_video_price }}</button>
+                            <button type="button" class="btn custom-btn">Reqeuest - ${{ $request_video->request_video_price }}</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -102,44 +122,11 @@
                         </div>
                         <div class="fans mr-4">
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                            <span>{{ $idol_info->idol_fans }} Fans</span>
+                            <span>{{ $fans_count }} Fans</span>
                         </div>
                         <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                             <span>Typically responds in 3 days</span>
-                        </div>
-                        <div class="how">
-                            <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">
-                            <span class="text-white">How does it work?</span>
-                        </div>
-                        <div class="how-work-view d-none">
-                            <div class="row">
-                                <div class="col-12 title mb-3">
-                                    <div class="d-flex">
-                                        <h4 class="text-white">How does it work?</h4>
-                                        <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
-                                    </div>
-                                    <p class="text-white">What happen when I request video?</p>
-                                </div>
-                                <div class="col-12 how-content">
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">You will receive on email order confirmation</p>
-                                    </div>
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
-                                    </div>
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
-                                    </div>
-                                    <div class="content-item d-flex">
-                                        <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">If your request is uncompleted, He hold on your card will be removed within 5-7 business days</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,19 +134,19 @@
         </div>
     </div>
     <div class="mobile w-100">
-        <img class="bg-img w-100" src="{{ asset('assets/images/mobile-follow-bg.png') }}" class="w-100">
+        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="gradient"></div>
-        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
+        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-200px">
             <div class="idol-profile d-flex">
                 <div class="idol-image" style="background-image:unset">
-                    <img src="{{ asset('assets/images/actor1.png') }}" class='img-circle'>
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
                     <div class="add-img">
                         <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
                     </div>
                 </div>
                 <div class="ml-3">
-                    <h5 class="text-white mt-2">@pakmiyong</h5>
-                    <h3 class="text-white">John Doe</h3>
+                    <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
+                    <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                     <div class="tik-tok">
                         <button class="btn custom-btn mr-2">TIK - TOK</button>
                         <button class="btn custom-btn">STEAMER</button>
@@ -183,7 +170,7 @@
                     <div class="fans">
                         <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                     </div>
-                    <span class="text-white">3.7k Fans</span>
+                    <span class="text-white">{{ $fans_count }} Fans</span>
                 </div>
                 <div class="col-4 p-0 text-center">
                     <div class="day">
@@ -195,16 +182,29 @@
         </div>
         <div class="col-12 mt-3">
             <div class="action-btn text-center" style="position:initial">
-                <button type="button" class="btn custom-btn mr-3">Change Password</button>
-                <button type="button" class="btn custom-btn">Edit Profile</button>
+                <button type="button" class="btn custom-btn mr-3 edit-btn">Change Password</button>
+                <button type="button" class="btn custom-btn edit-btn">Edit Profile</button>
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100" id="m-new-request">Reqeuest - ${{ $request_video->request_video_price }}</button>
+            <button type="button" class="btn custom-btn w-100">Reqeuest - ${{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>
 <div class="row featured mb-5 m-0">
+    @if(Session::has('success'))
+        <div class="col-12 col-md-12 col-sm-12 mb-3">
+            <div class="alert alert-success mb-0" role="alert">
+                <strong>Success!</strong> {{ Session::get('success') }}
+            </div>
+        </div>
+    @elseif(Session::has('unsuccess'))
+        <div class="col-12 col-md-12 col-sm-12 mb-3">
+            <div class="alert alert-unsuccess mb-0" role="alert">
+                <strong>Unsuccess!</strong> {{ Session::get('unsuccess') }}
+            </div>
+        </div>
+    @endif
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
             <h2 class="text-white">Featured Videos</h2>
@@ -239,36 +239,6 @@
                 <p class="text-white m-auto" style="font-size: 16px">No video yet.</p>
             </div>
             @endif
-            <!-- <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
@@ -276,47 +246,45 @@
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
             <h2 class="text-white">Review</h2>
-            <p class="text-grey">Review about John Doe</p>
+            <p class="text-grey">Review about {{ $idol_info->idol_full_name }}</p>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0">
+            @if(count($reviews))
+            @foreach($reviews as $review)
+            @php
+                $fans = DB::table('users')->where('id', $review->review_fans_id)->first();
+            @endphp
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="review-item">
                     <div class="review-img mr-3">
-                        <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
+                        @if(!$fans->photo)
+                        <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle">
+                        @else
+                        <img src="{{ asset('assets/images/'.$fans->photo) }}" class="img-circle">
+                        @endif
                     </div>
                     <div class="review-content">
                         <h4>Unbelieavale I can’t see another world</h4>
-                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. - <span class="text-main-color">John Doe</span></p>
+                        <p class="mb-0">{{ $review->review_feedback }} - <span class="text-main-color">{{ $fans->name }}</span></p>
                         <div class="rating mt-2">
+                            @for($i = 1 ; $i <= $review->review_rating ; $i++)
+                            <i class="fa fa-star" style="color:#FFC107"></i>
+                            @endfor
+                            @for($i = 1 ; $i <= 5 - $review->review_rating ; $i++)
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            @endfor
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6">
-                <div class="review-item">
-                    <div class="review-img mr-3">
-                        <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
-                    </div>
-                    <div class="review-content">
-                        <h4>Unbelieavale I can’t see another world</h4>
-                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. - <span class="text-main-color">John Doe</span></p>
-                        <div class="rating mt-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
+            @else
+            <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4">
+                <p class="text-white mb-0 text-center">No review yet.</p>
             </div>
+            @endif
         </div>
     </div>
 </div>
@@ -331,7 +299,11 @@
         </button>        
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+            <video id="video" controls autoplay>
+                <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">
+                <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
+                Your browser does not support the video tag.
+            </video>
         </div>
       </div>
     </div>
@@ -349,14 +321,18 @@
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9 upload-modal">
             <h4 class="text-white mb-4">Upload Introduction</h4>
-            <div class="w-100 text-center" style="padding: 40px 20px;background: #E5E5E5;border-radius:10px">
+            <div class="w-100 text-center video-upload" style="padding: 40px 20px;background: #E5E5E5;border-radius:10px">
                 <img src="{{ asset('assets/images/icons/upload-video.png') }}">
-                <h5 class="text-white" style="color:#2b2b2b!important">Upload Video</h5>
+                <h5 class="text-white upload-video-label" style="color:#2b2b2b!important">Upload Video</h5>
                 <p class="text-white" style="color:#898989!important">Format(.mp4, mkv)</p>
             </div>
-            <div class="w-100 mt-3">
-                <button type="button" class="btn custom-btn w-100" style="font-size: 14px">Upload</button>
-            </div>
+            <form action="{{ route('idol-update-video') }}" id="update-video" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="file" name="video" class="d-none" id="video-upload">
+                <div class="w-100 mt-3">
+                    <button type="button" class="btn custom-btn w-100 video-upload-btn" style="font-size: 14px">Upload</button>
+                </div>
+            </form>
         </div>
       </div>
     </div>
@@ -400,6 +376,35 @@ $(document).ready(function() {
             $('.how-work-view').addClass('d-none');
         }
     });
+
+    $(document).on('click', '.video-upload', function() {
+        $('#video-upload').click();
+    })
+
+    let video =  false;
+    $(document).on('change', '#video-upload', function() {
+        const  fileType = $(this)[0].files[0].type;
+        const validVideoTypes = ['video/mp4', 'video/mkv'];
+        var file;
+
+        if (!validVideoTypes.includes(fileType)) {
+            toastr.error("You should input valid video file!");
+            video = false;
+        } else if((file = this.files[0])) {
+            $('.upload-video-label').html($(this)[0].files[0].name);
+            video = true;
+        }
+    })
+
+    $(document).on('click', '.video-upload-btn', function(e) {
+        e.preventDefault();
+
+        if(!video) {
+            toastr.error('Please input video file!');
+        } else {
+            $('#update-video').submit();
+        }
+    })
 
     $(document).on('click', '.close-btn', function() {
         $('.how-work-view').addClass('d-none');

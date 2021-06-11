@@ -31,6 +31,17 @@
 .modal-backdrop {
     background-color: #FF335C;
 }
+@media (max-width: 574px) {
+    .featured {
+        padding: 0px 10px!important;
+    }
+    .someone {
+        display: block!important;
+    }
+    .someone .form-group {
+        width: 100%!important;
+    }
+}
 </style>
 @endsection
 
@@ -64,7 +75,7 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn mr-2 active">Join Fandom</button>
+                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -92,7 +103,7 @@
     <div class="mobile w-100">
         <img class="bg-img w-100" src="{{ asset('assets/images/mobile-follow-bg.png') }}" class="w-100">
         <div class="gradient"></div>
-        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
+        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-170px">
             <div class="idol-profile d-flex">
                 <div class="idol-image">
                     <img src="{{ asset('assets/images/actor1.png') }}" class='img-circle'>
@@ -134,7 +145,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100 mb-2 active">Join Fandom</button>
+            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
         </div>
     </div>
 </div>
@@ -147,7 +158,7 @@
         </div>
         <div class="who-is w-100 mb-3">
             <h4 class="text-white w-100">Who is this for?</h4>
-            <div class="d-flex">
+            <div class="d-flex someone">
                 <div class="col-12 col-sm-6 col-md-6 user-block d-flex">
                     <div class="first-block mr-2">
                         <img src="{{ asset('assets/images/icons/users.png') }}">
@@ -314,6 +325,34 @@ $(document).ready(function() {
             $('#continue').submit();
         }
     })
+    $(document).on('click', '.join-fandom', function() {
+        var id = $(this).data('id');
+
+        @if(!Auth::check())
+            toastr.error('You should login!');
+        @else
+            $.ajaxSetup({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+                url: "{{ route('join-fandom') }}",
+                method: 'POST',
+                data: { idol_user_id: id },
+                success: function (res) {
+                    if(res['success']) {
+                        toastr.success('Successfully added!');
+                    } else {
+                        toastr.error('You have already added this idol!');
+                    }
+                },
+                error: function (error) {
+                    toastr.error(error);
+                }
+            });
+        @endif
+    });
 });
 </script>
 @endsection

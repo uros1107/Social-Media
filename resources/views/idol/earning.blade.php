@@ -84,6 +84,12 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 @media (max-width: 574px) { 
+    .container-fluid {
+        padding: 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 0px!important;
+    }
     .col-md-7, .col-md-5 {
         padding: 0px;
     }
@@ -181,7 +187,7 @@ div.dataTables_wrapper div.dataTables_filter input {
         </div>
         <div class="datatable">
             <div class="table-responsive">
-                <table class="table zero-configuration">
+                <table class="table zero-configuration w-100">
                     <thead class="d-none">
                         <tr>
                             <th>Status</th>
