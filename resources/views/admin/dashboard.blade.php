@@ -10,6 +10,28 @@
     padding-top: 5px;
     padding-right: 5px;
 }
+.page-link {
+    color: #2B2B2B;
+    background-color: #fff;
+    border: 0px solid #fff;
+}
+.page-link:hover {
+    color: #2B2B2B;
+    background-color: #fff;
+    border: 0px solid #fff;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgb(1 9 12 / 25%);
+    border-radius: 5px;
+}
+@media (max-width: 574px) {
+    .container-fluid {
+        padding: 20px 0px!important;
+    }
+}
+
 </style>
 @endsection
 
@@ -22,25 +44,25 @@
     <div class="mt-3 d-flex w-100" style="overflow: auto">
         <div class="col-6 col-sm-3 col-md-3">
             <div class="d-flex total-item">
-                <h4 class="text-main-color m-auto">110</h4>
+                <h4 class="text-main-color m-auto">{{ $idol_count }}</h4>
                 <p class="m-auto">Total Idols</p>
             </div>
         </div>
         <div class="col-6 col-sm-3 col-md-3">
             <div class="d-flex total-item">
-                <h4 class="text-main-color m-auto">550</h4>
+                <h4 class="text-main-color m-auto">{{ $fans_count }}</h4>
                 <p class="m-auto">Total Fans</p>
             </div>
         </div>
         <div class="col-6 col-sm-3 col-md-3">
             <div class="d-flex total-item">
-                <h4 class="text-main-color m-auto">110</h4>
+                <h4 class="text-main-color m-auto">{{ $total_orders_count }}</h4>
                 <p class="m-auto">Total Orders</p>
             </div>
         </div>
         <div class="col-6 col-sm-3 col-md-3">
             <div class="d-flex total-item">
-                <h4 class="text-main-color m-auto">110</h4>
+                <h4 class="text-main-color m-auto">{{ $completed_orders_count }}</h4>
                 <p class="m-auto">Completed Orders</p>
             </div>
         </div>
@@ -114,15 +136,15 @@
             <h4>Orders</h4>
             <div class="divider"></div>
             <div class="d-flex custom-btn-group">
-                <button class="btn custom-btn">Recent</button>
-                <button class="btn custom-btn deactive">Pending</button>
-                <button class="btn custom-btn deactive">Completed</button>
-                <button class="btn custom-btn deactive">Refunded(Expired)</button>
-                <button class="btn custom-btn deactive">Refuned(Declined)</button>
-                <button class="btn custom-btn deactive">Paid Out</button>
+                <button class="btn custom-btn order-status-btn" data-id="5">Recent</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="0">Pending</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="1">Completed</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="4">Refunded(Expired)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="3">Refuned(Declined)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="2">Paid Out</button>
             </div>
             <div class="divider"></div>
-            <div class="datatable">
+            <div class="datatable" id='table-content'>
                 <div class="table-responsive">
                     <table class="table zero-configuration">
                         <thead>
@@ -135,26 +157,63 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($orders as $order)
+                            @php
+                                $order_status = '';
+                                switch ($order->order_status) {
+                                case 0:
+                                    $order_status = 'Pending';
+                                    $order_status_color = 'pending-rectangle';
+                                    break;
+                                case 1:
+                                    $order_status = 'Completed';
+                                    $order_status_color = 'completed-rectangle';
+                                    break;
+                                case 2:
+                                    $order_status = 'Paid Out';
+                                    $order_status_color = 'paidout-rectangle';
+                                    break;
+                                case 3:
+                                    $order_status = 'Refunded (Declined)';
+                                    $order_status_color = 'declined-rectangle';
+                                    break;
+                                case 4:
+                                    $order_status = 'Refuned (Expired)';
+                                    $order_status_color = 'expired-rectangle';
+                                    break;
+                                case 5:
+                                    $order_status = 'Recent';
+                                    $order_status_color = 'recent-rectangle';
+                                    break;
+                                default:
+                                    $order_status = 'Recent';
+                                    $order_status_color = 'recent-rectangle';
+                                }
+                            @endphp
                             <tr>
                                 <td>
                                     <div class="d-flex">
-                                        <div class="recent-rectangle my-auto mr-2"></div>
-                                        <span>Recent</span>
+                                        <div class="{{ $order_status_color }} my-auto mr-2"></div>
+                                        <span>{{ $order_status }}</span>
                                     </div>
                                 </td>
                                 <td class="user">
-                                    <p class="mb-0 text-main-color">#2175</p>
+                                    <p class="mb-0 text-main-color">#{{ $order->order_id }}</p>
                                 </td>
                                 <td>
-                                    <p class="mb-0 description">John Doe</p>
+                                    @php
+                                        $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
+                                    @endphp
+                                    <p class="mb-0 description">{{ $fans->name }}</p>
                                 </td>
                                 <td>
-                                    <p class="date mb-0">20 Sep 2021 at 10.40 PM</p>
+                                    <p class="date mb-0">{{  Carbon\Carbon::parse($order->created_at)->format('d F Y h:m') }}</p>
                                 </td> 
                                 <td>
                                     <button class="btn custom-btn">View</button>
                                 </td>
                             </tr>
+                            @endforeach
                             <tr>
                                 <td>
                                     <div class="d-flex">
@@ -387,5 +446,28 @@ window.onload = function() {
     }
   });
 };
+
+
+$(document).ready(function() {
+    $('.order-status-btn').on('click', function() {
+        var order_status = $(this).data('id');
+
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.order-status-btn').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
+
+        $.ajax({
+            url: "{{ route('admin-status-orders') }}",
+            method: 'get',
+            data: { order_status: order_status },
+            success: function (res) {
+                $('#table-content').html(res);
+            }
+        });
+    })
+})
 </script>
 @endsection

@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
         'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'fans' => \App\Http\Middleware\Fans::class,
-        'idols' => \App\Http\Middleware\idols::class,
+        'idols' => \App\Http\Middleware\Idols::class,
+        'admin' => \App\Http\Middleware\Admin::class,
     ];
 }

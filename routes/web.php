@@ -1,18 +1,5 @@
 <?php
 
-Route::prefix('admin')->group(function() {
-    Route::get('/dashboard', 'Admin\HomeController@index')->name('admin-dashboard');
-    Route::get('/orders', 'Admin\HomeController@order')->name('admin-order');
-    Route::get('/orders-id', 'Admin\HomeController@order_id')->name('admin-order-id');
-    Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
-    Route::get('/add-idol', 'Admin\HomeController@add_idol')->name('admin-add-idol');
-    Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
-});
-
-
-// ------------------------------------ me -------------------------------------
-
-
 Route::get('/', function() {
     return view('index');
 });
@@ -21,6 +8,32 @@ Route::post('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
 Route::get('/privacy', 'MailChimpController@privacy')->name('privacy');
 Route::get('/terms', 'MailChimpController@terms')->name('terms');
 
+// ================== Admin route ==================
+
+Route::prefix('admin')->group(function() {
+    Route::get('/', function() {
+        return redirect()->route('admin-login');
+    });
+
+    Route::get('/login', 'Admin\HomeController@show_login')->name('admin-login');
+
+    Route::group([
+        'middleware' => 'admin'
+      ], function() {
+        Route::get('/dashboard', 'Admin\HomeController@index')->name('admin-dashboard');
+        Route::get('/orders', 'Admin\HomeController@order')->name('admin-order');
+        Route::get('/order-list', 'Admin\HomeController@order_list')->name('admin-order-list');
+        Route::get('/order-detail', 'Admin\HomeController@order_detail')->name('admin-order-detail');
+        Route::get('/order-status-list', 'Admin\HomeController@order_status_list')->name('admin-order-status-list');
+        Route::get('/status-orders', 'Admin\HomeController@status_orders')->name('admin-status-orders');
+        Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
+        Route::get('/idols-list', 'Admin\HomeController@idol_list')->name('admin-idol-list');
+        Route::get('/add-idol', 'Admin\HomeController@add_idol')->name('admin-add-idol');
+        Route::POST('/store-idol', 'Admin\HomeController@store_idol')->name('admin-store-idol');
+        Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
+        Route::get('/fans-list', 'Admin\HomeController@fans_list')->name('admin-fans-list');
+    });
+});
 
 // ================== Idol route ==================
 

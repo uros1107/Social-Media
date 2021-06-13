@@ -362,12 +362,17 @@ p {
     overflow: auto;
 }
 .custom-btn-group > button,
-.custom-btn-group > button:hover {
+.custom-btn-group > button:hover,
+.custom-btn-group > button:focus {
     font-size: 14px;
     border-radius: 50px!important;
     height: 40px;
     padding: 0px 30px;
     margin-right: 10px;
+}
+.custom-btn-group > button:focus,
+.custom-btn-group > button:hover {
+    color: white;
 }
 .custom-btn-group .deactive {
     background-color: #fcfcfc;
@@ -501,6 +506,22 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
 /* ---------- datatable css end ----------- */
 @media (max-width: 574px) { 
     /* ---------- datatable css start ----------- */
+    #example_wrapper .row:nth-child(2) {
+        overflow: auto;
+        margin: 0;
+    }
+    #example_wrapper .row:nth-child(2) > div {
+        padding: 0px;
+    }
+    .datatable table .expand .fans p:nth-child(2) {
+        font-size: 11px!important;
+    }
+    .datatable table.dataTable tbody td {
+        padding: 8px 5px!important;
+    }
+    .datatable table .expand .order-detail p {
+        font-size: 11px!important;
+    }
     .col-md-7, .col-md-5 {
         padding: 0px;
     }
@@ -530,7 +551,13 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     /* ---------- footer css end ----------- */
 
     .container-fluid {
-        padding: 20px 0px!important;
+        padding: 20px 10px!important;
+    }
+    .footer .container-fluid {
+        padding: 20px 10px 0px!important;
+    }
+    .chart {
+        padding: 10px;
     }
     .total-item {
         text-align: center;
@@ -586,7 +613,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
 }
-.custom-card > .tab {
+.custom-card > div .tab {
     width: 160px;
     text-align: center;
     background: white;
@@ -723,7 +750,9 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     font-weight: bold;
     font-size: 14px;
 }
-.refund-btn {
+.refund-btn,
+.refund-btn:hover,
+.refund-btn:focus {
     height: 40px;
     border-radius: 8px!important;
     font-size: 13px;
@@ -776,6 +805,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
 .idol-profile img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
 }
 .request-from .username > h4,
 .idol-profile .username > h4 {
@@ -977,7 +1007,9 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     font-size: 15px;
     color: #898989;
 }
-.save-change-btn {
+.save-change-btn,
+.save-change-btn:hover,
+.save-change-btn:focus {
     height: 40px;
     border-radius: 15px!important;
     font-size: 16px;
@@ -1214,6 +1246,87 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
 }
 /* ------------- custom input box end ---------------- */
 
+/* ----------------------------- select starting stylings start ------------------------------*/
+.select {
+    font-family:
+      'Roboto','Helvetica','Arial',sans-serif;
+      position: relative;
+      width: 100%;
+  }
+  
+  .select-text {
+      position: relative;
+      font-family: inherit;
+      background-color: transparent;
+      width: 100%;
+      padding: 10px 10px 10px 10px;
+      font-size: inherit;
+      border-radius: 10px;
+      border: 1px solid rgba(137,137,137, 0.6);
+  }
+  
+  /* Remove focus */
+  .select-text:focus {
+      outline: none;
+      border: 1px solid rgba(137,137,137, 0.6);
+  }
+  
+      /* Use custom arrow */
+  .select .select-text {
+      appearance: none;
+      -webkit-appearance:none;
+        color: gray;
+        height: 50px;
+  }
+  
+  .select:after {
+      position: absolute;
+      top: 22px;
+      right: 10px;
+      /* Styling the down arrow */
+      width: 0;
+      height: 0;
+      padding: 0;
+      content: '';
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid rgba(0, 0, 0, 0.12);
+    
+      pointer-events: none;
+  }
+  
+  /* LABEL ======================================= */
+  .select-label {
+      color: #898989;
+    /* background: white; */
+      font-size: inherit;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+    padding: 0 5px;
+      left: 10px;
+      top: 12px;
+      transition: 0.2s ease all;
+  }
+  
+  
+  /* active state */
+  .select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+      color: orange;
+      top: -8px;
+      transition: 0.2s ease all;
+      font-size: 12px;
+  }
+  
+  .select-text:valid:not(focus) ~ .select-label {
+        color: #898989;
+        background: #fcfcfc;
+  }
+  .select-text:valid:focus ~ .select-label {
+    color: #898989;
+  }
+/* ----------------------------- select starting stylings end ------------------------------*/
+
 /* ------------- switch css start ---------------- */
 .switch input { 
     display:none;
@@ -1239,7 +1352,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     border:4px solid transparent;
     overflow:hidden;
      transition:.4s;
-     background: #FF335C;
+     background: #fcfcfc;
 }
 .slider:before {
     position:absolute;
@@ -1251,7 +1364,9 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     transform:translateX(-30px);
     transition:.4s;
 }
-
+input:checked + .slider {
+    background: #FF335C;
+}
 input:checked + .slider:before {
     transform:translateX(30px);
     background: #f8f8f8;
@@ -1277,6 +1392,7 @@ input:checked + .slider {
     font-size: 16px;
     color: #898989;
 }
+
 /* ------------- switch css end ---------------- */
 /* ================================================== Create Idol Css End ================================================= */
 

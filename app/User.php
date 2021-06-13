@@ -38,6 +38,7 @@ class User extends Authenticatable
         'info',
         'photo',
         'role',
+        'credits',
         'cat_id',
         'fandom_lists',
         'created_at',

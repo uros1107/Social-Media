@@ -56,6 +56,8 @@ class LoginController extends Controller
             return redirect()->route('fans-index');
         } else if($user->role == 1) {
             return redirect()->route('idol-index');
+        } else if($user->role == 3) {
+            return redirect()->route('admin-dashboard');
         }
     }
 

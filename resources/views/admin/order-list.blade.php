@@ -51,12 +51,12 @@ option:before {
         </div>
         <div class="chart">
             <div class="d-flex custom-btn-group mb-4">
-                <button class="btn custom-btn">Recent</button>
-                <button class="btn custom-btn deactive">Pending</button>
-                <button class="btn custom-btn deactive">Completed</button>
-                <button class="btn custom-btn deactive">Refunded(Expired)</button>
-                <button class="btn custom-btn deactive">Refuned(Declined)</button>
-                <button class="btn custom-btn deactive">Paid Out</button>
+                <button class="btn custom-btn order-status-btn" data-id="5">Recent</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="0">Pending</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="1">Completed</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="4">Refunded(Expired)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="3">Refuned(Declined)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="2">Paid Out</button>
             </div>
             <div class="datatable">
                 <div class="table-responsive">
@@ -460,5 +460,27 @@ option:before {
 <script src="{{ asset('assets/js/datatable/datatables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatable/datatable.js') }}"></script>
 
-<script></script>
+<script>
+    $(document).ready(function() {
+        $('.order-status-btn').on('click', function() {
+            var order_status = $(this).data('id');
+
+            if($(this).hasClass('deactive')) {
+                $(this).removeClass('deactive');
+                $('.order-status-btn').not(this).each(function(){
+                    $(this).addClass('deactive');
+                });
+            }
+
+            // $.ajax({
+            //     url: "{{ route('admin-status-orders') }}",
+            //     method: 'get',
+            //     data: { order_status: order_status },
+            //     success: function (res) {
+            //         $('#table-content').html(res);
+            //     }
+            // });
+        })
+    })
+</script>
 @endsection

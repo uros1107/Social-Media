@@ -7,18 +7,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">
 
 <style>
-option:before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -80px;
-    width: 0;
-    height: 0;
-    border-top: solid 25px #000;
-    border-left: solid 0px #fcfcfc;
-    border-right: solid 25px #fcfcfc;
-}
 .custom-select1 {
     color: #2b2b2b!important;
     padding: 8px 5px!important;
@@ -53,40 +41,30 @@ option:before {
     vertical-align: middle!important;
     text-align: center!important;
 }
-.order-id-group .col-md-3 {
-    border-right: 0px solid #e5e5e5!important;
+td.details-control {
+    background: url('/assets/images/icons/plus.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('/assets/images/icons/minus.png') no-repeat center center;
+}
+#example tr td:nth-child(5) {
+    width: 200px;
+}
+#example th {
+    color: #FF335C;
+}
+.order-id-group .col-3,
+.expand-content .fans:last-child {
+    border-right: 0px!important;
 }
 .view-all {
-    color: #2178F9!important;
+    color: #2178F9;
 }
-.expand .fans:last-child {
-    border-right: 0px solid #e5e5e5!important;
+#example_wrapper .row:nth-child(2) {
+    overflow: auto;
+    margin: 0;
 }
-.custom-btn {
-    font-size: 12px!important;
-}
-.credits {
-    border: 1px solid #898989;
-    border-radius: 8px;
-    text-align: center;
-}
-.table-responsive {
-    padding-top: 5px;
-    padding-right: 5px;
-}
-@media (max-width: 574px) { 
-    .expand-content {
-        flex-wrap: inherit !important;
-        overflow: auto;
-    }
-    .container-fluid {
-        padding: 20px 10px!important;
-    }
-    .custom-select-group > button, .custom-select-group > button:hover, .custom-select-group > button:focus {
-        padding: 0px 30px!important;
-    }
-}
-
 </style>
 @endsection
 
@@ -122,218 +100,32 @@ option:before {
     <div class="col-12 col-sm-12 col-md-12 custom-card">
         <div class="chart">
             <div class="datatable">
-                <div class="table-responsive">
-                    <table class="table zero-configuration">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Fans Username</th>
-                                <th>Fans Name</th>
-                                <th>Email</th>
-                                <th>Join Date</th>
-                                <th>Orders</th>
-                                <th>Credits</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for($i=1; $i<=10; $i++)
-                            <tr>
-                                <td>
-                                    <div class="m-auto">
-                                        <img src="{{ asset('assets/images/icons/plus.png') }}">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-main-color mb-0">@pakmiyong</p>
-                                </td>
-                                <td class="user">
-                                    John Doe
-                                </td>
-                                <td>
-                                    johndoe@gmail.com
-                                </td>
-                                <td>
-                                    2 Sep 2021, 20:20
-                                </td> 
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <div class="credits">
-                                        $ <span class="text-main-color">200</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn custom-btn">Save</button>
-                                </td>
-                            </tr>
-                            <!-- <tr class="expand">
-                                <td colspan="10">
-                                    <div class="row m-0 expand-content">
-                                        <div class="col-4 col-sm-4 col-md-4 fans">
-                                            <h4 class="mb-0">Pending Orders</h4>
-                                            <div class="divider"></div>
-                                            <div class="fans-content mb-2">
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <p class="mb-0 view-all">View All...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 col-sm-4 col-md-4 fans">
-                                            <h4 class="mb-0">Completed Orders</h4>
-                                            <div class="divider"></div>
-                                            <div class="fans-content mb-2">
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 view-all">View All...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 col-sm-4 col-md-4 fans">
-                                            <h4 class="mb-0">Refuned Orders</h4>
-                                            <div class="divider"></div>
-                                            <div class="fans-content mb-2">
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 w-100 mb-2 order-id-group">
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 text-main-color">#1122</p>
-                                                    </div>
-                                                    <div class="col-3 col-md-3 col-sm-3">
-                                                        <p class="mb-0 view-all">View All...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr> -->
-                            @endfor
-                        </tbody>
-                        <tfoot class="d-none">
-                            <tr>
-                                <th></th>
-                                <th>Fans Username</th>
-                                <th>Fans Name</th>
-                                <th>Email</th>
-                                <th>Join Date</th>
-                                <th>Orders</th>
-                                <th>Credits</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                <table id="example" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Fans Username</th>
+                            <th>Fans Name</th>
+                            <th>Email</th>
+                            <th>Join Date</th>
+                            <th>Orders</th>
+                            <th>Credits</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Fans Username</th>
+                            <th>Fans Name</th>
+                            <th>Email</th>
+                            <th>Join Date</th>
+                            <th>Orders</th>
+                            <th>Credits</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
@@ -353,10 +145,147 @@ option:before {
 <script src="{{ asset('assets/js/datatable/datatable.js') }}"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#datepicker').datepicker({
-            format: 'dd/mm/yyyy'
-        });
+
+function format ( d ) {
+    let completed_orders = '';
+    if(d.completed_orders.length) {
+        for (let i = 0; i < d.completed_orders.length; i++) {
+            completed_orders += '<div class="col-3 col-md-3 col-sm-3 mb-2">' +
+                                    '<p class="mb-0 text-main-color">#' + d.completed_orders[i].order_id + '</p>' +
+                                '</div>';
+        }
+    }
+
+    let pending_orders = '';
+    if(d.pending_orders.length) {
+        for (let i = 0; i < d.pending_orders.length; i++) {
+            pending_orders += '<div class="col-3 col-md-3 col-sm-3 mb-2">' +
+                                    '<p class="mb-0 text-main-color">#' + d.pending_orders[i].order_id + '</p>' +
+                                '</div>';
+        }
+    }
+
+    let refuned_orders = '';
+    if(d.refuned_orders.length) {
+        for (let i = 0; i < d.refuned_orders.length; i++) {
+            refuned_orders += '<div class="col-3 col-md-3 col-sm-3 mb-2">' +
+                                    '<p class="mb-0 text-main-color">#' + d.refuned_orders[i].order_id + '</p>' +
+                                '</div>';
+        }
+    }
+
+    // `d` is the original data object for the row
+    return '<table cellpadding="10" class="w-100" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr class="expand">' +
+            '<td colspan="10">' +
+                '<div class="row m-0 expand-content">' +
+                    '<div class="col-4 col-sm-4 col-md-4 fans">' +
+                        '<h4 class="mb-0">Pending Orders</h4>' +
+                        '<div class="divider"></div>' +
+                        '<div class="fans-content mb-2">' +
+                            '<div class="row m-0 w-100 mb-2 order-id-group">' +
+                                pending_orders +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-4 col-sm-4 col-md-4 fans">' +
+                        '<h4 class="mb-0">Completed Orders</h4>' +
+                        '<div class="divider"></div>' +
+                        '<div class="fans-content mb-2">' +
+                            '<div class="row m-0 w-100 mb-2 order-id-group">' +
+                                completed_orders +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-4 col-sm-4 col-md-4 fans">' +
+                        '<h4 class="mb-0">Refuned Orders</h4>' +
+                        '<div class="divider"></div>' +
+                        '<div class="fans-content mb-2">' +
+                            '<div class="row m-0 w-100 mb-2 order-id-group">' +
+                                refuned_orders +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</td>' +
+        '</tr>' +
+    '</table>';
+}
+
+$(document).ready(function() {
+    $('#datepicker').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+    $('.add-idol').click(function() {
+        location.href = "{{ route('admin-add-idol') }}"
     })
+
+    var table = $('#example').DataTable({
+        'ajax': "{{ route('admin-fans-list') }}",
+        'columns': [
+            {
+                'className':      'details-control',
+                'orderable':      false,
+                'data':           null,
+                'defaultContent': ''
+            },
+            { 'data': 'fans_user_name' },
+            { 'data': 'fans_full_name' },
+            { 'data': 'email' },
+            { 'data': 'join_date' },
+            { 'data': 'order_count' },
+            { 'data': 'credits' },
+        ],
+        'order': [[4, 'desc']]
+    } );
+
+    // Add event listener for opening and closing details
+    $('#example tbody').on('click', 'td.details-control', function(){
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        // console.log(row.data())
+
+        if(row.child.isShown()){
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    $('.order-status-btn').on('click', function() {
+        var order_status = $(this).data('id');
+
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.order-status-btn').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
+        table.destroy();
+        table = $('#example').DataTable({
+            'ajax': "{{ route('admin-order-status-list') }}" + '?order_status=' + order_status,
+            'columns': [
+                {
+                    'className':      'details-control',
+                    'orderable':      false,
+                    'data':           null,
+                    'defaultContent': ''
+                },
+                { 'data': 'order_date' },
+                { 'data': 'due_date' },
+                { 'data': 'order_id' },
+                { 'data': 'fans_name' },
+                { 'data': 'idols_name' },
+                { 'data': 'status' },
+                { 'data': 'total' },
+            ],
+            'order': [[1, 'desc']]
+        } );
+    })
+});
 </script>
 @endsection

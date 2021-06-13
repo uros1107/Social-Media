@@ -6,18 +6,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">
 
 <style>
-option:before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -80px;
-    width: 0;
-    height: 0;
-    border-top: solid 25px #000;
-    border-left: solid 0px #fcfcfc;
-    border-right: solid 25px #fcfcfc;
-}
 .custom-select1 {
     color: #2b2b2b!important;
     padding: 8px 5px!important;
@@ -27,11 +15,24 @@ option:before {
 }
 
 td.details-control {
-    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
+    background: url('/assets/images/icons/plus.png') no-repeat center center;
     cursor: pointer;
 }
 tr.shown td.details-control {
-    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
+    background: url('/assets/images/icons/minus.png') no-repeat center center;
+}
+tr td:nth-child(4) {
+    color: #2178F9!important;
+}
+th {
+    color: #FF335C;
+}
+.tab h4 {
+    font-size: 16px;
+}
+.tab-deactive {
+    background: #ff335c!important;
+    color: white!important;
 }
 </style>
 @endsection
@@ -45,17 +46,25 @@ tr.shown td.details-control {
 </div>
 <div class="row m-auto">
     <div class="col-12 col-sm-12 col-md-12 custom-card">
-        <div class="tab">
-            <h4 class="mb-0">List Orders</h4>
+        <div class="d-flex">
+            <div class="tab tab-header">
+                <h4 class="mb-0">List Orders</h4>
+            </div>
+            <div class="tab d-none tab-order-header">
+                <div class="d-flex" style="justify-content: center">
+                    <h4 class="mb-0" id="tab-order-id"></h4>
+                    <img class="ml-4 close" style="position:absolute;right: 14px" src="{{ asset('assets/images/icons/close-fill.png') }}">
+                </div>
+            </div>
         </div>
         <div class="chart">
             <div class="d-flex custom-btn-group mb-4">
-                <button class="btn custom-btn">Recent</button>
-                <button class="btn custom-btn deactive">Pending</button>
-                <button class="btn custom-btn deactive">Completed</button>
-                <button class="btn custom-btn deactive">Refunded(Expired)</button>
-                <button class="btn custom-btn deactive">Refuned(Declined)</button>
-                <button class="btn custom-btn deactive">Paid Out</button>
+                <button class="btn custom-btn order-status-btn" data-id="5">Recent</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="0">Pending</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="1">Completed</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="4">Refunded(Expired)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="3">Refuned(Declined)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="2">Paid Out</button>
             </div>
             <div class="datatable">
                 <table id="example" class="display" cellspacing="0" width="100%">
@@ -86,6 +95,8 @@ tr.shown td.details-control {
                 </table>
             </div>
         </div>
+        <div class="chart order-detail-block d-none">
+        </div>
     </div>
 </div>
 @endsection
@@ -104,26 +115,108 @@ tr.shown td.details-control {
 <script>
     /* Formatting function for row details - modify as you need */
 function format ( d ) {
+    var lang;
+    if(d.order.order_lang == 1) {
+        lang = 'English';
+    } else if(d.order.order_lang == 2) {
+        lang = 'Korean';
+    } else {
+        lang = 'Mix (English and Korean)';
+    }
     // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Full name:</td>'+
-            '<td>'+d.name+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td>'+d.extn+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
+    return '<table cellpadding="8" class="w-100" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr class="expand">' + 
+            '<td colspan="8">' + 
+                '<div class="row m-0">' +
+                    '<div class="col-3 col-sm-3 col-md-3 fans">' + 
+                        '<h4 class="mb-0">Fans</h4>' + 
+                        '<div class="divider"></div>' + 
+                        '<div class="d-flex fans-content mb-2">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Username</p>' + 
+                                '<p class="mb-0 text-main-color">@' + d.fans.name + '</p>' + 
+                            '</div>' + 
+                            '<div class="right">' + 
+                                '<p class="mb-0">IP Address</p>' + 
+                                '<p class="mb-0 text-main-color">' + '202.25.211' + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                        '<div class="d-flex fans-content">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Email</p>' + 
+                                '<p class="mb-0 text-main-color">' + d.fans.email + '</p>' + 
+                            '</div>' + 
+                            '<div class="right">' + 
+                                '<p class="mb-0">Country</p>' + 
+                                '<p class="mb-0 text-main-color">' + 'Singapore' + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                    '</div>' + 
+                    '<div class="col-3 col-sm-3 col-md-3 fans">' + 
+                        '<h4 class="mb-0">Idols</h4>' + 
+                        '<div class="divider"></div>' + 
+                        '<div class="d-flex fans-content mb-2">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Username</p>' + 
+                                '<p class="mb-0 text-main-color">@' + d.idol.idol_full_name + '</p>' + 
+                            '</div>' + 
+                            '<div class="right">' + 
+                                '<p class="mb-0">Fans</p>' + 
+                                '<p class="mb-0 text-main-color">' + d.fans_count + ' Likes</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                        '<div class="d-flex fans-content">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Email</p>' + 
+                                '<p class="mb-0 text-main-color">' + d.idol.idol_email + '</p>' + 
+                            '</div>' + 
+                            '<div class="right">' + 
+                                '<p class="mb-0">Country</p>' + 
+                                '<p class="mb-0 text-main-color">' + 'Singapore' + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                    '</div>' + 
+                    '<div class="col-3 col-sm-4 col-md-4 order-detail">' + 
+                        '<h4 class="mb-0">Order Details</h4>' + 
+                        '<div class="divider"></div>' + 
+                        '<div class="d-flex mb-2">' + 
+                            '<div class="my-auto d-flex mr-3">' + 
+                                '<img class="my-auto mr-1" src="' + "{{ asset('assets/images/icons/chat.png') }}" + '">' + 
+                                '<p class="mb-0">' + lang + '</p>' + 
+                            '</div>' + 
+                            '<div class="my-auto d-flex">' + 
+                                '<img class="my-auto mr-1" src="' + "{{ asset('assets/images/icons/fire.png') }}" + '">' + 
+                                '<p class="mb-0">' + d.occasion + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                        // '<p class="mb-0">' + d.order.order_introduction + '<span class="text-main-color">View More</span></p>' + 
+                        '<p class="mb-0">' + d.order.order_introduction + '</p>' + 
+                    '</div>' + 
+                    '<div class="col-3 col-sm-2 col-md-2 fans">' + 
+                        '<h4 class="mb-0">Base Fare</h4>' + 
+                        '<div class="divider"></div>' + 
+                        '<div class="d-flex fans-content mb-2">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Request Price</p>' + 
+                                '<p class="mb-0 text-main-color">$' + d.order.order_price + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                        '<div class="d-flex fans-content">' + 
+                            '<div class="left">' + 
+                                '<p class="mb-0">Profit</p>' + 
+                                '<p class="mb-0 text-main-color">$' + d.order.order_fee + '</p>' + 
+                            '</div>' + 
+                        '</div>' + 
+                    '</div>' + 
+                '</div>' + 
+            '</td>' + 
+        '</tr>' + 
     '</table>';
 }
 
 $(document).ready(function() {
     var table = $('#example').DataTable({
-        'ajax': {!! $tabledata !!},
+        'ajax': "{{ route('admin-order-list') }}",
         'columns': [
             {
                 'className':      'details-control',
@@ -134,12 +227,12 @@ $(document).ready(function() {
             { 'data': 'order_date' },
             { 'data': 'due_date' },
             { 'data': 'order_id' },
-            { 'data': 'fans' },
-            { 'data': 'idols' },
+            { 'data': 'fans_name' },
+            { 'data': 'idols_name' },
             { 'data': 'status' },
             { 'data': 'total' },
         ],
-        'order': [[1, 'asc']]
+        'order': [[1, 'desc']]
     } );
 
     // Add event listener for opening and closing details
@@ -157,6 +250,63 @@ $(document).ready(function() {
             tr.addClass('shown');
         }
     });
+
+    $('.order-status-btn').on('click', function() {
+        var order_status = $(this).data('id');
+
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.order-status-btn').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
+        table.destroy();
+        table = $('#example').DataTable({
+            'ajax': "{{ route('admin-order-status-list') }}" + '?order_status=' + order_status,
+            'columns': [
+                {
+                    'className':      'details-control',
+                    'orderable':      false,
+                    'data':           null,
+                    'defaultContent': ''
+                },
+                { 'data': 'order_date' },
+                { 'data': 'due_date' },
+                { 'data': 'order_id' },
+                { 'data': 'fans_name' },
+                { 'data': 'idols_name' },
+                { 'data': 'status' },
+                { 'data': 'total' },
+            ],
+            'order': [[1, 'desc']]
+        } );
+    })
+
+    $(document).on('click', '.order-id', function() {
+        var order_id = $(this).data('id');
+
+        $('.tab-header').addClass('tab-deactive');
+        $('.tab-order-header').removeClass('d-none');
+        $('#tab-order-id').html('#' + order_id);
+
+        $.ajax({
+            url: "{{ route('admin-order-detail') }}",
+            method: 'get',
+            data: { order_id: order_id },
+            success: function (res) {
+                $('.chart').addClass('d-none');
+                $('.order-detail-block').removeClass('d-none');
+                $('.order-detail-block').html(res);
+            }
+        });
+    })
+
+    $(document).on('click', '.close', function() {
+        $('.tab-order-header').addClass('d-none');
+        $('.tab-header').removeClass('tab-deactive');
+        $('.chart').removeClass('d-none');
+        $('.order-detail-block').addClass('d-none');
+    })
 });
 </script>
 @endsection

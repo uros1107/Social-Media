@@ -447,17 +447,17 @@ $(document).ready(function() {
 
         if (!validImageTypes.includes(fileType)) {
             toastr.error("You should input valid image file!");
-            photo_img = false;
+            banner_img = false;
         } else if((file = this.files[0])) {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
                 if(this.width != 1100 || this.height != 200) {
                     toastr.error("Image size must be 1100px * 200px!");
-                    photo_img = false;
+                    banner_img = false;
                 } else {
                     $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
-                    photo_img = true;
+                    banner_img = true;
                     _URL.revokeObjectURL(objectUrl);
                 }
             };
