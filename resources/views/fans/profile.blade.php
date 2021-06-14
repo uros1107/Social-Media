@@ -80,7 +80,7 @@
                 <button class="btn custom-btn edit-profile-btn">Edit Profile</button>
             </div>
             <div class="fandom">
-                <button class="btn custom-btn">My Fandom<span>{{ !Auth::user()->fandom_lists? count(json_decode(Auth::user()->fandom_lists)) : 0 }}</span></button>
+                <button class="btn custom-btn">My Fandom<span>{{ Auth::user()->fandom_lists? count(json_decode(Auth::user()->fandom_lists)) : 0 }}</span></button>
             </div>
         </div>
     </div>
@@ -107,7 +107,7 @@
         <div class="col-12">
             <p style="color:#fcfcfc;font-size:12px">{{ Auth::user()->info }}</p>
             <div class="fandom m-fandom">
-                <button class="btn custom-btn w-100 mt-2 mb-4 text-left">My Fandoms<span>{{ !Auth::user()->fandom_lists? count(json_decode(Auth::user()->fandom_lists)) : 0 }}</span></button>
+                <button class="btn custom-btn w-100 mt-2 mb-4 text-left">My Fandoms<span>{{ Auth::user()->fandom_lists? count(json_decode(Auth::user()->fandom_lists)) : 0 }}</span></button>
             </div>
         </div>
     </div>
