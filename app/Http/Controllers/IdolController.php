@@ -374,7 +374,7 @@ class IdolController extends Controller
         $order->order_status = 3;
         $order->save();
 
-        return view('idol.video-record', compact('order'));
+        return redirect()->route('idol-video-request');
     }
 
     public function video_request_detail(Request $request)

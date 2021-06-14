@@ -30,7 +30,8 @@ table.dataTable tbody td {
     color: #fff!important;
 }
 .view-request,
-.view-request:hover {
+.view-request:hover,
+.view-request:focus {
     height: 40px;
     border-radius: 8px!important;
     font-size: 13px;
@@ -141,7 +142,11 @@ div.dataTables_wrapper div.dataTables_filter input {
                         <tr>
                             <td>
                                 <div class="d-flex new-request">
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 40px;height: 40px">
+                                    @if($fans->photo)
+                                    <img class="img-circle mr-2" src="{{ asset('assets/images/'.$fans->photo) }}" style="width: 40px;height: 40px;object-fit:cover">
+                                    @else
+                                    <img class="img-circle mr-2" src="{{ asset('assets/images/no-image.jpg') }}" style="width: 40px;height: 40px;object-fit:cover">
+                                    @endif
                                     <div class="msg my-auto">
                                         <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
                                         <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">{{ $fans->name }}</span></p>

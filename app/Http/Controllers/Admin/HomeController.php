@@ -343,15 +343,15 @@ class HomeController
         $idol_info = $request->all();
         $video_request = $request->all();
         
-        $request->validate([
-            'idol_full_name' => 'required|string',
-            'idol_user_name' => 'required|string',
-            'idol_bio' => 'required|string',
-            'idol_email' => 'required|string|email|unique:idol_info',
-            'idol_phone' => 'required|string|unique:idol_info',
-            'request_video_price' => 'required',
+        // $request->validate([
+        //     'idol_full_name' => 'required|string',
+        //     'idol_user_name' => 'required|string',
+        //     'idol_bio' => 'required|string',
+        //     'idol_email' => 'required|string|email|unique:idol_info',
+        //     'idol_phone' => 'required|string|unique:idol_info',
+        //     'request_video_price' => 'required',
             // 'request_vocation' => 'required',
-        ]);
+        // ]);
 
         $user_info = [
             'name' => $request->idol_full_name,
@@ -401,13 +401,7 @@ class HomeController
         
         $video_request = VideoRequest::create($video_request);
 
-        if($user->save()) {
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['success' => false]);
-        }
-
-        return view('admin.idol');
+        return response()->json(['success' => true]);
     }
 
     public function idol_list()
@@ -461,6 +455,11 @@ class HomeController
         return view('admin.fans');
     }
 
+    public function add_fan()
+    {
+        return view('admin.add-fan');
+    }
+
     public function fans_list()
     {
         $fans = User::where('role', 2)->get();
@@ -468,6 +467,10 @@ class HomeController
         $data = array();
         foreach ($fans as $key => $fan) {
             $order_count = Order::where('order_fans_id', $fan->id)->get()->count();
+            $completed_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 1)->get();
+            $refuned_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 3)->orWhere('order_status', 4)->get();
+            $pending_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 0)->get();
+
             $data[] = [
                 'fans_user_name' => $fan->name,
                 'fans_full_name' => $fan->name,
@@ -475,8 +478,44 @@ class HomeController
                 'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
                 'join_date' => Carbon\Carbon::parse($fan->created_at)->format('d F Y'),
                 'order_count' => $order_count,
+                'save' => '<button class="btn custom-btn">Save</button>',
+                'completed_orders' => $completed_orders,
+                'refuned_orders' => $refuned_orders,
+                'pending_orders' => $pending_orders,
             ];
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function store_fan(Request $request)
+    {
+        $idol_info = $request->all();
+        $video_request = $request->all();
+        
+        // $request->validate([
+        //     'name' => 'required|string',
+        //     'info' => 'required|string',
+        //     'email' => 'required|string|email|unique:users',
+        //     'phone' => 'required|string|unique:users',
+        // ]);
+
+        $photo_img_name = $request->photo->getClientOriginalName();
+        $request->photo->move(public_path('assets/images/img'), $photo_img_name);
+
+        $user_info = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'photo' => $photo_img_name,
+            'info' => $request->info,
+            'role' => 2
+        ];
+        
+        if(User::create($user_info)) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
 }

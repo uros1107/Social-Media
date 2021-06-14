@@ -453,7 +453,7 @@ $(document).ready(function() {
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
                 if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size must be 1100px * 200px!");
+                    toastr.error("Image size should be 1100px * 200px!");
                     banner_img = false;
                 } else {
                     $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
@@ -483,7 +483,7 @@ $(document).ready(function() {
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
                 if(this.width != 500 || this.height != 500) {
-                    toastr.error("Image size must be 500px * 500px!");
+                    toastr.error("Image size should be 500px * 500px!");
                     photo_img = false;
                 } else {
                     $('#profile-img').attr("src", objectUrl);

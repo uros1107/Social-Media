@@ -195,7 +195,11 @@ video {
                 <div class="col-12 how-content">
                     <div class="content-item mb-4">
                         <div class="user-img">
-                            <img src="{{ asset('assets/images/profile.png') }}" class="img-circle">
+                            @if($fans->photo)
+                            <img class="img-circle" src="{{ asset('assets/images/'.$fans->photo) }}">
+                            @else
+                            <img class="img-circle" src="{{ asset('assets/images/no-image.jpg') }}">
+                            @endif
                         </div>
                         <div class="ml-3 my-auto user-name">
                             <p class="mb-0">{{ '@'.$fans->name }}</p>

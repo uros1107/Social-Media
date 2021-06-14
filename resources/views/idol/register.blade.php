@@ -97,6 +97,13 @@
     width: 178px;
     border-radius: 10px!important;
 }
+select {
+    height: 50px!important;
+    border-radius: 15px!important;
+    background: #2b2b2b!important;
+    border-color: #2b2b2b!important;
+    color: white!important;
+}
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
@@ -344,11 +351,21 @@
                                 <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                             </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Where can we find you?</label>
                                 <input type="text" name="where_find" placeholder="Twitter" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="form-group mb-0 mt-2">
+                                <label class="text-white" style="margin-left: 16px">Category</label>
+                                <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                    @foreach(DB::table('categories')->get() as $cat)
+                                    <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">

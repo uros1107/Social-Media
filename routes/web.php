@@ -32,6 +32,8 @@ Route::prefix('admin')->group(function() {
         Route::POST('/store-idol', 'Admin\HomeController@store_idol')->name('admin-store-idol');
         Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
         Route::get('/fans-list', 'Admin\HomeController@fans_list')->name('admin-fans-list');
+        Route::get('/add-fan', 'Admin\HomeController@add_fan')->name('admin-add-fan');
+        Route::POST('/store-fan', 'Admin\HomeController@store_fan')->name('admin-store-fan');
     });
 });
 
@@ -84,6 +86,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');
+    Route::POST('/card-save', 'FansController@card_save')->name('card-save');
     Route::POST('/payment-success', 'FansController@payment_success')->name('payment-success');
     Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
     Route::get('/view-video', 'FansController@view_video')->name('view-video');

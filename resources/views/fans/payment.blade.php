@@ -49,6 +49,11 @@
 .jp-card .jp-card-front {
     background-color: #898989!important;
 }
+.alert-unsuccess {
+    color: #FF335C;
+    background-color: #424242;
+    border-color: #424242;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -76,16 +81,16 @@
             <h4 class="text-white w-100">Method Payment</h4>
             <div class="d-flex payment-method">
                 <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
-                    <div class="first-block mr-2">
+                    <div class="first-block">
                         <div>
                             <span class="text-white">Credit Card / Debit Card</span>
                         </div>
                     </div>
-                    <div class="first-block deactive">
+                    <!-- <div class="first-block deactive">
                         <div>
                             <span class="text-white">Paypal</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -99,8 +104,9 @@
             </div>
             <div class="divider mb-2"></div>
             <div class="row m-0 occasion card-item">
+                @if(Auth::user()->master_card_token)
                 <div class="col-12 col-md-6">
-                    <div class="occasion-item">
+                    <div class="occasion-item" data-id="2">
                         <img class="mr-2 ml-1" src="{{ asset('assets/images/master-card.png') }}">
                         <span class="text-white">Mastercard</span>
                         <img class="mr-2 ml-1 delete" src="{{ asset('assets/images/icons/delete.png') }}">
@@ -109,8 +115,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @if(Auth::user()->visa_card_token)
                 <div class="col-12 col-md-6">
-                    <div class="occasion-item active">
+                    <div class="occasion-item" data-id="1">
                         <span class="text-white">VISA</span>
                         <img class="mr-2 ml-1 delete" src="{{ asset('assets/images/icons/delete.png') }}">
                         <div class="card-number mt-2 ml-2">
@@ -118,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -148,14 +157,14 @@
                         <h5 class="text-main-color">${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</h5>
                     </div>
                     <div class="divider mb-3"></div>
-                    <form action="{{ route('payment-success') }}" method="POST">
+                    <form action="{{ route('payment-success') }}" method="POST" id="payment-success">
                         {{ csrf_field() }}
-                        <input type="hidden" name="order_payment_method" id="payment_method" value="1">
-                        <input type="hidden" name="order_total_price" id="payment_method" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
-                        <input type="hidden" name="order_price" id="payment_method" value="{{ $request_video->request_video_price }}">
-                        <input type="hidden" name="order_fee" id="payment_method" value="{{ $request_video->request_video_price * 0.05 }}">
+                        <input type="hidden" name="order_payment_method" id="payment_method" value="">
+                        <input type="hidden" name="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
+                        <input type="hidden" name="order_price"value="{{ $request_video->request_video_price }}">
+                        <input type="hidden" name="order_fee" value="{{ $request_video->request_video_price * 0.05 }}">
                         <div class="submit">
-                            <button type="submit" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Book Now -
+                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Book Now -
                                 ${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</button>
                         </div>
                     </form>
@@ -178,58 +187,64 @@
                 </button>
                 <!-- 16:9 aspect ratio -->
                 <div class="embed-responsive embed-responsive-16by9">
-                    <form action="#">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="well">
-                                        <div class="card" style="border-width: 0px">
+                    <form id="card" method="POST" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="well">
+                                    <div class="card-wrapper mt-3" style="border-width: 0px">
+                                    </div>
+                                    <br />
+                                    <div class="row-fluid">
+                                        <div class="col-sm-12">
+                                            <h5 class="text-white" style="font-size: 12px">Fill card data</h5>
                                         </div>
-                                        <br />
-                                        <div class="row-fluid">
-                                            <div class="col-sm-12">
-                                                <h5 class="text-white" style="font-size: 12px">Fill card data</h5>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h4 class="text-white" style="font-size: 16px">Your new debit/credit card</h4>
+                                        <div class="col-sm-12">
+                                            <h4 class="text-white" style="font-size: 16px">Your new debit/credit card</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="col-sm-12">
+                                            <label class="pure-material-textfield-outlined w-100">
+                                                <input type="text" name="name" id="name" placeholder="" value="">
+                                                <span>Name</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="pure-material-textfield-outlined w-100">
+                                                <input type="text" name="number" id="number" placeholder="" value="">
+                                                <span>Credit Card Number</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-left: 0px;margin-right:0px">
+                                        <div class="col-sm-6">
+                                            <label class="pure-material-textfield-outlined w-100">
+                                                <input type="text" name="expiry" id="expiry" placeholder="" value="">
+                                                <span>Expiration</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="pure-material-textfield-outlined w-100">
+                                                <input type="text" name="cvc" id="cvc" placeholder="" value="">
+                                                <span>CVC</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-12 col-sm-12">
+                                            <div class="alert error d-none alert-unsuccess" role="alert">
+                                                {{ Session::get('unsuccess') }}
                                             </div>
                                         </div>
-                                        <div class="row-fluid">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="text-white">Name</label>
-                                                    <input type="text" name="name" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="text-white">Credit Card Number </label>
-                                                    <input type="text" name="number" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-left: 0px;margin-right:0px">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="text-white">Expiration</label>
-                                                    <input type="text" placeholder="MM/YY" name="expiry"
-                                                        class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="text-white">CVV </label>
-                                                    <input type="text" name="cvv" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row-fluid mb-3">
-                                            <div class="col-sm-12 text-right">
-                                                <button type="button" class="btn custom-btn w-100" style="border-radius: 15px!important">Save Card</button>
-                                            </div>
+                                    </div>
+                                    <input type="hidden" name="card_type" id="card_type" value="">
+                                    <div class="row-fluid mb-3">
+                                        <div class="col-sm-12 text-right">
+                                            <button type="submit" class="btn custom-btn w-100 save-card" style="border-radius: 15px!important">Save Card</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -240,9 +255,54 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/card/1.3.1/js/card.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="{{ asset('assets/js/card.js') }}"></script>
 
 <script>
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+        $('.error')
+            .removeClass('d-none')
+            .text(response.error.message);
+        $('.save-card').html("Save Card");
+        $('.save-card').prop('disabled', false);
+    } else {
+        var token = response['id'];
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('card-save') }}",
+            method: 'POST',
+            data: {
+                stripe_token: token,
+                card_type: $('#card_type').val()
+            },
+            success: function (res) {
+                if(res.success) {
+                    toastr.success('Successfully added!');
+                    $('.save-card').html("Save Card");
+                    $('.save-card').prop('disabled', false);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    toastr.error('Server error! Please try again later!');
+                    $('.save-card').html("Save Card");
+                    $('.save-card').prop('disabled', false);
+                }
+            },
+            error: function (error) {
+                toastr.error('Server error');
+                $('.save-card').html("Save Card");
+                $('.save-card').prop('disabled', false);
+            }
+        });
+    }
+}
 $(document).ready(function() {
     $(document).on('click', '.occasion-item', function() {
         if (!$(this).hasClass('active')) {
@@ -251,6 +311,8 @@ $(document).ready(function() {
             $('.occasion-item').not(this).each(function() {
                 $(this).removeClass('active');
             });
+
+            $('#payment_method').val($(this).data('id'));
         }
     });
 
@@ -260,13 +322,42 @@ $(document).ready(function() {
             $('.first-block').not(this).each(function() {
                 $(this).addClass('deactive');
             });
-            if($('#payment_method').val() == 1) {
-                $('#payment_method').val(2)
-            } else {
-                $('#payment_method').val(1)
-            }
         }
     });
+
+    $(document).on('submit', '#card', function(e) {
+        e.preventDefault();
+
+        if(!$('#name').val() || !$('#number').val() || !$('#name').val() || !$('#expiry').val() || !$('#cvc').val()) {
+            toastr.error('You should fill all fields!');
+        } else {
+            if($('#number').val()[0] == 4) {
+                $('#card_type').val(1); // visa
+            } else {
+                $('#card_type').val(2); // master
+            }
+
+            $('.save-card').html("Adding Card...");
+            $('.save-card').prop('disabled', true);
+
+            let expiry = $('#expiry').val().split(" / ");
+            Stripe.setPublishableKey($(this).data('stripe-publishable-key'));
+            Stripe.createToken({
+                number: $('#number').val(),
+                cvc: $('#cvc').val(),
+                exp_month: expiry[0],
+                exp_year: expiry[1]
+            }, stripeResponseHandler);
+        }
+    })
+
+    $(document).on('click', '#book_now', function() {
+        if(!$('#payment_method').val()) {
+            toastr.error('Please choose your card!');
+        } else {
+            $('#payment-success').submit();
+        }
+    })
 
     $(document).on('click', '.delete', function() {
         $(this).parent().hide();
@@ -274,27 +365,6 @@ $(document).ready(function() {
 
     $(document).on('click', '.add-card', function() {
         $('#myModal').modal('toggle');
-    })
-
-    new Card({
-        form: 'form',
-        container: '.card',
-        formSelectors: {
-            numberInput: 'input[name=number]',
-            expiryInput: 'input[name=expiry]',
-            cvcInput: 'input[name=cvv]',
-            nameInput: 'input[name=name]'
-        },
-
-        width: 390, // optional — default 350px
-        formatting: true,
-
-        placeholders: {
-            number: '•••• •••• •••• ••••',
-            name: 'Full Name',
-            expiry: '••/••',
-            cvc: '•••'
-        }
     })
 });
 </script>

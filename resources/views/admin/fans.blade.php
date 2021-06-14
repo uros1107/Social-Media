@@ -78,14 +78,20 @@ tr.shown td.details-control {
 <div class="row m-auto">
     <div class="col-12 col-sm-12 col-md-12 d-flex mt-2 mb-3" style="position:relative">
         <div class="add-new-idol">
-            <button class="btn custom-btn"><img src="{{ asset('assets/images/icons/add-user.png') }}">Add New Fans</button>
+            <button class="btn custom-btn add-fan"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Fans</button>
         </div>
         <div class="d-flex custom-select-group">
             <select class="custom-select1 mr-2 desktop">
                 <option>Fans Username</option>
+                @foreach(DB::table('users')->where('role', 2)->get() as $fans)
+                <option value="{{ $fans->id }}">{{ $fans->name }}</option>
+                @endforeach
             </select>
             <select class="custom-select1 mr-2 desktop">
                 <option>Fans Name</option>
+                @foreach(DB::table('users')->get()->where('role', 2) as $fans)
+                <option value="{{ $fans->id }}">{{ $fans->name }}</option>
+                @endforeach
             </select>
             <div class="date-part desktop">
                 <input class="mr-2 registered-date" type="text" value="Registered Date" id="datepicker">
@@ -93,8 +99,14 @@ tr.shown td.details-control {
             </div>
             <select class="custom-select1 mr-2 desktop">
                 <option>Status</option>
+                <option value="5">Recent</option>
+                <option value="0">Pending</option>
+                <option value="1">Completed</option>
+                <option value="3">Refuned (Declined)</option>
+                <option value="4">Refuned (Expired)</option>
+                <option value="2">Paid Out</option>
             </select>
-            <button class="btn custom-btn">Filter</button>
+            <button class="btn custom-btn px-5">Filter</button>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 custom-card">
@@ -145,7 +157,6 @@ tr.shown td.details-control {
 <script src="{{ asset('assets/js/datatable/datatable.js') }}"></script>
 
 <script>
-
 function format ( d ) {
     let completed_orders = '';
     if(d.completed_orders.length) {
@@ -216,8 +227,8 @@ $(document).ready(function() {
     $('#datepicker').datepicker({
         format: 'dd/mm/yyyy'
     });
-    $('.add-idol').click(function() {
-        location.href = "{{ route('admin-add-idol') }}"
+    $('.add-fan').click(function() {
+        location.href = "{{ route('admin-add-fan') }}"
     })
 
     var table = $('#example').DataTable({
@@ -235,6 +246,7 @@ $(document).ready(function() {
             { 'data': 'join_date' },
             { 'data': 'order_count' },
             { 'data': 'credits' },
+            { 'data': 'save' },
         ],
         'order': [[4, 'desc']]
     } );

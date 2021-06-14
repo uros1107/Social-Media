@@ -1683,6 +1683,7 @@ input[type=radio]:checked ~ label{
 .idol .video-notification-item .profile-img {
     width: 40px;
     height: 40px;
+    object-fit: cover;
 }
 .idol .video-notification-item .new-msg h4 {
     font-size: 16px;
@@ -2312,6 +2313,7 @@ input:checked + .slider {
 .video-detail .request img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
 }
 .video-detail .request .user > p {
     font-size: 16px;

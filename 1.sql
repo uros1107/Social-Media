@@ -166,13 +166,17 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 /*Data for the table `orders` */
 
 insert  into `orders`(`order_id`,`order_idol_id`,`order_fans_id`,`order_who_for`,`order_to`,`order_occasion`,`order_lang`,`order_introduction`,`order_payment_method`,`order_price`,`order_fee`,`order_total_price`,`order_status`,`order_video`,`created_at`,`updated_at`) values 
 (37,13,5,2,'John',1,1,'I want to video',1,190,9.5,199.5,1,'WIN_20210604_03_36_35_Pro.mp4','2021-06-07 16:04:51','2021-06-07 23:04:51'),
-(38,13,5,2,'John',1,3,'I want to video',1,190,9.5,199.5,1,'WIN_20210604_03_36_35_Pro.mp4','2021-06-07 16:07:05','2021-06-07 23:07:05');
+(38,13,5,2,'John',1,3,'I want to video',1,190,9.5,199.5,1,'WIN_20210604_03_36_35_Pro.mp4','2021-06-07 16:07:05','2021-06-07 23:07:05'),
+(44,13,2,2,'etrwe',1,1,'tre',1,190,9.5,199.5,3,NULL,'2021-06-14 03:19:27','2021-06-14 10:19:27'),
+(45,13,5,2,'adf',1,1,'fdsaf',1,190,9.5,199.5,3,NULL,'2021-06-14 03:19:59','2021-06-14 10:19:59'),
+(46,13,5,2,'rewqer',1,1,'rewr',1,190,9.5,199.5,3,NULL,'2021-06-14 03:20:42','2021-06-14 10:20:42'),
+(47,13,5,2,'fdsaf',1,3,'fdsafds',2,190,9.5,199.5,0,NULL,'2021-06-14 08:48:17','2021-06-14 08:48:17');
 
 /*Table structure for table `password_resets` */
 
@@ -365,20 +369,26 @@ CREATE TABLE `users` (
   `is_setup` tinyint(4) DEFAULT 0 COMMENT '0=>no, 1=>yes',
   `cat_id` int(5) DEFAULT NULL,
   `fandom_lists` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `visa_card_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `master_card_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credits` double DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`phone`,`birth`,`photo`,`where_find`,`handle_name`,`followers`,`info`,`role`,`is_setup`,`cat_id`,`fandom_lists`,`credits`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,'Admin','admin@admin.com',NULL,'$2y$10$imU.Hdz7VauIT3LIMCMbsOXvaaTQg6luVqkhfkBcsUd.SJW2XSRKO',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,3,0,NULL,NULL,0,'2019-04-15 19:13:32','2019-04-15 19:13:32',NULL),
-(2,'user1','user1@gmail.com',NULL,'$2y$10$e9D9QPQ7d4QQkh8PJrlY7.gwtBE4JWaQ2z4QXZKYb5LMn84N8vTky',NULL,'98465132','10/06/2021',NULL,NULL,NULL,0,'Test',2,0,NULL,NULL,0,'2021-06-02 22:58:30','2021-06-10 23:32:40',NULL),
-(5,'user2','user2@gmail.com',NULL,'$2y$10$kyO20FujgmNhFGAtEOi7dev.3ZdETP521rJmTwSJfaRhBDXiCiAlC',NULL,'7498561','17/06/2021','1111.png',NULL,NULL,0,'Test',2,0,NULL,'[13,16]',0,'2021-06-02 23:52:06','2021-06-11 03:28:26',NULL),
-(13,'idol1','idol1@gmail.com',NULL,'$2y$10$GUy71k1O0FmDYfv4easaheeOfjhIXg9kypQmoTlC0wLKTQpGuU1K2',NULL,'1654156',NULL,NULL,'facebook','idol1',10,'10',1,1,NULL,NULL,0,'2021-06-07 23:02:33','2021-06-11 01:58:27',NULL);
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`phone`,`birth`,`photo`,`where_find`,`handle_name`,`followers`,`info`,`role`,`is_setup`,`cat_id`,`fandom_lists`,`visa_card_token`,`master_card_token`,`credits`,`created_at`,`updated_at`,`deleted_at`) values 
+(1,'Admin','admin@admin.com',NULL,'$2y$10$imU.Hdz7VauIT3LIMCMbsOXvaaTQg6luVqkhfkBcsUd.SJW2XSRKO',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,3,0,NULL,NULL,NULL,NULL,0,'2019-04-15 19:13:32','2019-04-15 19:13:32',NULL),
+(2,'user1','user1@gmail.com',NULL,'$2y$10$e9D9QPQ7d4QQkh8PJrlY7.gwtBE4JWaQ2z4QXZKYb5LMn84N8vTky',NULL,'98465132','10/06/2021',NULL,NULL,NULL,0,'Test',2,0,NULL,'[13]',NULL,'cus_JfHB4mmXwoSMZR',0,'2021-06-02 22:58:30','2021-06-14 08:50:39',NULL),
+(5,'user2','user2@gmail.com',NULL,'$2y$10$kyO20FujgmNhFGAtEOi7dev.3ZdETP521rJmTwSJfaRhBDXiCiAlC',NULL,'7498561','17/06/2021','1111.png',NULL,NULL,0,'Test',2,0,NULL,'[13]','cus_JfGUYs6jXxz8SX','cus_JfGe3xarXoRJUB',0,'2021-06-02 23:52:06','2021-06-14 08:17:25',NULL),
+(13,'idol1','idol1@gmail.com',NULL,'$2y$10$GUy71k1O0FmDYfv4easaheeOfjhIXg9kypQmoTlC0wLKTQpGuU1K2',NULL,'1654156',NULL,NULL,'facebook','idol1',10,'10',1,1,NULL,NULL,NULL,NULL,0,'2021-06-07 23:02:33','2021-06-11 01:58:27',NULL),
+(24,'idol2','idol2@gmail.com',NULL,'$2y$10$t37WNv0Bv7KAVwlFe3zg5OckryCwkDjvt5jWAAWHZOa2Mn7/Hd8G2',NULL,'2342',NULL,NULL,'facebook','idol2',10,'fdsaf',1,0,15,NULL,NULL,NULL,0,'2021-06-13 06:34:25','2021-06-13 06:34:25',NULL),
+(25,'fans1','fans1@gmail.com',NULL,'$2y$10$tYGSqbhQSjEg6i0vLhBBnOH1vWMTVZ1DzS/.j8vep9yjUkLcrUmbu',NULL,'451632',NULL,'3333.png',NULL,NULL,0,'fdsafdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:29:34','2021-06-13 08:29:34',NULL),
+(26,'fans1','fans1@gmail.com',NULL,'$2y$10$5ZvW8DJDCLUmBLRcGuvgj.FKRu31cyD83txsO/Ty1qA5BfT7bhlTS',NULL,'798465',NULL,'3333.png',NULL,NULL,0,'fdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:34:30','2021-06-13 08:34:30',NULL),
+(27,'sdfsa','dfsaf@gmail.com',NULL,'$2y$10$z72BiLAlQP2qFTWh4897WuGLLrfvrkUGaEGumAzh8Qma2ePlrTw9y',NULL,'7894651',NULL,NULL,'facebook','fffffffdsa',50000,'fdsafdsafdsaf',1,0,6,NULL,NULL,NULL,0,'2021-06-13 10:11:11','2021-06-13 10:11:11',NULL);
 
 /*Table structure for table `video_request` */
 

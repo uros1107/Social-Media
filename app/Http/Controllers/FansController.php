@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe;
 use Auth;
 use Hash;
 use Session;
@@ -144,6 +145,28 @@ class FansController extends Controller
         Session::put('info', $info);
 
         return view('fans.payment', ['idol_id' => $request->order_idol_id]);
+    }
+
+    public function card_save(Request $request)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $customer = \Stripe\Customer::create([
+            'source' => $request->token,
+            'email' => Auth::user()->email,
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        if($request->card_type == 1) {                  // visa
+            $user->visa_card_token = $customer->id;
+        } else {
+            $user->master_card_token = $customer->id;
+        }
+        
+        if($user->save()) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
 
     public function payment_success(Request $request)

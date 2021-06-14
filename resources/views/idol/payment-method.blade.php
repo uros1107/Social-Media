@@ -20,7 +20,8 @@
     background: #2b2b2b;
 }
 .set-up-btn,
-.set-up-btn:hover {
+.set-up-btn:hover,
+.set-up-btn:focus {
     width: 140px!important;
     height: 45px;
     border-radius: 8px!important;

@@ -40,10 +40,18 @@
                     <img src="{{ asset('assets/images/icons/dark-notification.png') }}" style="width: 24px">
                 </a>
             </div>
-            <div class="my-auto" style="margin-left: 20px;margin-right: 20px">
+            @if(Auth::check())
+            <div class="my-auto" style="margin-left: 20px;margin-right: 20px;position:relative">
                 <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}" style="width: 35px">
                 <span>Admin</span>
+                <img src="{{ asset('assets/images/icons/down-arrow-dark.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
+                <div class="sub-menu d-none">
+                    <div>
+                        <a href="{{ route('logout') }}" style="color:#121212">Logout</a>
+                    </div>
+                </div>
             </div>
+            @endif
         </div>
 
         <ul class="nav navbar-nav ml-auto">
@@ -132,7 +140,14 @@
                     $('.sidebar').removeClass('show-sidebar');
                     sidebar_flag = true;
                 }
-                
+            })
+
+            $('#sub-menu').on('click', function() {
+                if($('.sub-menu').hasClass('d-none')) {
+                    $('.sub-menu').removeClass('d-none')
+                } else {
+                    $('.sub-menu').addClass('d-none')
+                }
             })
         })
     </script>

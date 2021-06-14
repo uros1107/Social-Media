@@ -39,6 +39,8 @@ class User extends Authenticatable
         'photo',
         'role',
         'credits',
+        'visa_card_token',
+        'master_card_token',
         'cat_id',
         'fandom_lists',
         'created_at',

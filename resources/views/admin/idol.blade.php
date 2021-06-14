@@ -68,7 +68,7 @@ tr.shown td.details-control {
 <div class="row m-auto">
     <div class="col-12 col-sm-12 col-md-12 d-flex mt-2 mb-3" style="position:relative">
         <div class="add-new-idol">
-            <button class="btn custom-btn add-idol"><img src="{{ asset('assets/images/icons/add-user.png') }}">Add New Idols</button>
+            <button class="btn custom-btn add-idol"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Idols</button>
         </div>
         <div class="d-flex custom-select-group">
             <select class="custom-select1 mr-2 desktop">
@@ -96,7 +96,7 @@ tr.shown td.details-control {
                 <option value="4">Refuned (Expired)</option>
                 <option value="2">Paid Out</option>
             </select>
-            <button class="btn custom-btn">Filter</button>
+            <button class="btn custom-btn px-5">Filter</button>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 custom-card">

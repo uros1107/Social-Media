@@ -60,9 +60,9 @@
                     <h4 class="text-white mb-3">Accept this offers?</h4>
                     <p style="color:#898989">Your fans want to hear your replies.</p>
                     <h3 class="text-main-color price">${{ $order->order_price }}</h3>
-                    @if($order->order_status == 1)
-                    <button type="button" class="btn custom-btn w-100 send-feedback-btn mb-3 accept-btn" disabled>Accept</button>
-                    <button type="button" class="btn custom-btn w-100 send-feedback-btn deactive decline-btn" disabled>Decline</button>
+                    @if($order->order_status != 0)
+                    <button type="button" class="btn custom-btn w-100 send-feedback-btn mb-3 accept-btn" disabled style="cursor: not-allowed">Accept</button>
+                    <button type="button" class="btn custom-btn w-100 send-feedback-btn deactive decline-btn" disabled style="cursor: not-allowed">Decline</button>
                     @else
                     <button type="button" class="btn custom-btn w-100 send-feedback-btn mb-3 accept-btn">Accept</button>
                     <button type="button" class="btn custom-btn w-100 send-feedback-btn deactive decline-btn">Decline</button>
@@ -80,7 +80,11 @@
                 <div class="request">
                     <h4 class="text-white mb-3">Requested from</h4>
                     <div class="d-flex">
-                        <img class="img-circle mr-2" src="{{ asset('assets/images/profile.png') }}">
+                        @if($fans->photo)
+                        <img class="img-circle mr-2" src="{{ asset('assets/images/'.$fans->photo) }}">
+                        @else
+                        <img class="img-circle mr-2" src="{{ asset('assets/images/no-image.jpg') }}">
+                        @endif
                         <div class="user">
                             <p class="mb-0">{{ '@'.$fans->name }}</p>
                             <h4 class="text-main-color">{{ $fans->name }}</h4>

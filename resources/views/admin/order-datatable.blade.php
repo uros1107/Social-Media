@@ -34,6 +34,10 @@ th {
     background: #ff335c!important;
     color: white!important;
 }
+.chart { 
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
 </style>
 @endsection
 
@@ -63,7 +67,7 @@ th {
                 <button class="btn custom-btn order-status-btn deactive" data-id="0">Pending</button>
                 <button class="btn custom-btn order-status-btn deactive" data-id="1">Completed</button>
                 <button class="btn custom-btn order-status-btn deactive" data-id="4">Refunded(Expired)</button>
-                <button class="btn custom-btn order-status-btn deactive" data-id="3">Refuned(Declined)</button>
+                <button class="btn custom-btn order-status-btn deactive" data-id="3">Refunded(Declined)</button>
                 <button class="btn custom-btn order-status-btn deactive" data-id="2">Paid Out</button>
             </div>
             <div class="datatable">

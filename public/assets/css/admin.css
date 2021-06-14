@@ -137,6 +137,13 @@ p {
     pointer-events: none;
     color: #aaa;
 }
+.sub-menu {
+    position: absolute;
+    background: #ddd;
+    padding: 5px 20px;
+    border-radius: 5px;
+    right: 0px;
+}
 .app-header .has-search .search-icon {
     width: 20px;
     position: absolute;

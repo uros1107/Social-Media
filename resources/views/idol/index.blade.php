@@ -197,7 +197,11 @@
                                 <div class="video-notification-item">
                                     <div class="row">
                                         <div class="col-5 col-md-5 d-flex my-auto">
-                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/profile.png') }}">
+                                            @if($fans->photo)
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/'.$fans->photo) }}">
+                                            @else
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/no-image.jpg') }}">
+                                            @endif
                                             <div class="new-msg my-auto">
                                                 <h4 class="text-white">New Request</h4>
                                                 <p class="text-white">from <span class="text-main-color">{{ $fans->name }}</span></p>

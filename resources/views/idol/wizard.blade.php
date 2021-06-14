@@ -124,7 +124,7 @@
                                 @endif
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 img-upload">
-                                <label class="ml-2">Upload Photo Profile (500px x 500px)</label>
+                                <label class="ml-2 upload-photo">Upload Photo Profile (500px x 500px)</label>
                                 <div class="upload-btn text-center" id="photo_btn">
                                     <img src="{{ asset('assets/images/icons/upload.png') }}">
                                     <span class="ml-1 photo_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
@@ -137,7 +137,7 @@
                                 <input type="file" name="idol_photo" id="photo_img" class="d-none" >
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 img-upload">
-                                <label class="ml-2">Upload Banner (1100px x 200px)</label>
+                                <label class="ml-2 upload-banner">Upload Banner (1100px x 200px)</label>
                                 <div class="upload-btn text-center" id="banner_btn">
                                     <img src="{{ asset('assets/images/icons/upload.png') }}">
                                     <span class="ml-1 banner_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
@@ -325,16 +325,19 @@ $(document).ready(function(){
 
         if (!validImageTypes.includes(fileType)) {
             toastr.error("You should input valid image file!");
+            $('.upload-photo').addClass('text-main-color');
             photo_img = false;
         } else if((file = this.files[0])) {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
                 if(this.width != 500 || this.height != 500) {
-                    toastr.error("Image size must be 500px * 500px!");
+                    toastr.error("Image size should be 500px * 500px!");
+                    $('.upload-photo').addClass('text-main-color');
                     photo_img = false;
                 } else {
                     $('.photo_img_label').html($('#photo_img')[0].files[0].name);
+                    $('.upload-photo').removeClass('text-main-color');
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
                 }
@@ -355,16 +358,19 @@ $(document).ready(function(){
 
         if (!validImageTypes.includes(fileType)) {
             toastr.error("You should input valid image file!");
+            $('.upload-banner').addClass('text-main-color');
             banner_img = false;
         } else if((file = this.files[0])) {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
                 if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size must be 1100px * 200px!");
+                    toastr.error("Image size should be 1100px * 200px!");
+                    $('.upload-banner').addClass('text-main-color');
                     banner_img = false;
                 } else {
                     $('.banner_img_label').html($('#banner_img')[0].files[0].name);
+                    $('.upload-banner').removeClass('text-main-color');
                     _URL.revokeObjectURL(objectUrl);
                     banner_img = true;
                 }
@@ -390,8 +396,10 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#profile_btn', function() {
-        if(!photo_img || !banner_img) {
-            toastr.error("You should input all fileds correctly!");
+        if(!photo_img) {
+            toastr.error("You should input photo image file correctly!");
+        } else if(!banner_img) {
+            toastr.error("You should input banner image file correctly!");
         } else {
             $('#profile_information').addClass('d-none');
             $('#request_video').removeClass('d-none');

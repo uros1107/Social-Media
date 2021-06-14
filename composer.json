@@ -10,11 +10,13 @@
     "require": {
         "php": "^7.2",
         "bugsnag/bugsnag-laravel": "^2.15",
+        "cartalyst/stripe-laravel": "11.x",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-newsletter": "^4.9",
+        "stripe/stripe-php": "^7.83",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
