@@ -81,30 +81,26 @@ tr.shown td.details-control {
             <button class="btn custom-btn add-fan"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Fans</button>
         </div>
         <div class="d-flex custom-select-group">
-            <select class="custom-select1 mr-2 desktop">
+            <select class="custom-select1 mr-2 fans_user_name desktop" name="fans_user_name">
                 <option>Fans Username</option>
                 @foreach(DB::table('users')->where('role', 2)->get() as $fans)
-                <option value="{{ $fans->id }}">{{ $fans->name }}</option>
+                <option value="{{ $fans->name }}">{{ $fans->name }}</option>
                 @endforeach
             </select>
-            <select class="custom-select1 mr-2 desktop">
+            <select class="custom-select1 mr-2 fans_full_name desktop" name="fans_full_name">
                 <option>Fans Name</option>
                 @foreach(DB::table('users')->get()->where('role', 2) as $fans)
-                <option value="{{ $fans->id }}">{{ $fans->name }}</option>
+                <option value="{{ $fans->name }}">{{ $fans->name }}</option>
                 @endforeach
             </select>
             <div class="date-part desktop">
-                <input class="mr-2 registered-date" type="text" value="Registered Date" id="datepicker">
+                <input class="mr-2 registered-date" type="text" name="registered_date" value="Registered Date" id="datepicker">
                 <img src="{{ asset('assets/images/icons/calendar.png') }}">
             </div>
-            <select class="custom-select1 mr-2 desktop">
-                <option>Status</option>
-                <option value="5">Recent</option>
-                <option value="0">Pending</option>
-                <option value="1">Completed</option>
-                <option value="3">Refuned (Declined)</option>
-                <option value="4">Refuned (Expired)</option>
-                <option value="2">Paid Out</option>
+            <select class="custom-select1 mr-2 status desktop" name="status">
+                <option value="">Status</option>
+                <option value="1">Active</option>
+                <option value="0">Deactive</option>
             </select>
             <button class="btn custom-btn px-5">Filter</button>
         </div>
@@ -225,7 +221,7 @@ function format ( d ) {
 
 $(document).ready(function() {
     $('#datepicker').datepicker({
-        format: 'dd/mm/yyyy'
+        format: 'yyyy-mm-dd'
     });
     $('.add-fan').click(function() {
         location.href = "{{ route('admin-add-fan') }}"
@@ -268,18 +264,25 @@ $(document).ready(function() {
         }
     });
 
-    $('.order-status-btn').on('click', function() {
-        var order_status = $(this).data('id');
+    $(".fans_user_name, .fans_full_name, .registered-date, .status").on('change', function() {
+        let filterlink = '';
 
-        if($(this).hasClass('deactive')) {
-            $(this).removeClass('deactive');
-            $('.order-status-btn').not(this).each(function(){
-                $(this).addClass('deactive');
-            });
-        }
+        $(".fans_user_name, .fans_full_name, .registered-date, .status").each(function() {
+            if (filterlink == '') {
+                if($(this).val() == "Registered Date") {
+                    $(this).val('');
+                }
+                filterlink += "{{ route('admin-filter-fans') }}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+            } else {
+                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+            }
+        })
+        
+        console.log(encodeURI(filterlink))
+
         table.destroy();
         table = $('#example').DataTable({
-            'ajax': "{{ route('admin-order-status-list') }}" + '?order_status=' + order_status,
+            'ajax': "{{ route('admin-fans-list') }}",
             'columns': [
                 {
                     'className':      'details-control',
@@ -287,15 +290,15 @@ $(document).ready(function() {
                     'data':           null,
                     'defaultContent': ''
                 },
-                { 'data': 'order_date' },
-                { 'data': 'due_date' },
-                { 'data': 'order_id' },
-                { 'data': 'fans_name' },
-                { 'data': 'idols_name' },
-                { 'data': 'status' },
-                { 'data': 'total' },
+                { 'data': 'fans_user_name' },
+                { 'data': 'fans_full_name' },
+                { 'data': 'email' },
+                { 'data': 'join_date' },
+                { 'data': 'order_count' },
+                { 'data': 'credits' },
+                { 'data': 'save' },
             ],
-            'order': [[1, 'desc']]
+            'order': [[4, 'desc']]
         } );
     })
 });

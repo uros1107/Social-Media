@@ -71,30 +71,26 @@ tr.shown td.details-control {
             <button class="btn custom-btn add-idol"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Idols</button>
         </div>
         <div class="d-flex custom-select-group">
-            <select class="custom-select1 mr-2 desktop">
-                <option>Idol Username</option>
+            <select class="custom-select1 mr-2 idol_user_name desktop" name="idol_user_name">
+                <option value="">Idol Username</option>
                 @foreach(DB::table('idol_info')->get() as $idol)
-                <option value="{{ $idol->idol_user_id }}">{{ $idol->idol_user_name }}</option>
+                <option value="{{ $idol->idol_user_name }}">{{ $idol->idol_user_name }}</option>
                 @endforeach
             </select>
-            <select class="custom-select1 mr-2 desktop">
-                <option>Idol Name</option>
+            <select class="custom-select1 mr-2 idol_full_name desktop" name="idol_full_name">
+                <option value="">Idol Name</option>
                 @foreach(DB::table('idol_info')->get() as $idol)
-                <option value="{{ $idol->idol_user_id }}">{{ $idol->idol_full_name }}</option>
+                <option value="{{ $idol->idol_user_name }}">{{ $idol->idol_full_name }}</option>
                 @endforeach
             </select>
             <div class="date-part desktop">
-                <input class="mr-2 registered-date" type="text" value="Registered Date" id="datepicker">
+                <input class="mr-2 registered-date" type="text" name="registered_date" value="Registered Date" id="datepicker">
                 <img src="{{ asset('assets/images/icons/calendar.png') }}">
             </div>
-            <select class="custom-select1 mr-2 desktop">
-                <option>Status</option>
-                <option value="5">Recent</option>
-                <option value="0">Pending</option>
-                <option value="1">Completed</option>
-                <option value="3">Refuned (Declined)</option>
-                <option value="4">Refuned (Expired)</option>
-                <option value="2">Paid Out</option>
+            <select class="custom-select1 mr-2 status desktop" name="status">
+                <option value="">Status</option>
+                <option value="1">Active</option>
+                <option value="0">Deactive</option>
             </select>
             <button class="btn custom-btn px-5">Filter</button>
         </div>
@@ -219,7 +215,7 @@ function format ( d ) {
 
 $(document).ready(function() {
     $('#datepicker').datepicker({
-        format: 'dd/mm/yyyy'
+        format: 'yyyy-mm-dd'
     });
     $('.add-idol').click(function() {
         location.href = "{{ route('admin-add-idol') }}"
@@ -264,18 +260,22 @@ $(document).ready(function() {
         }
     });
 
-    $('.order-status-btn').on('click', function() {
-        var order_status = $(this).data('id');
+    $(".idol_user_name, .idol_full_name, .registered-date, .status").on('change', function() {
+        let filterlink = '';
 
-        if($(this).hasClass('deactive')) {
-            $(this).removeClass('deactive');
-            $('.order-status-btn').not(this).each(function(){
-                $(this).addClass('deactive');
-            });
-        }
+        $(".idol_user_name, .idol_full_name, .registered-date, .status").each(function() {
+            if (filterlink == '') {
+            filterlink += "{{ route('admin-filter-idol') }}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+            } else {
+                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+            }
+        })
+        
+        console.log(encodeURI(filterlink))
+
         table.destroy();
         table = $('#example').DataTable({
-            'ajax': "{{ route('admin-order-status-list') }}" + '?order_status=' + order_status,
+            'ajax': encodeURI(filterlink),
             'columns': [
                 {
                     'className':      'details-control',
@@ -283,15 +283,17 @@ $(document).ready(function() {
                     'data':           null,
                     'defaultContent': ''
                 },
-                { 'data': 'order_date' },
-                { 'data': 'due_date' },
-                { 'data': 'order_id' },
-                { 'data': 'fans_name' },
-                { 'data': 'idols_name' },
+                { 'data': 'idol_user_name' },
+                { 'data': 'idol_full_name' },
+                { 'data': 'email' },
+                { 'data': 'join_date' },
+                { 'data': 'fans_count' },
+                { 'data': 'total_order_count' },
+                { 'data': 'pending_order_count' },
+                { 'data': 'perc' },
                 { 'data': 'status' },
-                { 'data': 'total' },
             ],
-            'order': [[1, 'desc']]
+            'order': [[4, 'desc']]
         } );
     })
 });

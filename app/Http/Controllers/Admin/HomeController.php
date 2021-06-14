@@ -172,6 +172,9 @@ class HomeController
     public function order_status_list(Request $request)
     {
         $orders = Order::where('order_status', $request->order_status)->get(); 
+        if($request->order_status == 5) {
+            $orders = Order::orderBy('created_at', 'desc')->get(); 
+        }
 
         $data = array();
         foreach ($orders as $key => $order) {
@@ -445,6 +448,65 @@ class HomeController
         return response()->json(['data' => $data]);
     }
 
+    public function idol_filter(Request $request)
+    {
+        $idol_user_name = $request->idol_user_name;
+        $idol_full_name = $request->idol_full_name;
+        $date = $request->registered_date;
+        $status = $request->status;
+
+        $idols = IdolInfo::when($idol_user_name, function($query, $idol_user_name){
+                                $query->where('idol_user_name', $idol_user_name);
+                            })
+                            ->when($idol_full_name, function($query, $idol_full_name){
+                                $query->where('idol_full_name', $idol_full_name);
+                            })
+                            ->when($date, function($query, $date){
+                                $query->where('created_at', 'like', $date.'%');
+                            })
+                            ->when($status, function($query, $status){
+                                $query->where('idol_status', $status);
+                            })
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        $data = array();
+        foreach ($idols as $key => $idol) {
+            $fans_count = 0;
+            foreach (User::all() as $user) {
+                $array = json_decode($user->fandom_lists);
+                if($array) {
+                    $has_idol = in_array($idol->idol_user_id, $array);
+                    if($has_idol) {
+                        $fans_count++;
+                    }
+                }
+            }
+
+            $completed_orders = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 1)->get();
+            $refuned_orders = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 3)->orWhere('order_status', 4)->get();
+            $total_order_count = Order::where('order_idol_id', $idol->idol_user_id)->get()->count();
+            $pending_orders = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get();
+            $pending_order_count = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get()->count();
+
+            $data[] = [
+                'idol_user_name' => $idol->idol_user_name,
+                'idol_full_name' => $idol->idol_full_name,
+                'email' => $idol->idol_email,
+                'join_date' => Carbon\Carbon::parse($idol->created_at)->format('d F Y'),
+                'fans_count' => $fans_count,
+                'completed_orders' => $completed_orders,
+                'refuned_orders' => $refuned_orders,
+                'total_order_count' => $total_order_count,
+                'pending_orders' => $pending_orders,
+                'pending_order_count' => $pending_order_count,
+                'perc' => round($total_order_count != 0 ? $pending_order_count/$total_order_count * 100 : 0, 1).'%',
+                'status' => 'Active',
+            ];
+        }
+        return response()->json(['data' => $data]);
+    }
+
     public function add_idol()
     {
         return view('admin.add-idol');
@@ -463,6 +525,51 @@ class HomeController
     public function fans_list()
     {
         $fans = User::where('role', 2)->get();
+
+        $data = array();
+        foreach ($fans as $key => $fan) {
+            $order_count = Order::where('order_fans_id', $fan->id)->get()->count();
+            $completed_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 1)->get();
+            $refuned_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 3)->orWhere('order_status', 4)->get();
+            $pending_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 0)->get();
+
+            $data[] = [
+                'fans_user_name' => $fan->name,
+                'fans_full_name' => $fan->name,
+                'email' => $fan->email,
+                'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
+                'join_date' => Carbon\Carbon::parse($fan->created_at)->format('d F Y'),
+                'order_count' => $order_count,
+                'save' => '<button class="btn custom-btn">Save</button>',
+                'completed_orders' => $completed_orders,
+                'refuned_orders' => $refuned_orders,
+                'pending_orders' => $pending_orders,
+            ];
+        }
+        return response()->json(['data' => $data]);
+    }
+
+    public function fans_filter(Request $request)
+    {
+        $fans_user_name = $request->fans_user_name;
+        $fans_full_name = $request->fans_full_name;
+        $date = $request->registered_date;
+        $status = $request->status;
+
+        $fans = User::when($fans_user_name, function($query, $fans_user_name){
+                                $query->where('name', $fans_user_name);
+                            })
+                            ->when($fans_full_name, function($query, $fans_full_name){
+                                $query->where('name', $fans_full_name);
+                            })
+                            ->when($date, function($query, $date){
+                                $query->where('created_at', 'like', $date.'%');
+                            })
+                            ->when($status, function($query, $status){
+                                $query->where('status', $status);
+                            })
+                            ->orderBy('created_at', 'desc')
+                            ->get();
 
         $data = array();
         foreach ($fans as $key => $fan) {

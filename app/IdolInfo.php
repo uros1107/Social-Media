@@ -21,5 +21,6 @@ class IdolInfo extends Model
         'idol_fans',
         'idol_rating',
         'idol_cat_id',
+        'idol_status',
     ];
 }

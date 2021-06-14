@@ -17,6 +17,14 @@ use Hash;
 
 class IdolController extends Controller
 {
+    public function home()
+    {
+        if(url('/') == 'https://vip.millionk.com') {
+            return redirect()->route('idol-register');
+        }
+        return view('index');
+    }
+
     public function registration()
     {
         return view('idol.registration');

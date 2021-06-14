@@ -226,7 +226,7 @@ video {
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <h4 class="text-white">Language</h4>
-                            <p class="mb-0">Language request for this personalized video</p>
+                            <p class="mb-2">Language request for this personalized video</p>
                             @if($order->order_lang == 1)
                             <p class="text-main-color mb-0">English</p>
                             @elseif($order->order_lang == 2)

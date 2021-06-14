@@ -35,7 +35,7 @@
             <h4 class="mb-0">Encourage her</h4>
             <p class="mb-0">from <span class="text-main-color">{{ $fans->name }}</span></p>
         </div>
-        @if($order->order_status != 1)
+        @if($order->order_status == 0)
         <div class="right d-flex">
             <div class="status-detail mr-3">
                 <p class="mb-0">Status Detail</p>
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    @if($order->order_status != 1)
+    @if($order->order_status == 0)
     <div class="text-center status-detail">
         <p class="mb-0">Status Detail</p>
         <h4 class='mb-0 text-main-color'>No Video Submitted yet</h4>
