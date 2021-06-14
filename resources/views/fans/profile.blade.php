@@ -189,6 +189,7 @@
         </div>
         <div class="image-part">
             <div class="row m-0 mb-4">
+                @if($fans->fandom_lists)
                 @foreach(json_decode($fans->fandom_lists) as $idol)
                     @php
                         $idol = DB::table('idol_info')->where('idol_user_id', $idol)->first();
@@ -204,6 +205,11 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                <div class="col-12 col-md-12 col-sm-12 d-flex" style="height: 200px">
+                    <p class="text-white mb-0 text-center m-auto">No idols yet</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>
