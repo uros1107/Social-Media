@@ -179,7 +179,26 @@ class FansController extends Controller
         $order['order_fans_id'] = Auth::user()->id;
         
         if(Order::create($order)) {
-            return view('fans.payment-success', ['order' => $order]);
+            if($request->order_payment_method == 1) {
+                $card_token = Auth::user()->visa_card_token;
+            } else {
+                $card_token = Auth::user()->master_card_token;
+            }
+            
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // $status = Stripe\Charge::create ([
+            //         "amount" => $request->order_total_price,
+            //         "currency" => "usd",
+            //         "customer" => $card_token,
+            //         "description" => "Fans paid from Millionk.com" 
+            // ]);
+
+            // if ($status[ 'status' ] == "succeeded") { 
+                return view('fans.payment-success', ['order' => $order]);
+            // } else {
+            //     return view('fans.payment-cancel', ['order' => $order]);
+            // }
+
         } else {
             return view('fans.payment-cancel', ['order' => $order]);
         }

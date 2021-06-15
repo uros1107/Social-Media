@@ -14,13 +14,13 @@
                     </div>
                     <div class="col-6 d-flex" style="margin: 10px 0px;justify-content: flex-end;">
                         <div class="footer-social">
-                            <img src="{{ asset('assets/images/icons/facebook.png') }}" style="height: 18px">
+                            <a href="https://www.facebook.com"><img src="{{ asset('assets/images/icons/facebook.png') }}" style="height: 18px"></a>
                         </div>
                         <div class="footer-social">
-                            <img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px">
+                            <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                         </div>
                         <div class="footer-social">
-                            <img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px">
+                            <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                         </div>
                     </div>
                     <div class="col-6">
@@ -53,10 +53,10 @@
                         </div>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px;border-top: 1px solid #2b2b2b;">
-                        <a href="#" class="text-main-color">Privacy policy</a>
+                        <a href="{{ route('privacy') }}" target="_blank" class="text-main-color">Privacy policy</a>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px">
-                        <a href="#" class="text-main-color">Tearms of service</a>
+                        <a href="{{ route('terms') }}" target="_blank" class="text-main-color">Terms of service</a>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px;margin-bottom:20px">
                         <p class="mb-0" style="color:#898989;font-size: 15px;line-height: 22px;">Copyright © 2021 Lumiworks.pte.Ltd<br>All rights reserved.</p>
