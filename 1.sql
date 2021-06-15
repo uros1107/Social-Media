@@ -89,6 +89,7 @@ CREATE TABLE `idol_info` (
   `idol_banner` varchar(125) DEFAULT NULL,
   `idol_fans` int(10) DEFAULT 0,
   `idol_rating` double DEFAULT 0,
+  `idol_status` tinyint(5) DEFAULT 1 COMMENT '0=>deactive, 1=>active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`idol_id`)
@@ -96,8 +97,8 @@ CREATE TABLE `idol_info` (
 
 /*Data for the table `idol_info` */
 
-insert  into `idol_info`(`idol_id`,`idol_user_id`,`idol_cat_id`,`idol_full_name`,`idol_user_name`,`idol_email`,`idol_phone`,`idol_bio`,`idol_photo`,`idol_banner`,`idol_fans`,`idol_rating`,`created_at`,`updated_at`) values 
-(19,13,6,'Idol1','Idol1','idol1@gmail.com','12346','fdsa','actor.png','actor1.png',0,0,'2021-06-10 18:58:27','2021-06-11 01:58:27');
+insert  into `idol_info`(`idol_id`,`idol_user_id`,`idol_cat_id`,`idol_full_name`,`idol_user_name`,`idol_email`,`idol_phone`,`idol_bio`,`idol_photo`,`idol_banner`,`idol_fans`,`idol_rating`,`idol_status`,`created_at`,`updated_at`) values 
+(19,13,6,'Idol1','Idol1','idol1@gmail.com','12346','fdsa','actor.png','actor1.png',0,0,1,'2021-06-10 18:58:27','2021-06-11 01:58:27');
 
 /*Table structure for table `migrations` */
 
@@ -373,6 +374,7 @@ CREATE TABLE `users` (
   `master_card_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credits` double DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
+  `status` tinyint(5) DEFAULT 1 COMMENT '0=>deactive,1=>active',
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -380,15 +382,15 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`phone`,`birth`,`photo`,`where_find`,`handle_name`,`followers`,`info`,`role`,`is_setup`,`cat_id`,`fandom_lists`,`visa_card_token`,`master_card_token`,`credits`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,'Admin','admin@admin.com',NULL,'$2y$10$imU.Hdz7VauIT3LIMCMbsOXvaaTQg6luVqkhfkBcsUd.SJW2XSRKO',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,3,0,NULL,NULL,NULL,NULL,0,'2019-04-15 19:13:32','2019-04-15 19:13:32',NULL),
-(2,'user1','user1@gmail.com',NULL,'$2y$10$e9D9QPQ7d4QQkh8PJrlY7.gwtBE4JWaQ2z4QXZKYb5LMn84N8vTky',NULL,'98465132','10/06/2021',NULL,NULL,NULL,0,'Test',2,0,NULL,'[13]',NULL,'cus_JfHB4mmXwoSMZR',0,'2021-06-02 22:58:30','2021-06-14 08:50:39',NULL),
-(5,'user2','user2@gmail.com',NULL,'$2y$10$kyO20FujgmNhFGAtEOi7dev.3ZdETP521rJmTwSJfaRhBDXiCiAlC',NULL,'7498561','17/06/2021','1111.png',NULL,NULL,0,'Test',2,0,NULL,'[13]','cus_JfGUYs6jXxz8SX','cus_JfGe3xarXoRJUB',0,'2021-06-02 23:52:06','2021-06-14 08:17:25',NULL),
-(13,'idol1','idol1@gmail.com',NULL,'$2y$10$GUy71k1O0FmDYfv4easaheeOfjhIXg9kypQmoTlC0wLKTQpGuU1K2',NULL,'1654156',NULL,NULL,'facebook','idol1',10,'10',1,1,NULL,NULL,NULL,NULL,0,'2021-06-07 23:02:33','2021-06-11 01:58:27',NULL),
-(24,'idol2','idol2@gmail.com',NULL,'$2y$10$t37WNv0Bv7KAVwlFe3zg5OckryCwkDjvt5jWAAWHZOa2Mn7/Hd8G2',NULL,'2342',NULL,NULL,'facebook','idol2',10,'fdsaf',1,0,15,NULL,NULL,NULL,0,'2021-06-13 06:34:25','2021-06-13 06:34:25',NULL),
-(25,'fans1','fans1@gmail.com',NULL,'$2y$10$tYGSqbhQSjEg6i0vLhBBnOH1vWMTVZ1DzS/.j8vep9yjUkLcrUmbu',NULL,'451632',NULL,'3333.png',NULL,NULL,0,'fdsafdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:29:34','2021-06-13 08:29:34',NULL),
-(26,'fans1','fans1@gmail.com',NULL,'$2y$10$5ZvW8DJDCLUmBLRcGuvgj.FKRu31cyD83txsO/Ty1qA5BfT7bhlTS',NULL,'798465',NULL,'3333.png',NULL,NULL,0,'fdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:34:30','2021-06-13 08:34:30',NULL),
-(27,'sdfsa','dfsaf@gmail.com',NULL,'$2y$10$z72BiLAlQP2qFTWh4897WuGLLrfvrkUGaEGumAzh8Qma2ePlrTw9y',NULL,'7894651',NULL,NULL,'facebook','fffffffdsa',50000,'fdsafdsafdsaf',1,0,6,NULL,NULL,NULL,0,'2021-06-13 10:11:11','2021-06-13 10:11:11',NULL);
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`phone`,`birth`,`photo`,`where_find`,`handle_name`,`followers`,`info`,`role`,`is_setup`,`cat_id`,`fandom_lists`,`visa_card_token`,`master_card_token`,`credits`,`created_at`,`status`,`updated_at`,`deleted_at`) values 
+(1,'Admin','admin@admin.com',NULL,'$2y$10$imU.Hdz7VauIT3LIMCMbsOXvaaTQg6luVqkhfkBcsUd.SJW2XSRKO',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,3,0,NULL,NULL,NULL,NULL,0,'2019-04-15 19:13:32',1,'2019-04-15 19:13:32',NULL),
+(2,'user1','user1@gmail.com',NULL,'$2y$10$e9D9QPQ7d4QQkh8PJrlY7.gwtBE4JWaQ2z4QXZKYb5LMn84N8vTky',NULL,'98465132','10/06/2021',NULL,NULL,NULL,0,'Test',2,0,NULL,'[13]',NULL,'cus_JfHB4mmXwoSMZR',0,'2021-06-02 22:58:30',1,'2021-06-14 08:50:39',NULL),
+(5,'user2','user2@gmail.com',NULL,'$2y$10$kyO20FujgmNhFGAtEOi7dev.3ZdETP521rJmTwSJfaRhBDXiCiAlC',NULL,'7498561','17/06/2021','1111.png',NULL,NULL,0,'Test',2,0,NULL,'','cus_JfGUYs6jXxz8SX','cus_JfGe3xarXoRJUB',0,'2021-06-02 23:52:06',1,'2021-06-14 08:17:25',NULL),
+(13,'idol1','idol1@gmail.com',NULL,'$2y$10$GUy71k1O0FmDYfv4easaheeOfjhIXg9kypQmoTlC0wLKTQpGuU1K2',NULL,'1654156',NULL,NULL,'facebook','idol1',10,'10',1,1,NULL,NULL,NULL,NULL,0,'2021-06-07 23:02:33',1,'2021-06-11 01:58:27',NULL),
+(24,'idol2','idol2@gmail.com',NULL,'$2y$10$t37WNv0Bv7KAVwlFe3zg5OckryCwkDjvt5jWAAWHZOa2Mn7/Hd8G2',NULL,'2342',NULL,NULL,'facebook','idol2',10,'fdsaf',1,0,15,NULL,NULL,NULL,0,'2021-06-13 06:34:25',1,'2021-06-13 06:34:25',NULL),
+(25,'fans1','fans1@gmail.com',NULL,'$2y$10$tYGSqbhQSjEg6i0vLhBBnOH1vWMTVZ1DzS/.j8vep9yjUkLcrUmbu',NULL,'451632',NULL,'3333.png',NULL,NULL,0,'fdsafdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:29:34',1,'2021-06-13 08:29:34',NULL),
+(26,'fans1','fans1@gmail.com',NULL,'$2y$10$5ZvW8DJDCLUmBLRcGuvgj.FKRu31cyD83txsO/Ty1qA5BfT7bhlTS',NULL,'798465',NULL,'3333.png',NULL,NULL,0,'fdsafdsa',2,0,NULL,NULL,NULL,NULL,0,'2021-06-13 08:34:30',1,'2021-06-13 08:34:30',NULL),
+(27,'sdfsa','dfsaf@gmail.com',NULL,'$2y$10$z72BiLAlQP2qFTWh4897WuGLLrfvrkUGaEGumAzh8Qma2ePlrTw9y',NULL,'7894651',NULL,NULL,'facebook','fffffffdsa',50000,'fdsafdsafdsaf',1,0,6,NULL,NULL,NULL,0,'2021-06-13 10:11:11',1,'2021-06-13 10:11:11',NULL);
 
 /*Table structure for table `video_request` */
 
