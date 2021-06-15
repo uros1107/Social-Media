@@ -406,7 +406,7 @@ class IdolController extends Controller
     {
         $info = $request->all();
 
-        Mail::to('amar.chan9655@gmail.com')->send(new SendConcierge($info));
+        Mail::to('support@millionk.com')->send(new SendConcierge($info));
         return redirect()->back()->with('success', 'Thanks for contacting us!');
     }
 }
