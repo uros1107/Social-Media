@@ -54,6 +54,9 @@ tr.shown td.details-control {
     overflow: auto;
     margin: 0;
 }
+.custom-card  {
+    background: unset!important;
+}
 
 </style>
 @endsection
