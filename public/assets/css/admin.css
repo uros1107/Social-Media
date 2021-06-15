@@ -434,12 +434,12 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #ffffff;
-    background-color: #171717;
-    border: 1px solid #171717;
+    color: #121212;
+    background-color: #fcfcfc;
+    border: 1px solid #fcfcfc;
 }
 .page-link:hover {
-    border-radius: 25px;
+    border-radius: 25px!important;
     position: relative;
     display: block;
     padding: .5rem .75rem;

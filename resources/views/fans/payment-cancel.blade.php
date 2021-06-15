@@ -121,11 +121,9 @@
                 <h5 class="text-white">Instruction</h5>
                 <br>
                 <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
-                <p class="text-white" style="font-size: 16px">Hi, John</p><br>
-                <p class="text-white" style="font-size: 16px">Please make video for Melissa, Encourage her for her exam next month.</p>
-                <p class="text-white" style="font-size: 16px">Thank you so much.</p><br>
-                <p class="text-white" style="font-size: 16px">Regards</p>
-                <p class="text-white" style="font-size: 16px">John Doe</p>
+                <p class="text-white" style="font-size: 16px">
+                    {{ $order['order_introduction'] }}
+                </p>
             </div>
         </div>
     </div>
@@ -151,7 +149,7 @@
                             <img src="{{ asset('assets/images/icons/fill-calendar.png') }}">
                         </div>
                         <div class="ml-3 my-auto">
-                            <p class="mb-0 text-white desc">John Doe has up to 7 days to complete your request</p>
+                            <p class="mb-0 text-white desc">{{ $idol_info->idol_full_name }} has up to 7 days to complete your request</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
@@ -167,7 +165,7 @@
                             <img src="{{ asset('assets/images/icons/paper-upload.png') }}">
                         </div>
                         <div class="ml-3 my-auto">
-                            <p class="mb-0 text-white desc">If John Doe is unable to complete the request, the $200 hold on your card will be removed between the next 5-7 Days</p>
+                            <p class="mb-0 text-white desc">If {{ $idol_info->idol_full_name }} is unable to complete the request, the $200 hold on your card will be removed between the next 5-7 Days</p>
                         </div>
                     </div>
                 </div>
@@ -186,22 +184,22 @@
                             <img src="{{ asset('assets/images/actor1.png') }}" class="img-circle">
                         </div>
                         <div class="ml-3 my-auto user-name">
-                            <p class="mb-0">@johndoe</p>
-                            <p class="text-main-color mb-0">John Doe</p>
+                            <p class="mb-0">{{ '@'.$idol_info->idol_user_name }}</p>
+                            <p class="text-main-color mb-0">{{ $idol_info->idol_full_name }}</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0">Rating</p>
-                            <p class="text-main-color mb-0">4.5/5</p>
+                            <p class="text-main-color mb-0">{{ $idol_info->idol_rating }}/5</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0">Email</p>
-                            <p class="text-main-color mb-0">johndoe@gmail.com</p>
+                            <p class="text-main-color mb-0">{{ $idol_info->idol_email }}</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0">Fans</p>
-                            <p class="text-main-color mb-0">9.2k/Fans</p>
+                            <p class="text-main-color mb-0">{{ $idol_info->idol_fans }}/Fans</p>
                         </div>
                     </div>
                     <div class="content-item">
@@ -220,6 +218,7 @@
                         <h4 class="text-white">Transantion Detail</h4>
                     </div>
                 </div>
+                @if($order['order_payment_method'] == 2)
                 <div class="col-12 mb-2">
                     <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
                         <h5 class="text-white">Method Payment</h5>
@@ -230,13 +229,24 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="col-12 mb-2">
+                    <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
+                        <h5 class="text-white">Method Payment</h5>
+                        <div class="d-flex">
+                            <p class="text-main-color mb-0 ml-2">Visa</p>
+                            <p class="ml-2 mb-0">***2423</p>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-12 how-content transaction">
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white">Request Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
-                            <p class="mb-0 text-white">$190</p>
+                            <p class="mb-0 text-white">${{ $order['order_price'] }}</p>
                         </div>
                     </div>
                     <div class="content-item mb-3">
@@ -244,7 +254,7 @@
                             <p class="mb-0 text-white">Platform Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
-                            <p class="mb-0 text-white">$9.5</p>
+                            <p class="mb-0 text-white">${{ $order['order_fee'] }}</p>
                         </div>
                     </div>
                     <div class="content-item">
@@ -252,7 +262,7 @@
                             <p class="mb-0 text-white" style="font-weight: 700;font-size:16px!important">Total</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
-                            <p class="mb-0 text-main-color" style="font-weight: 700;font-size:16px!important">$199.5</p>
+                            <p class="mb-0 text-main-color" style="font-weight: 700;font-size:16px!important">${{ $order['order_total_price'] }}</p>
                         </div>
                     </div>
                 </div>

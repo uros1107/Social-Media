@@ -151,7 +151,7 @@ class FansController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $customer = \Stripe\Customer::create([
-            'source' => $request->token,
+            'source' => $request->stripe_token,
             'email' => Auth::user()->email,
         ]);
 
@@ -184,20 +184,20 @@ class FansController extends Controller
             } else {
                 $card_token = Auth::user()->master_card_token;
             }
-            
-            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            // $status = Stripe\Charge::create ([
-            //         "amount" => $request->order_total_price,
-            //         "currency" => "usd",
-            //         "customer" => $card_token,
-            //         "description" => "Fans paid from Millionk.com" 
-            // ]);
 
-            // if ($status[ 'status' ] == "succeeded") { 
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $status = Stripe\Charge::create ([
+                    "amount" => $request->order_total_price * 100,
+                    "currency" => "usd",
+                    "customer" => $card_token,
+                    "description" => "Fans paid from Millionk.com" 
+            ]);
+
+            if ($status[ 'status' ] == "succeeded") { 
                 return view('fans.payment-success', ['order' => $order]);
-            // } else {
-            //     return view('fans.payment-cancel', ['order' => $order]);
-            // }
+            } else {
+                return view('fans.payment-cancel', ['order' => $order]);
+            }
 
         } else {
             return view('fans.payment-cancel', ['order' => $order]);
