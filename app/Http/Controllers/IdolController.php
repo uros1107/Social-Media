@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\SendConcierge;
 use Illuminate\Support\Facades\Mail;
 use Auth;
+use Stripe;
 use App\User;
 use App\IdolInfo;
 use App\VideoRequest;
@@ -14,6 +15,7 @@ use App\Review;
 use Validator;
 use Response;
 use Hash;
+use Exception;
 
 class IdolController extends Controller
 {
@@ -135,6 +137,7 @@ class IdolController extends Controller
             $video_request['idol_photo'], 
             $video_request['idol_banner'],
             $video_request['idol_cat_id'],
+            $video_request['idol_stripe_account_id'],
         );
         $video_request['request_idol_id'] = $idol_info->id;
         $video_request['request_video'] = $video_name;
@@ -344,9 +347,24 @@ class IdolController extends Controller
         }
         $request->video->move(public_path('assets/videos'), $video_name);
 
+        $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
         $order = Order::where('order_id', $request->order_id);
         $info = ['order_video' => $video_name, 'order_status' => 1];
         if($order->update($info)) {
+            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            try {
+                $tranfer = \Stripe\Transfer::create(array(
+                    'amount' => $order->first()->order_price * 0.75 * 100,
+                    'currency' => "usd",
+                    'destination' => $idol_info->idol_stripe_account_id
+                ));
+            } catch(Exception $e) {
+                $info = ['order_status' => 0];
+                $order->update($info);
+                
+                return response()->json(['success' => false, 'error' => $e->getMessage()]);
+            }
+
             return response()->json(['success' => true]);
         } else {
             return response()->json(['success' => false]);
@@ -400,6 +418,19 @@ class IdolController extends Controller
     public function concierge()
     {
         return view('idol.concierge');
+    }
+
+    public function setup_payment(Request $request)
+    {
+        $info = $request->all();
+        unset($info['_token']);
+
+        $idol_info =  IdolInfo::where('idol_user_id', Auth::user()->id);
+        if($idol_info->update($info)) {
+            return redirect()->back()->with('success', 'Successfully updated!');
+        } else {
+            return redirect()->back()->with('unsuccess', 'Failed payment setup!');
+        }
     }
 
     public function send_concierge(Request $request)

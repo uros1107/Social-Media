@@ -19,7 +19,9 @@
 <div class="row discover-favourite mb-4">
     <div class="col-12 col-sm-12 col-md-12 mb-4 tab-btn">
         <button class="btn custom-btn mr-3" type="button">Discover</button>
+        @if(Auth::check() && Auth::user()->role == 2)
         <button class="btn custom-btn deactive" type="button">My Favourite</button>
+        @endif
     </div>
     <div class="col-12 col-sm-12 col-md-12" style="display:table">
         <div class="discover">

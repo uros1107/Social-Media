@@ -43,6 +43,25 @@ ul {
     position: absolute;
     right: 25px;
 }
+.modal-content {
+    background: #2b2b2b!important;
+}
+.modal-body {
+    padding: 2rem 1rem;
+}
+.close {
+    margin-top: -22px;
+}
+.alert-success {
+    color: #45f10c;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+}
+.alert-unsuccess {
+    color: #FF335C;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+}
 @media (max-width: 574px) {
     .success {
         align-items: center;
@@ -76,6 +95,19 @@ ul {
     </div>
 </div>
 <div class="row payment-completed m-0 mb-4">
+    @if(Session::has('success'))
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> {{ Session::get('success') }}
+        </div>
+    </div>
+    @elseif(Session::has('unsuccess'))
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="alert alert-unsuccess" role="alert">
+            <strong>Unsuccess!</strong> {{ Session::get('unsuccess') }}
+        </div>
+    </div>
+    @endif
     <div class="col-12 col-sm-12 col-md-12">
         <div class="row m-0">
             <div class="col-12 col-sm-12 col-md-12 d-flex success" style="align-items:center">
@@ -90,8 +122,47 @@ ul {
                     </ul>
                 </div>
                 <div class="my-auto set-up">
-                    <button class="btn custom-btn set-up-btn my-auto">Set Up Payment</button>
+                    <button class="btn custom-btn set-up-btn my-auto setup-payment">Set Up Payment</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form id="setup_payment" action="{{ route('idol-setup-payment') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+                                <div class="row-fluid">
+                                    <div class="col-sm-12">
+                                        <h4 class="text-white mb-4" style="font-size: 16px">Please input your stripe account id.</h4>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="col-sm-12">
+                                        <label class="pure-material-textfield-outlined w-100 mb-4">
+                                            <input type="text" name="idol_stripe_account_id" id="stripe_account_id" placeholder="" value="" required>
+                                            <span>Account Id</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="col-sm-12 text-right">
+                                        <button type="submit" class="btn custom-btn w-100 save-card" style="border-radius: 15px!important;font-size: 16px">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -100,6 +171,8 @@ ul {
 
 @section('scripts')
 <script>
-
+$(document).on('click', '.setup-payment', function() {
+    $('#myModal').modal('toggle');
+});
 </script>
 @endsection

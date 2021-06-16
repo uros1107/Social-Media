@@ -300,8 +300,8 @@
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
             <video id="video" controls autoplay>
-                <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">
-                <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
+                <source src="" type="video/mp4">
+                <source src="" type="video/mkv">
                 Your browser does not support the video tag.
             </video>
         </div>

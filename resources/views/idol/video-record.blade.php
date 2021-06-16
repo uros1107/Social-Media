@@ -308,15 +308,22 @@ $(document).ready(function() {
                 contentType: false,
                 success: function (res) {
                     if(!res.success) {
-                        toastr.error(res.errors.video);
+                        // toastr.error(res.errors.video);
+                        if(res.error) {
+                            toastr.error('Your stripe account id is incorrect!');
+                            $('.submit-video').html("Submit Video");
+                        $('.submit-video').prop('disabled', false);
+                        }
                     } else if(res.success) {
                         location.href = "{{ route('idol-earning') }}";
                     } else {
                         toastr.error('Server error');
+                        $('.submit-video').html("Submit Video");
+                        $('.submit-video').prop('disabled', false);
                     }
                 },
                 error: function (error) {
-                    toastr.error('Upload size was exceeds!');
+                    toastr.error(error);
                     $('.submit-video').html("Submit Video");
                     $('.submit-video').prop('disabled', false);
                 }

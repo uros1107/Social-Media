@@ -60,6 +60,7 @@ Route::prefix('idol')->group(function() {
         Route::get('/video-decline', 'IdolController@video_decline')->name('idol-video-decline');
         Route::get('/earning', 'IdolController@earning')->name('idol-earning');
         Route::POST('/submit-video', 'IdolController@submit_video')->name('idol-submit-video');
+        Route::POST('/setup-payment', 'IdolController@setup_payment')->name('idol-setup-payment');
         Route::get('/earning-per', 'IdolController@earning_per')->name('idol-earning-per');
         Route::get('/payment-method', 'IdolController@payment_method')->name('idol-payment-method');
         Route::get('/payment-completed', 'IdolController@payment_completed')->name('idol-payment-completed');

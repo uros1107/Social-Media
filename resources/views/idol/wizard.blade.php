@@ -7,6 +7,15 @@
 .container-fluid {
     padding: 0px!important;
 }
+.modal-content {
+    background: #2b2b2b!important;
+}
+.modal-body {
+    padding: 2rem 1rem;
+}
+.close {
+    margin-top: -22px;
+}
 </style>
 @endsection
 
@@ -259,6 +268,7 @@
                                     </li>
                                 </ul>
                                 <button type="button" class="btn custom-btn setup_payment_btn">Set Up Payment</button>
+                                <input type="hidden" name="idol_stripe_account_id" id="stripe_account_id" value="">
                                 <input type="hidden" name="request_payment_method" id="setup_payment" value="1">
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
@@ -270,6 +280,41 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">
+                            <div class="row-fluid">
+                                <div class="col-sm-12">
+                                    <h4 class="text-white mb-4" style="font-size: 16px">Please input your stripe account id.</h4>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-sm-12">
+                                    <label class="pure-material-textfield-outlined w-100 mb-4">
+                                        <input type="text" id="m_stripe_account_id" placeholder="">
+                                        <span>Account Id</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-sm-12 text-right">
+                                    <button type="button" class="btn custom-btn w-100 save-card" data-dismiss="modal" style="border-radius: 15px!important;font-size: 16px">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -287,33 +332,37 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
-        $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
-        $('.submit-btn').prop('disabled', true);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('setup-submit') }}",
-            method: 'POST',
-            data: formData,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function (res) {
-                if(res.success) {
-                    location.href = "{{ route('idol-payment-completed') }}";
-                } else {
-                    toastr.error('Server error! Please try again later!');
+        if(!$('#stripe_account_id').val()) {
+            toastr.error('You should setup payment method');
+        } else {
+            $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
+            $('.submit-btn').prop('disabled', true);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            },
-            error: function (error) {
-                toastr.error('Upload size was exceeds!');
-                $('.submit-btn').html("Submit");
-                $('.submit-btn').prop('disabled', false);
-            }
-        });
+            });
+            $.ajax({
+                url: "{{ route('setup-submit') }}",
+                method: 'POST',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if(res.success) {
+                        location.href = "{{ route('idol-payment-completed') }}";
+                    } else {
+                        toastr.error('Server error! Please try again later!');
+                    }
+                },
+                error: function (error) {
+                    toastr.error('Upload size was exceeds!');
+                    $('.submit-btn').html("Submit");
+                    $('.submit-btn').prop('disabled', false);
+                }
+            });
+        }
     });
 
     var _URL = window.URL || window.webkitURL;
@@ -458,6 +507,14 @@ $(document).ready(function(){
         $('#payment_step').removeClass('active');
         $('#step_number').html('3');
     })
+
+    $(document).on('click', '.setup_payment_btn', function() {
+        $('#myModal').modal('toggle');
+    });
+
+    $(document).on('change', '#m_stripe_account_id', function() {
+        $('#stripe_account_id').val($(this).val());
+    });
 })
 </script>
 @endsection
