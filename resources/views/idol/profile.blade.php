@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn">Reqeuest - ${{ $request_video->request_video_price }}</button>
+                            <button type="button" class="btn custom-btn">Request - ${{ $request_video->request_video_price }}</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -187,7 +187,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100">Reqeuest - ${{ $request_video->request_video_price }}</button>
+            <button type="button" class="btn custom-btn w-100">Request - ${{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>
@@ -321,7 +321,7 @@
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9 upload-modal">
             <h4 class="text-white mb-4">Upload Introduction</h4>
-            <div class="w-100 text-center video-upload" style="padding: 40px 20px;background: #E5E5E5;border-radius:10px">
+            <div class="w-100 text-center video-upload" style="padding: 40px 20px;background: #E5E5E5;border-radius:10px;cursor:pointer">
                 <img src="{{ asset('assets/images/icons/upload-video.png') }}">
                 <h5 class="text-white upload-video-label" style="color:#2b2b2b!important">Upload Video</h5>
                 <p class="text-white" style="color:#898989!important">Format(.mp4, mkv)</p>

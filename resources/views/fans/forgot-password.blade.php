@@ -154,7 +154,7 @@
         <div class="row m-0 fans desktop">
             <div class="col-12 col-sm-8 col-md-8 image-block">
                 <div class="top">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}">
+                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
                 </div>
                 <div class="image-title">
                     <h1 class="text-main-color mb-4">Reach<br>your idols</h1>

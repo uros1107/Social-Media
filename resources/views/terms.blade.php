@@ -46,7 +46,7 @@ h3 {
     <div class="container" style="background-color: #121212;">
         <!-- desktop -->
         <div class="top">
-            <img src="{{ asset('assets/images/top-left-img.png') }}">
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
         </div>
         <div class="row" style="padding-top: 120px">
             <div class="col-12 col-sm-12 col-md-12 text-center mb-5">

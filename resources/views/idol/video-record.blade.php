@@ -66,6 +66,9 @@
 video {
     border-radius: 15px;
 }
+.upload-video {
+    cursor: pointer;
+}
 @media (max-width: 574px) {
     .video-part,
     .share {
@@ -120,7 +123,7 @@ video {
     </div>
     <div class="col-12 col-sm-12 mobile">
         <div class="d-flex mt-3 mb-3">
-            <div class="record-video ml-0">
+            <div class="record-video ml-0" style="cursor:pointer">
                 <img class="mb-2" style="margin-top: 35px" src="{{ asset('assets/images/icons/dark-camera.png') }}">
                 <h4 class="record-btn">Record Video</h4>
             </div>
@@ -138,7 +141,7 @@ video {
 <div class="row featured view-video payment-success mb-5 m-0">
     <div class="col-12 col-sm-8 col-md-8">
         <div class="video-part w-100 mb-3" id="video-part" style="position:relative">
-            <div class="record-video ml-0">
+            <div class="record-video ml-0" style="cursor:pointer">
                 <img class="mb-2" style="margin-top: 35px" src="{{ asset('assets/images/icons/dark-camera.png') }}">
                 <h4 class="record-btn" style="color:#898989;font-size: 16px">Record Video</h4>
             </div>

@@ -8,6 +8,9 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+.video-item:hover {
+    cursor: pointer;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -183,10 +186,10 @@
                         <div class="col-12">
                             <div class="divider mb-3"></div>
                             <div class="d-flex mb-2">
-                                <a class="text-main-color mr-3" style="color:#898989">New Request</a>
-                                <a class="mr-3" style="color:#898989">Pending</a>
-                                <a class="mr-3" style="color:#898989">Refunded</a>
-                                <a class="mr-3" style="color:#898989">Fulfilled</a>
+                                <a href="#" class="text-main-color mr-3" style="color:#898989">New Request</a>
+                                <a href="#" class="mr-3" style="color:#898989">Pending</a>
+                                <a href="#" class="mr-3" style="color:#898989">Refunded</a>
+                                <a href="#" class="mr-3" style="color:#898989">Fulfilled</a>
                             </div>
                             <div class="w-100" style="height: 390px;overflow:auto">
                                 @if(count($orders))
@@ -270,7 +273,7 @@
                         @php
                             $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
                         @endphp
-                        <div class="col-6 col-sm-3 col-md-3">
+                        <div class="col-6 col-sm-3 col-md-3 mb-3">
                             <div class="video-item" data-id="{{ $order->order_id }}">
                                 <video id="video_{{ $order->order_id }}" controls>
                                     <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">

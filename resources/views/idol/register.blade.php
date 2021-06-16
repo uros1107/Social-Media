@@ -213,7 +213,7 @@ select {
     <div class="container-fluid p-0" style="height: 100%!important;background-color: rgb(0 0 0 / 70%);">
         <div class="block-1">  
             <div class="top desktop">
-                <img src="{{ asset('assets/images/top-left-img.png') }}">
+                <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
             </div>
             <div class="row desktop m-0">
                 <div class="col-12 d-flex pr-0">
@@ -323,7 +323,7 @@ select {
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Phone Number(Never Shared)</label>
-                                <input type="text" name="phone" placeholder="Phone number" class="custom-input" required>
+                                <input type="text" name="phone" placeholder="Phone number" class="custom-input">
                                 <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                             </div>
                             @if ($errors->has('phone'))
@@ -404,7 +404,7 @@ select {
         <!-- mobile -->
         <div class="m-top mobile">
             <div class="top-bar">
-                <img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}">
+                <a href="{{ route('index') }}"><img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}"></a>
                 <div class="right-side-icons">
                     <i class="fa fa-search" style="color: #FF335C"></i>
                     <i class="fa fa-bell-o text-white"></i>
@@ -432,7 +432,7 @@ select {
             </div>
             <div class="row desktop" style="padding: 10px 30px;background:#171717">
                 <div class="col-sm-8 col-md-8 d-flex" style="margin: 10px 0px">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;">
+                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;"></a>
                     <div class="footer-text">
                         <p class="text-main-color mb-0">About</p>
                     </div>
@@ -476,7 +476,7 @@ select {
             <div class="mobile">
                 <div class="row" style="background:#171717">
                     <div class="col-6 d-flex" style="margin: 10px 0px">
-                        <img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;">
+                        <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;"></a>
                     </div>
                     <div class="col-6 d-flex" style="margin: 10px 0px;justify-content: flex-end;">
                         <div class="footer-social">

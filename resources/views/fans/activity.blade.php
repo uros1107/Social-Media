@@ -26,6 +26,7 @@
             <div class="w-100">
                 <p class="mb-0 pl-2 text-white" style="background:#2b2b2b">Today</p>
             </div>
+            @if(count($orders))
             @foreach($orders as $order)
             @php
                 $idol_info = DB::table('idol_info')->where('idol_user_id', $order->order_idol_id)->first();
@@ -40,6 +41,11 @@
                 </div>
             </div>
             @endforeach
+            @else 
+            <div class="w-100 d-flex text-center">
+                <p class="text-white mb-0 p-5 w-100">No activiy yet.</p>
+            </div>
+            @endif
         </div>
     </div>
 </div>

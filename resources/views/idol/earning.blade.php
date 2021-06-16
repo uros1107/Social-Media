@@ -273,6 +273,14 @@ $(document).ready(function() {
             });
         }
     });
+    $(document).on('click', '.custom-btn', function() {
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.custom-btn').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
+    });
 });
 </script>
 @endsection

@@ -129,7 +129,7 @@
         margin: 30px 0px 30px;
     }
     .google-btn, .facebook-btn {
-        font-size: 12px;
+        font-size: 14px;
     }
     .idol-registration .title {
         font-size: 36px;
@@ -140,7 +140,9 @@
 }
 @media (min-width: 1250px) and (max-width: 1500px) {
     .google-btn, .facebook-btn {
-        font-size: 12px;
+        font-size: 14px;
+        padding-left: 2px;
+        padding-right: 2px;
     }
 }
 
@@ -153,7 +155,7 @@
         <div class="row m-0 fans desktop">
             <div class="col-12 col-sm-8 col-md-8 image-block">
                 <div class="top">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}">
+                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
                 </div>
                 <div class="image-title">
                     <h1 class="text-main-color mb-4">Reach<br>your idols</h1>
@@ -200,7 +202,8 @@
                                     <label class="input-label">Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                     <input type="password" name="password" placeholder="Password" class="custom-input" required>
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -220,8 +223,8 @@
                             <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                 <!-- <div class="divider-text">OR</div> -->
                             </div>
-                            <div class="col-6">
-                                <button class="btn custom-btn w-100 google-btn d-flex" type="button" id="next">
+                            <div class="col-6 pl-0">
+                                <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                     <div class="m-auto">
                                         <img src="{{ asset('assets/images/icons/google.png') }}">
                                     </div>
@@ -230,8 +233,8 @@
                                     </div>
                                 </button>
                             </div>
-                            <div class="col-6">
-                                <button class="btn custom-btn w-100 facebook-btn d-flex" type="button" id="next">
+                            <div class="col-6 pr-0">
+                                <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
                                     <div class="m-auto">
                                         <img src="{{ asset('assets/images/icons/face.png') }}">
                                     </div>
@@ -284,14 +287,11 @@
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                         <input type="password" name="password" placeholder="Password" class="custom-input" required>
-                                        <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
                                 </div>
                                 <div class="col-6 p-0">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                        <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
-                                    </div> -->
                                     <label class="custom-control black-checkbox">
                                         <input type="checkbox" name="remember_token" class="fill-control-input d-none">
                                         <span class="fill-control-indicator"></span>
@@ -308,7 +308,7 @@
                                     <!-- <div class="divider-text">OR</div> -->
                                 </div>
                                 <div class="col-6 p-0 google">
-                                    <button class="btn custom-btn w-100 google-btn d-flex" type="button" id="next">
+                                    <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                         <div class="m-auto">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
@@ -318,7 +318,7 @@
                                     </button>
                                 </div> 
                                 <div class="col-6 p-0 facebook">
-                                    <button class="btn custom-btn w-100 facebook-btn d-flex" type="button" id="next">
+                                    <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
                                         <div class="m-auto">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
@@ -347,6 +347,16 @@
     $(document).ready(function() {
         $('#datepicker').datepicker({
             format: 'dd/mm/yyyy'
+        });
+        $('.eye-hide').on('click', function() {
+            $('input[name=password]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show').removeClass('d-none');
+        });
+        $('.eye-show').on('click', function() {
+            $('input[name=password]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide').removeClass('d-none');
         });
     })
 </script>

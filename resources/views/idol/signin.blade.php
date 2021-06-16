@@ -174,7 +174,8 @@
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                         <input type="password" name="password" placeholder="Password" class="custom-input" required>
-                                        <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -228,7 +229,7 @@
             </div>
             <div class="col-12 col-sm-8 col-md-8 image-block">
                 <div class="top">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}">
+                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
                 </div>
                 <div class="image-title">
                     <h1 class="text-main-color mb-4">Reach<br>your idols</h1>
@@ -259,7 +260,8 @@
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                         <input type="password" name="password" placeholder="Password" class="custom-input" required>
-                                        <img class="input-icon" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
                                 </div>
                                 <div class="col-6 p-0">
@@ -318,6 +320,17 @@
 
 @section('scripts')
 <script>
-
+    $(document).ready(function() {
+        $('.eye-hide').on('click', function() {
+            $('input[name=password]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show').removeClass('d-none');
+        });
+        $('.eye-show').on('click', function() {
+            $('input[name=password]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide').removeClass('d-none');
+        });
+    })
 </script>
 @endsection

@@ -77,15 +77,17 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Password</label>
-                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Phone Number(Never Shared)</label>
                                     <input type="text" name="phone" placeholder="Phone number" class="custom-input">
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}" required>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 mt-4 mb-4">
@@ -144,7 +146,7 @@
             </div>
             <div class="col-12 col-sm-8 col-md-8 image-block">
                 <div class="top">
-                    <img src="{{ asset('assets/images/top-left-img.png') }}">
+                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
                 </div>
                 <div class="image-title">
                     <h1 class="text-main-color mb-4 text-uppercase">Lets meet<br>your fans</h1>
@@ -181,6 +183,17 @@
             $('.step-1-text').removeClass('text-grey');
             $('.step-1-text').addClass('text-white');
         })
+
+        $('.eye-hide').on('click', function() {
+            $('input[name=password]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show').removeClass('d-none');
+        });
+        $('.eye-show').on('click', function() {
+            $('input[name=password]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide').removeClass('d-none');
+        });
     })
 </script>
 @endsection

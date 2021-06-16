@@ -171,6 +171,9 @@ p {
     margin-top: 100px;
     background: #171717;
 }
+#sub-menu {
+    cursor: pointer;
+}
 .sub-menu {
     position: absolute;
     right: 0px;
@@ -406,6 +409,9 @@ p {
     position: relative;
     height: 100%;
 }
+.featured .image-item:hover {
+    cursor: pointer;
+}
 .featured .image-item > img {
     border-radius: 20px;
     height: 100%;
@@ -458,7 +464,7 @@ p {
 }
 .featured .image-part .row {
     overflow: auto;
-    flex-wrap: inherit;
+    /* flex-wrap: inherit; */
 }
 .idol-search .image-item h4 {
     font-size: 20px;
@@ -639,6 +645,10 @@ p {
     position: relative;
     background: #121212;
 }
+.featured .order-history .history-row:hover {
+    cursor: pointer;
+    background: #1d1d1d;
+}
 .featured .order-history .history-row .title h4 {
     font-size:16px;
 }
@@ -688,6 +698,7 @@ p {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    cursor: pointer;
 }
 .follow-idol .idol-profile {
     padding: 0px 50px;
@@ -750,8 +761,15 @@ p {
     position: absolute;
     right: 65px;
 }
+.follow-idol .idol-profile .review-part .how:hover,
+.follow-idol .how-work-view .close-btn:hover {
+    cursor: pointer;
+}
 .featured .featured-video {
     padding: 0px 65px;
+}
+.featured .featured-video .video-item {
+    cursor: pointer;
 }
 .featured .featured-video .video-item .video-title h5 {
     font-size: 14px;
@@ -1089,6 +1107,9 @@ input[type=radio]:checked ~ label{
     text-align: center;
     justify-content: center;
 }
+.featured-video .user-block .first-block:hover {
+    cursor: pointer;
+}
 .featured-video .user-block .first-block img {
     margin-top: 22px;
 }
@@ -1106,6 +1127,9 @@ input[type=radio]:checked ~ label{
     border-radius: 10px;
     margin: 10px 0px;
     padding-top: 5px;
+}
+.featured-video .occasion-item {
+    cursor: pointer;
 }
 .featured-video .occasion .col-md-6 {
     padding: 0px 5px;
@@ -1818,6 +1842,11 @@ input[type=radio]:checked ~ label{
     caret-color: rgba(137,137,137, 0.6);
     transition: border 0.2s, box-shadow 0.2s;
 }
+.pure-material-textfield-outlined > input[type="email"]:disabled {
+    /* color: #484848;
+    border-color: #898989!important; */
+    cursor: not-allowed;
+}
 
 /* Span */
 .pure-material-textfield-outlined > input + span,
@@ -2183,6 +2212,7 @@ input:checked + .slider {
 .black-checkbox .fill-control-input:checked~.fill-control-indicator{
     background-color: #000;
     border-color: #000;
+    background-size: 100%;
   }
 .fill-control-indicator{
     border-radius: 3px;
@@ -2370,6 +2400,9 @@ input:checked + .slider {
     padding: 15px;
     background: #171717;
     border-radius: 15px;
+}
+.edit-profile .banner-upload:hover {
+    cursor: pointer;
 }
 .edit-profile .banner-title {
     font-size: 12px;

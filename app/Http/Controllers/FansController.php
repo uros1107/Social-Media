@@ -78,7 +78,7 @@ class FansController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email',
-            'phone' => 'required|string',
+            // 'phone' => 'string',
             'info' => 'required|string'
         ]);
 
@@ -106,7 +106,7 @@ class FansController extends Controller
 
     public function activity(Request $request)
     {
-        $orders =  Order::where('order_status', 1)->get();
+        $orders =  Order::where('order_fans_id', Auth::user()->id)->where('order_status', 1)->get();
         return view('fans.activity', compact('orders'));
     }
 

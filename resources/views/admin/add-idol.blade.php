@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" name="idol_phone" placeholder="" value="" required>
+                            <input type="text" name="idol_phone" placeholder="" value="">
                             <span>Phone Number</span>
                         </label>
                         @if ($errors->has('idol_phone'))
@@ -158,7 +158,7 @@
                     </div>
                     <input type="file" class="d-none" name="idol_photo" id="img-upload">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
-                        <button type="submit" class="btn custom-btn save-change-btn">Save Change</button>
+                        <button type="submit" class="btn custom-btn save-change-btn">Save Changes</button>
                     </div>
                 </div>
             </form>
@@ -275,7 +275,7 @@ $(document).ready(function() {
                 success: function (res) {
                     if(res.success) {
                         toastr.success('Successfully added!');
-                        $('.save-change-btn').html("Save Change");
+                        $('.save-change-btn').html("Save Changes");
                         $('.save-change-btn').prop('disabled', false);
                         setTimeout(() => {
                             location.href = "{{ route('admin-idol') }}";

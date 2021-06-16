@@ -34,6 +34,9 @@
 .featured .featured-video .review-content {
     color: unset;
 }
+.video-item:hover {
+    cursor: pointer;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
@@ -73,7 +76,7 @@
                         </div>
                         <div class="action-part d-flex">
                             <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
-                            <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
+                            <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -177,7 +180,7 @@
         </div>
         <div class="col-12 mt-3">
             <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
-            <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Reqeuest - ${{ $idol_request->request_video_price }}</button>
+            <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
         </div>
     </div>
 </div>
@@ -199,7 +202,6 @@
             <div class="col-6 col-sm-3 col-md-3">
                 <div class="video-item" data-id="{{ $order->order_id }}">
                     <video id="video_{{ $order->order_id }}">
-                        <!-- <source src="{{ asset('assets/videos/').$order->order_video }}" type="video/mp4"> -->
                         <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mp4">
                         <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
                         Your browser does not support the video tag.
@@ -217,36 +219,6 @@
                 <p class="text-white m-auto" style="font-size: 16px">No video yet.</p>
             </div>
             @endif
-            <!-- <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-3 col-md-3">
-                <div class="video-item" data-src="https://www.youtube.com/embed/IP7uGKgJL8U">
-                    <img src="{{ asset('assets/images/follow-actor.png') }}">
-                    <div class="video-title d-flex mt-1">
-                        <h5 class="mb-0">Congratulation Melissa</h5>
-                        <h5 class="mb-0">02:20</h5>
-                    </div>
-                    <p class="mb-0">From <span class="text-main-color">John Doe</span></p>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

@@ -117,11 +117,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 <div class="row mb-5 order-list m-0">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="tab-btn-group d-flex mb-4">
-            <button type="button" class="btn custom-btn mr-2">All</button>
-            <button type="button" class="btn custom-btn mr-2 deactive">Active</button>
-            <button type="button" class="btn custom-btn mr-2 deactive">Fulfilled</button>
-            <button type="button" class="btn custom-btn mr-2 deactive">Expired</button>
-            <button type="button" class="btn custom-btn deactive">Expired(24 hours)</button>
+            <button type="button" class="btn custom-btn status-btn mr-2">All</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Active</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Fulfilled</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Expired</button>
+            <button type="button" class="btn custom-btn status-btn deactive">Expired(24 hours)</button>
         </div>
         <div class="datatable">
             <div class="table-responsive">
@@ -218,6 +218,14 @@ $(document).ready(function() {
     })
     $(document).on('click', '.view-btn', function() {
         location.href = "{{ route('idol-v-request-detail') }}" + '?order_id=' + $(this).data('id');
+    });
+    $(document).on('click', '.status-btn', function() {
+        if($(this).hasClass('deactive')) {
+            $(this).removeClass('deactive');
+            $('.status-btn').not(this).each(function(){
+                $(this).addClass('deactive');
+            });
+        }
     });
 });
 </script>

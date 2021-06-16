@@ -158,7 +158,7 @@
             </div>
             <div class="col-12 col-md-6 col-sm-6">
                 <label class="pure-material-textfield-outlined w-100">
-                    <input type="email" placeholder="" id="idol_email" value="{{ $idol_info->idol_email }}">
+                    <input type="email" placeholder="" id="idol_email" value="{{ $idol_info->idol_email }}" disabled>
                     <span>Email</span>
                 </label>
                 @if ($errors->has('idol_email'))

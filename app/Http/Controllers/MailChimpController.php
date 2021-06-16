@@ -29,4 +29,8 @@ class MailChimpController extends Controller
         return view('terms');
     }
     
+    public function contest_terms(Request $request)
+    {
+        return view('contest');
+    }
 }

@@ -188,7 +188,7 @@ class IdolController extends Controller
             'idol_user_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_email' => 'required|string|email',
-            'idol_phone' => 'required|string'
+            'idol_phone' => 'string'
         ]);
         
         $idol = IdolInfo::where('idol_user_id', Auth::user()->id);
@@ -361,7 +361,7 @@ class IdolController extends Controller
             } catch(Exception $e) {
                 $info = ['order_status' => 0];
                 $order->update($info);
-                
+
                 return response()->json(['success' => false, 'error' => $e->getMessage()]);
             }
 
