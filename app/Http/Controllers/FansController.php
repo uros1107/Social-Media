@@ -64,6 +64,12 @@ class FansController extends Controller
         return view('fans.home', compact('idols'));
     }
 
+    public function myfandoms()
+    {
+        $fans = User::where('id', Auth::user()->id)->first();
+        return view('fans.myfandoms', compact('fans'));
+    }
+
     public function profile()
     {
         $fans = User::where('id', Auth::user()->id)->first();
@@ -77,7 +83,7 @@ class FansController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|email',
+            // 'email' => 'required|string|email',
             // 'phone' => 'string',
             'info' => 'required|string'
         ]);

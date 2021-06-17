@@ -78,7 +78,7 @@
             <div class="divider mt-2 mb-4"></div>
         </div>
         <div class="who-is w-100 mb-3">
-            <h4 class="text-white w-100">Method Payment</h4>
+            <h4 class="text-white w-100">Payment Method</h4>
             <div class="d-flex payment-method">
                 <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
                     <div class="first-block">

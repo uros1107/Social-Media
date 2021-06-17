@@ -206,7 +206,7 @@
                     <div class="content-item mb-4">
                         <div class="user-img">
                             @if($fans->photo)
-                            <img class="img-circle" src="{{ asset('assets/images/'.$fans->photo) }}">
+                            <img class="img-circle" src="{{ asset('assets/images/img/'.$fans->photo) }}">
                             @else
                             <img class="img-circle" src="{{ asset('assets/images/no-image.jpg') }}">
                             @endif

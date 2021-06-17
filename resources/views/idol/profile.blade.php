@@ -262,7 +262,7 @@
                         @if(!$fans->photo)
                         <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle">
                         @else
-                        <img src="{{ asset('assets/images/'.$fans->photo) }}" class="img-circle">
+                        <img src="{{ asset('assets/images/img/'.$fans->photo) }}" class="img-circle">
                         @endif
                     </div>
                     <div class="review-content">

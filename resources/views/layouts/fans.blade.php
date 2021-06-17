@@ -51,7 +51,7 @@
                 @if(!Auth::user()->photo)
                 <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px">
                 @else
-                <img src="{{ asset('assets/images/'.Auth::user()->photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px">
+                <img src="{{ asset('assets/images/img/'.Auth::user()->photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;object-fit: cover;">
                 @endif
                 <span class="text-white" style="font-size:16px">{{ Auth::user()->name }}</span>
                 <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">

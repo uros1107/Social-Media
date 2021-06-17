@@ -85,6 +85,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
     Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
     Route::get('/activity', 'FansController@activity')->name('fans-activity');
+    Route::get('/myfandoms', 'FansController@myfandoms')->name('myfandom');
     Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');

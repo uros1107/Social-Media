@@ -57,6 +57,7 @@ class IdolController extends Controller
         $ordered_videos = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->orderBy('created_at', 'desc')->take(4)->get();
         $total_request = Order::where('order_idol_id', Auth::user()->id)->get()->count();
         $pending_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->get()->count();
+        $refund_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 3)->where('order_status', 4)->get()->count();
         $completed_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->get()->count();
         $paidout_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 2)->get()->count();
 
@@ -74,6 +75,7 @@ class IdolController extends Controller
                 'orders' => $orders, 
                 'ordered_videos' => $ordered_videos, 
                 'total_request' => $total_request, 
+                'refund_request' => $refund_request, 
                 'pending_request' => $pending_request, 
                 'completed_request' => $completed_request, 
                 'paidout_request' => $paidout_request,
@@ -299,6 +301,7 @@ class IdolController extends Controller
             $total_booking += $order->order_price;
         }
 
+        $pending_booking_count = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->get()->count();
         $pending_booking = 0;
         foreach (Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->get() as $order) {
             $pending_booking += $order->order_price;
@@ -317,6 +320,7 @@ class IdolController extends Controller
         return view('idol.earning',[
             'orders' => $orders,
             'total_booking' => $total_booking,
+            'pending_booking_count' => $pending_booking_count,
             'pending_booking' => $pending_booking,
             'completed_booking' => $completed_booking,
             'paidout_booking' => $paidout_booking,

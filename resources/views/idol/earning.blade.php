@@ -131,19 +131,19 @@ div.dataTables_wrapper div.dataTables_filter input {
             <div class="d-flex">
                 <div class="total-item text-center">
                     <h4 class="text-white">Pending Bookings</h4>
-                    <p class="text-main-color">${{ $pending_booking }}</p>
+                    <p class="text-main-color">{{ $pending_booking_count }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Total Bookings</h4>
-                    <p class="text-main-color">${{ $total_booking }}</p>
+                    <p class="text-main-color">${{ number_format($total_booking) }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Net Earnings</h4>
-                    <p class="text-main-color">${{ $completed_booking }}</p>
+                    <p class="text-main-color">${{ number_format($completed_booking) }}</p>
                 </div>
                 <div class="total-item text-center">
                     <h4 class="text-white">Paid Out</h4>
-                    <p class="text-main-color">${{ $paidout_booking }}</p>
+                    <p class="text-main-color">${{ number_format($paidout_booking) }}</p>
                 </div>
             </div>
         </div>

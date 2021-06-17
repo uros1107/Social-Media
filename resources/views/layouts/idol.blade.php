@@ -45,9 +45,9 @@
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
                 @endphp
-                <img src="{{ asset('assets/images/'.$idol_info->idol_photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px">
+                <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;object-fit: cover;">
                 @else
-                <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px">
+                <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;">
                 @endif
                 <span class="text-white" style="font-size:16px">{{ Auth::user()->name }}</span>
                 <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">

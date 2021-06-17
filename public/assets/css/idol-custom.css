@@ -240,7 +240,7 @@ p {
     right: 30px;
 }
 .deactive {
-    background: #171717;
+    background: #171717!important;
 }
 .show-sidebar {
     margin-left: 0px!important;
@@ -1963,9 +1963,9 @@ input[type=radio]:checked ~ label{
 .pure-material-textfield-outlined > input:disabled + span,
 .pure-material-textfield-outlined > textarea:disabled,
 .pure-material-textfield-outlined > textarea:disabled + span {
-    border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38) !important;
+    border-color: #4a4a4a !important;
     border-top-color: transparent !important;
-    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    color: #4a4a4a;
     pointer-events: none;
 }
 
@@ -1973,7 +1973,7 @@ input[type=radio]:checked ~ label{
 .pure-material-textfield-outlined > input:disabled + span::after,
 .pure-material-textfield-outlined > textarea:disabled + span::before,
 .pure-material-textfield-outlined > textarea:disabled + span::after {
-    border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38) !important;
+    border-top-color: #4a4a4a !important;
 }
 
 .pure-material-textfield-outlined > input:disabled:placeholder-shown,

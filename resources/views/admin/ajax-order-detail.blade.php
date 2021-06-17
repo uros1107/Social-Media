@@ -167,7 +167,7 @@
                 @if(!$fans->photo)
                 <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle mr-3">
                 @else
-                <img src="{{ asset('assets/images/'.$fans->photo) }}" class="img-circle mr-3">
+                <img src="{{ asset('assets/images/img/'.$fans->photo) }}" class="img-circle mr-3">
                 @endif
                 <div class="username my-auto">
                     <p class="mb-0">{{ '@'.$fans->name }}</p>
@@ -196,7 +196,7 @@
         <div class="idol-profile">
             <h4 class="title">Idols</h4>
             <div class="d-flex mb-3">
-                <img src="{{ asset('assets/images/'.$idol_info->idol_photo) }}" class="img-circle mr-3">
+                <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle mr-3">
                 <div class="username my-auto mr-3">
                     <p class="mb-0">{{ '@'.$idol_info->idol_user_name }}</p>
                     <h4 class="mb-0 text-main-color">{{ $idol_info->idol_full_name }}</h4>

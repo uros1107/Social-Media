@@ -66,7 +66,7 @@
             @if(!Auth::user()->photo)
             <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle user-img">
             @else
-            <img src="{{ asset('assets/images/'.Auth::user()->photo) }}" class="img-circle user-img">
+            <img src="{{ asset('assets/images/img/'.Auth::user()->photo) }}" class="img-circle user-img">
             @endif
         </div>
         <div class="profile-info">
@@ -90,7 +90,7 @@
                 @if(!Auth::user()->photo)
                 <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle user-img">
                 @else
-                <img src="{{ asset('assets/images/'.Auth::user()->photo) }}" class="img-circle user-img">
+                <img src="{{ asset('assets/images/img/'.Auth::user()->photo) }}" class="img-circle user-img">
                 @endif
             </div>
             <div class="profile-action m-auto m-profile-action" style="margin-right: 0px!important">
@@ -196,7 +196,7 @@
                     @endphp
                     <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->idol_user_id }}">
                         <div class="image-item">
-                            <img src="{{ asset('assets/images/'.$idol->idol_photo) }}" class="w-100">    
+                            <img src="{{ asset('assets/images/img/'.$idol->idol_photo) }}" class="w-100">    
                             <div class="gradient"></div>
                             <div class="image-profile">
                                 <h5 class="text-white">{{ $idol->idol_full_name }}</h5>
@@ -242,12 +242,8 @@
                 img = new Image();
                 var objectUrl = _URL.createObjectURL(file);
                 img.onload = function () {
-                    if(this.width != 500 || this.height != 500) {
-                        toastr.error("Image size should be 500px * 500px!");
-                    } else {
-                        $('.user-img').attr("src", objectUrl);
-                        _URL.revokeObjectURL(objectUrl);
-                    }
+                    $('.user-img').attr("src", objectUrl);
+                    _URL.revokeObjectURL(objectUrl);
                 };
                 img.src = objectUrl;
             }

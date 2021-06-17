@@ -81,7 +81,7 @@
                     <h4 class="text-white mb-3">Requested from</h4>
                     <div class="d-flex">
                         @if($fans->photo)
-                        <img class="img-circle mr-2" src="{{ asset('assets/images/'.$fans->photo) }}">
+                        <img class="img-circle mr-2" src="{{ asset('assets/images/img/'.$fans->photo) }}">
                         @else
                         <img class="img-circle mr-2" src="{{ asset('assets/images/no-image.jpg') }}">
                         @endif

@@ -11,6 +11,16 @@
 .video-item:hover {
     cursor: pointer;
 }
+.request-badge {
+    color: white;
+    background: #ff335c;
+    border-radius: 7px;
+    padding: 2px 4px;
+    /* margin-left: 8px; */
+    font-size: 12px;
+    text-align: center;
+    justify-content: center;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -105,11 +115,11 @@
                                         <div class="d-flex mb-2">
                                             <div class="col-sm-6 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
                                                 <h5 class="text-white">Total Booking</h5>
-                                                <h5 class="text-main-color">${{ $total_booking }}</h5>
+                                                <h5 class="text-main-color">${{ number_format($total_booking) }}</h5>
                                             </div>
                                             <div class="col-sm-6 text-center m-auto p-0">
                                                 <h5 class="text-white">Pending Booking</h5>
-                                                <h5 class="text-main-color">${{ $pending_booking }}</h5>
+                                                <h5 class="text-main-color">${{ number_format($pending_booking) }}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -186,10 +196,30 @@
                         <div class="col-12">
                             <div class="divider mb-3"></div>
                             <div class="d-flex mb-2">
-                                <a href="#" class="text-main-color mr-3" style="color:#898989">New Request</a>
-                                <a href="#" class="mr-3" style="color:#898989">Pending</a>
-                                <a href="#" class="mr-3" style="color:#898989">Refunded</a>
-                                <a href="#" class="mr-3" style="color:#898989">Fulfilled</a>
+                                <a href="#" class="text-main-color mr-3" style="color:#898989">
+                                    New Request
+                                    @if($pending_request)
+                                    <span class="request-badge">{{ $pending_request }}</span>
+                                    @endif
+                                </a>
+                                <a href="#" class="mr-3" style="color:#898989">
+                                    Pending
+                                    @if($pending_request)
+                                    <span class="request-badge">{{ $pending_request }}</span>
+                                    @endif
+                                </a>
+                                <a href="#" class="mr-3" style="color:#898989">
+                                    Refunded
+                                    @if($refund_request)
+                                    <span class="request-badge">{{ $refund_request }}</span>
+                                    @endif
+                                </a>
+                                <a href="#" class="mr-3" style="color:#898989">
+                                    Fulfilled
+                                    @if($total_request)
+                                    <span class="request-badge">{{ $total_request }}</span>
+                                    @endif
+                                </a>
                             </div>
                             <div class="w-100" style="height: 390px;overflow:auto">
                                 @if(count($orders))
@@ -201,7 +231,7 @@
                                     <div class="row">
                                         <div class="col-5 col-md-5 d-flex my-auto">
                                             @if($fans->photo)
-                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/'.$fans->photo) }}">
+                                            <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/img/'.$fans->photo) }}">
                                             @else
                                             <img class="img-circle mr-2 my-auto profile-img" src="{{ asset('assets/images/no-image.jpg') }}">
                                             @endif

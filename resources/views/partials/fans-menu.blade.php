@@ -5,26 +5,26 @@
         </div>
         <ul class="nav" style="width: 280px!important">
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("fans-index") }}" class="nav-link">
+                <a href="{{ route('fans-index') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/home.png') }}" class="mr-3" style="width:20px">
                     Home
                 </a>
             </li>
             @if(Auth::check() && Auth::user()->role == 2)
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("fans-activity") }}" class="nav-link">
+                <a href="{{ route('fans-activity') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/notification.png') }}" class="mr-3" style="width:20px">
                     My Activity
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#1" class="nav-link">
+                <a href="{{ route('myfandom') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/heart.png') }}" class="mr-3" style="width:20px">
                     My Fandoms
                 </a>
             </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="{{ route("order-list") }}" class="nav-link">
+                <a href="{{ route('order-list') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/swap.png') }}" class="mr-3" style="width:20px">
                     My Orders
                 </a>

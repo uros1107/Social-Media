@@ -143,7 +143,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                             <td>
                                 <div class="d-flex new-request">
                                     @if($fans->photo)
-                                    <img class="img-circle mr-2" src="{{ asset('assets/images/'.$fans->photo) }}" style="width: 40px;height: 40px;object-fit:cover">
+                                    <img class="img-circle mr-2" src="{{ asset('assets/images/img/'.$fans->photo) }}" style="width: 40px;height: 40px;object-fit:cover">
                                     @else
                                     <img class="img-circle mr-2" src="{{ asset('assets/images/no-image.jpg') }}" style="width: 40px;height: 40px;object-fit:cover">
                                     @endif

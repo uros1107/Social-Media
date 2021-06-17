@@ -386,7 +386,7 @@
                     @if(!$fans->photo)
                     <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
                     @else
-                    <img class="img-circle mr-3" src="{{ asset('assets/images/'.$fans->photo) }}">
+                    <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
                     @endif
                     <div class="review-content">
                         <div class="d-flex" style="position:relative">
@@ -482,14 +482,14 @@ $(document).ready(function() {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 500 || this.height != 500) {
-                    toastr.error("Image size should be 500px * 500px!");
-                    photo_img = false;
-                } else {
+                // if(this.width != 500 || this.height != 500) {
+                //     toastr.error("Image size should be 500px * 500px!");
+                //     photo_img = false;
+                // } else {
                     $('#profile-img').attr("src", objectUrl);
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }

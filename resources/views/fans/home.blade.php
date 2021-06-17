@@ -7,6 +7,9 @@
 .footer .container-fluid {
     padding: 0px!important;
 }
+.featured .image-part .row {
+    flex-wrap: inherit;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -18,12 +21,12 @@
 @section('content')
 <div class="row discover-favourite mb-4">
     <div class="col-12 col-sm-12 col-md-12 mb-4 tab-btn">
-        <button class="btn custom-btn mr-3" type="button">Discover</button>
+        <button class="btn custom-btn mr-3 discover-btn" type="button">Discover</button>
         @if(Auth::check() && Auth::user()->role == 2)
-        <button class="btn custom-btn deactive" type="button">My Favourite</button>
+        <button class="btn custom-btn deactive favourite-btn" type="button">My Favourite</button>
         @endif
     </div>
-    <div class="col-12 col-sm-12 col-md-12" style="display:table">
+    <div class="col-12 col-sm-12 col-md-12 hide" style="display:table">
         <div class="discover">
             <img src="{{ asset('assets/images/discover.png') }}" class="w-100">
         </div>
@@ -34,7 +37,41 @@
         </div>
     </div>
 </div>
-<div class="row featured mb-4">
+@if(Auth::check())
+<div class="row featured mb-4 show">
+    <div class="col-12 col-sm-12 col-md-12">
+        <div class="title-part">
+            <div class="divider mb-4 desktop"></div>
+        </div>
+        <div class="image-part">
+            <div class="row m-0">
+                @if(Auth::user()->fandom_lists)
+                @foreach(json_decode(Auth::user()->fandom_lists) as $idol)
+                    @php
+                        $idol = DB::table('idol_info')->where('idol_user_id', $idol)->first();
+                    @endphp
+                    <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->idol_user_id }}">
+                        <div class="image-item">
+                            <img src="{{ asset('assets/images/img/'.$idol->idol_photo) }}" class="w-100">    
+                            <div class="gradient"></div>
+                            <div class="image-profile">
+                                <h5 class="text-white">{{ $idol->idol_full_name }}</h5>
+                                <p class="text-white mb-0">Dancer, TikTok</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                @else
+                <div class="col-12 col-md-12 col-sm-12 d-flex" style="height: 200px">
+                    <p class="text-white mb-0 text-center m-auto">No idols yet</p>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+<div class="row featured mb-4 hide">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">Featured</h2>
@@ -68,7 +105,7 @@
         </div>
     </div>
 </div>
-<div class="row featured mb-4">
+<div class="row featured mb-4 hide">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">Search your idols by categories</h2>
@@ -104,7 +141,7 @@
         </div>
     </div>
 </div>
-<div class="row featured mb-4">
+<div class="row featured mb-4 hide">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">Trending</h2>
@@ -138,7 +175,7 @@
         </div>
     </div>
 </div>
-<div class="row featured mb-4">
+<div class="row featured mb-4 hide">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">New Idols</h2>
@@ -178,17 +215,33 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('.show').hide();
+
         $('.custom-col').on('click', function() {
             var id = $(this).data('id');
             location.href = "{{ route('follow-idol')}}" + '?id=' + id;
         })
-        $(document).on('click', '.custom-btn', function() {
-            if($(this).hasClass('deactive')) {
-                $(this).removeClass('deactive');
-                $('.custom-btn').not(this).each(function(){
-                    $(this).addClass('deactive');
-                });
-            }
+        // $(document).on('click', '.custom-btn', function() {
+        //     if($(this).hasClass('deactive')) {
+        //         $(this).removeClass('deactive');
+        //         $('.custom-btn').not(this).each(function(){
+        //             $(this).addClass('deactive');
+        //         });
+        //     }
+        // });
+
+        $('.favourite-btn').on('click', function() {
+            $(this).removeClass('deactive');
+            $('.discover-btn').addClass('deactive');
+            $('.hide').hide();
+            $('.show').show();
+        });
+
+        $('.discover-btn').on('click', function() {
+            $(this).removeClass('deactive');
+            $('.favourite-btn').addClass('deactive');
+            $('.hide').show();
+            $('.show').hide();
         });
     })
 </script>
