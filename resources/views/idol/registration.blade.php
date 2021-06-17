@@ -94,6 +94,10 @@
                                 <button class="btn custom-btn w-100" type="button" id="next">Next</button>
                             </div>
                             <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: you are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
+                            <div class="col-12 text-center signup-part mt-4 mb-3">
+                                <a class="text-white">Have an account?</a>
+                                <a class="text-main-color" href="{{ route('idol-signin') }}">Sign In</a>
+                            </div>
                         </div>
 
                         <div class="row m-0 step-2 d-none">
@@ -144,13 +148,15 @@
                     </form>
                 </div>
             </div>
-            <div class="col-12 col-sm-8 col-md-8 image-block">
-                <div class="top">
-                    <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
-                </div>
-                <div class="image-title">
-                    <h1 class="text-main-color mb-4 text-uppercase">Lets meet<br>your fans</h1>
-                    <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
+            <div class="col-12 col-sm-8 col-md-8 desktop p-0">
+                <div class="image-block w-100">
+                    <div class="top">
+                        <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
+                    </div>
+                    <div class="image-title">
+                        <h1 class="text-main-color mb-4 text-uppercase">Lets meet<br>your fans</h1>
+                        <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
+                    </div>
                 </div>
             </div>
         </div>

@@ -200,7 +200,7 @@
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-6 text-right pr-0">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white">Forgot password?</a>
                                 </div>
                                 <div class="col-12 mt-4 mb-5">

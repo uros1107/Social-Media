@@ -45,6 +45,7 @@ Route::prefix('idol')->group(function() {
     Route::get('/registration', 'IdolController@registration')->name('idol-registration');
     Route::get('/register', 'IdolController@idol_register_show')->name('idol-register');
     Route::POST('/register', 'Auth\RegisterController@idol_register')->name('idol-register');
+    Route::get('/forgot-password', 'IdolController@forgot_password')->name('idol-forgot-password');
 
     Route::group([
         'middleware' => 'idols'

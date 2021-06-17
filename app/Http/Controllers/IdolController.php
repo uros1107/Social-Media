@@ -32,6 +32,11 @@ class IdolController extends Controller
         return view('idol.registration');
     }
 
+    public function forgot_password()
+    {
+        return view('idol.forgot-password');
+    }
+
     public function idol_signin_show()
     {
         if(!Auth::check()) {

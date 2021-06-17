@@ -189,6 +189,9 @@
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
                                 </div>
+                                <div class="col-6 text-right">
+                                    <a href="{{ route('idol-forgot-password') }}" class="text-white">Forgot password?</a>
+                                </div>
                                 <!-- <div class="col-6 text-right">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white">Forgot password?</a>
                                 </div> -->
@@ -274,6 +277,9 @@
                                         <span class="fill-control-indicator"></span>
                                         <span class="fill-control-description text-white">Remember me</span>
                                     </label>
+                                </div>
+                                <div class="col-6 text-right pr-0" style="font-size: 12px">
+                                    <a href="{{ route('idol-forgot-password') }}" class="text-white">Forgot password?</a>
                                 </div>
                                 <!-- <div class="col-6 text-right p-0">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
