@@ -50,60 +50,144 @@ h3 {
         </div>
         <div class="row" style="padding-top: 120px">
             <div class="col-12 col-sm-12 col-md-12 text-center mb-5">
-                <h3 style="text-decoration:underline">Holiday 2020 Surprise Cameo Live Sweepstakes</h3>
-                <h3>Official Rules</h3>
+                <h3>MILLIONK CONTEST OFFICIAL RULES</h3>
             </div>
             <div class="col-12 col-sm-12 col-md-12">
-                <p>No purchase necessary to enter or win. A purchase will not increase your chances of winning. Void where prohibited by law.</p>
-                <p>Not sponsored, endorsed, administered by, or associated with, Zoom Video Communications, Inc. ("Zoom") or Google, LLC ("Google"). Baron App, Inc. dba Cameo ("Sponsor") is not affiliated with Zoom or Google in any way.</p>
-                <p>By entering, you agree to abide by and be bound by Sponsor’s Site Terms of Service <a href="https://www.cameo.com/terms">www.cameo.com/terms</a> ("Site Terms"), Sponsor’s Privacy Policy <a href="https://www.cameo.com/privacy">www.cameo.com/privacy</a> ("Privacy Policy"), and these Official Rules, which create a contract. Please read them carefully.</p>
 
-                <p><strong>1. Eligibility</strong>: The Holiday 2020 Surprise Cameo Live Sweepstakes (the “Sweepstakes”) is open only to legal residents of the 50 United States (or the District of Columbia) who are 18 years of age or older (19 years or older if a resident of AL or NE). Each entrant shall be referred to herein as a “Participant”. Employees, officers and directors of Sponsor, its affiliates, subsidiaries, promotion and advertising agencies, anyone involved in the design, execution or fulfillment of this Sweepstakes, and members of the immediate families (defined as including spouse, biological, adoptive and step-parents, grandparents, siblings, children and grandchildren, and each of their respective spouses, regardless of where they reside) or households (whether related or not) of any of the above are not eligible to enter. Non-eligibility or non-compliance with any of these Official Rules will result in disqualification. By participating in the Sweepstakes, Participant fully and unconditionally agrees to and accepts these Official Rules and the decisions of Sponsor, which are final and binding in all matters related to the Sweepstakes.</p>
-                <p><strong>2. Promotion Period</strong>: The Sweepstakes begins at 09:01 a.m. Central Time ("CT") on December 14, 2020 and ends at 08:59 a.m. CT on December 15, 2020 (the "Promotion Period"). </p>
-                <p><strong>3. How to Enter:</strong><br>
-                    <ul class="text-white">
-                        <li>
-                            To enter, Participant must input the following information into the talent-specific Google form: full name, contact information, and write a brief response to the prompts “in 200 words or less, tell us about the frontline worker you are nominating for a chance to win a surprise Zoom call on 12/17/2020 with one of their favorite celebrities?” and “in 200 words or less, tell us about the top three participating Talent you chose and why they would be great as a surprise Cameo for the frontline worker you nominated?”
-                        </li>
-                        <li>
-                            The entry form may be found at the following link: <a href="https://docs.google.com/forms/d/e/1FAIpQLSe53L6Afm2i5KdPzZA6GUh2Qk75EzI9Rab7nWvo_X7L2kCyWA/viewform">https://docs.google.com/forms/d/e/1FAIpQLSe53L6Afm2i5KdPzZA6GUh2Qk75EzI9Rab7nWvo_X7L2kCyWA/viewform</a>
-                        </li>
-                        <li>
-                            <strong>Note</strong>: Cameo is not responsible for errors in submissions or other issues that affect its ability to identify an eligible entry
-                        </li>
-                        <li>
-                            <strong>Limit one (1) entry per person. </strong>Use of any automated system to participate is prohibited and will result in disqualification. Any attempt by any Participant to obtain more than the permissible number of entries per day by using multiple email addresses, identities, or any other methods will void that Participant’s entries and that Participant will be disqualified.
-                        </li>
-                        <li>
-                            All entries must comply with the Entry Guidelines set forth herein, or they will be disqualified.
-                        </li>
-                    </ul>
+                <p><strong>1. Eligibility</strong>: This Campaign is open only to those who follow our Instagram page at
+                    <a href="https://www.instagram.com/millionk.official/">https://www.instagram.com/millionk.official/</a> & who like the contest post & tag 3 friends
+                    and who are 18 years of age or older as of the date of entry. The Campaign is open
+                    worldwide and is void where prohibited by law. Employees of Lumiworks Pte. Ltd., its
+                    affiliates, subsidiaries, advertising and promotion agencies, and suppliers, (collectively
+                    the “Employees”), and immediate family members and/or those living in the same
+                    household of Employees are not eligible to participate in the Campaign. The Campaign
+                    is subject to all applicable federal, state, and local laws and regulations. Void where
+                    prohibited.
                 </p>
-                <p><strong>4. Entry Guidelines</strong>: This is a Sweepstakes for frontline workers, and thus the Sweepstakes objective is to surprise the frontline workers. Any entries that do not conform to this objective, in the sole discretion of Sponsor, will be disqualified. The prompt response in your entry must be your original creation, and must not, in the opinion of Sponsor: be indecent, obscene, hateful, tortious, defamatory, libelous; include any material that violates or infringes another’s rights; disparage Sponsor, any celebrity, or any other party; or contain material that is unlawful in any way. Your entry must not contain brand names or trademarks other than those owned by Sponsor. Sponsor reserves the right to disqualify any entry it deems in violation of the Site Terms, of these Official Rules, or offensive in any way and therefore not suitable for inclusion in the Sweepstakes, all in its sole discretion.</p>
-                <p><strong>5. Drawings</strong>: One potential winner for each participating Talent will be selected in a random drawing from among all eligible entries for that Talent on December 15, 2020. The drawing will be conducted by the Sponsor. The potential winner will be notified via email provided at entry. <strong>Once the potential winner has been notified via email, they will have five (5) hours to respond to the Sponsor. If the potential winner fails to respond within five (5) hours, Sponsor reserves the right to disqualify the winner and select an alternate potential winner in a random drawing from among all remaining eligible entries received. </strong>If the potential winner is unable to accommodate the time slot available to the Talent, as listed in the entry form, the potential winner will be disqualified, and an alternate potential winner will be selected in a random drawing from among all remaining eligible entries received. If necessary, this process will be repeated up to five times, after which the prize will not be awarded if it remains unclaimed.</p>
-                <p><strong>6. Winner Notification/Conditions</strong>: Winning is contingent upon fulfilling all requirements of, and continued compliance with, these Official Rules. The potential winners will be required to sign and return to Sponsor, <strong>within five (5) hours</strong> of the date notice or attempted notice is first sent, an Affidavit of Eligibility, a Liability Release and, where permitted by law, a Publicity Release (collectively, “Release”), and to fulfill any such other requirements as determined by Sponsor, as a condition of claiming the Prize (defined below). In the event that the potential winners cannot be contacted, fail to complete the Release in the required time period, forfeits the Prize for any reason, cannot accept or declines to accept the Prize, or is disqualified for any reason, Sponsor will select alternate potential winners in a random drawing from among all remaining eligible entries received. Prize will be fulfilled on December 17, 2020. The time the Prize is executed will be coordinated between Talent, Sponsor, and the winners. Execution of the Prize will be dependent upon verification of the winners’ eligibility, return of the executed Release, compliance with Sponsor’s Site Terms, and compliance with these Official Rules.</p>
-                <p><strong>7. Prize</strong>: Each winner will receive one (1) (approximately) ten (10) minute live Zoom video chat with a specific Talent valued at approximately US$400, subject to standard Site Terms of Service, available at <a href="https://www.cameo.com/terms">www.cameo.com/terms</a> (the “Prize”). Approximate Retail Value (“ARV”) of all Prizes: US$2,800. Winners are responsible for all federal, state and local income taxes on the Prize, and for any associated costs that are not included in the Prize description above. Odds of winning depend upon number of eligible entries received. Winner may include up to six (6) additional personal acquaintances in the Prize, subject to Sponsor’s sole discretion. Each personal acquaintance hereby agrees to be subject to these Official Rules and the Site Terms.</p>
-                <p><strong>8. Publicity</strong>: Except where prohibited, participation in the Sweepstakes constitutes Participant’s consent for Sponsor to use entrant’s name, likeness, Sweepstakes entry, Prize information (if applicable), any comments, testimonials or other feedback related to Prize (if applicable) or to the Sweepstakes experience, generally, whether written or oral, for promotional, advertising or commercial purposes in any media universally, without limitation and without further notice, approval or consideration.</p>
-                <p><strong>9. Rights Granted</strong>: Submitting an entry constitutes Participant’s consent to give Sponsor a royalty-free, irrevocable, perpetual, non-exclusive license to use, reproduce, modify, publish, create derivative works from, and display such entry (and any other participation or Submission) in whole or in part, on a universal basis, and to incorporate it into other works, in any form, media or technology now known or later developed, for any purposes, including but not limited to commercial, promotional or marketing purposes. If requested, Participant must sign any documentation that may be required for Sponsor or its designees to make use of the non-exclusive rights Participant is granting herein. By entering, each Participant acknowledges and agrees that he/she will not receive compensation for his/her entry.</p>
-                <p class="pl-4" style="font-style: italic">If selected as a winner, Participant acknowledges and agrees that delivery of the Prize is contingent upon return of the executed Release, defined above, which, in addition to the rights granted under the Site Terms, gives Sponsor the exclusive (including exclusive as to you), royalty-free, fully paid, unlimited, universal, sublicensable (through multiple tiers of sublicenses), irrevocable license in any and all manner and media to use, publish, reproduce, record, modify, edit, and display your name, image, voice, appearance, performance, likeness, and entry (and any other participation or Submission) in connection with the Prize and Sweepstakes, including advertising, marketing, promoting, republishing, rebroadcasting, and re-airing the Prize. By entering, each Participant acknowledges and agrees that he/she will not receive compensation for his/her Participation as listed above. If winner decides to include personal acquaintances in the Prize, the personal acquaintances hereby agree and acknowledge to be subject to these Official Rules and the Site Terms.</p>
-                <p><strong>10. General Conditions</strong>: If an entry was made in a manner which, in Sponsor’s sole discretion, Sponsor believes to be unfair or violative of these Official Rules, the Participant responsible for such acts will be disqualified from the Sweepstakes. The Prize is neither transferable nor redeemable for cash; no prize substitutions allowed except by Sponsor, who may substitute a prize (or portion thereof) of equal or greater value if the advertised prize (or portion thereof) becomes unavailable. No more than the intended number of Prizes will be awarded. If, due to a production, technical, human or other error, the number of Prize notifications exceeds the intended number of Prizes as stated in these Official Rules, then the intended number of prizes will be awarded in a random drawing from among all legitimate recipients of such notifications. If a potential winner is unable to accommodate the time selection stated (available in the entry form) for the talent, another winner will be selected.</p>
-                <p><strong>11. Release and Limitations of Liability</strong>: Except where prohibited, by participating in the Sweepstakes, Participants agree to release and hold harmless Baron App, Inc. dba Cameo, Zoom, Google, and their respective subsidiaries, affiliates, promotional partners, prize partners, agents and agencies, and the respective officers, directors and employees of each of the foregoing (collectively, the “Released Parties”) from and against any claim or cause of action arising out of participation in the Sweepstakes or receipt or use of the Prize (if applicable), including, but not limited to: (a) unauthorized human intervention in the Sweepstakes; (b) technical errors; (c) errors in the administration of the Sweepstakes or the transmission, receipt or the processing of entries; (d) any defect in a Prize or inability to participate in the Sweepstakes, (e) injury or damage to persons or property which may be caused, directly or indirectly, in whole or in part, from Participant’s participation in the Sweepstakes or the receipt, acceptance, delivery, possession, use or misuse of the Prize (if applicable); (f) any typographical or other error in any printing or advertising relating to the Sweepstakes, in the administration or execution of the Sweepstakes, or in the announcement of the Prize winners; or (g) cheating or fraud by any Participant. All incomplete or non-conforming entries will be disqualified.</p>
-                <p class="pl-4" style="font-style: italic">If for any reason the Sweepstakes cannot be executed as planned, including but not limited to any printing, administrative, human or other error of any kind, transmission failure, infection by computer virus, bugs, tampering, unauthorized intervention, fraud, technical failures or errors, social media mandate, or any other causes beyond the control of Sponsor that corrupt or affect the security, administration, fairness, integrity or proper conduct of the Sweepstakes, or if the Sweepstakes is compromised or becomes corrupted in any way, electronically or otherwise, Sponsor reserves the right, in its sole discretion, to cancel, terminate, modify or suspend the Sweepstakes without notice. If the Sweepstakes is terminated prior to the stated end date of the Promotion Period, then the Prize[s] will be awarded in a random drawing from among all eligible, non-suspect entries received through both entry methods combined prior to the time/date of termination.</p>
-                <p class="pl-4" style="font-style: italic">Sponsor reserves the right, in its sole discretion, to disqualify any individual who tampers with or attempts to tamper with the entry process or the operation of the Sweepstakes generally, or who acts in violation of these Official Rules. Sponsor’s failure to enforce any term of these Official Rules shall not constitute a waiver of that term.</p>
-                <p class="pl-4" style="font-style: italic">ANY ATTEMPT TO DELIBERATELY UNDERMINE THE LEGITIMATE OPERATION OF THE SWEEPSTAKES MAY BE A VIOLATION OF CRIMINAL AND/OR CIVIL LAWS AND SHOULD SUCH AN ATTEMPT BE MADE, THE SPONSOR RESERVES THE RIGHT TO DISQUALIFY AND SEEK DAMAGES OR OTHER REMEDIES FROM ANY PERSON RESPONSIBLE FOR SUCH ATTEMPT TO THE FULLEST EXTENT PERMITTED BY LAW.</p>
-                <p class="pl-4" style="font-style: italic">In the event of a dispute regarding the identity of an individual who submitted an entry, the entry will be deemed submitted by the authorized account holder of the email address used to enter, provided s/he meets the eligibility requirements for the Sweepstakes.</p>
-                <p><strong>12. DISPUTES/VENUE/GOVERNING LAW</strong>: By entering, Participants agree that: (a) any and all disputes, claims and causes of action arising out of, or connected with, this Sweepstakes or the Prize shall be resolved individually, without resort to any form of class action, and exclusively by the appropriate federal, state or local court located in Cook County, Illinois; (b) any and all claims, judgments and awards shall be limited to actual out-of-pocket costs incurred, including but not limited to costs associated with entering this Sweepstakes, but in no event attorneys’ fees; and (c) to the extent allowed by applicable law, under no circumstances will Participant be permitted to obtain awards for, and Participant hereby waives all rights to claim, punitive, incidental and/or consequential damages and/or any other damages, other than out-of-pocket expenses, and any and all rights to have damages multiplied or otherwise increased. SOME JURISDICTIONS DO NOT ALLOW THE LIMITATIONS OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO PORTIONS OF THE ABOVE MAY NOT APPLY TO YOU.</p>
-                <p class="pl-4" style="font-style: italic">All issues and questions concerning the construction, validity, interpretation and enforceability of these Official Rules, Participants’ rights and obligations, or the rights and obligations of the Sponsor in connection with the Sweepstakes, shall be governed by, and construed in accordance with, the laws of the State of Illinois, without giving effect to any choice of law or conflict of law rules (whether of Illinois or any other jurisdiction), that would cause the application of the laws of any jurisdiction other than Illinois. In the event there is a discrepancy or inconsistency between disclosures or other statements contained in any Sweepstakes-related materials or notifications, or made by Sponsor or its representatives, and the terms and conditions of these Official Rules, these Official Rules shall prevail, govern and control.</p>
-                <p><strong>13. SEVERABILITY</strong>: The invalidity or unenforceability of any provision of these Official Rules shall not affect the validity or enforceability of any other provision. In the event that any provision is determined to be invalid or otherwise unenforceable or illegal, these Official Rules shall otherwise remain in effect and shall be construed in accordance with their terms as if the invalid or illegal provision were not contained herein.</p>
-                <p><strong>14. Holiday 2020 Surprise Cameo Live Sweepstakes Winners List</strong>: To receive the names of the winners, please contact <a href="mailto:hello@gmail.com">hello@cameo.com</a> no later than January 15, 2020.</p>
-                <p class="mb-0">Sponsor: Baron App, Inc. d/b/a CAMEO,</p>
-                <p class="mb-0">C/o Steven Galanis, CEO</p>
-                <p class="mb-0">440 N Wabash Ave</p>
-                <p class="mb-0">Unit 5008</p>
-                <p>Chicago, IL 60611</p>
-                <p>The winners’ names will be available after winners are verified.</p>
-                <p>Any questions, comments or complaints regarding this Sweepstakes must be directed to the Sponsor only, and NOT to Zoom or Google.</p>
-                <p>All trademarks used herein are the property of their respective owners.</p>
+                <p><strong>2. Agreement to Rules</strong>: By participating, the Contestant (“You”) agree to be fully
+                    unconditionally bound by these Rules, and You represent and warrant that You meet the
+                    eligibility requirements. In addition, You agree to accept the decisions of Lumiworks Pte.
+                    Ltd. as final and binding as it relates to the content of this Campaign.
+                </p>
+                <p><strong>3. Campaign Period:</strong>
+                    Entries will be accepted online starting on 15th of June 2021, 2359
+                    and ending 23rd of June 2021 2359. All online entries must be received by the end
+                    date.
+                </p>
+                <p><strong>4. How to Enter</strong>: The Campaign must be entered by following both steps on our
+                    Instagram Contest post. The entry must fulfill all Campaign requirements, as specified,
+                    to be eligible to win a prize. Entries that are incomplete or do not adhere to the rules or
+                    specifications may be disqualified at the sole discretion of Lumiworks Pte. Ltd.Optional
+                    verbiage to include: You may enter only once. You must provide the information
+                    requested. You may not enter more times than indicated by using multiple email
+                    addresses, identities, or devices in an attempt to circumvent the rules. If You use
+                    fraudulent methods or otherwise attempt to circumvent the rules, your submission may
+                    be removed from eligibility at the sole discretion of Lumiworks Pte. Ltd.
+                </p>
+                <p><strong>5. Prizes</strong>: 5 Winner(s) of the Campaign (the “Winners”) will receive a platform credit
+                    worth US$100. Actual/appraised value may differ at time of prize award. No cash or
+                    other prize substitution shall be permitted except at Lumiwork Pte. Ltd.discretion. The
+                    prize is nontransferable. Any and all prize-related expenses, including without limitation
+                    any and all federal, state, and/or local taxes, shall be the sole responsibility of Winner.
+                    No substitution of prize or transfer/assignment of prize to others or request for the cash
+                    equivalent by Winner is permitted. Acceptance of prize constitutes permission for
+                    Lumiworks Pte. Ltd. to use Winner’s name, likeness, and entry for purposes of
+                    advertising and trade without further compensation unless prohibited by law.
+                </p>
+                <p><strong>6. Odds</strong>: The odds of winning depend on the number of eligible entries received.</p>
+                <p><strong>7. Winner Selection and Notification</strong>: Winner will be selected by a random drawing
+                    under the supervision of Lumiworks Pte. Ltd.. Winner will be notified by Instagram DM
+                    within five (5) days following selection of Winner. Lumiworks Pte. Ltd. shall have no
+                    liability for Winner’s failure to receive notices due to spam, junk e-mail, or other security
+                    settings or for Winner’s provision of incorrect or otherwise non-functioning contact
+                    information. If Winner cannot be contacted, is ineligible, fails to claim the prize within 5
+                    days from the time award notification was sent, or fails to timely return a completed and
+                    executed declaration and release as required, the prize may be forfeited and an
+                    alternate Winner selected. Receipt by Winner of the prize offered in this Campaign is
+                    conditioned upon compliance with any and all federal, state, and local laws and
+                    regulations. ANY VIOLATION OF THESE OFFICIAL RULES BY WINNER (AT
+                    LUMIWORKS PTE. LTD.‘S SOLE DISCRETION) WILL RESULT IN WINNER’S
+                    DISQUALIFICATION AS WINNER OF THE CAMPAIGN, AND ALL PRIVILEGES AS
+                    WINNER WILL BE IMMEDIATELY TERMINATED.
+                </p>
+                <p><strong>8. Rights Granted by You</strong>: By entering this content (e.g., photo, video, text, etc.), You
+                    understand and agree that Lumiworks Pte. Ltd. anyone acting on behalf of Lumiworks
+                    Pte. Ltd., and Lumiworks Pte. Ltd.’s licensees, successors, and assigns, shall have the
+                    right, where permitted by law, to print, publish, broadcast, distribute, and use in any
+                    media now known or hereafter developed, in perpetuity and throughout the World,
+                    without limitation, your entry, name, portrait, picture, voice, likeness, image, statements
+                    about the Campaign, and biographical information for news, publicity, information, trade,
+                    advertising, public relations, and promotional purposes. without any further
+                    compensation, notice, review, or consent. Optional verbiage for Contests: By entering
+                    this content, You represent and warrant that your entry is an original work of authorship,
+                    and does not violate any third party’s proprietary or intellectual property rights. If your
+                    entry infringes upon the intellectual property right of another, You will be disqualified at
+                    the sole discretion of Lumiworks Pte. Ltd.. If the content of your entry is claimed to
+                    constitute infringement of any proprietary or intellectual proprietary rights of any third
+                    party, You shall, at your sole expense, defend or settle against such claims. You shall
+                    indemnify, defend, and hold harmless Lumiworks Pte. Ltd. from and against any suit,
+                    proceeding, claims, liability, loss, damage, costs or expense, which Lumiworks Pte. Ltd.
+                    may incur, suffer, or be required to pay arising out of such infringement or suspected
+                    infringement of any third party’s right.
+                </p>
+                <p><strong>9. Terms & Conditions</strong>: Lumiworks Pte. Ltd.reserves the right, in its sole discretion, to
+                    cancel, terminate, modify or suspend the Campaign should virus, bug, non-authorized
+                    human intervention, fraud, or other cause beyond Lumiworks Pte. Ltd.’s control corrupt
+                    or affect the administration, security, fairness, or proper conduct of the Campaign. In
+                    such case, Lumiworks Pte. Ltd. may select the Winner from all eligible entries received
+                    prior to and/or after (if appropriate) the action taken by Lumiworks Pte. Ltd. Lumiworks
+                    Pte. Ltd. reserves the right, in its sole discretion, to disqualify any individual who
+                    tampers or attempts to tamper with the entry process or the operation of the Campaign
+                    or website or violates these Terms & Conditions. Lumiworks Pte. Ltd.has the right, in its
+                    sole discretion, to maintain the integrity of the Campaign, to void votes for any reason,
+                    including, but not limited to: multiple entries from the same user from different IP
+                    addresses; multiple entries from the same computer in excess of that allowed by
+                    Campaign rules; or the use of bots, macros, scripts, or other technical means for
+                    entering. Any attempt by an entrant to deliberately damage any website or undermine
+                    the legitimate operation of the Campaign may be a violation of criminal and civil laws.
+                    Should such an attempt be made, Lumiworks Pte. Ltd.reserves the right to seek
+                    damages to the fullest extent permitted by law.
+                </p>
+                <p><strong>10. Limitation of Liability</strong>: By entering, You agree to release and hold harmless
+                    Lumiworks Pte. Ltd. and its subsidiaries, affiliates, advertising and promotion agencies,
+                    partners, representatives, agents, successors, assigns, employees, officers, and
+                    directors from any liability, illness, injury, death, loss, litigation, claim, or damage that
+                    may occur, directly or indirectly, whether caused by negligence or not, from: (i) such
+                    entrant’s participation in the Campaign and/or his/her acceptance, possession, use, or
+                    misuse of any prize or any portion thereof; (ii) technical failures of any kind, including
+                    but not limited to the malfunction of any computer, cable, network, hardware, or
+                    software, or other mechanical equipment; (iii) the unavailability or inaccessibility of any
+                    transmissions, telephone, or Internet service; (iv) unauthorized human intervention in
+                    any part of the entry process or the Promotion; (v) electronic or human error in the
+                    administration of the Promotion or the processing of entries.
+                </p>
+                <p><strong>11. Disputes</strong>: THIS Campaign IS GOVERNED BY THE LAWS OF SINGAPORE
+                    WITHOUT RESPECT TO CONFLICT OF LAW DOCTRINES. As a condition of
+                    participating in this Campaign, participant agrees that any and all disputes that cannot
+                    be resolved between the parties, and causes of action arising out of or connected with
+                    this Campaign, shall be resolved individually, without resort to any form of class action,
+                    exclusively before a court located in SINGAPORE having jurisdiction. Further, in any
+                    such dispute, under no circumstances shall participant be permitted to obtain awards
+                    for, and hereby waives all rights to, punitive, incidental, or consequential damages,
+                    including reasonable attorney’s fees, other than participant’s actual out-of-pocket
+                    expenses (i.e. costs associated with entering this Campaign). Participant further waives
+                    all rights to have damages multiplied or increased.
+                </p>
+                <p><strong>12. Privacy Policy</strong>:  Information submitted with an entry is subject to the Privacy Policy
+                    stated on the Lumiworks Pte. Ltd.website. To read the Privacy Policy,
+                    <a href="https://millionk.com/privacy">https://millionk.com/privacy</a> click here. Note: a privacy policy is optional, but may be
+                    required when running a promotion on the web when using third party platforms or when
+                    using features from social channels. Including this information makes it clear to your
+                    users how you are going to use their information.
+                </p>
+                <p><strong>13. Sponsor</strong>: The Sponsor of the Campaign is Lumiworks Pte. Ltd.</p>
+                <p>14. Not sponsored, endorsed, administered by, or associated with,Facebook, Instagram or Google,
+                    LLC (“Google”). Lumiworks Pte. Ltd. (“Sponsor”) is not affiliated with Instagram,Facebook or Google
+                    in any way.
+                </p>
+                <p>16. NO PURCHASE IS NECESSARY TO ENTER OR WIN. A PURCHASE DOES NOT
+                    INCREASE THE CHANCES OF WINNING.
+                </p>
             </div>
         </div>
     </div>
