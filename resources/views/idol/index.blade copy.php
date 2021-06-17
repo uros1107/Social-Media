@@ -74,7 +74,7 @@
                                 <h3 class="text-main-color mb-0">0</h3>
                             </div>
                             <div class="my-auto">
-                                <p class="text-main-color mb-0 font-weight-bold">PaidOut</p>
+                                <p class="text-main-color mb-0 font-weight-bold">Paid Out</p>
                                 <p class="text-main-color mb-0">Request</p>
                             </div>
                         </div>

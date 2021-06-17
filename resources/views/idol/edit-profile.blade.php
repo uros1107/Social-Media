@@ -235,7 +235,7 @@
                                 <label class="custom-control black-checkbox m-auto" style="margin-left: 0px!important">
                                     <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" {{ $video_request->request_lang == 1? 'checked' : '' }}>
                                     <span class="fill-control-indicator"></span>
-                                    <span class="fill-control-description text-white">Engilsh</span>
+                                    <span class="fill-control-description text-white">English</span>
                                 </label>
                                 <label class="custom-control black-checkbox mr-4 m-auto">
                                     <input type="radio" name="request_lang" value="2" class="fill-control-input d-none" {{ $video_request->request_lang == 2? 'checked' : '' }}>
@@ -254,7 +254,7 @@
                                 <label class="custom-control black-checkbox m-auto" style="margin-left: 0px!important">
                                     <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" {{ $video_request->request_lang == 1? 'checked' : '' }}>
                                     <span class="fill-control-indicator"></span>
-                                    <span class="fill-control-description text-white">Engilsh</span>
+                                    <span class="fill-control-description text-white">English</span>
                                 </label>
                                 <label class="custom-control black-checkbox mr-4 m-auto">
                                     <input type="radio" name="request_lang" value="2" class="fill-control-input d-none" {{ $video_request->request_lang == 2? 'checked' : '' }}>

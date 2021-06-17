@@ -253,7 +253,7 @@
                             <ul>
                                 <li>
                                     <input type="radio" id="f-option" name="order_lang" value="1" checked>
-                                    <label for="f-option">Engilsh</label>
+                                    <label for="f-option">English</label>
                                     <div class="check"></div>
                                 </li>
                                 <li>

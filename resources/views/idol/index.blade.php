@@ -59,7 +59,7 @@
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="grey-part w-100 mb-3">
                     <p class="mb-0 text-white">Hi, {{ Auth::user()->name }},</p>
-                    <h4 class="mb-0 text-white">What's new on your dashboard Idol?</h4>
+                    <h4 class="mb-0 text-white">What's new on your dashboard?</h4>
                 </div>
                 <div class="total-card">
                     <div class="w-40">
@@ -95,7 +95,7 @@
                                 <h3 class="text-main-color mb-0">{{ $paidout_request }}</h3>
                             </div>
                             <div class="my-auto">
-                                <p class="text-main-color mb-0 font-weight-bold">PaidOut</p>
+                                <p class="text-main-color mb-0 font-weight-bold">Paid Out</p>
                                 <p class="text-main-color mb-0">Request</p>
                             </div>
                         </div>

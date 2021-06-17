@@ -76,23 +76,11 @@ tr.shown td.details-control {
     </div>
 </div>
 <div class="row m-auto">
-    <div class="col-12 col-sm-12 col-md-12 d-flex mt-2 mb-3" style="position:relative">
-        <div class="add-new-idol">
+    <div class="col-12 col-sm-12 col-md-12 d-flex mt-2 mb-3" style="justify-content: flex-end;">
+        <!-- <div class="add-new-idol">
             <button class="btn custom-btn add-fan"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Fans</button>
-        </div>
-        <div class="d-flex custom-select-group">
-            <select class="custom-select1 mr-2 fans_user_name desktop" name="fans_user_name">
-                <option>Fans Username</option>
-                @foreach(DB::table('users')->where('role', 2)->get() as $fans)
-                <option value="{{ $fans->name }}">{{ $fans->name }}</option>
-                @endforeach
-            </select>
-            <select class="custom-select1 mr-2 fans_full_name desktop" name="fans_full_name">
-                <option>Fans Name</option>
-                @foreach(DB::table('users')->get()->where('role', 2) as $fans)
-                <option value="{{ $fans->name }}">{{ $fans->name }}</option>
-                @endforeach
-            </select>
+        </div> -->
+        <div class="d-flex custom-select-group" style="position: unset!important;">
             <div class="date-part desktop">
                 <input class="mr-2 registered-date" type="text" name="registered_date" value="Registered Date" id="datepicker">
                 <img src="{{ asset('assets/images/icons/calendar.png') }}">
@@ -100,9 +88,8 @@ tr.shown td.details-control {
             <select class="custom-select1 mr-2 status desktop" name="status">
                 <option value="">Status</option>
                 <option value="1">Active</option>
-                <option value="0">Deactive</option>
+                <option value="0">Inactive</option>
             </select>
-            <button class="btn custom-btn px-5">Filter</button>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 custom-card">
@@ -264,10 +251,10 @@ $(document).ready(function() {
         }
     });
 
-    $(".fans_user_name, .fans_full_name, .registered-date, .status").on('change', function() {
+    $(".registered-date, .status").on('change', function() {
         let filterlink = '';
 
-        $(".fans_user_name, .fans_full_name, .registered-date, .status").each(function() {
+        $(".registered-date, .status").each(function() {
             if (filterlink == '') {
                 if($(this).val() == "Registered Date") {
                     $(this).val('');

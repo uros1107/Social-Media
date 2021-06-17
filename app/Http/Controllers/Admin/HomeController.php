@@ -450,18 +450,10 @@ class HomeController
 
     public function idol_filter(Request $request)
     {
-        $idol_user_name = $request->idol_user_name;
-        $idol_full_name = $request->idol_full_name;
         $date = $request->registered_date;
         $status = $request->status;
 
-        $idols = IdolInfo::when($idol_user_name, function($query, $idol_user_name){
-                                $query->where('idol_user_name', $idol_user_name);
-                            })
-                            ->when($idol_full_name, function($query, $idol_full_name){
-                                $query->where('idol_full_name', $idol_full_name);
-                            })
-                            ->when($date, function($query, $date){
+        $idols = IdolInfo::when($date, function($query, $date){
                                 $query->where('created_at', 'like', $date.'%');
                             })
                             ->when($status, function($query, $status){
@@ -551,25 +543,17 @@ class HomeController
 
     public function fans_filter(Request $request)
     {
-        $fans_user_name = $request->fans_user_name;
-        $fans_full_name = $request->fans_full_name;
         $date = $request->registered_date;
         $status = $request->status;
 
-        $fans = User::when($fans_user_name, function($query, $fans_user_name){
-                                $query->where('name', $fans_user_name);
-                            })
-                            ->when($fans_full_name, function($query, $fans_full_name){
-                                $query->where('name', $fans_full_name);
-                            })
-                            ->when($date, function($query, $date){
-                                $query->where('created_at', 'like', $date.'%');
-                            })
-                            ->when($status, function($query, $status){
-                                $query->where('status', $status);
-                            })
-                            ->orderBy('created_at', 'desc')
-                            ->get();
+        $fans = User::when($date, function($query, $date){
+                            $query->where('created_at', 'like', $date.'%');
+                        })
+                        ->when($status, function($query, $status){
+                            $query->where('status', $status);
+                        })
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
         $data = array();
         foreach ($fans as $key => $fan) {

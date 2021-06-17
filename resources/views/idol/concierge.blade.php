@@ -130,7 +130,7 @@
                 <div class="sub-content w-100">
                     <h4 class="text-white">Payment Options</h4>
                     <div class="d-flex">
-                        <p class="mb-0 w-50 text-main-color">Paypal</p>
+                        <!-- <p class="mb-0 w-50 text-main-color">Paypal</p> -->
                         <p class="mb-0 w-50 text-main-color">Stripe</p>
                     </div>
                 </div>
@@ -157,17 +157,15 @@
     <div class="col-12 col-sm-4 col-md-4">
         <form action="{{ route('idol-send-concierge') }}" method="POST">
             {{ csrf_field() }}
-            <h4 class="text-white service mb-3">Send Message To Our Customer Services</h4>
+            <h4 class="text-white service mb-3">Send A Message To Our Customer Services</h4>
             @php
                 $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
             @endphp
             <div class="w-100 mb-3">
-                <div class="select">
-                    <select class="select-text" name="issue_type">
-                        <option value="1">Payment Issue</option>
-                    </select>
-                    <label class="select-label">Issue Type</label>
-                </div>
+                <label class="pure-material-textfield-outlined w-100">
+                    <input placeholder="" name="issue_type" value="" required>
+                    <span>Issue Type</span>
+                </label>
             </div>
             <div class="w-100">
                 <label class="pure-material-textfield-outlined w-100">

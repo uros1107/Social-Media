@@ -2079,7 +2079,7 @@ input[type=radio]:checked ~ label{
     border: 5px solid #ff335c;
 }
 .wizard .wizard-block .left-part .step-item .completed {
-    border: 5px solid #17e22c;
+    border: 5px solid #fff;
 }
 .wizard .title p {
     position: absolute;

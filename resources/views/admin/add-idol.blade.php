@@ -15,6 +15,11 @@
     background: #e5e5e5;
     border-radius: 15px;
 }
+#profile-img {
+    width: 190px!important;
+    height: 190px!important;
+    object-fit: cover;
+}
 </style>
 @endsection
 
@@ -189,14 +194,14 @@ $(document).ready(function() {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 500 || this.height != 500) {
-                    toastr.error("Image size should be 500px * 500px!");
-                    photo_img = false;
-                } else {
+                // if(this.width != 500 || this.height != 500) {
+                //     toastr.error("Image size should be 500px * 500px!");
+                //     photo_img = false;
+                // } else {
                     $('#profile-img').attr("src", objectUrl);
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }

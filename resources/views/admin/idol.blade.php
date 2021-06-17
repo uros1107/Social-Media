@@ -74,18 +74,6 @@ tr.shown td.details-control {
             <button class="btn custom-btn add-idol"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Idols</button>
         </div>
         <div class="d-flex custom-select-group">
-            <select class="custom-select1 mr-2 idol_user_name desktop" name="idol_user_name">
-                <option value="">Idol Username</option>
-                @foreach(DB::table('idol_info')->get() as $idol)
-                <option value="{{ $idol->idol_user_name }}">{{ $idol->idol_user_name }}</option>
-                @endforeach
-            </select>
-            <select class="custom-select1 mr-2 idol_full_name desktop" name="idol_full_name">
-                <option value="">Idol Name</option>
-                @foreach(DB::table('idol_info')->get() as $idol)
-                <option value="{{ $idol->idol_user_name }}">{{ $idol->idol_full_name }}</option>
-                @endforeach
-            </select>
             <div class="date-part desktop">
                 <input class="mr-2 registered-date" type="text" name="registered_date" value="Registered Date" id="datepicker">
                 <img src="{{ asset('assets/images/icons/calendar.png') }}">
@@ -93,9 +81,8 @@ tr.shown td.details-control {
             <select class="custom-select1 mr-2 status desktop" name="status">
                 <option value="">Status</option>
                 <option value="1">Active</option>
-                <option value="0">Deactive</option>
+                <option value="0">Inactive</option>
             </select>
-            <button class="btn custom-btn px-5">Filter</button>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 custom-card">
@@ -263,10 +250,10 @@ $(document).ready(function() {
         }
     });
 
-    $(".idol_user_name, .idol_full_name, .registered-date, .status").on('change', function() {
+    $(".registered-date, .status").on('change', function() {
         let filterlink = '';
 
-        $(".idol_user_name, .idol_full_name, .registered-date, .status").each(function() {
+        $(".registered-date, .status").each(function() {
             if (filterlink == '') {
             filterlink += "{{ route('admin-filter-idol') }}" + '?'+ $(this).attr('name') + '=' + $(this).val();
             } else {

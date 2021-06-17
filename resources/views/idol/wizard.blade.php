@@ -175,7 +175,7 @@
                                 <label class="custom-control black-checkbox mr-4 m-auto">
                                     <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" checked>
                                     <span class="fill-control-indicator"></span>
-                                    <span class="fill-control-description text-white">Engilsh</span>
+                                    <span class="fill-control-description text-white">English</span>
                                 </label>
                                 <label class="custom-control black-checkbox mr-4 m-auto">
                                     <input type="radio" name="request_lang" value="2" class="fill-control-input d-none">
@@ -210,7 +210,7 @@
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
                                 <div class="m-auto">
                                     <label class="switch">
-                                        <input type="checkbox" name="request_vocation" value="0">
+                                        <input type="checkbox" name="request_vocation" value="1" checked>
                                         <span class="slider"></span>
                                     </label>
                                     <span class="switch-label">Allow fans to request videos</span>
