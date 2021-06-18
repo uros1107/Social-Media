@@ -214,7 +214,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            <tr>
+                            <!-- <tr>
                                 <td>
                                     <div class="d-flex">
                                         <div class="pending-rectangle my-auto mr-2"></div>
@@ -313,9 +313,9 @@
                                 <td>
                                     <button class="btn custom-btn">View</button>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
-                        <tfoot class="d-none">
+                        <tfoot>
                             <tr>
                                 <th>Status</th>
                                 <th>Order ID</th>
@@ -449,6 +449,8 @@ window.onload = function() {
 
 
 $(document).ready(function() {
+    $('.zero-configuration').DataTable().order([ 3, 'desc' ] ).draw();
+
     $('.order-status-btn').on('click', function() {
         var order_status = $(this).data('id');
 
@@ -465,6 +467,9 @@ $(document).ready(function() {
             data: { order_status: order_status },
             success: function (res) {
                 $('#table-content').html(res);
+                var table = $('.zero-configuration').DataTable();
+                $('.zero-configuration').DataTable();
+                table.order([ 3, 'desc' ] ).draw();
             }
         });
     })

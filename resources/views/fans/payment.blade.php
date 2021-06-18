@@ -74,25 +74,6 @@
     <div class="col-12 col-sm-8 col-md-8 featured-video">
         <div class="title-part">
             <h2 class="text-white">Payment Info</h2>
-            <p class="text-grey">Tell your idol what is your idea to make request video</p>
-            <div class="divider mt-2 mb-4"></div>
-        </div>
-        <div class="who-is w-100 mb-3">
-            <h4 class="text-white w-100">Payment Method</h4>
-            <div class="d-flex payment-method">
-                <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
-                    <div class="first-block">
-                        <div>
-                            <span class="text-white">Credit Card / Debit Card</span>
-                        </div>
-                    </div>
-                    <!-- <div class="first-block deactive">
-                        <div>
-                            <span class="text-white">Paypal</span>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
         </div>
         <div class="who-is w-100 mb-2 mt-4">
             <div class="d-flex">
@@ -157,15 +138,14 @@
                         <h5 class="text-main-color">${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</h5>
                     </div>
                     <div class="divider mb-3"></div>
-                    <form action="{{ route('payment-success') }}" method="POST" id="payment-success">
+                    <form action="{{ route('order-summary') }}" method="post" id="order-summary">
                         {{ csrf_field() }}
                         <input type="hidden" name="order_payment_method" id="payment_method" value="">
                         <input type="hidden" name="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
                         <input type="hidden" name="order_price"value="{{ $request_video->request_video_price }}">
                         <input type="hidden" name="order_fee" value="{{ $request_video->request_video_price * 0.05 }}">
                         <div class="submit">
-                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Book Now -
-                                ${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</button>
+                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Submit Request</button>
                         </div>
                     </form>
                 </div>
@@ -355,7 +335,7 @@ $(document).ready(function() {
         if(!$('#payment_method').val()) {
             toastr.error('Please choose your card!');
         } else {
-            $('#payment-success').submit();
+            $('#order-summary').submit();
         }
     })
 

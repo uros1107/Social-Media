@@ -69,7 +69,7 @@
             </tr>
             @endforeach
         </tbody>
-        <tfoot class="d-none">
+        <tfoot>
             <tr>
                 <th>Status</th>
                 <th>Order ID</th>

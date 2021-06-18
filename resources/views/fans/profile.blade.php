@@ -15,7 +15,8 @@
     border-radius: 50px;
     font-size: 16px;
 }
-.edit-profile {
+.edit-profile,
+.change-password {
     display: none;
 }
 .alert-success {
@@ -76,7 +77,7 @@
         </div>
         <div class="profile-action">
             <div class="grey-btn">
-                <button class="btn custom-btn edit-profile-btn">Change Password</button>
+                <button class="btn custom-btn change-password-btn">Change Password</button>
                 <button class="btn custom-btn edit-profile-btn">Edit Profile</button>
             </div>
             <div class="fandom">
@@ -95,7 +96,7 @@
             </div>
             <div class="profile-action m-auto m-profile-action" style="margin-right: 0px!important">
                 <div class="grey-btn">
-                    <button class="btn custom-btn mr-0 edit-profile-btn">Change Password</button>
+                    <button class="btn custom-btn mr-0 change-password-btn">Change Password</button>
                     <button class="btn custom-btn edit-profile-btn">Edit Profile</button>
                 </div>
             </div>
@@ -158,7 +159,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="password" placeholder="" name="password" id="password" value="">
+                            <input type="password" placeholder="" name="password" value="">
                             <span>Password</span>
                         </label>
                     </div>
@@ -175,7 +176,36 @@
                     </div>
                     <input type="file" name="photo" class="d-none" id="photo" value="">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
-                        <button type="submit" class="btn custom-btn save-btn">Save Changes</button>
+                        <button type="submit" class="btn custom-btn save-btn px-3">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 change-password">
+        <div class="title-part">
+            <h2 class="text-white">Change Password</h2>
+            <p class="text-grey">You can change password</p>
+            <div class="divider mb-4 desktop"></div>
+        </div>
+        <div class="image-part">
+            <form action="{{ route('fans-change-password') }}" id="change_password" method="POST">
+                {{ csrf_field() }}
+                <div class="row m-0 mb-4" style="flex-wrap: wrap;">
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="password" placeholder="" name="password" id="password" value="">
+                            <span>Password</span>
+                        </label>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="password" placeholder="" id="confirm_password" value="">
+                            <span>Confirm Password</span>
+                        </label>
+                    </div>
+                    <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
+                        <button type="button" class="btn custom-btn save-btn password-btn px-4">Save</button>
                     </div>
                 </div>
             </form>
@@ -226,6 +256,9 @@
         $('.edit-profile-btn').on('click', function() {
             $('.edit-profile').slideToggle();
         })
+        $('.change-password-btn').on('click', function() {
+            $('.change-password').slideToggle();
+        })
         $('.user-img').on('click', function() {
             $('#photo').click();
         })
@@ -248,6 +281,16 @@
                 img.src = objectUrl;
             }
         })
+
+        $('.password-btn').on('click', function() {
+            if(!$('#password').val() || !$('#confirm_password').val()) {
+                toastr.error('You should input all fields!');
+            } else if($('#password').val() != $('#confirm_password').val()) {
+                toastr.error('Your password does not match confirm password!');
+            } else {
+                $('#change_password').submit();
+            }
+        });
     })
 </script>
 @endsection

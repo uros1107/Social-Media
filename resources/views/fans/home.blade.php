@@ -120,7 +120,7 @@
                 @for($i = 0; $i < count($cats); $i = $i+2)
                 <div class="col-6 col-sm-4 col-md-3">
                     <a href="#1">
-                        <div class="image-item mb-4" style="height: unset">
+                        <div class="image-item mb-4 category-tab" data-id="{{ $cats[$i]->cat_id }}" style="height: unset">
                             <img src="{{ asset('assets/images/idol1.png') }}" class="w-100"> 
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i]->cat_name }}</h4>
@@ -128,7 +128,7 @@
                         </div>
                     </a>
                     <a href="#2">
-                        <div class="image-item" style="height: unset">
+                        <div class="image-item category-tab" data-id="{{ $cats[$i+1]->cat_id }}" style="height: unset">
                             <img src="{{ asset('assets/images/idol2.png') }}" class="w-100">   
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i+1]->cat_name }}</h4>
@@ -242,6 +242,11 @@
             $('.favourite-btn').addClass('deactive');
             $('.hide').show();
             $('.show').hide();
+        });
+
+        $('.category-tab').on('click', function() {
+            var id = $(this).data('id');
+            location.href = "{{ route('idol-category-get') }}" + '?cat_id=' + id;
         });
     })
 </script>

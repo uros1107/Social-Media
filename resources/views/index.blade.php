@@ -32,7 +32,7 @@
                         <span class="comming text-white">coming soon</span>
                     </div>
                 </div>
-                <h1 class="text-white welcome-month">JULY</h1>
+                <h1 class="text-white welcome-month">AUGUST</h1>
                 <h3 class="text-white welcome-day">2021</h3>
             </div>
             <div class="middle-center">
@@ -97,7 +97,7 @@
             <div>
                 <div class="comming-part text-center">
                     <p class="text-white m-comming">coming soon</p>
-                    <h2 class="text-white m-month">JULY</h2>
+                    <h2 class="text-white m-month">AUGUST</h2>
                     <h2 class="text-white m-year">2021</h2>
                 </div>
                 <div class="welcome-part text-center">

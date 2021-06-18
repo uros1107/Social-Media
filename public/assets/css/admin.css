@@ -457,6 +457,30 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     background-color: #171717;
     border-color: #171717;
 }
+
+#example_wrapper .row:first-child .col-sm-12 {
+    width: 50%;
+}
+
+/* ----------------- expand datatable css start ---------------- */
+#example_wrapper #example_filter {
+    margin-top: 0px;
+}
+#example_wrapper #example_filter input {
+    width: 70%!important;
+}
+#example_wrapper #example_length {
+    margin-top: 3px;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+    font-size: 12px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.5em 2px;
+}
+/* ----------------- expand datatable css end ---------------- */
+
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background: linear-gradient(to bottom, #ffffff 0%, rgb(255, 255, 255) 100%);
     border-width: 0px;
@@ -534,7 +558,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
         padding: 0px;
     }
     div.dataTables_wrapper div.dataTables_paginate ul.pagination {
-        justify-content: center;
+        justify-content: center!important;
     }
     #DataTables_Table_0_wrapper .row:first-child .col-md-6 {
         width: 50%;
@@ -545,7 +569,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
         font-size: 12px;
     }
     div.dataTables_wrapper div.dataTables_filter input {
-        width: 60%;
+        width: 60%!important;
     }
     /* ---------- datatable css end ----------- */
     

@@ -441,6 +441,7 @@ $(document).ready(function(){
             toastr.error("You should input valid video file!");
         } else if((file = this.files[0])) {
             $('.upload-video > h5').html($(this)[0].files[0].name);
+            $('.upload-video > p').hide();
         }
     });
 

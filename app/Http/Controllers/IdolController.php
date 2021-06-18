@@ -148,10 +148,17 @@ class IdolController extends Controller
         );
         $video_request['request_idol_id'] = $idol_info->id;
         $video_request['request_video'] = $video_name;
+
+        if(!isset($request_info['request_vocation'])) {
+            $request_info['request_vocation'] = 0;
+        } else {
+            $request_info['request_vocation'] = 1;
+        }
         
         $video_request = VideoRequest::create($video_request);
 
         $user = User::where('id', $request->idol_user_id)->first();
+        $user->cat_id = $request->cat_id;
         $user->is_setup = 1;
 
         if($user->save()) {
@@ -246,13 +253,31 @@ class IdolController extends Controller
         }
         $video_request->update($request_info);
 
+        $user = User::where('id', Auth::user()->id);
+        $cat_id = ['cat_id' => $request->idol_cat_id];
+        $user->update($cat_id);
+
         if($request->password) {
-            $user = User::where('id', Auth::user()->id);
             $password = ['password' => Hash::make($request->password)];
             $user->update($password);
         }
 
         return redirect()->back()->with('success', 'Successfully updated!');
+    }
+
+    public function change_password(Request $request)
+    {
+        $info = $request->all();
+        $info['password'] = Hash::make($request->password);
+
+        $idol = User::where('id', Auth::user()->id);
+        unset($info['_token']);
+
+        if($idol->update($info)) {
+            return redirect()->back()->with('success', 'Successfully updated!');
+        } else {
+            return redirect()->back()->with('unsuccess', 'Server has any problem. Please try again later!');
+        }
     }
 
     public function edit_profile()

@@ -83,11 +83,11 @@
     padding-top: 100px;
 }
 .welcome-month {
-    font-size: 140px;
+    font-size: 70px;
     font-weight: 100;
     letter-spacing: 20px;
     text-align: center;
-    margin-bottom: -20px;
+    margin-bottom: 5px;
 }
 .welcome-day {
     text-align: center;

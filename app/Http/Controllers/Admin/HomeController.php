@@ -328,9 +328,9 @@ class HomeController
     {
         $order_status = $request->order_status;
         if($order_status == 5) {
-            $orders = Order::get(); 
+            $orders = Order::orderBy('created_at', 'desc')->get(); 
         } else {
-            $orders = Order::where('order_status', $order_status)->get();
+            $orders = Order::where('order_status', $order_status)->orderBy('created_at', 'desc')->get();
         }
 
         return view('admin.ajax-order-status', compact('orders'));
@@ -401,6 +401,16 @@ class HomeController
         );
         $video_request['request_idol_id'] = $idol_info->id;
         $video_request['request_video'] = $video_name;
+
+        if(!isset($request_info['request_vocation'])) {
+            $request_info['request_vocation'] = 0;
+        } else {
+            $request_info['request_vocation'] = 1;
+        }
+
+        $user->cat_id = $request->idol_cat_id;
+        $user->is_setup = 1;
+        $user->save();
         
         $video_request = VideoRequest::create($video_request);
 
@@ -450,17 +460,21 @@ class HomeController
 
     public function idol_filter(Request $request)
     {
-        $date = $request->registered_date;
+        $from = $request->from;
+        $to = $request->to;
         $status = $request->status;
 
-        $idols = IdolInfo::when($date, function($query, $date){
-                                $query->where('created_at', 'like', $date.'%');
-                            })
-                            ->when($status, function($query, $status){
-                                $query->where('idol_status', $status);
-                            })
-                            ->orderBy('created_at', 'desc')
-                            ->get();
+        $query = IdolInfo::orderBy('created_at', 'desc');
+        if($status != '') {
+            $query->where('idol_status', $status);
+        }
+        if($from != '') {
+            $query->where('created_at', '>=', $from.'%');
+        }
+        if($to != '') {
+            $query->where('created_at', '<=', $to.'%');
+        }
+        $idols = $query->get();
 
         $data = array();
         foreach ($idols as $key => $idol) {
@@ -543,17 +557,21 @@ class HomeController
 
     public function fans_filter(Request $request)
     {
-        $date = $request->registered_date;
+        $from = $request->from;
+        $to = $request->to;
         $status = $request->status;
 
-        $fans = User::when($date, function($query, $date){
-                            $query->where('created_at', 'like', $date.'%');
-                        })
-                        ->when($status, function($query, $status){
-                            $query->where('status', $status);
-                        })
-                        ->orderBy('created_at', 'desc')
-                        ->get();
+        $query = User::where('role', 2);
+        if($status != '') {
+            $query->where('status', $status);
+        }
+        if($from != '') {
+            $query->where('created_at', '>=', $from.'%');
+        }
+        if($to != '') {
+            $query->where('created_at', '<=', $to.'%');
+        }
+        $fans = $query->orderBy('created_at', 'desc')->get();
 
         $data = array();
         foreach ($fans as $key => $fan) {

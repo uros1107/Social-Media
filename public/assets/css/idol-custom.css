@@ -25,6 +25,10 @@
 p {
     font-size: 16px;
 }
+a:hover {
+    color: #f7fdff;
+    text-decoration: underline;
+}
 
 /* ------------------------- input box css start -------------------- */
 .custom-form {
@@ -1214,7 +1218,7 @@ input[type=radio]:checked ~ label{
 .featured-video .lang-preference .standard-delivery {
     margin: 0px -20px;
     height: 45px;
-    background: #FFC107;
+    background: #29c9ff;
     border-radius: 0px 0px 15px 15px;
     text-align: center;
     padding-top: 11px;
@@ -1222,7 +1226,7 @@ input[type=radio]:checked ~ label{
 .featured-video .lang-preference .standard-delivery > span {
     font-weight: 600;
     font-size: 15px;
-    color: #2b2b2b;
+    color: #fff;
 }
 
 /* ------------ Modal ---------- */
@@ -2538,3 +2542,32 @@ input:checked + .slider {
     }
 }
 /* ================================================== Edit Profile Css End ================================================= */
+
+/* ================================================== Order Summary Css Start ================================================= */
+.order-confirm-profile {
+    padding: 30px;
+}
+.order-confirm-profile img {
+    width: 60px;
+    height: 60px;
+}
+.order-confirm-profile > h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.order-confirm-profile .profile-detail > p:first-child {
+    font-size: 16px;
+}
+.order-confirm-profile .profile-detail > p:nth-child(2) {
+    font-weight: 600;
+    font-size: 20px;
+}
+@media (max-width: 574px) { 
+    .order-confirm-profile {
+        padding: 15px 0px;
+    }
+    .order-confirm-profile > h4 {
+        margin-bottom: 12px;
+    }
+}
+/* ================================================== Order Summary Css End ================================================= */

@@ -133,7 +133,7 @@
                     <div class="col-12 col-md-6 col-sm-6">
                         <div class="m-auto">
                             <label class="switch my-auto">
-                                <input type="checkbox" name="request_vocation" value="0">
+                                <input type="checkbox" name="request_vocation" value="1" checked>
                                 <span class="slider"></span>
                             </label>
                             <span class="switch-label my-auto">Allow fans to request videos</span>

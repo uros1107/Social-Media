@@ -149,6 +149,10 @@
                     $('.sub-menu').addClass('d-none')
                 }
             })
+            $('#all-cat-btn').on('click', function(){
+                $(this).addClass('d-none');
+                $('.more').removeClass('d-none');
+            });
         })
     </script>
     @yield('scripts')

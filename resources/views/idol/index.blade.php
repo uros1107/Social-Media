@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                                 <div class="standard-delivery">
-                                    <span class="text-white">Go To Eearnings</span>
+                                    <a href="{{ route('idol-earning') }}"><span class="text-white">Go To Eearnings</span></a>
                                 </div>
                             </div>
                         </div>
@@ -280,7 +280,7 @@
                         </div>
                     </div>
                     <div class="standard-delivery">
-                        <span class="text-white">See all request</span>
+                        <a href="{{ route('idol-video-request') }}"><span class="text-white">See all request</span></a>
                     </div>
                 </div>
             </div>

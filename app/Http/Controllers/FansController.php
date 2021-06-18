@@ -13,6 +13,7 @@ use App\IdolInfo;
 use App\VideoRequest;
 use App\Order;
 use App\Review;
+use App\Category;
 
 class FansController extends Controller
 {
@@ -64,6 +65,15 @@ class FansController extends Controller
         return view('fans.home', compact('idols'));
     }
 
+    public function idol_category_get(Request $request)
+    {
+        $cat_id = $request->cat_id;
+        $cat = Category::where('cat_id', $cat_id)->first();
+        $idols = User::where('cat_id', $cat_id)->where('role', 1)->where('is_setup', 1)->get();
+
+        return view('fans.idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+    }
+
     public function myfandoms()
     {
         $fans = User::where('id', Auth::user()->id)->first();
@@ -99,6 +109,21 @@ class FansController extends Controller
             $request->photo->move(public_path('assets/images/img'), $photo_img_name);
             $info['photo'] = $photo_img_name;
         }
+
+        $fans = User::where('id', Auth::user()->id);
+        unset($info['_token']);
+
+        if($fans->update($info)) {
+            return redirect()->back()->with('success', 'Successfully updated!');
+        } else {
+            return redirect()->back()->with('unsuccess', 'Server has any problem. Please try again later!');
+        }
+    }
+
+    public function change_password(Request $request)
+    {
+        $info = $request->all();
+        $info['password'] = Hash::make($request->password);
 
         $fans = User::where('id', Auth::user()->id);
         unset($info['_token']);
@@ -178,14 +203,9 @@ class FansController extends Controller
     public function payment_success(Request $request)
     {
         $order = Session::get('info');
-        $order['order_payment_method'] = $request->order_payment_method;
-        $order['order_price'] = $request->order_price;
-        $order['order_fee'] = $request->order_fee;
-        $order['order_total_price'] = $request->order_total_price;
-        $order['order_fans_id'] = Auth::user()->id;
         
         if(Order::create($order)) {
-            if($request->order_payment_method == 1) {
+            if($order['order_payment_method'] == 1) {
                 $card_token = Auth::user()->visa_card_token;
             } else {
                 $card_token = Auth::user()->master_card_token;
@@ -193,7 +213,7 @@ class FansController extends Controller
 
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             $status = Stripe\Charge::create ([
-                    "amount" => $request->order_total_price * 100,
+                    "amount" => $order['order_total_price'] * 100,
                     "currency" => "usd",
                     "customer" => $card_token,
                     "description" => "Fans paid from Millionk.com" 
@@ -227,6 +247,19 @@ class FansController extends Controller
         $orders = Order::where('order_fans_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
         return view('fans.order-list', compact('orders'));
+    }
+
+    public function order_summary(Request $request)
+    {
+        $order = Session::get('info');
+        $order['order_payment_method'] = $request->order_payment_method;
+        $order['order_price'] = $request->order_price;
+        $order['order_fee'] = $request->order_fee;
+        $order['order_total_price'] = $request->order_total_price;
+        $order['order_fans_id'] = Auth::user()->id;
+        Session::put('info', $order);
+        
+        return view('fans.order-summary', ['order' => $order]);
     }
 
     public function send_review(Request $request)

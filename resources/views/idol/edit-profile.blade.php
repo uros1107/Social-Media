@@ -12,6 +12,9 @@
     background-color: #2b2b2b;
     border-color: #2b2b2b;
 }
+.change-password {
+    display: none;
+}
 @media (max-width: 574px) { 
     .container-fluid {
         padding: 0px!important;
@@ -55,7 +58,7 @@
                 <button class="btn custom-btn mb-3 change-photo-btn">Change Photo Profile</button>
             </div>
             <div>
-                <button class="btn custom-btn mb-3">Change Password</button>
+                <button class="btn custom-btn mb-3 change-password-btn">Change Password</button>
             </div>
             <h3 class="text-white mb-2">{{ $idol_info->idol_full_name }}<h3>
             <h4 class="mb-3">{{ '@'.$idol_info->idol_user_name }}</h4>
@@ -180,7 +183,7 @@
             </div>
             <div class="col-12 col-md-6 col-sm-6">
                 <label class="pure-material-textfield-outlined w-100">
-                    <input type="password" placeholder="" id="password" value="">
+                    <input type="password" placeholder="" value="">
                     <span>Password</span>
                 </label>
             </div>
@@ -213,6 +216,35 @@
                         <span class="text-white banner_img_label">{{ $idol_info->idol_banner }}</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-sm-12 mt-3 change-password">
+        <div class="block">
+            <div class="row m-auto">
+                <div class="col-12 col-sm-12 col-md-12 video-setting desktop">
+                    <h4 class="video-setting-title mb-1 text-white">Change <span class="text-main-color">Password</span></h4>
+                    <p class="mb-0">You can change your password</p>
+                    <div class="divider"></div>
+                </div>
+                <form action="{{ route('idol-change-password') }}" id="change_password" method="POST"class="w-100">
+                    {{ csrf_field() }}
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="password" name="password" placeholder="" id="password" value="">
+                            <span>Password</span>
+                        </label>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="password" placeholder="" id="confirm_password" value="">
+                            <span>Confirm Password</span>
+                        </label>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <button type="button" class="btn custom-btn save-change-btn password-btn">Change Password</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -521,6 +553,20 @@ $(document).ready(function() {
 
     $(document).on('change', '#password', function() {
         $('input[name=password]').val($(this).val());
+    })
+
+    $('.password-btn').on('click', function() {
+        if(!$('#password').val() || !$('#confirm_password').val()) {
+            toastr.error('You should input all fields!');
+        } else if($('#password').val() != $('#confirm_password').val()) {
+            toastr.error('Your password does not match confirm password!');
+        } else {
+            $('#change_password').submit();
+        }
+    });
+
+    $('.change-password-btn').on('click', function() {
+        $('.change-password').slideToggle();
     })
 
 })

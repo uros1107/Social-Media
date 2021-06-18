@@ -56,6 +56,7 @@ Route::prefix('idol')->group(function() {
         Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
         Route::get('/profile', 'IdolController@profile')->name('idol-profile');
         Route::POST('/profile-update', 'IdolController@profile_update')->name('idol-profile-update');
+        Route::POST('/change-password', 'IdolController@change_password')->name('idol-change-password');
         Route::get('/edit-profile', 'IdolController@edit_profile')->name('idol-edit-profile');
         Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
         Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
@@ -84,18 +85,21 @@ Route::prefix('fans')->group(function() {
     Route::get('/forgot-password', 'FansController@forgot_password')->name('fans-forgot-password');
     
     Route::get('/', 'FansController@index')->name('fans-index');
+    Route::get('/idol-category-get', 'FansController@idol_category_get')->name('idol-category-get');
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
     Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
+    Route::POST('/change-password', 'FansController@change_password')->name('fans-change-password');
     Route::get('/activity', 'FansController@activity')->name('fans-activity');
     Route::get('/myfandoms', 'FansController@myfandoms')->name('myfandom');
     Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');
     Route::POST('/card-save', 'FansController@card_save')->name('card-save');
-    Route::POST('/payment-success', 'FansController@payment_success')->name('payment-success');
+    Route::get('/payment-success', 'FansController@payment_success')->name('payment-success');
     Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
     Route::get('/view-video', 'FansController@view_video')->name('view-video');
     Route::get('/order-list', 'FansController@order_list')->name('order-list');
+    Route::POST('/order-summary', 'FansController@order_summary')->name('order-summary');
     Route::POST('/send-review', 'FansController@send_review')->name('send-review');
     Route::POST('/join-fandom', 'FansController@join_fandom')->name('join-fandom');
 });

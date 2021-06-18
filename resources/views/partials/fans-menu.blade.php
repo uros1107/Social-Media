@@ -34,56 +34,34 @@
             <div style="padding: 15px 20px">
                 <h5>Browse categories</h5>
             </div>
-
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#1" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person1.png') }}" class="mr-3 person-img" style="width:20px">
-                    Actors
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#2" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person2.png') }}" class="mr-3 person-img" style="width:20px">
-                    TV Host
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#3" class="nav-link person-link">
+            @php
+                $cats = DB::table('categories')->get()->take(8)->toArray();
+            @endphp
+            @for($i = 0; $i < count($cats); $i = $i+1)
+                <li class="nav-item" style="padding: 10px 20px!important;">
+                    <a href="{{ route('idol-category-get').'?cat_id='.$cats[$i]->cat_id }}" class="nav-link person-link">
+                        <img src="{{ asset('assets/images/person/'.$cats[$i]->cat_img) }}" class="mr-3 person-img" style="width:20px">
+                        {{ $cats[$i]->cat_name }}
+                    </a>
+                </li>
+            @endfor
+            @php
+                $cats = DB::table('categories')->where('cat_id', '>', 8)->get()->toArray();
+            @endphp
+            @for($i = 0; $i < count($cats); $i = $i+1)
+                <li class="nav-item d-none more" style="padding: 10px 20px!important;">
+                    <a href="{{ route('idol-category-get').'?cat_id='.$cats[$i]->cat_id }}" class="nav-link person-link">
+                        <img src="{{ asset('assets/images/person/'.$cats[$i]->cat_img) }}" class="mr-3 person-img" style="width:20px">
+                        {{ $cats[$i]->cat_name }}
+                    </a>
+                </li>
+            @endfor
+            <li class="nav-item" id="all-cat-btn" style="padding: 10px 20px!important;">
+                <a href="#" class="nav-link person-link">
                     <img src="{{ asset('assets/images/person/person3.png') }}" class="mr-3 person-img" style="width:20px">
-                    Models
+                    All Categories
                 </a>
             </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#4" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person4.png') }}" class="mr-3 person-img" style="width:20px">
-                    Musicians
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#5" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person5.png') }}" class="mr-3 person-img" style="width:20px">
-                    Comedians
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#6" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person6.png') }}" class="mr-3 person-img" style="width:20px">
-                    KPDP
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#7" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person7.png') }}" class="mr-3 person-img" style="width:20px">
-                    Youtuber
-                </a>
-            </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
-                <a href="#8" class="nav-link person-link">
-                    <img src="{{ asset('assets/images/person/person8.png') }}" class="mr-3 person-img" style="width:20px">
-                    All categories
-                </a>
-            </li>
-
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

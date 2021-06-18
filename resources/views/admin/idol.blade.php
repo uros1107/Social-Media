@@ -75,7 +75,11 @@ tr.shown td.details-control {
         </div>
         <div class="d-flex custom-select-group">
             <div class="date-part desktop">
-                <input class="mr-2 registered-date" type="text" name="registered_date" value="Registered Date" id="datepicker">
+                <input class="mr-2 registered-date from" type="text" name="from" value="From" id="from">
+                <img src="{{ asset('assets/images/icons/calendar.png') }}">
+            </div>
+            <div class="date-part desktop">
+                <input class="mr-2 registered-date to" type="text" name="to" value="To" id="to">
                 <img src="{{ asset('assets/images/icons/calendar.png') }}">
             </div>
             <select class="custom-select1 mr-2 status desktop" name="status">
@@ -204,7 +208,10 @@ function format ( d ) {
 }
 
 $(document).ready(function() {
-    $('#datepicker').datepicker({
+    $('#from').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+    $('#to').datepicker({
         format: 'yyyy-mm-dd'
     });
     $('.add-idol').click(function() {
@@ -250,14 +257,21 @@ $(document).ready(function() {
         }
     });
 
-    $(".registered-date, .status").on('change', function() {
+    $(".from, .to, .status").on('change', function() {
         let filterlink = '';
 
-        $(".registered-date, .status").each(function() {
+        $(".from, .to, .status").each(function() {
+            var value = $(this).val();
             if (filterlink == '') {
-            filterlink += "{{ route('admin-filter-idol') }}" + '?'+ $(this).attr('name') + '=' + $(this).val();
+                if($(this).val() == "From" || $(this).val() == "To") {
+                    value = '';
+                }
+                filterlink += "{{ route('admin-filter-idol') }}" + '?'+ $(this).attr('name') + '=' + value;
             } else {
-                filterlink += '&' + $(this).attr('name') + '=' + $(this).val();
+                if($(this).val() == "From" || $(this).val() == "To") {
+                    value = '';
+                }
+                filterlink += '&' + $(this).attr('name') + '=' + value;
             }
         })
         
