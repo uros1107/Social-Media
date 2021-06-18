@@ -427,6 +427,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     color: #fff;
     background-color: #ff335c;
     border-color: #ff335c;
+    width: 32px;
 }
 .page-link {
     position: relative;

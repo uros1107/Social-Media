@@ -4,6 +4,7 @@ Route::get('/', 'IdolController@home')->name('index');
 
 Route::post('/send-mail', 'MailChimpController@send_mail')->name('send-mail');
 Route::get('/privacy', 'MailChimpController@privacy')->name('privacy');
+Route::get('/faq', 'MailChimpController@faq')->name('faq');
 Route::get('/terms', 'MailChimpController@terms')->name('terms');
 Route::get('/contest-terms', 'MailChimpController@contest_terms')->name('contest-terms');
 

@@ -31,7 +31,14 @@ h3 {
         position: initial!important;
     }
     h3 {
-        font-size: 32px!important;
+        font-size: 30px!important;
+    }
+    p, li {
+        font-size: 16px;
+        color: #898989;
+    }
+    h4 {
+        font-size: 16px;
     }
     .row {
         padding-top: 35px!important;

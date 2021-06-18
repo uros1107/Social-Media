@@ -19,19 +19,19 @@
                 <div class="col-sm-8 col-md-8 d-flex" style="margin: 10px 0px">
                     <img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;">
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">About</p>
+                        <a href="{{ route('faq') }}"><p class="text-main-color mb-0">About</p></a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Request an Idol</p>
+                        <a href="{{ route('faq') }}"><p class="text-main-color mb-0">Request an Idol</p></a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">FAQ</p>
+                        <a href="{{ route('faq') }}"><p class="text-main-color mb-0">FAQ</p></a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Help</p>
+                        <a href="{{ route('faq') }}"><p class="text-main-color mb-0">Help</p></a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Contact Us</p>
+                        <a href="{{ route('faq') }}"><p class="text-main-color mb-0">Contact Us</p></a>
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-4 d-flex" style="justify-content: flex-end;margin: 10px 0px">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">FAQ</a>
+                            <a href="{{ route('faq') }}" class="text-main-color mb-0">FAQ</a>
                         </div>
                     </div>
                     <div class="col-6">

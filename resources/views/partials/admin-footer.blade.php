@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">FAQ</a>
+                            <a href="{{ route('faq') }}" class="text-main-color mb-0">FAQ</a>
                         </div>
                     </div>
                     <div class="col-6">

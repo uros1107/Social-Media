@@ -24,6 +24,11 @@ class MailChimpController extends Controller
         return view('privacy');
     }
 
+    public function faq(Request $request)
+    {
+        return view('faq');
+    }
+
     public function terms(Request $request)
     {
         return view('terms');
