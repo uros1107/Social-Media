@@ -8,6 +8,11 @@ Route::get('/faq', 'MailChimpController@faq')->name('faq');
 Route::get('/terms', 'MailChimpController@terms')->name('terms');
 Route::get('/contest-terms', 'MailChimpController@contest_terms')->name('contest-terms');
 
+Route::get('/google', 'FansController@redirect_google')->name('redirect-google');
+Route::get('/google/callback', 'FansController@google_callback')->name('google-callback');
+Route::get('/facebook', 'FansController@redirect_facebook')->name('redirect-facebook');
+Route::get('/facebook/callback', 'FansController@facebook_callback')->name('facebook-callback');
+
 // ================== Admin route ==================
 
 Route::prefix('admin')->group(function() {

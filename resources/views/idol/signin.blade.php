@@ -207,7 +207,7 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Sign in with Google
+                                            <a class="text-white" href="{{ route('redirect-google').'?role=1' }}">Sign in with Google</a>
                                         </div>
                                     </button>
                                 </div>

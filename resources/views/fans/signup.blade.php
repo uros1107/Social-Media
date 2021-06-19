@@ -229,7 +229,7 @@
                                         <img src="{{ asset('assets/images/icons/google.png') }}">
                                     </div>
                                     <div class="m-auto">
-                                        Sign up with Google
+                                        <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign up with Google</a>
                                     </div>
                                 </button>
                             </div>
@@ -239,7 +239,7 @@
                                         <img src="{{ asset('assets/images/icons/face.png') }}">
                                     </div>
                                     <div class="m-auto">
-                                        Sign up with Facebook
+                                        <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign up with Facebook</a>
                                     </div>
                                 </button>
                             </div>

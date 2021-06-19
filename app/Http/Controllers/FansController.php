@@ -8,6 +8,8 @@ use Auth;
 use Hash;
 use Session;
 use Validator;
+use Socialite;
+use Exception;
 use App\User;
 use App\IdolInfo;
 use App\VideoRequest;
@@ -57,6 +59,100 @@ class FansController extends Controller
     public function forgot_password()
     {
         return view('fans.forgot-password');
+    }
+
+    public function redirect_google(Request $request)
+    {
+        Session::put('role', $request->role);
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function google_callback()
+    {
+        try {
+    
+            $user = Socialite::driver('google')->user();
+     
+            $finduser = User::where('google_id', $user->id)->first();
+     
+            if($finduser){
+     
+                Auth::login($finduser);
+    
+                if(Session::get('role') == 1) {
+                    return redirect()->route('idol-index');
+                } else if(Session::get('role') == 2) {
+                    return redirect()->route('fans-index');
+                }
+     
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'role' => Session::get('role'),
+                    'password' => Hash::make($user->email)
+                ]);
+    
+                Auth::login($newUser);
+     
+                if(Session::get('role') == 1) {
+                    return redirect()->route('idol-index');
+                } else if(Session::get('role') == 2) {
+                    return redirect()->route('fans-index');
+                }
+            }
+    
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function redirect_facebook(Request $request)
+    {
+        Session::put('role', $request->role);
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function facebook_callback()
+    {
+        try {
+     
+            $user = Socialite::driver('facebook')->user();
+      
+            $finduser = User::where('facebook_id', $user->id)->first();
+      
+            if($finduser){
+      
+                Auth::login($finduser);
+     
+                if(Session::get('role') == 1) {
+                    return redirect()->route('idol-index');
+                } else if(Session::get('role') == 2) {
+                    return redirect()->route('fans-index');
+                }
+      
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id'=> $user->id,
+                    'role' => Session::get('role'),
+                    'password' => Hash::make($user->email)
+                ]);
+     
+                Auth::login($newUser);
+      
+                if(Session::get('role') == 1) {
+                    return redirect()->route('idol-index');
+                } else if(Session::get('role') == 2) {
+                    return redirect()->route('fans-index');
+                }
+            }
+     
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function index()
