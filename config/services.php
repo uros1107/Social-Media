@@ -47,13 +47,13 @@ return [
     'google' => [
         'client_id' => '237058334748-6qksr4temnodale7hpceucqnjntgl552.apps.googleusercontent.com',
         'client_secret' => 'XoASYa5xzYEUwhak5SAe5t1y',
-        'redirect' => 'http://127.0.0.1:8000/google/callback',
+        'redirect' => 'https://millionk.com/google/callback',
     ],
 
     'facebook' => [
         'client_id' => 'xxxx',
         'client_secret' => 'xxx',
-        'redirect' => 'http://127.0.0.1:8000/facebook/callback',
+        'redirect' => 'https://millionk.com/facebook/callback',
     ], 
 
 ];
