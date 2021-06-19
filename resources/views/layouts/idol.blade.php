@@ -29,7 +29,7 @@
             <div class="form-group has-search mb-0" style="position:relative">
                 <!-- <span class="fa fa-search form-control-feedback"></span> -->
                 <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control text-white"  id="search" placeholder="Search">
             </div>
         </div>
 
@@ -141,6 +141,10 @@
                     $('.sub-menu').addClass('d-none')
                 }
             })
+
+            $('#search').on('change', function() {
+                location.href = "{{ route('idol-search') }}" + '?search=' + $(this).val();
+            });
         })
     </script>
     @yield('scripts')

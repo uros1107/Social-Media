@@ -465,4 +465,13 @@ class FansController extends Controller
             }
         }
     }
+
+    public function fans_search(Request $request)
+    {
+        $search = $request->search;
+
+        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->get();
+
+        return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
+    }
 }

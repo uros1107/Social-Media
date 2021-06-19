@@ -474,4 +474,13 @@ class IdolController extends Controller
         Mail::to('support@millionk.com')->send(new SendConcierge($info));
         return redirect()->back()->with('success', 'Thanks for contacting us!');
     }
+
+    public function idol_search(Request $request)
+    {
+        $search = $request->search;
+
+        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->get();
+
+        return view('idol.search', ['idol_infos' => $idol_infos, 'search' => $search]);
+    }
 }

@@ -61,6 +61,7 @@ Route::prefix('idol')->group(function() {
         'middleware' => 'idols'
       ], function() {
         Route::get('/', 'IdolController@index')->name('idol-index');
+        Route::get('/idol-search', 'IdolController@idol_search')->name('idol-search');
         Route::get('/wizard', 'IdolController@wizard')->name('idol-wizard');
         Route::POST('/setup-submit', 'IdolController@setup_submit')->name('setup-submit');
         Route::get('/profile', 'IdolController@profile')->name('idol-profile');
@@ -95,6 +96,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/forgot-password', 'FansController@forgot_password')->name('fans-forgot-password');
     
     Route::get('/', 'FansController@index')->name('fans-index');
+    Route::get('/fans-search', 'FansController@fans_search')->name('fans-search');
     Route::get('/idol-category-get', 'FansController@idol_category_get')->name('idol-category-get');
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
     Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
