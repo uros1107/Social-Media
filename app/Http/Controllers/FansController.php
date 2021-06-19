@@ -42,23 +42,25 @@ class FansController extends Controller
         }
     }
 
-    public function signup(Request $request)
+    public function confirm_email(Request $request)
     {
         $request->validate([
             'email' => 'required|string|email|unique:users',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'birth' => $request->birth,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user_info = $request->all();
+        $user_info['password'] = Hash::make($request->password);
+        unset($user_info['_token']);
+        Session::put('user_info', $user_info);
 
-        $user = User::where('email', $request->email)->first();
-        Auth::login($user);
+        $token = Str::random(5);
 
-        return redirect()->route('fans-index');
+        Mail::send('email.verify', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verify Email');
+        });
+
+        return view('fans.confirm-email', ['code' => $token]);
     }
 
     public function forgot_password()

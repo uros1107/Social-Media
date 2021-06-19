@@ -168,7 +168,7 @@
                     <h4 class="text-grey sub-title">Start meet your favourite Korean idol.</h4>
                 </div>
                 <div class="register-part">
-                    <form class="custom-form" action="{{ route('fans-signup') }}" method="POST">
+                    <form class="custom-form" action="{{ route('fans-confirm-email') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="row m-0">
                             <div class="col-12 col-sm-12 col-md-7">
@@ -213,6 +213,7 @@
                                     <span class="fill-control-description text-white">Remember me</span>
                                 </label>
                             </div>
+                            <input type="hidden" name="role" value="2">
                             <div class="col-12 mt-4 mb-5">
                                 <button class="btn custom-btn w-100">Register</button>
                             </div>
@@ -256,7 +257,7 @@
                         <h4 class="text-grey sub-title">Start to meet your favourite Korean idol.</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form" action="{{ route('fans-signup') }}" method="POST">
+                        <form class="custom-form" action="{{ route('fans-confirm-email') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
@@ -297,6 +298,7 @@
                                 <div class="col-6 text-right p-0">
                                     <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
                                 </div>
+                                <input type="hidden" name="role" value="2">
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
                                     <button class="btn custom-btn w-100">Register</button>
                                 </div>

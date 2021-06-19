@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -93,19 +94,9 @@ class RegisterController extends Controller
 
     protected function fans_signup(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email|unique:users',
-        ]);
+        User::create(Session::get('user_info'));
 
-        User::create([
-            'name' => $request->name,
-            'birth' => $request->birth,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 2
-        ]);
-
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', Session::get('user_info')['email'])->first();
         Auth::login($user);
 
         return redirect()->route('fans-index');

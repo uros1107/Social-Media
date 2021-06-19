@@ -89,6 +89,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/login', 'FansController@signin')->name('fans-signin');
     Route::POST('/login', 'Auth\LoginController@signin')->name('login');
     Route::get('/signup', 'FansController@show_signup')->name('fans-signup');
+    Route::POST('/confirm-email', 'FansController@confirm_email')->name('fans-confirm-email');
     Route::POST('/signup', 'Auth\RegisterController@fans_signup')->name('fans-signup');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/forgot-password', 'FansController@forgot_password')->name('fans-forgot-password');
