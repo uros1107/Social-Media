@@ -109,8 +109,8 @@ class FansController extends Controller
 
         $updatePassword = DB::table('password_resets')
                             ->where([
-                            'email' => $request->email, 
-                            'token' => $request->token
+                                'email' => $request->email, 
+                                'token' => $request->token
                             ])
                             ->first();
 
@@ -123,7 +123,7 @@ class FansController extends Controller
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
  
-        if(Session::get('role') == 1) {
+        if(Session::get('who') == 1) {
             return redirect()->route('idol-signin')->with('message', 'Your password has been changed!');
         } else {
             return redirect()->route('fans-signin')->with('message', 'Your password has been changed!');
