@@ -207,10 +207,6 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <!-- <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                    <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
-                                </div> -->
                                 <label class="custom-control black-checkbox">
                                     <input type="checkbox" name="remember_token" class="fill-control-input d-none">
                                     <span class="fill-control-indicator"></span>
@@ -313,7 +309,7 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Google
+                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Google</a>
                                         </div>
                                     </button>
                                 </div> 
@@ -323,7 +319,7 @@
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Facebook
+                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Facebook</a>
                                         </div>
                                     </button>
                                 </div>

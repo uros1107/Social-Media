@@ -159,17 +159,33 @@
                         <h4 class="text-grey sub-title">Recover your password</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form">
+                        <form class="custom-form" action="{{ route('forget.password.post') }}" method="POST">
+                            {{ csrf_field() }}
                             <div class="row m-0">
+                                @if ($errors->has('email'))
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0 text-center">{{ $errors->first('email') }}</p>
+                                    </span>
+                                </div>
+                                @endif
+                                @if (Session::has('message'))
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <span class="help-block pl-3 mb-4 d-block">
+                                        <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                    </span>
+                                </div>
+                                @endif
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="text" placeholder="Email" class="custom-input">
+                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
+                                <input name="role" type="hidden" value="1">
                                 <div class="col-12 mt-4 mb-5">
-                                    <button class="btn custom-btn w-100" type="button" id="next">Send request password</button>
+                                    <button type="submit" class="btn custom-btn w-100">Send request password</button>
                                 </div>
                                 <div class="col-12 mt-4 mb-5 text-center">
                                     <a class="text-white">Need help?</a>
@@ -201,17 +217,19 @@
                         <h4 class="text-grey sub-title">Reset your password</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form">
+                        <form class="custom-form" action="{{ route('forget.password.post') }}" method="POST">
+                            {{ csrf_field() }}
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="text" placeholder="Email" class="custom-input">
+                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
+                                <input name="role" type="hidden" value="1">
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
-                                    <button class="btn custom-btn w-100" type="button" id="next">Send Request Password</button>
+                                    <button type="submit" class="btn custom-btn w-100" id="next">Send Request Password</button>
                                 </div>
                                 <div class="col-12 text-center mb-4">
                                     <a class="text-white need-help">Need help?</a>

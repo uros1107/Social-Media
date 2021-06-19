@@ -13,6 +13,10 @@ Route::get('/google/callback', 'FansController@google_callback')->name('google-c
 Route::get('/facebook', 'FansController@redirect_facebook')->name('redirect-facebook');
 Route::get('/facebook/callback', 'FansController@facebook_callback')->name('facebook-callback');
 
+Route::post('forget-password', 'FansController@submitForgetPasswordForm')->name('forget.password.post'); 
+Route::get('reset-password/{token}', 'FansController@showResetPasswordForm')->name('reset.password.get');
+Route::post('reset-password', 'FansController@submitResetPasswordForm')->name('reset.password.post');
+
 // ================== Admin route ==================
 
 Route::prefix('admin')->group(function() {

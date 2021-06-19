@@ -156,6 +156,11 @@
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('login') }}" method="POST">
                             {{ csrf_field() }}
+                            @if (Session::has('message'))
+                                <span class="help-block pl-3 mb-4 d-block">
+                                    <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                </span>
+                            @endif
                             @if (Session::has('unsuccess'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
                                     <p class="mb-0 text-center">{{ Session::get('unsuccess') }}</p>
@@ -179,10 +184,6 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                        <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
-                                    </div> -->
                                     <label class="custom-control black-checkbox">
                                         <input type="checkbox" class="fill-control-input d-none" value="true">
                                         <span class="fill-control-indicator"></span>
@@ -192,9 +193,6 @@
                                 <div class="col-6 text-right">
                                     <a href="{{ route('idol-forgot-password') }}" class="text-white">Forgot password?</a>
                                 </div>
-                                <!-- <div class="col-6 text-right">
-                                    <a href="{{ route('fans-forgot-password') }}" class="text-white">Forgot password?</a>
-                                </div> -->
                                 <div class="col-12 mt-4 mb-5">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
@@ -217,7 +215,7 @@
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Sign in with Facebook
+                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=1' }}">Sign in with Facebook</a>
                                         </div>
                                     </button>
                                 </div>
@@ -250,6 +248,16 @@
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('login') }}" method="POST">
                             {{ csrf_field() }}
+                            @if (Session::has('message'))
+                                <span class="help-block pl-3 mb-4 d-block">
+                                    <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                </span>
+                            @endif
+                            @if (Session::has('unsuccess'))
+                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                    <p class="mb-0 text-center">{{ Session::get('unsuccess') }}</p>
+                                </span>
+                            @endif
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
@@ -268,10 +276,6 @@
                                     </div>
                                 </div>
                                 <div class="col-6 p-0">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                        <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
-                                    </div> -->
                                     <label class="custom-control black-checkbox">
                                         <input type="checkbox" class="fill-control-input d-none" value="true">
                                         <span class="fill-control-indicator"></span>
@@ -281,9 +285,6 @@
                                 <div class="col-6 text-right pr-0" style="font-size: 12px">
                                     <a href="{{ route('idol-forgot-password') }}" class="text-white">Forgot password?</a>
                                 </div>
-                                <!-- <div class="col-6 text-right p-0">
-                                    <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
-                                </div> -->
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
@@ -296,7 +297,7 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Google
+                                            <a class="text-white" href="{{ route('redirect-google').'?role=1' }}">Google</a>
                                         </div>
                                     </button>
                                 </div> 
@@ -306,7 +307,7 @@
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Facebook
+                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=1' }}">Facebook</a>
                                         </div>
                                     </button>
                                 </div>

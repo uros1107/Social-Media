@@ -164,44 +164,53 @@
             <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div style="display: table-cell;vertical-align: middle;">
                     <div class="title-part text-center">
-                        <h2 class="text-white title">Forgot Password!</h2>
+                        <h2 class="text-white title">Reset Password!</h2>
                         <h4 class="text-grey sub-title">Recover your password</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form" action="{{ route('forget.password.post') }}" method="POST">
+                        <form class="custom-form" action="{{ route('reset.password.post') }}" method="POST">
                             {{ csrf_field() }}
+                            <input type="hidden" name="token" value="{{ $token }}">
                             <div class="row m-0">
-                                @if ($errors->has('email'))
+                                @if (Session::has('error'))
                                 <div class="col-12 col-sm-12 col-md-12">
-                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0 text-center">{{ $errors->first('email') }}</p>
-                                    </span>
-                                </div>
-                                @endif
-                                @if (Session::has('message'))
-                                <div class="col-12 col-sm-12 col-md-12">
-                                    <span class="help-block pl-3 mb-4 d-block">
-                                        <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                    <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                        <p class="mb-0 text-main-color text-center">{{ Session::get('error') }}</p>
                                     </span>
                                 </div>
                                 @endif
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
+                                        <input type="text" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger ml-3">{{ $errors->first('email') }}</span>
+                                        @endif
                                     </div>
                                 </div>
-                                <input name="role" type="hidden" value="2">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">Password</label>
+                                        <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger ml-3">{{ $errors->first('password') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">Confirm Password</label>
+                                        <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                        @if ($errors->has('password_confirmation'))
+                                            <span class="text-danger ml-3">{{ $errors->first('password_confirmation') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="col-12 mt-4 mb-5">
-                                    <button type="submit" class="btn custom-btn w-100">Send request password</button>
-                                </div>
-                                <div class="col-12 mt-4 mb-5 text-center">
-                                    <a class="text-white">Need help?</a>
-                                </div>
-                                <div class="col-12 text-center" style="margin-top: 100px">
-                                    <a class="text-white">Don't have account?</a>
-                                    <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+                                    <button type="submit" class="btn custom-btn w-100">Reset Password</button>
                                 </div>
                             </div>
                         </form>
@@ -213,44 +222,53 @@
             <div class="row m-0 fans mobile image-block w-100">
                 <div class="form-block">
                     <div class="title-part">
-                        <h2 class="text-white title">Forgot Password!</h2>
+                        <h2 class="text-white title">Reset Password!</h2>
                         <h4 class="text-grey sub-title">Reset your password</h4>
                     </div>
                     <div class="register-part">
-                        <form class="custom-form" action="{{ route('forget.password.post') }}" method="POST">
+                        <form class="custom-form" action="{{ route('reset.password.post') }}" method="POST">
                             {{ csrf_field() }}
+                            <input type="hidden" name="token" value="{{ $token }}">
                             <div class="row m-0">
-                                @if ($errors->has('email'))
+                                @if (Session::has('error'))
                                 <div class="col-12 col-sm-12 col-md-12">
-                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0 text-center">{{ $errors->first('email') }}</p>
-                                    </span>
-                                </div>
-                                @endif
-                                @if (Session::has('message'))
-                                <div class="col-12 col-sm-12 col-md-12">
-                                    <span class="help-block pl-3 mb-4 d-block">
-                                        <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                    <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                        <p class="mb-0 text-main-color text-center">{{ Session::get('error') }}</p>
                                     </span>
                                 </div>
                                 @endif
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
+                                        <input type="text" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger ml-3">{{ $errors->first('email') }}</span>
+                                        @endif
                                     </div>
                                 </div>
-                                <input name="role" type="hidden" value="2">
-                                <div class="col-12 mt-4 mb-5 p-0 login-part">
-                                    <button class="btn custom-btn w-100" type="submit">Send Request Password</button>
+                                <div class="col-12 col-sm-12 col-md-12 p-0">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">Password</label>
+                                        <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger ml-3">{{ $errors->first('password') }}</span>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="col-12 text-center mb-4">
-                                    <a class="text-white need-help">Need help?</a>
+                                <div class="col-12 col-sm-12 col-md-12 p-0">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">Confirm Password</label>
+                                        <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                        @if ($errors->has('password_confirmation'))
+                                            <span class="text-danger ml-3">{{ $errors->first('password_confirmation') }}</span>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="col-12 text-center signup-part">
-                                    <a class="text-white">Don't have account?</a>
-                                    <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+                                <div class="col-12 mt-4 mb-5 p-0">
+                                    <button type="submit" class="btn custom-btn w-100">Reset Password</button>
                                 </div>
                             </div>
                         </form>

@@ -167,9 +167,14 @@
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('login') }}" method="POST">
                             {{ csrf_field() }}
+                            @if (Session::has('message'))
+                                <span class="help-block pl-3 mb-4 d-block">
+                                    <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                </span>
+                            @endif
                             @if (Session::has('unsuccess'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                    <p class="mb-0">{{ Session::get('unsuccess') }}</p>
+                                    <p class="mb-0 text-center" style="color:#d61919">{{ Session::get('unsuccess') }}</p>
                                 </span>
                             @endif
                             <div class="row m-0">
@@ -249,6 +254,16 @@
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('login') }}" method="POST">
                             {{ csrf_field() }}
+                            @if (Session::has('message'))
+                                <span class="help-block pl-3 mb-4 d-block">
+                                    <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                                </span>
+                            @endif
+                            @if (Session::has('unsuccess'))
+                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                    <p class="mb-0 text-center" style="color:#d61919">{{ Session::get('unsuccess') }}</p>
+                                </span>
+                            @endif
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
@@ -267,10 +282,6 @@
                                     </div>
                                 </div>
                                 <div class="col-6 p-0">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                        <label class="custom-control-label text-white" for="customCheck1">Remember me</label>
-                                    </div> -->
                                     <label class="custom-control black-checkbox">
                                         <input type="checkbox" class="fill-control-input d-none" value="true">
                                         <span class="fill-control-indicator"></span>
@@ -292,7 +303,7 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Google
+                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Google</a>
                                         </div>
                                     </button>
                                 </div> 
@@ -302,7 +313,7 @@
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            Facebook
+                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Facebook</a>
                                         </div>
                                     </button>
                                 </div>

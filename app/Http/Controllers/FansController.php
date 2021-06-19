@@ -10,6 +10,11 @@ use Session;
 use Validator;
 use Socialite;
 use Exception;
+use DB; 
+use Carbon\Carbon; 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 use App\User;
 use App\IdolInfo;
 use App\VideoRequest;
@@ -61,6 +66,70 @@ class FansController extends Controller
         return view('fans.forgot-password');
     }
 
+    public function submitForgetPasswordForm(Request $request)
+    {  
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        Session::put('who', $request->role);
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email, 
+            'token' => $token, 
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
+
+        return back()->with('message', 'We have e-mailed your password reset link!');
+    }
+
+    public function showResetPasswordForm($token) { 
+        return view('fans.forgetPasswordLink', ['token' => $token]);
+    }
+ 
+     /**
+      * Write code on Method
+      *
+      * @return response()
+      */
+     public function submitResetPasswordForm(Request $request)
+     {
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|string|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        $updatePassword = DB::table('password_resets')
+                            ->where([
+                            'email' => $request->email, 
+                            'token' => $request->token
+                            ])
+                            ->first();
+
+        if(!$updatePassword){
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
+
+        $user = User::where('email', $request->email)
+                    ->update(['password' => Hash::make($request->password)]);
+
+        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+ 
+        if(Session::get('role') == 1) {
+            return redirect()->route('idol-signin')->with('message', 'Your password has been changed!');
+        } else {
+            return redirect()->route('fans-signin')->with('message', 'Your password has been changed!');
+        }
+     }
+
     public function redirect_google(Request $request)
     {
         Session::put('role', $request->role);
@@ -85,7 +154,7 @@ class FansController extends Controller
                     return redirect()->route('fans-index');
                 }
      
-            }else{
+            } else {
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
