@@ -45,8 +45,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => '237058334748-6qksr4temnodale7hpceucqnjntgl552.apps.googleusercontent.com',
-        'client_secret' => 'XoASYa5xzYEUwhak5SAe5t1y',
+        'client_id' => '237058334748-ke7tar59kjn55frh21k7stjg35s1bbsc.apps.googleusercontent.com',
+        'client_secret' => 'cNIpQwBGUzbDnZAP6Hi1bbD2',
         'redirect' => 'https://millionk.com/google/callback',
     ],
 
