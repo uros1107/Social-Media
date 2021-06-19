@@ -26,8 +26,8 @@ REDIS_PORT=6379
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=465
-MAIL_USERNAME=somchai.saeueng418@gmail.com
-MAIL_PASSWORD=Pkdfiwis@&%^%^&!#
+MAIL_USERNAME=hello@millionk.com
+MAIL_PASSWORD=cran72_tkr_87C
 MAIL_ENCRYPTION=ssl
 
 AWS_ACCESS_KEY_ID=

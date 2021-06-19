@@ -75,7 +75,14 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
+                            @if(!Auth::check())
                             <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+                            @else
+                            @php
+                                $has = DB::table('users')->where('id', Auth::user()->id)->whereRaw("JSON_CONTAINS(fandom_lists,'".$idol->id."','$')=1")->first();
+                            @endphp
+                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+                            @endif
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
                         </div>
                     </div>
