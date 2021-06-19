@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_user_name" value="{{ Auth::user()->handle_name }}">
+                                    <input type="text" placeholder="" name="idol_user_name" value="">
                                     <span>Username</span>
                                 </label>
                                 @if ($errors->has('idol_user_name'))
@@ -446,6 +446,12 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#profile_btn', function() {
+        $('#profile_information input[type=text]').each(function() {
+            if(!$(this).val()) {
+                toastr.error("You should input all fields!");
+                return false;
+            }
+        })
         if(!photo_img) {
             toastr.error("You should input photo image file correctly!");
         } else if(!banner_img) {

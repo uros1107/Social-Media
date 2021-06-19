@@ -169,7 +169,7 @@
             </div>
             <div class="w-100">
                 <label class="pure-material-textfield-outlined w-100">
-                    <input placeholder="" name="email" value="{{ $idol_info->idol_email }}">
+                    <input placeholder="" name="email" value="{{ Auth::user()->email }}">
                     <span>Email</span>
                 </label>
             </div>
