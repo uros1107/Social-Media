@@ -110,6 +110,13 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
+                                    <label class="input-label">Social Media handle/Username</label>
+                                    <input type="text" placeholder="User name" class="custom-input" required>
+                                    <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
                                     <label class="input-label">Your handle/Username</label>
                                     <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
                                     <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
