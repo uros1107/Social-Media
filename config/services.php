@@ -45,14 +45,14 @@ return [
     ],
 
     'google' => [
-        'client_id' => '237058334748-ke7tar59kjn55frh21k7stjg35s1bbsc.apps.googleusercontent.com',
-        'client_secret' => 'cNIpQwBGUzbDnZAP6Hi1bbD2',
+        'client_id' => '537036425705-a88896rugdedvk49p00d01k7bb5ud1q0.apps.googleusercontent.com',
+        'client_secret' => 'bA8Cbc-uWtN7ZEYX6zcAKrax',
         'redirect' => 'https://millionk.com/google/callback',
     ],
 
     'facebook' => [
-        'client_id' => 'xxxx',
-        'client_secret' => 'xxx',
+        'client_id' => '1131112640718415',
+        'client_secret' => 'b053a249412b84d9ffd72bee36721e33',
         'redirect' => 'https://millionk.com/facebook/callback',
     ], 
 
