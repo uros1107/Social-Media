@@ -182,7 +182,17 @@ class FansController extends Controller
     public function redirect_facebook(Request $request)
     {
         Session::put('role', $request->role);
-        return Socialite::driver('facebook')->redirect();
+        try {
+            return Socialite::driver('facebook')->redirect();
+        } 
+        catch (Exception $e) {
+            if($request->role == 1) {
+                return redirect()->route('idol-signin');
+            } else {
+                return redirect()->route('fans-signin');
+            }
+        }
+        
     }
 
     public function facebook_callback()
