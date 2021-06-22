@@ -192,7 +192,6 @@ class FansController extends Controller
                 return redirect()->route('fans-signin');
             }
         }
-        
     }
 
     public function facebook_callback()
