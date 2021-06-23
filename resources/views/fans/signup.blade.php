@@ -129,7 +129,7 @@
         margin: 30px 0px 30px;
     }
     .google-btn, .facebook-btn {
-        font-size: 14px;
+        font-size: 15px;
     }
     .idol-registration .title {
         font-size: 36px;
@@ -140,7 +140,7 @@
 }
 @media (min-width: 1250px) and (max-width: 1500px) {
     .google-btn, .facebook-btn {
-        font-size: 14px;
+        font-size: 15px;
         padding-left: 2px;
         padding-right: 2px;
     }
