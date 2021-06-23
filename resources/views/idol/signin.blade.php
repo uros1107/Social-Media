@@ -125,7 +125,8 @@
         margin: 30px 0px 30px;
     }
     .google-btn, .facebook-btn {
-        font-size: 12px;
+        font-size: 14px;
+        padding: 0px;
     }
     .idol-registration .title {
         font-size: 36px;
@@ -136,7 +137,8 @@
 }
 @media (min-width: 1250px) and (max-width: 1500px) {
     .google-btn, .facebook-btn {
-        font-size: 12px;
+        font-size: 14px;
+        padding: 0px;
     }
 }
 
@@ -199,7 +201,7 @@
                                 <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                     <!-- <div class="divider-text">OR</div> -->
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 pl-0">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                         <div class="m-auto">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
@@ -209,7 +211,7 @@
                                         </div>
                                     </button>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 pr-0">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
                                         <div class="m-auto">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
