@@ -79,7 +79,8 @@
                             <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
                             @else
                             @php
-                                $has = DB::table('users')->where('id', Auth::user()->id)->whereRaw("JSON_CONTAINS(fandom_lists,'".$idol->id."','$')=1")->first();
+                                $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                                $has = in_array($idol->id, json_decode($user->fandom_lists));
                             @endphp
                             <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
                             @endif
