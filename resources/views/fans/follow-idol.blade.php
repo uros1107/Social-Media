@@ -80,6 +80,9 @@
                             @else
                             @php
                                 $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                                if(!$user->fandom_lists) {
+                                    $user->fandom_lists = [];
+                                }
                                 $has = in_array($idol->id, json_decode($user->fandom_lists));
                             @endphp
                             <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
