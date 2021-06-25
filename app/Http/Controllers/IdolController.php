@@ -483,4 +483,12 @@ class IdolController extends Controller
 
         return view('idol.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }
+
+    public function video_notify(Request $request)
+    {
+        $status = $request->status;
+        $orders = Order::where('order_status', $status)->orderBy('created_at', 'desc')->get();
+
+        return view('idol.ajax-video-notify', compact('orders'));
+    }
 }

@@ -196,32 +196,32 @@
                         <div class="col-12">
                             <div class="divider mb-3"></div>
                             <div class="d-flex mb-2">
-                                <a href="#" class="text-main-color mr-3" style="color:#898989">
+                                <a href="#" class="text-main-color mr-3 v-notify" data-value="0">
                                     New Request
                                     @if($pending_request)
                                     <span class="request-badge">{{ $pending_request }}</span>
                                     @endif
                                 </a>
-                                <a href="#" class="mr-3" style="color:#898989">
+                                <a href="#" class="mr-3 text-grey v-notify" data-value="0">
                                     Pending
                                     @if($pending_request)
                                     <span class="request-badge">{{ $pending_request }}</span>
                                     @endif
                                 </a>
-                                <a href="#" class="mr-3" style="color:#898989">
+                                <a href="#" class="mr-3 text-grey v-notify" data-value="3">
                                     Refunded
                                     @if($refund_request)
                                     <span class="request-badge">{{ $refund_request }}</span>
                                     @endif
                                 </a>
-                                <a href="#" class="mr-3" style="color:#898989">
+                                <a href="#" class="mr-3 text-grey v-notify" data-value="1">
                                     Fulfilled
                                     @if($total_request)
                                     <span class="request-badge">{{ $total_request }}</span>
                                     @endif
                                 </a>
                             </div>
-                            <div class="w-100" style="height: 390px;overflow:auto">
+                            <div class="w-100 v-notify-list" style="height: 390px;overflow:auto">
                                 @if(count($orders))
                                 @foreach($orders as $order)
                                 @php
@@ -357,6 +357,18 @@ $(document).ready(function() {
     });
     $(document).on('click', '.view-btn', function() {
         location.href = "{{ route('idol-v-request-detail') }}" + '?order_id=' + $(this).data('id');
+    });
+    $(document).on('click', '.v-notify', function() {
+        var status = $(this).data('value');
+        
+        $.ajax({
+            url: "{{ route('idol-video-notify') }}",
+            method: 'get',
+            data: { status: status },
+            success: function (res) {
+                $('.v-notify-list').html(res);
+            }
+        });
     });
 })
 </script>

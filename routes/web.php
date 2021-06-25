@@ -71,6 +71,7 @@ Route::prefix('idol')->group(function() {
         Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
         Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
         Route::get('/video-record', 'IdolController@video_record')->name('idol-video-record');
+        Route::get('/video-notify', 'IdolController@video_notify')->name('idol-video-notify');
         Route::get('/video-decline', 'IdolController@video_decline')->name('idol-video-decline');
         Route::get('/earning', 'IdolController@earning')->name('idol-earning');
         Route::POST('/submit-video', 'IdolController@submit_video')->name('idol-submit-video');
