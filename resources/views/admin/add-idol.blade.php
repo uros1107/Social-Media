@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>

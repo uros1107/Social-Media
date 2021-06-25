@@ -20,7 +20,7 @@
                             <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                         </div>
                         <div class="footer-social">
-                            <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
+                            <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                         </div>
                     </div>
                     <div class="col-6">

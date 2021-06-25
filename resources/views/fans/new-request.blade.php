@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -145,7 +145,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
         </div>
     </div>
 </div>

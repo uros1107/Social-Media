@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="image-title">
                     <h1 class="text-main-color mb-4">Reach<br>your idols</h1>
-                    <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
+                    <h4 class="text-main-color">Get personalized fan service videos & interactions <br>with your favourite Korean Wave influencers & idols. <br>Spice up any occasion with you or your friends!</h4>
                 </div>
             </div>
             <div class="col-12 col-sm-4 col-md-4 form-block">
@@ -235,7 +235,7 @@
                                     </button>
                                 </div>
                                 <div class="col-12 text-center signup-part">
-                                    <a class="text-white">Don't have account?</a>
+                                    <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@
                                     </button>
                                 </div>
                                 <div class="col-12 text-center signup-part">
-                                    <a class="text-white">Don't have account?</a>
+                                    <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
                                 </div>
                             </div>

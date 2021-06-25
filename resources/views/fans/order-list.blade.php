@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">
@@ -66,7 +66,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 @endsection
 
 @section('content')
-<div class="row follow-idol view-video payment-success m-0 mb-4">
+<div class="row follow-idol view-video payment-success m-0 mb-4 px-0">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part d-flex">
             <div>

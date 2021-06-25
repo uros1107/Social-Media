@@ -1,7 +1,7 @@
 <div class="sidebar m-sidebar" style="">
     <nav class="sidebar-nav ps" style="width: 280px!important;overflow-y: auto!important;">
         <div class="logo" style="margin:30px 0px;text-align:center">
-            <img src="{{ asset('assets/images/logo.png') }}">
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/images/logo.png') }}"></a>
         </div>
         <ul class="nav" style="width: 280px!important">
             <li class="nav-item" style="padding: 10px 20px!important;">

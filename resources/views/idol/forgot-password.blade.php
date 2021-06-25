@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 
@@ -191,7 +191,7 @@
                                     <a class="text-white">Need help?</a>
                                 </div>
                                 <div class="col-12 text-center" style="margin-top: 100px">
-                                    <a class="text-white">Don't have account?</a>
+                                    <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
                                     <a class="text-white need-help">Need help?</a>
                                 </div>
                                 <div class="col-12 text-center signup-part">
-                                    <a class="text-white">Don't have account?</a>
+                                    <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -20,7 +20,7 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">My Activity</h2>
-            <p class="text-grey">My order history will be on here</p>
+            <p class="text-grey">Your order history will be on here</p>
         </div>
         <div class="order-history">
             <div class="w-100">
@@ -43,7 +43,7 @@
             @endforeach
             @else 
             <div class="w-100 d-flex text-center">
-                <p class="text-white mb-0 p-5 w-100">No activiy yet.</p>
+                <p class="text-white mb-0 p-5 w-100">No orders yet</p>
             </div>
             @endif
         </div>

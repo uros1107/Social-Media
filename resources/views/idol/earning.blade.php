@@ -1,6 +1,6 @@
 @extends('layouts.idol')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">

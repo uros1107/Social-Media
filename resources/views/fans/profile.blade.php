@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -80,9 +80,9 @@
                 <button class="btn custom-btn change-password-btn">Change Password</button>
                 <button class="btn custom-btn edit-profile-btn">Edit Profile</button>
             </div>
-            <div class="fandom">
+            <!-- <div class="fandom">
                 <button class="btn custom-btn">My Fandom<span>{{ Auth::user()->fandom_lists? count(json_decode(Auth::user()->fandom_lists)) : 0 }}</span></button>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="mobile w-100 pt-3" style="background:#2b2b2b">
@@ -127,7 +127,7 @@
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" placeholder="" name="name" id="name" value="{{ Auth::user()->name }}" required>
-                            <span>User Name</span>
+                            <span>Your Name</span>
                         </label>
                         @if ($errors->has('name'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -138,7 +138,7 @@
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="email" placeholder="" name="email" id="email" value="{{ Auth::user()->email }}"  disabled>
-                            <span>User Email</span>
+                            <span>Your Email</span>
                         </label>
                         @if ($errors->has('email'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -146,10 +146,10 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
+                    <div class="col-12 col-md-12 col-sm-12">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" placeholder="" name="phone" id="phone" value="{{ Auth::user()->phone }}">
-                            <span>Phone Number</span>
+                            <span>Your Phone Number</span>
                         </label>
                         @if ($errors->has('phone'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -157,20 +157,20 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
+                    <!-- <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="password" placeholder="" name="password" value="">
                             <span>Password</span>
                         </label>
-                    </div>
+                    </div> -->
                     <div class="col-12 col-md-12 col-sm-12 mt-2">
                         <label class="pure-material-textfield-outlined w-100 mb-0">
                             <textarea placeholder="" rows="5" name="info" id="info" style="height:100px" required>{{ Auth::user()->info }}</textarea>
-                            <span>Bio</span>
+                            <span>Your Bio</span>
                         </label>
                         @if ($errors->has('info'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                <p class="mb-0" style="font-size: 14px">{{ $errors->first('info') }}</p>
+                                <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('info') }}</p>
                             </span>
                         @endif
                     </div>
@@ -195,7 +195,7 @@
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="password" placeholder="" name="password" id="password" value="">
-                            <span>Password</span>
+                            <span>Your Password</span>
                         </label>
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
@@ -213,8 +213,8 @@
     </div>
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
-            <h2 class="text-white">Followed Idols</h2>
-            <p class="text-grey">List your favourite idols</p>
+            <h2 class="text-white">My Fandoms</h2>
+            <p class="text-grey">List of your favourite idols</p>
             <div class="divider mb-4 desktop"></div>
         </div>
         <div class="image-part">

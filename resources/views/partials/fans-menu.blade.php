@@ -1,7 +1,7 @@
 <div class="sidebar m-sidebar" style="">
     <nav class="sidebar-nav ps" style="width: 280px!important;overflow-y: auto!important;">
         <div class="logo" style="margin:30px 0px;text-align:center">
-            <img src="{{ asset('assets/images/logo.png') }}">
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/images/logo.png') }}"></a>
         </div>
         <ul class="nav" style="width: 280px!important">
             <li class="nav-item" style="padding: 10px 20px!important;">
@@ -11,24 +11,24 @@
                 </a>
             </li>
             @if(Auth::check() && Auth::user()->role == 2)
-            <li class="nav-item" style="padding: 10px 20px!important;">
+            <!-- <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('fans-activity') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/notification.png') }}" class="mr-3" style="width:20px">
                     My Activity
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('myfandom') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/heart.png') }}" class="mr-3" style="width:20px">
                     My Fandoms
                 </a>
             </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
+            <!-- <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('order-list') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/swap.png') }}" class="mr-3" style="width:20px">
                     My Orders
                 </a>
-            </li>
+            </li> -->
             @endif
 
             <div style="padding: 15px 20px">

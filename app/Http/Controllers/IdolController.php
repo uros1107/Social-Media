@@ -200,7 +200,7 @@ class IdolController extends Controller
         $request->validate([
             'idol_full_name' => 'required|string',
             'idol_user_name' => 'required|string',
-            'idol_bio' => 'required|string',
+            'idol_bio' => 'required|string|min:100',
             'idol_email' => 'required|string|email',
             'idol_phone' => 'string'
         ]);
@@ -471,7 +471,7 @@ class IdolController extends Controller
     {
         $info = $request->all();
 
-        Mail::to('support@millionk.com')->send(new SendConcierge($info));
+        Mail::to('hello@millionk.com')->send(new SendConcierge($info));
         return redirect()->back()->with('success', 'Thanks for contacting us!');
     }
 

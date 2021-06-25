@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -20,12 +20,12 @@
 
 @section('content')
 <div class="row discover-favourite mb-4">
-    <div class="col-12 col-sm-12 col-md-12 mb-4 tab-btn">
+    <!-- <div class="col-12 col-sm-12 col-md-12 mb-4 tab-btn">
         <button class="btn custom-btn mr-3 discover-btn" type="button">Discover</button>
         @if(Auth::check() && Auth::user()->role == 2)
         <button class="btn custom-btn deactive favourite-btn" type="button">My Favourite</button>
         @endif
-    </div>
+    </div> -->
     <div class="col-12 col-sm-12 col-md-12 hide" style="display:table">
         <div class="discover">
             <img src="{{ asset('assets/images/discover.png') }}" class="w-100">
@@ -221,14 +221,6 @@
             var id = $(this).data('id');
             location.href = "{{ route('follow-idol')}}" + '?id=' + id;
         })
-        // $(document).on('click', '.custom-btn', function() {
-        //     if($(this).hasClass('deactive')) {
-        //         $(this).removeClass('deactive');
-        //         $('.custom-btn').not(this).each(function(){
-        //             $(this).addClass('deactive');
-        //         });
-        //     }
-        // });
 
         $('.favourite-btn').on('click', function() {
             $(this).removeClass('deactive');

@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -73,6 +73,11 @@
                                     <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('email') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
@@ -89,6 +94,11 @@
                                     <input type="text" name="phone" placeholder="Phone number" class="custom-input">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                                 </div>
+                                @if ($errors->has('phone'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('phone') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 mt-4 mb-4">
                                 <button class="btn custom-btn w-100" type="button" id="next">Next</button>
@@ -96,7 +106,7 @@
                             <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: you are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
                             <div class="col-12 text-center signup-part mt-4 mb-3">
                                 <a class="text-white">Have an account?</a>
-                                <a class="text-main-color" href="{{ route('idol-signin') }}">Sign In</a>
+                                <a class="text-main-color" href="{{ route('idol-signin') }}">Log In</a>
                             </div>
                         </div>
 
@@ -144,6 +154,11 @@
                                     <label class="input-label">Anything else we should know about you?</label>
                                     <textarea class="custom-textarea" name="info" placeholder="Let us know about you..." required></textarea>
                                 </div>
+                                @if ($errors->has('info'))
+                                    <span class="help-block pl-3 d-block" style="color:#d61919;margin-top: -15px">
+                                        <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 mt-3">
                                 <button class="btn custom-btn w-100" type="submit">Submit</button>

@@ -1,6 +1,6 @@
 @extends('layouts.idol')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -128,7 +128,7 @@
                                 </label>
                                 @if ($errors->has('idol_bio'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
+                                        <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
                                     </span>
                                 @endif
                             </div>

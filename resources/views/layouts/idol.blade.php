@@ -54,11 +54,11 @@
                 <div class="sub-menu d-none">
                     @if(Auth::user()->is_setup)
                     <div class="mb-2">
-                        <a href="{{ route('idol-profile') }}" class="text-white">Profile</a>
+                        <a href="{{ route('idol-profile') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Profile</a>
                     </div>
                     @endif
                     <div>
-                        <a href="{{ route('logout') }}" class="text-white">Logout</a>
+                        <a href="{{ route('logout') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Logout</a>
                     </div>
                 </div>
             </div>

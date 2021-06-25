@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -76,13 +76,13 @@
                         </div>
                         <div class="action-part d-flex">
                             @if(!Auth::check())
-                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
                             @else
                             @php
                                 $user = DB::table('users')->where('id', Auth::user()->id)->first();
                                 $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
                             @endphp
-                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}">Follow</button>
                             @endif
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
                         </div>
@@ -187,7 +187,7 @@
             </div>
         </div>
         <div class="col-12 mt-3">
-            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Join Fandom</button>
+            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
             <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
         </div>
     </div>

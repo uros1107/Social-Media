@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -23,7 +23,7 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">My Fandoms</h2>
-            <p class="text-grey">Idols you like.</p>
+            <p class="text-grey">Save your favourites here by following them</p>
             <div class="divider mb-4 desktop"></div>
         </div>
         <div class="image-part">

@@ -70,7 +70,8 @@ class RegisterController extends Controller
         $request->validate([
             'email' => 'required|string|email|unique:users',
             'phone' => 'required|string|unique:users',
-            'followers' => 'required|numeric ',
+            'followers' => 'required|numeric',
+            'info' => 'required|string|min:100',
         ]);
 
         User::create([

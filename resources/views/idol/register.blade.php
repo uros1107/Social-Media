@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Welcome to MillionK')
+@section('title', 'Welcome to MILLIONK')
 
 @section('styles')
 <style>
@@ -392,6 +392,11 @@ select {
                                 <label class="input-label">Anything else we should know about you?</label>
                                 <textarea class="custom-textarea" name="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
                             </div>
+                            @if ($errors->has('info'))
+                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                    <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
+                                </span>
+                            @endif
                         </div>
                         <div class="col-12 mt-3">
                             <button class="btn custom-btn w-100" type="submit">Submit</button>
@@ -457,7 +462,7 @@ select {
                         <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                     </div>
                     <div class="footer-social">
-                        <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
+                        <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                     </div>
                 </div>
                 <div class="col-12">
@@ -486,7 +491,7 @@ select {
                             <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                         </div>
                         <div class="footer-social">
-                            <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
+                            <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                         </div>
                     </div>
                     <div class="col-6">

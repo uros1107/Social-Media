@@ -182,10 +182,10 @@ a:hover {
     position: absolute;
     right: 0px;
     background: #292929;
-    padding: 10px 40px;
+    padding: 10px 20px;
     border-radius: 10px;
 }
-.sub-menu > a {
+.sub-menu a {
     font-size: 16px;
 }
 .sidebar {
@@ -545,7 +545,7 @@ a:hover {
 
 /* ================================================== Idol Profile Css Start ================================================= */
 .discover-favourite .user-profile {
-    height:198px;
+    min-height:198px;
     background:#2b2b2b;
 }
 .discover-favourite .user-profile .profile-img {
@@ -558,6 +558,7 @@ a:hover {
 }
 .discover-favourite .user-profile .profile-info {
     margin:36px 10px;
+    max-width: 70%;
 }
 .discover-favourite .user-profile .profile-info > h4 {
     font-weight: bold;
@@ -736,11 +737,11 @@ a:hover {
     font-size: 14px;
     line-height: 16px;
     color: #FCFCFC;
-    max-width: 400px;
+    /* max-width: 400px; */
 }
 .follow-idol .idol-profile .name-action .description {
-    max-width: 400px;
-    height: 50px;
+    max-width: 450px;
+    min-height: 50px;
 }
 .follow-idol .idol-profile .action-part {
     position: absolute;
@@ -837,6 +838,8 @@ a:hover {
 .follow-idol .idol-profile .idol-image {
     border-radius: 50%;
     padding: 7px;
+    width: 205px;
+    height: 205px;
     background-image: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
 }
 .follow-idol .active {
@@ -959,6 +962,8 @@ a:hover {
     }
     .follow-idol .idol-profile .idol-image {
         padding: 6px;
+        width: unset;
+        height: unset;
     }
     .follow-idol .idol-profile .idol-image img {
         width: 100px;

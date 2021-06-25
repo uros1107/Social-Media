@@ -57,10 +57,13 @@
                 <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
                 <div class="sub-menu d-none">
                     <div class="mb-2">
-                        <a href="{{ route('fans-profile') }}" class="text-white">Profile</a>
+                        <a href="{{ route('fans-profile') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Profile</a>
+                    </div>
+                    <div class="mb-2">
+                        <a href="{{ route('fans-activity') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Requests</a>
                     </div>
                     <div>
-                        <a href="{{ route('logout') }}" class="text-white">Logout</a>
+                        <a href="{{ route('logout') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Logout</a>
                     </div>
                 </div>
             </div>

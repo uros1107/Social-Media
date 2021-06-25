@@ -11,7 +11,7 @@
                             <input type="text" placeholder="Email" class="footer-subscribe-input custom-input">
                             <img style="top: 16px" class="input-icon footer-subscribe-icon" src="{{ asset('assets/images/icons/a.png') }}">
                         </div>
-                        <button class="btn custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%;font-size:12px" type="submit">Subscribe</button>
+                        <button class="btn custom-btn m-auto footer-subscribe-btn" style="margin-right: 0px!important;width: 25%;font-size:18px" type="submit">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                     </div>
                     <div class="footer-social">
-                        <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
+                        <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                     </div>
                 </div>
                 <div class="col-12">
@@ -71,7 +71,7 @@
                             <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                         </div>
                         <div class="footer-social">
-                            <a href="mailto:support@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
+                            <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
                         </div>
                     </div>
                     <div class="col-6">
