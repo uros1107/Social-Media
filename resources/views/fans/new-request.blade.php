@@ -188,49 +188,57 @@
             <div class="row m-0 occasion">
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="8">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-1.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-1.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion1.png') }}">
                         <span class="text-white">None</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
-                    <div class="occasion-item active" data-id="1">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-2.png') }}">
+                    <div class="occasion-item" data-id="1">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-2.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion2.png') }}">
                         <span class="text-white">Encouragement</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="2">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-3.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-3.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion3.png') }}">
                         <span class="text-white">Birthday</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="3">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-4.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-4.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion4.png') }}">
                         <span class="text-white">Gift</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="4">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-5.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-5.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion5.png') }}">
                         <span class="text-white">Advice</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="5">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-6.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-6.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion6.png') }}">
                         <span class="text-white">Congrats</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="6">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-7.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-7.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion7.png') }}">
                         <span class="text-white">Valentine’s</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="7">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/icons/g-8.png') }}">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-8.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion8.png') }}">
                         <span class="text-white">Other</span>
                     </div>
                 </div>
@@ -270,10 +278,10 @@
                         </div>
                         <div class="divider mb-3"></div>
                         <div class="form-group">
-                            <label for="comment" class="text-white" style="font-size: 18px">Introduction</label>
-                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Tell your idol what they want to say on the video"></textarea>
+                            <label for="comment" class="text-white" style="font-size: 18px">Introductions</label>
+                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Tell your idol what you want them to say on the video"></textarea>
                         </div>
-                        <input type="hidden" name="order_occasion" id="occasion" value="1">
+                        <input type="hidden" name="order_occasion" id="occasion" value="">
                         <input type="hidden" name="order_who_for" id="who_for" value="2">
                         <input type="hidden" name="order_to" id="to" value="">
                         <input type="hidden" name="order_idol_id" value="{{ $idol->id }}">
@@ -297,9 +305,13 @@ $(document).ready(function() {
         $('#occasion').val($(this).data('id'));
         if(!$(this).hasClass('active')) {
             $(this).addClass('active');
+            $(this).find('.grey-img').addClass('d-none');
+            $(this).find('.white-img').removeClass('d-none');
         }
         $('.occasion-item').not(this).each(function(){
             $(this).removeClass('active');
+            $(this).find('.grey-img').removeClass('d-none');
+            $(this).find('.white-img').addClass('d-none');
         });
     });
     $(document).on('click', '.first-block', function() {
@@ -319,7 +331,7 @@ $(document).ready(function() {
         $('#to').val($(this).val());
     });
     $(document).on('click', '.continue-btn', function(e) {
-        if(!$('#comment').val() || !$('.to-input').val()) {
+        if(!$('#comment').val() || !$('.to-input').val() || !$('#occasion').val()) {
             toastr.error('You should input all fields!');
         } else {
             $('#continue').submit();

@@ -26,6 +26,9 @@
     color: #fff;
     opacity: 1;
 }
+.featured .featured-video {
+    padding: 0px 45px;
+}
 #myModal {
     top: 10%;
     padding-left: 0px!important;
