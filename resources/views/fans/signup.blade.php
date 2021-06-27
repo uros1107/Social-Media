@@ -99,7 +99,8 @@
     }
     .custom-btn {
         height: 34px!important;
-        font-size: 12px;
+        font-size: 16px;
+        padding: 0px;
     }
     .login-part {
         margin: 15px 0px 20px!important;
@@ -269,6 +270,13 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
+                                        <label class="input-label">Your Date Birth</label>
+                                        <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker1" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 p-0">
+                                    <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
                                         <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
@@ -307,7 +315,7 @@
                                 </div>
                                 <div class="col-6 p-0 google">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -317,7 +325,7 @@
                                 </div> 
                                 <div class="col-6 p-0 facebook">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -343,7 +351,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#datepicker').datepicker({
+        $('#datepicker, #datepicker1').datepicker({
             format: 'dd/mm/yyyy'
         });
         $('.eye-hide').on('click', function() {

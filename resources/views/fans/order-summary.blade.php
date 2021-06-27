@@ -143,7 +143,7 @@
                     <div class="divider mb-3"></div>
                     <form action="{{ route('payment-success') }}" method="get">
                         <div class="submit">
-                            <button type="submit" class="btn custom-btn w-100" style="font-size: 14px">Book Now -
+                            <button type="submit" class="btn custom-btn w-100" style="font-size: 16px">Book Now -
                                 ${{ $order['order_price'] + $order['order_price'] * 0.05 }}</button>
                         </div>
                     </form>

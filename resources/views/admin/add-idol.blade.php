@@ -110,9 +110,10 @@
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
                         <label class="pure-material-textfield-outlined w-100 mb-0">
-                            <textarea placeholder="" name="idol_bio" rows="5" style="height:100px" required></textarea>
+                            <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required></textarea>
                             <span>Bio</span>
                         </label>
+                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -256,12 +257,32 @@ $(document).ready(function() {
         }
     });
 
+    var word_limit = false;
+    $("#idol_bio").on('keyup', function() {
+        var words = 0;
+
+        if ((this.value.match(/\S+/g)) != null) {
+            words = this.value.match(/\S+/g).length;
+        }
+
+        if (words > 100) {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
+        }
+        else {
+            $('.limit-message').removeClass('d-none');
+            word_limit = false;
+        }
+    });
+
     $(document).on('submit', '#add-idol', function(e) {
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
         if(!photo_img || !upload_video || !banner_img) {
             toastr.error('You should input all field correctly!');
+        } else if(!word_limit) {
+            toastr.error('You should input at least 100 words!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);

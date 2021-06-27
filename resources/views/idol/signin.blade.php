@@ -95,7 +95,8 @@
     }
     .custom-btn {
         height: 34px!important;
-        font-size: 12px;
+        font-size: 16px;
+        padding: 0px;
     }
     .login-part {
         margin: 15px 0px 20px!important;
@@ -295,7 +296,7 @@
                                 </div>
                                 <div class="col-6 p-0 google">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -305,7 +306,7 @@
                                 </div> 
                                 <div class="col-6 p-0 facebook">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">

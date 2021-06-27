@@ -82,7 +82,7 @@
                                 $user = DB::table('users')->where('id', Auth::user()->id)->first();
                                 $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
                             @endphp
-                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px">Follow</button>
+                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
                             @endif
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
                         </div>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="content-item d-flex">
                                         <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">If your request is uncompleted, He hold on your card will be removed within 5-7 business days</p>
+                                        <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,15 @@
             </div>
         </div>
         <div class="col-12 mt-3">
+            @if(!Auth::check())
             <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
+            @else
+            @php
+                $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
+            @endphp
+            <button type="button" class="btn custom-btn w-100 mb-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
+            @endif
             <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
         </div>
     </div>

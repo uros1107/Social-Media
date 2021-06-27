@@ -47,7 +47,7 @@
                 <img src="{{ asset('assets/images/icons/down-arrow-dark.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
                 <div class="sub-menu d-none">
                     <div>
-                        <a href="{{ route('logout') }}" style="color:#121212">Logout</a>
+                        <a href="{{ route('logout') }}" style="color:#121212"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Logout</a>
                     </div>
                 </div>
             </div>

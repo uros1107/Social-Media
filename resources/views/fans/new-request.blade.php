@@ -75,7 +75,15 @@
                             </div>
                         </div>
                         <div class="action-part d-flex">
-                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
+                            @if(!Auth::check())
+                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}" style="width: 160px">Follow</button>
+                            @else
+                            @php
+                                $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                                $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
+                            @endphp
+                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
+                            @endif
                         </div>
                     </div>
                     <div class="review-part d-flex">
@@ -145,7 +153,15 @@
             </div>
         </div>
         <div class="col-12 mt-3">
+            @if(!Auth::check())
             <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
+            @else
+            @php
+                $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
+            @endphp
+            <button type="button" class="btn custom-btn w-100 mb-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
+            @endif
         </div>
     </div>
 </div>
@@ -280,6 +296,7 @@
                         <div class="form-group">
                             <label for="comment" class="text-white" style="font-size: 18px">Introductions</label>
                             <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Tell your idol what you want them to say on the video"></textarea>
+                            <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You should input at least 250 words!</p>
                         </div>
                         <input type="hidden" name="order_occasion" id="occasion" value="">
                         <input type="hidden" name="order_who_for" id="who_for" value="2">
@@ -330,9 +347,30 @@ $(document).ready(function() {
     $(document).on('change', '.to-input', function() {
         $('#to').val($(this).val());
     });
+
+    var word_limit = false;
+    $("#comment").on('keyup', function() {
+        var words = 0;
+
+        if ((this.value.match(/\S+/g)) != null) {
+            words = this.value.match(/\S+/g).length;
+        }
+
+        if (words > 250) {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
+        }
+        else {
+            $('.limit-message').removeClass('d-none');
+            word_limit = false;
+        }
+    });
+
     $(document).on('click', '.continue-btn', function(e) {
         if(!$('#comment').val() || !$('.to-input').val() || !$('#occasion').val()) {
             toastr.error('You should input all fields!');
+        } else if(!word_limit) {
+            toastr.error('You should input at least 250 words!');
         } else {
             $('#continue').submit();
         }

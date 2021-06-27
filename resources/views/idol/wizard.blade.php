@@ -123,9 +123,10 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 mt-3">
                                 <label class="pure-material-textfield-outlined w-100 mb-0">
-                                    <textarea placeholder="" name="idol_bio" rows="5" style="height:100px">{{ Auth::user()->info }}</textarea>
+                                    <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px">{{ Auth::user()->info }}</textarea>
                                     <span>Bio</span>
                                 </label>
+                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                                 @if ($errors->has('idol_bio'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -380,16 +381,16 @@ $(document).ready(function(){
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 500 || this.height != 500) {
-                    toastr.error("Image size should be 500px * 500px!");
-                    $('.upload-photo').addClass('text-main-color');
-                    photo_img = false;
-                } else {
+                // if(this.width != 500 || this.height != 500) {
+                //     toastr.error("Image size should be 500px * 500px!");
+                //     $('.upload-photo').addClass('text-main-color');
+                //     photo_img = false;
+                // } else {
                     $('.photo_img_label').html($('#photo_img')[0].files[0].name);
                     $('.upload-photo').removeClass('text-main-color');
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }
@@ -413,18 +414,36 @@ $(document).ready(function(){
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size should be 1100px * 200px!");
-                    $('.upload-banner').addClass('text-main-color');
-                    banner_img = false;
-                } else {
+                // if(this.width != 1100 || this.height != 200) {
+                //     toastr.error("Image size should be 1100px * 200px!");
+                //     $('.upload-banner').addClass('text-main-color');
+                //     banner_img = false;
+                // } else {
                     $('.banner_img_label').html($('#banner_img')[0].files[0].name);
                     $('.upload-banner').removeClass('text-main-color');
                     _URL.revokeObjectURL(objectUrl);
                     banner_img = true;
-                }
+                // }
             };
             img.src = objectUrl;
+        }
+    });
+
+    var word_limit = false;
+    $("#idol_bio").on('keyup', function() {
+        var words = 0;
+
+        if ((this.value.match(/\S+/g)) != null) {
+            words = this.value.match(/\S+/g).length;
+        }
+
+        if (words > 100) {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
+        }
+        else {
+            $('.limit-message').removeClass('d-none');
+            word_limit = false;
         }
     });
 
@@ -456,6 +475,8 @@ $(document).ready(function(){
             toastr.error("You should input photo image file correctly!");
         } else if(!banner_img) {
             toastr.error("You should input banner image file correctly!");
+        } else if(!word_limit) {
+            toastr.error('You should input at least 100 words!');
         } else {
             $('#profile_information').addClass('d-none');
             $('#request_video').removeClass('d-none');

@@ -121,7 +121,7 @@
             <div class="divider mb-4 desktop"></div>
         </div>
         <div class="image-part">
-            <form action="{{ route('fans-profile-update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('fans-profile-update') }}" method="POST" id="profile-update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row m-0 mb-4" style="flex-wrap: wrap;">
                     <div class="col-12 col-md-6 col-sm-6">
@@ -168,6 +168,7 @@
                             <textarea placeholder="" rows="5" name="info" id="info" style="height:100px" required>{{ Auth::user()->info }}</textarea>
                             <span>Your Bio</span>
                         </label>
+                        <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                         @if ($errors->has('info'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('info') }}</p>
@@ -176,7 +177,7 @@
                     </div>
                     <input type="file" name="photo" class="d-none" id="photo" value="">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
-                        <button type="submit" class="btn custom-btn save-btn px-3">Save Changes</button>
+                        <button type="button" class="btn custom-btn save-btn px-3 save-change-btn">Save Changes</button>
                     </div>
                 </div>
             </form>
@@ -281,6 +282,32 @@
                 img.src = objectUrl;
             }
         })
+
+        var word_limit = false;
+        $("#info").on('keyup', function() {
+            var words = 0;
+
+            if ((this.value.match(/\S+/g)) != null) {
+                words = this.value.match(/\S+/g).length;
+            }
+
+            if (words > 100) {
+                $('.limit-message').addClass('d-none');
+                word_limit = true;
+            }
+            else {
+                $('.limit-message').removeClass('d-none');
+                word_limit = false;
+            }
+        });
+
+        $('.save-change-btn').on('click', function() {
+            if(!word_limit) {
+                toastr.error('You should input at least 100 words!');
+            } else {
+                $('#profile-update').submit();
+            }
+        });
 
         $('.password-btn').on('click', function() {
             if(!$('#password').val() || !$('#confirm_password').val()) {

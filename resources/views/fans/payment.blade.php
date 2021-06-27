@@ -138,7 +138,7 @@
                     <div class="divider mb-3 ml-0" style="width:100%!important"></div>
                     <div class="d-flex mb-2 total">
                         <h5 class="text-white">Total</h5>
-                        <h5 class="text-main-color">${{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}</h5>
+                        <h5 class="text-main-color">${{ number_format($request_video->request_video_price + $request_video->request_video_price * 0.05, 2) }}</h5>
                     </div>
                     <div class="divider mb-3"></div>
                     <form action="{{ route('order-summary') }}" method="post" id="order-summary">
@@ -148,7 +148,7 @@
                         <input type="hidden" name="order_price"value="{{ $request_video->request_video_price }}">
                         <input type="hidden" name="order_fee" value="{{ $request_video->request_video_price * 0.05 }}">
                         <div class="submit">
-                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 14px">Submit Request</button>
+                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 16px">Submit Request</button>
                         </div>
                     </form>
                 </div>

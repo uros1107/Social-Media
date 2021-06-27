@@ -95,7 +95,8 @@
     }
     .custom-btn {
         height: 34px!important;
-        font-size: 12px;
+        font-size: 16px;
+        padding: 0px;
     }
     .login-part {
         margin: 15px 0px 20px!important;
@@ -125,7 +126,8 @@
         margin: 30px 0px 30px;
     }
     .google-btn, .facebook-btn {
-        font-size: 14px;
+        font-size: 16px;
+        padding: 0px;
     }
     .idol-registration .title {
         font-size: 36px;
@@ -136,9 +138,10 @@
 }
 @media (min-width: 1250px) and (max-width: 1500px) {
     .google-btn, .facebook-btn {
-        font-size: 14px;
+        font-size: 16px;
         padding-left: 2px;
         padding-right: 2px;
+        padding: 0px;
     }
 }
 
@@ -216,7 +219,7 @@
                                 </div>
                                 <div class="col-6 pl-0">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto mr-0">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -226,7 +229,7 @@
                                 </div>
                                 <div class="col-6 pr-0">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto mr-0">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -299,7 +302,7 @@
                                 </div>
                                 <div class="col-6 p-0 google">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
@@ -309,7 +312,7 @@
                                 </div> 
                                 <div class="col-6 p-0 facebook">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto">
+                                        <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/face.png') }}">
                                         </div>
                                         <div class="m-auto">

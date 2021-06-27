@@ -107,6 +107,76 @@
                 </div>
             </div>
         </div>
+        <div class="title-part">
+            <div class="w-100">
+                <h2 class="text-white">Order Confirmation</h2>
+                <p class="text-grey">Please check your order</p>
+                <div class="divider"></div>
+            </div>
+            <div class="row mx-0 mb-5">
+                @php
+                    $fans =  DB::table('users')->where('id', $order['order_fans_id'])->first();
+                @endphp
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile">
+                        <h4 class="text-white">Requested from</h4>
+                        <div class="d-flex">
+                            @if($fans->photo)
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
+                            @else
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
+                            @endif
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">{{ '@'.$fans->name }}</p>
+                                <p class="text-main-color mb-0">{{ $fans->name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile">
+                        <h4 class="text-white">Occasion</h4>
+                        <div class="d-flex">
+                            @php
+                                $occasion = DB::table('occasions')->where('occasion_id', $order['order_occasion'])->first();
+                            @endphp
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">Occasion Type</p>
+                                <p class="text-main-color mb-0">{{ $occasion->occasion_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile pt-0">
+                        <h4 class="text-white">For who?</h4>
+                        <div class="d-flex">
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p>
+                                <p class="text-main-color mb-0">{{ $order['order_to'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile pt-0">
+                        <h4 class="text-white">Language </h4>
+                        <div class="d-flex">
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">Language request for this personalized video</p>
+                                @if($order['order_lang'] == 1)
+                                <p class="text-main-color mb-0">English</p>
+                                @elseif($order['order_lang'] == 2)
+                                <p class="text-main-color mb-0">Korean</p>
+                                @else
+                                <p class="text-main-color mb-0">Mix(English and Korean)</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="title-part d-flex">
             <div>
                 <h2 class="text-white">Your personalized video request detail</h2>
@@ -132,7 +202,7 @@
             <div class="row m-0">
                 <div class="col-12 title mb-2">
                     <div class="d-flex">
-                        <h4 class="text-white">What doex next?</h4>
+                        <h4 class="text-white">What does next?</h4>
                     </div>
                 </div>
                 <div class="col-12 how-content">

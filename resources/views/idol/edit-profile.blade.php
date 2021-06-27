@@ -202,6 +202,7 @@
                     <textarea placeholder="" rows="5" id="idol_bio" style="height:100px">{{ $idol_info->idol_bio }}</textarea>
                     <span>Bio</span>
                 </label>
+                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                 @if ($errors->has('idol_bio'))
                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                         <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -257,7 +258,7 @@
                     <div class="divider"></div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6">
-                    <form action="{{ route('idol-profile-update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('idol-profile-update') }}" id="profile-update" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="lang-prefer">
                         <h4 class="text-white">Language Preference</h4>
@@ -328,7 +329,7 @@
                         <input type="hidden" name="idol_bio" value="{{ $idol_info->idol_bio }}">
                         <input type="hidden" name="idol_cat_id" value="{{ $idol_info->idol_cat_id }}">
                         <input class="d-none" type="file" name="idol_banner" id="idol_banner">
-                        <button class="btn custom-btn save-change-btn">Save Changes</button>
+                        <button type="button" class="btn custom-btn save-change-btn profile-update-btn">Save Changes</button>
                     </div>
                     </form>
                 </div>
@@ -484,14 +485,14 @@ $(document).ready(function() {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size should be 1100px * 200px!");
-                    banner_img = false;
-                } else {
+                // if(this.width != 1100 || this.height != 200) {
+                //     toastr.error("Image size should be 1100px * 200px!");
+                //     banner_img = false;
+                // } else {
                     $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
                     banner_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }
@@ -567,7 +568,34 @@ $(document).ready(function() {
 
     $('.change-password-btn').on('click', function() {
         $('.change-password').slideToggle();
-    })
+    });
+
+
+    var word_limit = false;
+    $("#idol_bio").on('keyup', function() {
+        var words = 0;
+
+        if ((this.value.match(/\S+/g)) != null) {
+            words = this.value.match(/\S+/g).length;
+        }
+
+        if (words > 100) {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
+        }
+        else {
+            $('.limit-message').removeClass('d-none');
+            word_limit = false;
+        }
+    });
+
+    $('.profile-update-btn').on('click', function() {
+        if(!word_limit) {
+            toastr.error('You should input at least 100 words!');
+        } else {
+            $('#profile-update').submit();
+        }
+    });
 
 })
 

@@ -309,7 +309,7 @@ select {
                 <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
             </div>
             <div class="container">
-                <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
+                <form class="custom-form" action="{{ route('idol-register') }}" method="POST" id="register">
                     {{ csrf_field() }}
                     <div class="row m-0">
                         <div class="col-12 col-sm-6 col-md-6">
@@ -390,8 +390,9 @@ select {
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">Anything else we should know about you?</label>
-                                <textarea class="custom-textarea" name="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
+                                <textarea class="custom-textarea" name="info" id="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
                             </div>
+                            <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                             @if ($errors->has('info'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
                                     <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
@@ -399,7 +400,7 @@ select {
                             @endif
                         </div>
                         <div class="col-12 mt-3">
-                            <button class="btn custom-btn w-100" type="submit">Submit</button>
+                            <button class="btn custom-btn w-100 register-btn" type="button">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -541,4 +542,33 @@ select {
 @endsection
 
 @section('scripts')
+<script>
+$(document).ready(function() {
+    var word_limit = false;
+    $("#info").on('keyup', function() {
+        var words = 0;
+
+        if ((this.value.match(/\S+/g)) != null) {
+            words = this.value.match(/\S+/g).length;
+        }
+
+        if (words > 100) {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
+        }
+        else {
+            $('.limit-message').removeClass('d-none');
+            word_limit = false;
+        }
+    });
+
+    $('.register-btn').on('click', function() {
+        if(!word_limit) {
+            toastr.error('You should input at least 100 words!');
+        } else {
+            $('#register').submit();
+        }
+    });
+})
+</script>
 @endsection

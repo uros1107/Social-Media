@@ -150,10 +150,11 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
+                                <div class="inputWithIcon mb-0">
                                     <label class="input-label">Anything else we should know about you?</label>
-                                    <textarea class="custom-textarea" name="info" placeholder="Let us know about you..." required></textarea>
+                                    <textarea class="custom-textarea mb-0" name="info" id="info" placeholder="Let us know about you..." required></textarea>
                                 </div>
+                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
                                 @if ($errors->has('info'))
                                     <span class="help-block pl-3 d-block" style="color:#d61919;margin-top: -15px">
                                         <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
@@ -221,6 +222,24 @@
             $('input[name=password]').prop('type','password');
             $(this).addClass('d-none');
             $('.eye-hide').removeClass('d-none');
+        });
+
+        var word_limit = false;
+        $("#info").on('keyup', function() {
+            var words = 0;
+
+            if ((this.value.match(/\S+/g)) != null) {
+                words = this.value.match(/\S+/g).length;
+            }
+
+            if (words > 100) {
+                $('.limit-message').addClass('d-none');
+                word_limit = true;
+            }
+            else {
+                $('.limit-message').removeClass('d-none');
+                word_limit = false;
+            }
         });
     })
 </script>
