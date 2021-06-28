@@ -51,6 +51,7 @@
         @php
             $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
             $idol_request = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+            $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
         @endphp
         <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
         <div class="gradient"></div>
@@ -61,8 +62,8 @@
                 </div>
                 <div class="idol-information">
                     <div class="tik-tok">
-                        <button class="btn custom-btn mr-2">TIK - TOK</button>
-                        <button class="btn custom-btn">STREAMER</button>
+                        <!-- <button class="btn custom-btn mr-2" onclick="goto_category(5)">TIK - TOK</button> -->
+                        <button class="btn custom-btn" onclick="goto_category({{ $cat->cat_id }})">{{ $cat->cat_name }}</button>
                     </div>
                     <div class="name-action d-flex">
                         <div class="name-part">
@@ -154,8 +155,8 @@
                     <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
                     <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                     <div class="tik-tok">
-                        <button class="btn custom-btn mr-2">TIK - TOK</button>
-                        <button class="btn custom-btn">STREAMER</button>
+                        <!-- <button class="btn custom-btn mr-2" onclick="goto_category(5)">TIK - TOK</button> -->
+                        <button class="btn custom-btn" onclick="goto_category({{ $cat->cat_id }})">{{ $cat->cat_name }}</button>
                     </div>
                 </div>
             </div>
@@ -313,6 +314,10 @@ function format(s) {
     s = Math.floor(s % 60);
     s = (s >= 10) ? s : "0" + s;
     return m + ":" + s;
+}
+
+function goto_category(cat_id) {
+    location.href = "{{ route('idol-category-get') }}" + '?cat_id=' + cat_id;
 }
 
 $(document).ready(function() {

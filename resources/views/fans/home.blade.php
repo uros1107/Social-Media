@@ -75,8 +75,8 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">Featured</h2>
-            <p class="text-grey">Influencer recommendation for you.</p>
-            <div class="divider mb-4 desktop"></div>
+            <!-- <p class="text-grey">Influencer recommendation for you.</p> -->
+            <div class="divider mb-3"></div>
         </div>
         <div class="image-part">
             <div class="row m-0">
@@ -145,8 +145,8 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">Trending</h2>
-            <p class="text-grey">Top list trending</p>
-            <div class="divider mb-4 desktop"></div>
+            <!-- <p class="text-grey">Top list trending</p> -->
+            <div class="divider mb-3"></div>
         </div>
         <div class="image-part">
             <div class="row m-0">
@@ -179,8 +179,8 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">New Idols</h2>
-            <p class="text-grey">New idols who join to meet you</p>
-            <div class="divider mb-4 desktop"></div>
+            <!-- <p class="text-grey">New idols who join to meet you</p> -->
+            <div class="divider mb-3"></div>
         </div>
         <div class="image-part">
             <div class="row m-0">

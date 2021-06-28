@@ -87,12 +87,15 @@
                                 <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
                             </div>
                         </div>
+                        @php
+                            $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
+                        @endphp
                         <div class="ml-3">
                             <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
                             <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                             <div class="tik-tok">
-                                <button class="btn custom-btn mr-2">TIK - TOK</button>
-                                <button class="btn custom-btn">STREAMER</button>
+                                <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
+                                <button class="btn custom-btn">{{ $cat->cat_name }}</button>
                             </div>
                         </div>
                     </div>
