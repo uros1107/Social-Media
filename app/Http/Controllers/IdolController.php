@@ -200,7 +200,7 @@ class IdolController extends Controller
         $request->validate([
             'idol_full_name' => 'required|string',
             'idol_user_name' => 'required|string',
-            'idol_bio' => 'required|string|min:100',
+            'idol_bio' => 'required|string',
             'idol_email' => 'required|string|email',
             'idol_phone' => 'string'
         ]);

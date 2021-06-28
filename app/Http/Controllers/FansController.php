@@ -271,7 +271,7 @@ class FansController extends Controller
             'name' => 'required|string',
             // 'email' => 'required|string|email',
             // 'phone' => 'string',
-            'info' => 'required|string|min:100'
+            'info' => 'required|string'
         ]);
 
         if(!isset($request->password)) {

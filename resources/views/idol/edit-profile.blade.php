@@ -92,7 +92,7 @@
                             <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                             <div class="tik-tok">
                                 <button class="btn custom-btn mr-2">TIK - TOK</button>
-                                <button class="btn custom-btn">STEAMER</button>
+                                <button class="btn custom-btn">STREAMER</button>
                             </div>
                         </div>
                     </div>

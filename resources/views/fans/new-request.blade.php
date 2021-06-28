@@ -62,7 +62,7 @@
                 <div class="idol-information">
                     <div class="tik-tok">
                         <button class="btn custom-btn mr-2">TIK - TOK</button>
-                        <button class="btn custom-btn">STEAMER</button>
+                        <button class="btn custom-btn">STREAMER</button>
                     </div>
                     <div class="name-action d-flex">
                         <div class="name-part">
@@ -121,7 +121,7 @@
                     <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                     <div class="tik-tok">
                         <button class="btn custom-btn mr-2">TIK - TOK</button>
-                        <button class="btn custom-btn">STEAMER</button>
+                        <button class="btn custom-btn">STREAMER</button>
                     </div>
                 </div>
             </div>
@@ -383,7 +383,7 @@ $(document).ready(function() {
         var id = $(this).data('id');
 
         @if(!Auth::check())
-            toastr.error('You should login!');
+            location.href = "{{ route('fans-signin') }}";
         @else
             $.ajaxSetup({
                 headers: {

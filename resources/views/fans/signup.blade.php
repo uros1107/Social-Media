@@ -25,7 +25,7 @@
 .idol-registration .title-part {
     margin: 40px 0px 30px;
 }
-.google-btn a, .facebook-btn a {
+.google-btn a {
     color: #000000;
 }
 
@@ -169,7 +169,7 @@
             <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div class="title-part text-center">
                     <h2 class="text-white title">Sign Up!</h2>
-                    <h4 class="text-grey sub-title">Start meet your favourite Korean idol.</h4>
+                    <h4 class="text-grey sub-title">Create special memories & experiences with your idol now</h4>
                 </div>
                 <div class="register-part">
                     <form class="custom-form" action="{{ route('fans-confirm-email') }}" method="POST">
@@ -258,7 +258,7 @@
                 <div class="form-block">
                     <div class="title-part">
                         <h2 class="text-white title">Sign Up!</h2>
-                        <h4 class="text-grey sub-title">Start to meet your favourite Korean idol.</h4>
+                        <h4 class="text-grey sub-title">Create special memories & experiences with your idol now</h4>
                     </div>
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('fans-confirm-email') }}" method="POST">

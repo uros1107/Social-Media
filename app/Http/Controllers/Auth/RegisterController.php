@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|unique:users',
             'phone' => 'required|string|unique:users',
             'followers' => 'required|numeric',
-            'info' => 'required|string|min:100',
+            'info' => 'required|string',
         ]);
 
         User::create([

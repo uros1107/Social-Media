@@ -234,7 +234,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         @if(!Auth::check())
-            toastr.error('You should login for this!');
+            location.href = "{{ route('fans-signin') }}";
         @else
             $(this).submit();
         @endif

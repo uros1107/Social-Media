@@ -21,7 +21,7 @@
 .inputWithIcon .custom-input {
     padding-right: 40px;
 }
-.google-btn a, .facebook-btn a {
+.google-btn a {
     color: #000000;
 }
 
