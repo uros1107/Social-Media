@@ -225,7 +225,7 @@
             $('.eye-hide').removeClass('d-none');
         });
 
-        var word_limit = false;
+        var word_limit = true;
         $("#info").on('keyup', function() {
             var words = 0;
 

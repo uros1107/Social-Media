@@ -258,7 +258,7 @@ $(document).ready(function() {
         }
     });
 
-    var word_limit = false;
+    var word_limit = true;
     $("#idol_bio").on('keyup', function() {
         var words = 0;
 

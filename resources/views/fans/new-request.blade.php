@@ -349,7 +349,7 @@ $(document).ready(function() {
         $('#to').val($(this).val());
     });
 
-    var word_limit = false;
+    var word_limit = true;
     $("#comment").on('keyup', function() {
         var words = 0;
 
