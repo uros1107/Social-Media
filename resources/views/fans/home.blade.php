@@ -184,8 +184,8 @@
         </div>
         <div class="image-part">
             <div class="row m-0">
-                @if(count($idols))
-                @foreach($idols as $idol)
+                @if(count($new_idols))
+                @foreach($new_idols as $idol)
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
                 @endphp

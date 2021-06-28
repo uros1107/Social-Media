@@ -103,6 +103,39 @@
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                             <span>Typically responds in 3 days</span>
                         </div>
+                        <div class="how">
+                            <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">
+                            <span class="text-white">How does it work?</span>
+                        </div>
+                        <div class="how-work-view d-none">
+                            <div class="row">
+                                <div class="col-12 title mb-3">
+                                    <div class="d-flex">
+                                        <h4 class="text-white">How does it work?</h4>
+                                        <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
+                                    </div>
+                                    <p class="text-white">What happen when I request video?</p>
+                                </div>
+                                <div class="col-12 how-content">
+                                    <div class="content-item d-flex mb-4">
+                                        <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
+                                        <p class="mb-0 text-white">You will receive on email order confirmation</p>
+                                    </div>
+                                    <div class="content-item d-flex mb-4">
+                                        <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
+                                        <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
+                                    </div>
+                                    <div class="content-item d-flex mb-4">
+                                        <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
+                                        <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
+                                    </div>
+                                    <div class="content-item d-flex">
+                                        <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
+                                        <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -319,6 +352,20 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+    var show = false;
+    $(document).on('click', '.how', function() {
+        show = !show;
+        if(show) {
+            $('.how-work-view').removeClass('d-none');    
+        } else {
+            $('.how-work-view').addClass('d-none');
+        }
+    })
+
+    $(document).on('click', '.close-btn', function() {
+        $('.how-work-view').addClass('d-none');
+    })
+
     $(document).on('click', '.occasion-item', function() {
         $('#occasion').val($(this).data('id'));
         if(!$(this).hasClass('active')) {

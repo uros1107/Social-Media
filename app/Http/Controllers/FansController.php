@@ -238,7 +238,8 @@ class FansController extends Controller
     public function index()
     {
         $idols = User::where('role', 1)->where('is_setup', 1)->take(5)->get();
-        return view('fans.home', compact('idols'));
+        $new_idols = User::where('role', 1)->where('is_setup', 1)->orderBy('created_at', 'desc')->take(5)->get();
+        return view('fans.home', compact('idols', 'new_idols'));
     }
 
     public function idol_category_get(Request $request)
