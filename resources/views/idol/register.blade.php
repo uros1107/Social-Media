@@ -392,7 +392,7 @@ select {
                                 <label class="input-label">Anything else we should know about you?</label>
                                 <textarea class="custom-textarea" name="info" id="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
                             </div>
-                            <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
+                            <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
                             @if ($errors->has('info'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
                                     <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
@@ -553,18 +553,18 @@ $(document).ready(function() {
         }
 
         if (words > 100) {
-            $('.limit-message').addClass('d-none');
-            word_limit = true;
-        }
-        else {
             $('.limit-message').removeClass('d-none');
             word_limit = false;
+        }
+        else {
+            $('.limit-message').addClass('d-none');
+            word_limit = true;
         }
     });
 
     $('.register-btn').on('click', function() {
         if(!word_limit) {
-            toastr.error('You should input at least 100 words!');
+            toastr.error('You can input maximum 100 words!');
         } else {
             $('#register').submit();
         }

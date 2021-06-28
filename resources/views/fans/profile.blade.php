@@ -168,7 +168,7 @@
                             <textarea placeholder="" rows="5" name="info" id="info" style="height:100px" required>{{ Auth::user()->info }}</textarea>
                             <span>Your Bio</span>
                         </label>
-                        <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You should input at least 100 words!</p>
+                        <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
                         @if ($errors->has('info'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('info') }}</p>
@@ -292,18 +292,18 @@
             }
 
             if (words > 100) {
-                $('.limit-message').addClass('d-none');
-                word_limit = true;
-            }
-            else {
                 $('.limit-message').removeClass('d-none');
                 word_limit = false;
+            }
+            else {
+                $('.limit-message').addClass('d-none');
+                word_limit = true;
             }
         });
 
         $('.save-change-btn').on('click', function() {
             if(!word_limit) {
-                toastr.error('You should input at least 100 words!');
+                toastr.error('You can input maximum 100 words!');
             } else {
                 $('#profile-update').submit();
             }
