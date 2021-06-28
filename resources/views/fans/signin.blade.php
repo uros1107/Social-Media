@@ -21,6 +21,9 @@
 .inputWithIcon .custom-input {
     padding-right: 40px;
 }
+.google-btn a, .facebook-btn a {
+    color: #000000;
+}
 
 @media screen and (max-width: 1024px) {
     .form-block {
@@ -223,14 +226,14 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign in with Google</a>
+                                            <a href="{{ route('redirect-google').'?role=2' }}">Sign in with Google</a>
                                         </div>
                                     </button>
                                 </div>
                                 <div class="col-6 pr-0">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto mr-0">
-                                            <img src="{{ asset('assets/images/icons/face.png') }}">
+                                        <div class="m-auto mr-1">
+                                            <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;">
                                         </div>
                                         <div class="m-auto">
                                             <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign in with Facebook</a>
@@ -306,14 +309,14 @@
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
                                         </div>
                                         <div class="m-auto">
-                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Google</a>
+                                            <a href="{{ route('redirect-google').'?role=2' }}">Google</a>
                                         </div>
                                     </button>
                                 </div> 
                                 <div class="col-6 p-0 facebook">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto" style="margin-right: 0px!important">
-                                            <img src="{{ asset('assets/images/icons/face.png') }}">
+                                        <div class="m-auto mr-1" style="margin-right: 0px!important">
+                                            <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;">
                                         </div>
                                         <div class="m-auto">
                                             <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Facebook</a>

@@ -297,6 +297,7 @@
                             <label for="comment" class="text-white" style="font-size: 18px">Introductions</label>
                             <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Tell your idol what you want them to say on the video"></textarea>
                             <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 words!</p>
+                            <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Words: <span>0</span></p>
                         </div>
                         <input type="hidden" name="order_occasion" id="occasion" value="">
                         <input type="hidden" name="order_who_for" id="who_for" value="2">
@@ -358,10 +359,13 @@ $(document).ready(function() {
 
         if (words > 250) {
             $('.limit-message').removeClass('d-none');
+            $('.word-count').addClass('d-none');
             word_limit = false;
         }
         else {
             $('.limit-message').addClass('d-none');
+            $('.word-count').removeClass('d-none');
+            $('.word-count span').html(words);
             word_limit = true;
         }
     });

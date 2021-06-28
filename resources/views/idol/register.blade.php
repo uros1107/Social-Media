@@ -393,6 +393,7 @@ select {
                                 <textarea class="custom-textarea" name="info" id="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
                             </div>
                             <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
+                            <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
                             @if ($errors->has('info'))
                                 <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
                                     <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
@@ -554,10 +555,13 @@ $(document).ready(function() {
 
         if (words > 100) {
             $('.limit-message').removeClass('d-none');
+            $('.word-count').addClass('d-none');
             word_limit = false;
         }
         else {
             $('.limit-message').addClass('d-none');
+            $('.word-count').removeClass('d-none');
+            $('.word-count span').html(words);
             word_limit = true;
         }
     });
