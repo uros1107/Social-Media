@@ -114,10 +114,12 @@
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" integrity="sha512-leN1LJ2B5s9cBINeKL5bbT3cQvOebXsezoYGyuMq9oaytpFJgJ1uBOU86lJZObKTFLbMHqP0zFXR/1N6Nnlskw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://unpkg.com/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.min.css" integrity="sha512-lE0QNAJLkgJOpwIyd/QjUtOPpASCh63P8GMoWXoP/uINWjM/w33Me0ypq8tntHFZqxo20+qfjvOFFZfi4uSCsA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <script>
         $(document).ready(function() {
@@ -142,8 +144,25 @@
                 }
             })
 
+            var idol_names;
+            $.ajax({
+                type: "GET",
+                url: "{{ route('get-idol-list') }}",
+                success:function(data){
+                    idol_names = data;
+                },
+                async: false
+            });
+            $('#search').autocomplete({
+                source: idol_names,
+                select: function( event , ui ) {
+                    var idol_name = ui.item.label;
+                    location.href = "{{ route('fans-search') }}" + '?search=' + idol_name;
+                }
+            });
+
             $('#search').on('change', function() {
-                location.href = "{{ route('idol-search') }}" + '?search=' + $(this).val();
+                location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
             });
         })
     </script>
