@@ -176,9 +176,9 @@
                 }
             });
 
-            // $('#search').on('change', function() {
-            //     location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
-            // });
+            $('#search').on('change', function() {
+                location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
+            });
         })
     </script>
     @yield('scripts')
