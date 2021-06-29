@@ -459,7 +459,7 @@ class FansController extends Controller
             $user->fandom_lists = '['.$idol_user_id.']';
             $user->save();
 
-            return response()->json(['success' => true]);
+            return response()->json(['status' => 1]);
         } else {
             $idol = User::where('id', Auth::user()->id)->whereRaw("JSON_CONTAINS(fandom_lists,'".$idol_user_id."','$')=1")->first();
             if(!$idol) {
@@ -469,10 +469,28 @@ class FansController extends Controller
                 $user->fandom_lists = $user_numbers;
                 $user->save();
 
-                return response()->json(['success' => true]);
+                return response()->json(['status' => 1]);
             } else {
-                // unset($user->fandom_lists[])
-                return response()->json(['success' => false]);
+                $user_profile_ids = json_decode($user->fandom_lists);
+                
+                foreach ($user_profile_ids as $key => $value) {
+                    if ($value == $idol_user_id) {
+                        unset($user_profile_ids[$key]);
+                    }
+                }
+                if($user_profile_ids) {
+                    $user_numbers = '[';
+                    foreach ($user_profile_ids as $user_profile_id) {
+                        $user_numbers .= $user_profile_id.',';
+                    }
+                    $user_numbers = substr($user_numbers, 0, -1);
+                    $user_numbers .= ']';
+                } else {
+                    $user_numbers = '';
+                }
+                $user->fandom_lists = $user_numbers;
+                $user->save();
+                return response()->json(['status' => 2]);
             }
         }
     }

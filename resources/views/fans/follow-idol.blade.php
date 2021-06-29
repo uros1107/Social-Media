@@ -83,7 +83,12 @@
                                 $user = DB::table('users')->where('id', Auth::user()->id)->first();
                                 $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
                             @endphp
-                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
+                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px">
+                                @if($has)
+                                    <i class='fas fa-check mr-2' style='font-size:16px'></i>
+                                @endif
+                                Follow
+                            </button>
                             @endif
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
                         </div>
@@ -195,7 +200,12 @@
                 $user = DB::table('users')->where('id', Auth::user()->id)->first();
                 $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
             @endphp
-            <button type="button" class="btn custom-btn w-100 mb-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px"><i class='fas fa-check mr-2' style='font-size:16px'></i>Follow</button>
+            <button type="button" class="btn custom-btn w-100 mb-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px">
+                @if($has)
+                    <i class='fas fa-check mr-2' style='font-size:16px'></i>
+                @endif
+                Follow
+            </button>
             @endif
             <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
         </div>
@@ -373,10 +383,16 @@ $(document).ready(function() {
                 method: 'POST',
                 data: { idol_user_id: id },
                 success: function (res) {
-                    if(res['success']) {
+                    if(res['status'] == 1) {
                         toastr.success('Successfully added!');
-                    } else {
-                        toastr.error('You have already added this idol!');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    } else if(res['status'] == 2) {
+                        toastr.success('Successfully removed!');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
                     }
                 },
                 error: function (error) {
