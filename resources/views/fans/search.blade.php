@@ -36,7 +36,10 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
+                            @php
+                                $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
+                            @endphp
+                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
                         </div>
                     </div>
                 </div>

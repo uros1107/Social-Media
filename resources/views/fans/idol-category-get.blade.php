@@ -32,6 +32,7 @@
                 @foreach($idols as $idol)
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                    $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
@@ -39,7 +40,7 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
+                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -65,15 +66,7 @@
             var id = $(this).data('id');
             location.href = "{{ route('follow-idol')}}" + '?id=' + id;
         })
-        // $(document).on('click', '.custom-btn', function() {
-        //     if($(this).hasClass('deactive')) {
-        //         $(this).removeClass('deactive');
-        //         $('.custom-btn').not(this).each(function(){
-        //             $(this).addClass('deactive');
-        //         });
-        //     }
-        // });
-
+        
         $('.favourite-btn').on('click', function() {
             $(this).removeClass('deactive');
             $('.discover-btn').addClass('deactive');

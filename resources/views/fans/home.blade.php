@@ -84,6 +84,7 @@
                 @foreach($idols as $idol)
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                    $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
@@ -91,7 +92,7 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
+                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -154,6 +155,7 @@
                 @foreach($idols as $idol)
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                    $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
@@ -161,7 +163,7 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
+                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -188,6 +190,7 @@
                 @foreach($new_idols as $idol)
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+                    $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
                     <div class="image-item">
@@ -195,7 +198,7 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            <p class="text-white mb-0">Dancer, TikTok</p>
+                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
                         </div>
                     </div>
                 </div>

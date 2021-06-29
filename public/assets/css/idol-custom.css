@@ -406,7 +406,7 @@ a:hover {
     bottom: 0px;
     height: 200px;
     width: 100%;
-    background: linear-gradient(0deg, #FF335C -19.53%, rgba(255, 51, 92, 0) 34.33%);
+    /* background: linear-gradient(0deg, #FF335C -19.53%, rgba(255, 51, 92, 0) 34.33%); */
     border-radius: 20px;
 }
 .featured .image-item {
@@ -434,6 +434,7 @@ a:hover {
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
+    margin-bottom: 1px;
 }
 .featured .title-part > .divider {
     border: 1px solid #2b2b2b;
@@ -712,7 +713,7 @@ a:hover {
     padding: 10px 30px;
 }
 .follow-idol .idol-profile .tik-tok > button {
-    width: 75px;
+    /* width: 75px; */
     height: 28px;
     border-radius: 25px;
     font-size: 9px;

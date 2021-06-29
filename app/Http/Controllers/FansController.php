@@ -471,6 +471,7 @@ class FansController extends Controller
 
                 return response()->json(['success' => true]);
             } else {
+                // unset($user->fandom_lists[])
                 return response()->json(['success' => false]);
             }
         }
@@ -483,5 +484,12 @@ class FansController extends Controller
         $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->get();
 
         return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
+    }
+
+    public function get_idol_list()
+    {
+        $idol_names = IdolInfo::pluck('idol_user_name');
+
+        return response()->json($idol_names);
     }
 }

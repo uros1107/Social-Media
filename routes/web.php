@@ -115,5 +115,6 @@ Route::prefix('fans')->group(function() {
     Route::POST('/order-summary', 'FansController@order_summary')->name('order-summary');
     Route::POST('/send-review', 'FansController@send_review')->name('send-review');
     Route::POST('/join-fandom', 'FansController@join_fandom')->name('join-fandom');
+    Route::get('/get-idol-list', 'FansController@get_idol_list')->name('get-idol-list');
 });
 
