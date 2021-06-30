@@ -31,6 +31,12 @@
 .modal-backdrop {
     background-color: #FF335C;
 }
+.custom-breadcrumb {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: transparent;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
@@ -54,6 +60,9 @@
             $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
         @endphp
         <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
+        <div class="custom-breadcrumb">
+            <a href="#" class="text-white" style="font-weight: 700">New Request / </a>
+        </div>
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
             <div class="idol-profile d-flex">
@@ -63,7 +72,7 @@
                 <div class="idol-information">
                     <div class="tik-tok">
                         <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
-                        <button class="btn custom-btn" onclick="goto_category({{ $cat->cat_id }})">{{ $cat->cat_name }}</button>
+                        <button class="btn custom-btn" onclick='goto_category("{{ route('idol-category-get', $cat->cat_name) }}")'>{{ $cat->cat_name }}</button>
                     </div>
                     <div class="name-action d-flex">
                         <div class="name-part">
@@ -109,35 +118,37 @@
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                             <span>Typically responds in 3 days</span>
                         </div>
-                        <div class="how">
-                            <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">
-                            <span class="text-white">How does it work?</span>
-                        </div>
-                        <div class="how-work-view d-none">
-                            <div class="row">
-                                <div class="col-12 title mb-3">
-                                    <div class="d-flex">
-                                        <h4 class="text-white">How does it work?</h4>
-                                        <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
+                        <div class="how" style="z-index:10">
+                            <div class="text-right">
+                                <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">
+                                <span class="text-white">How does it work?</span>
+                            </div>
+                            <div class="how-work-view d-none">
+                                <div class="row">
+                                    <div class="col-12 title mb-3">
+                                        <div class="d-flex">
+                                            <h4 class="text-white">How does it work?</h4>
+                                            <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
+                                        </div>
+                                        <p class="text-white">What happen when I request video?</p>
                                     </div>
-                                    <p class="text-white">What happen when I request video?</p>
-                                </div>
-                                <div class="col-12 how-content">
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">You will receive on email order confirmation</p>
-                                    </div>
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
-                                    </div>
-                                    <div class="content-item d-flex mb-4">
-                                        <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
-                                    </div>
-                                    <div class="content-item d-flex">
-                                        <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
-                                        <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
+                                    <div class="col-12 how-content">
+                                        <div class="content-item d-flex mb-4">
+                                            <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
+                                            <p class="mb-0 text-white">You will receive on email order confirmation</p>
+                                        </div>
+                                        <div class="content-item d-flex mb-4">
+                                            <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
+                                            <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
+                                        </div>
+                                        <div class="content-item d-flex mb-4">
+                                            <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
+                                            <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
+                                        </div>
+                                        <div class="content-item d-flex">
+                                            <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
+                                            <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -149,6 +160,9 @@
     </div>
     <div class="mobile w-100">
         <img class="bg-img w-100" src="{{ asset('assets/images/mobile-follow-bg.png') }}" class="w-100">
+        <div class="custom-breadcrumb">
+            <a href="#" class="text-white" style="font-weight: 700">New Request / </a>
+        </div>
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-170px">
             <div class="idol-profile d-flex">
@@ -160,7 +174,7 @@
                     <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
                     <div class="tik-tok">
                         <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
-                        <button class="btn custom-btn" onclick="goto_category({{ $cat->cat_id }})">{{ $cat->cat_name }}</button>
+                        <button class="btn custom-btn" onclick='goto_category("{{ route('idol-category-get', $cat->cat_name) }}")'>{{ $cat->cat_name }}</button>
                     </div>
                 </div>
             </div>
@@ -213,7 +227,7 @@
     <div class="col-12 col-sm-8 col-md-8 featured-video">
         <div class="title-part">
             <h2 class="text-white">New request from {{ Auth::user()->name }}</h2>
-            <p class="text-grey">Tell the Influencer what is your idea to make request video</p>
+            <p class="text-grey">Let your Idol know what you want them to say in their personalized video to you or your friends</p>
             <div class="divider mt-2 mb-4"></div>
         </div>
         <div class="who-is w-100 mb-3">
@@ -338,8 +352,8 @@
                         </div>
                         <div class="divider mb-3"></div>
                         <div class="form-group">
-                            <label for="comment" class="text-white" style="font-size: 18px">Introductions</label>
-                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Tell your idol what you want them to say on the video"></textarea>
+                            <label for="comment" class="text-white" style="font-size: 18px">Instructions</label>
+                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Hi! My friend Ashley is a super-fan of yours and she’s been following you for years. Could you surprise her by wishing her Happy Birthday?"></textarea>
                             <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 words!</p>
                             <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Words: <span>0</span></p>
                         </div>
@@ -362,8 +376,8 @@
 
 @section('scripts')
 <script>
-function goto_category(cat_id) {
-    location.href = "{{ route('idol-category-get') }}" + '?cat_id=' + cat_id;
+function goto_category(url) {
+    location.href = url;
 }
 $(document).ready(function() {
     var show = false;

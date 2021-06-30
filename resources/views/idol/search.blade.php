@@ -33,7 +33,7 @@
             <div class="row m-0">
                 @if(count($idol_infos))
                 @foreach($idol_infos as $idol_info)
-                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol_info->idol_user_id }}">
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
                     <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
@@ -62,8 +62,8 @@
         $('.show').hide();
 
         $('.custom-col').on('click', function() {
-            var id = $(this).data('id');
-            location.href = "{{ route('follow-idol')}}" + '?id=' + id;
+            var url = $(this).data('url');
+            location.href = url;
         })
         // $(document).on('click', '.custom-btn', function() {
         //     if($(this).hasClass('deactive')) {
@@ -86,11 +86,6 @@
             $('.favourite-btn').addClass('deactive');
             $('.hide').show();
             $('.show').hide();
-        });
-
-        $('.category-tab').on('click', function() {
-            var id = $(this).data('id');
-            location.href = "{{ route('idol-category-get') }}" + '?cat_id=' + id;
         });
     })
 </script>

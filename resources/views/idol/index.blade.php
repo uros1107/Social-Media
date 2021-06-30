@@ -349,9 +349,7 @@ $(document).ready(function() {
             $('#duration_' + id).html(format(this.duration));
         };
     });
-    $('.custom-col').on('click', function() {
-        location.href = "{{ route('follow-idol') }}";
-    });
+
     $(document).on('click', '.get-started', function() {
         location.href = "{{ route('idol-wizard') }}";
     });

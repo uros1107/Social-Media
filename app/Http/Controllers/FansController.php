@@ -242,11 +242,10 @@ class FansController extends Controller
         return view('fans.home', compact('idols', 'new_idols'));
     }
 
-    public function idol_category_get(Request $request)
+    public function idol_category_get(Request $request, $name)
     {
-        $cat_id = $request->cat_id;
-        $cat = Category::where('cat_id', $cat_id)->first();
-        $idols = User::where('cat_id', $cat_id)->where('role', 1)->where('is_setup', 1)->get();
+        $cat = Category::where('cat_name', $name)->first();
+        $idols = User::where('cat_id', $cat->cat_id)->where('role', 1)->where('is_setup', 1)->get();
 
         return view('fans.idol-category-get', ['idols' => $idols, 'cat' => $cat]);
     }
@@ -318,10 +317,10 @@ class FansController extends Controller
         return view('fans.activity', compact('orders'));
     }
 
-    public function follow_idol(Request $request)
+    public function follow_idol(Request $request, $name)
     {
-        $id = $request->id;
-        $idol = User::where('id', $id)->first();
+        $idol_info = IdolInfo::where('idol_user_name', $name)->first();
+        $idol = User::where('id', $idol_info->idol_user_id)->first();
         $orders = Order::where('order_idol_id', $idol->id)->where('order_status', 1)->take(4)->get();
         $reviews = Review::where('review_idol_id', $idol->id)->get();
         

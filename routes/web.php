@@ -98,13 +98,13 @@ Route::prefix('fans')->group(function() {
     
     Route::get('/', 'FansController@index')->name('fans-index');
     Route::get('/fans-search', 'FansController@fans_search')->name('fans-search');
-    Route::get('/idol-category-get', 'FansController@idol_category_get')->name('idol-category-get');
+    Route::get('/category/{catname}', 'FansController@idol_category_get')->name('idol-category-get');
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
     Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
     Route::POST('/change-password', 'FansController@change_password')->name('fans-change-password');
     Route::get('/activity', 'FansController@activity')->name('fans-activity');
     Route::get('/myfandoms', 'FansController@myfandoms')->name('myfandom');
-    Route::get('/follow-idol', 'FansController@follow_idol')->name('follow-idol');
+    Route::get('/follow-idol/{idolname}', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');
     Route::POST('/card-save', 'FansController@card_save')->name('card-save');

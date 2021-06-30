@@ -86,7 +86,7 @@
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
                     $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
-                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
                     <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
@@ -120,17 +120,17 @@
                 @endphp
                 @for($i = 0; $i < count($cats); $i = $i+2)
                 <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#1">
-                        <div class="image-item mb-4 category-tab" data-id="{{ $cats[$i]->cat_id }}" style="height: unset">
-                            <img src="{{ asset('assets/images/idol1.png') }}" class="w-100"> 
+                    <a href="{{ route('idol-category-get', $cats[$i]->cat_name) }}">
+                        <div class="image-item mb-4 category-tab" style="height: unset">
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 1).'.png') }}" class="w-100"> 
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i]->cat_name }}</h4>
                             </div>  
                         </div>
                     </a>
-                    <a href="#2">
-                        <div class="image-item category-tab" data-id="{{ $cats[$i+1]->cat_id }}" style="height: unset">
-                            <img src="{{ asset('assets/images/idol2.png') }}" class="w-100">   
+                    <a href="{{ route('idol-category-get', $cats[$i+1]->cat_name) }}">
+                        <div class="image-item category-tab" style="height: unset">
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 2).'.png') }}" class="w-100">   
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i+1]->cat_name }}</h4>
                             </div>
@@ -157,7 +157,7 @@
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
                     $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
-                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
                     <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
@@ -192,7 +192,7 @@
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
                     $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
                 @endphp
-                <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->id }}">
+                <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
                     <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
@@ -221,8 +221,8 @@
         $('.show').hide();
 
         $('.custom-col').on('click', function() {
-            var id = $(this).data('id');
-            location.href = "{{ route('follow-idol')}}" + '?id=' + id;
+            var url = $(this).data('url');
+            location.href = url;
         })
 
         $('.favourite-btn').on('click', function() {
@@ -237,11 +237,6 @@
             $('.favourite-btn').addClass('deactive');
             $('.hide').show();
             $('.show').hide();
-        });
-
-        $('.category-tab').on('click', function() {
-            var id = $(this).data('id');
-            location.href = "{{ route('idol-category-get') }}" + '?cat_id=' + id;
         });
     })
 </script>

@@ -39,7 +39,7 @@
             @endphp
             @for($i = 0; $i < count($cats); $i = $i+1)
                 <li class="nav-item" style="padding: 10px 20px!important;">
-                    <a href="{{ route('idol-category-get').'?cat_id='.$cats[$i]->cat_id }}" class="nav-link person-link">
+                    <a href="{{ route('idol-category-get', $cats[$i]->cat_name) }}" class="nav-link person-link">
                         <img src="{{ asset('assets/images/person/'.$cats[$i]->cat_img) }}" class="mr-3 person-img" style="width:20px">
                         {{ $cats[$i]->cat_name }}
                     </a>
@@ -50,7 +50,7 @@
             @endphp
             @for($i = 0; $i < count($cats); $i = $i+1)
                 <li class="nav-item d-none more" style="padding: 10px 20px!important;">
-                    <a href="{{ route('idol-category-get').'?cat_id='.$cats[$i]->cat_id }}" class="nav-link person-link">
+                    <a href="{{ route('idol-category-get', $cats[$i]->cat_name) }}" class="nav-link person-link">
                         <img src="{{ asset('assets/images/person/'.$cats[$i]->cat_img) }}" class="mr-3 person-img" style="width:20px">
                         {{ $cats[$i]->cat_name }}
                     </a>

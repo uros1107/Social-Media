@@ -57,6 +57,9 @@
     background-color: #424242;
     border-color: #424242;
 }
+.custom-breadcrumb {
+   
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -75,6 +78,10 @@
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
     @endphp
     <div class="col-12 col-sm-8 col-md-8 featured-video">
+        <div class="custom-breadcrumb mb-2">
+            <a href="{{ route('new-request').'?id='.$idol_id }}" class="text-white" style="font-weight: 700">New Request / </a>
+            <a href="#" class="text-white" style="font-weight: 700">Payment</a>
+        </div>
         <div class="title-part">
             <h2 class="text-white">Payment Info</h2>
         </div>

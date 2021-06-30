@@ -851,7 +851,7 @@ a:hover {
     padding: 20px;
     background: #2b2b2b;
     border-radius: 20px;
-    position: absolute;
+    /* position: absolute; */
     right: 65px;
     top: 170px;
     height: 370px;

@@ -33,7 +33,7 @@
                     @php
                         $idol = DB::table('idol_info')->where('idol_user_id', $idol)->first();
                     @endphp
-                    <div class="col-4 col-sm-3 col-md-3 custom-col" data-id="{{ $idol->idol_user_id }}">
+                    <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol->idol_user_name) }}">
                         <div class="image-item">
                             <img src="{{ asset('assets/images/img/'.$idol->idol_photo) }}" class="w-100">    
                             <div class="gradient"></div>
@@ -60,8 +60,9 @@
 <script>
 $(document).ready(function() {
     $('.custom-col').on('click', function() {
-        location.href = "{{ route('follow-idol') }}" + '?id=' + $(this).data('id');
-    });
+        var url = $(this).data('url');
+        location.href = url;
+    })
 });
 </script>
 @endsection
