@@ -51,6 +51,7 @@ class User extends Authenticatable
         'status',
         'google_id',
         'facebook_id',
+        'del_flag',
     ];
 
     public function getEmailVerifiedAtAttribute($value)

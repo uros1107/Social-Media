@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class IdolInfo extends Model
 {
     protected $table = 'idol_info';  
+    protected $primaryKey = 'idol_id';
 
     protected $fillable = [
         'idol_id',
@@ -22,5 +23,6 @@ class IdolInfo extends Model
         'idol_rating',
         'idol_cat_id',
         'idol_status',
+        'idol_del_flag',
     ];
 }

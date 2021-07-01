@@ -57,6 +57,11 @@ tr.shown td.details-control {
 .custom-card  {
     background: unset!important;
 }
+.alert-success {
+    color: #20d45e;
+    background-color: #fcfcfc;
+    border-color: #fcfcfc;
+}
 
 </style>
 @endsection
@@ -72,6 +77,7 @@ tr.shown td.details-control {
     <div class="col-12 col-sm-12 col-md-12 d-flex mt-2 mb-3" style="position:relative">
         <div class="add-new-idol">
             <button class="btn custom-btn add-idol"><img src="{{ asset('assets/images/icons/add-user.png') }}" class="mr-3">Add New Idols</button>
+            <button class="btn custom-btn delete-idol"><i class='fas fa-trash-alt mr-3' style='font-size:16px'></i>Delete</button>
         </div>
         <div class="d-flex custom-select-group">
             <div class="date-part desktop">
@@ -89,12 +95,22 @@ tr.shown td.details-control {
             </select>
         </div>
     </div>
+    @if(Session::get('success'))
+    <div class="col-12 col-sm-12 col-md-12 p-0">
+        <div class="alert alert-success">
+            <strong>Success!</strong> {{ Session::get('success') }}
+        </div>
+    </div>
+    @endif
     <div class="col-12 col-sm-12 col-md-12 custom-card">
         <div class="chart">
             <div class="datatable">
                 <table id="example" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
+                            <th style="padding-left: 11px;">
+                                <input type="checkbox" class="all-check" value="0">
+                            </th>
                             <th></th>
                             <th>Idol Username</th>
                             <th>Idol Name</th>
@@ -109,6 +125,9 @@ tr.shown td.details-control {
                     </thead>
                     <tfoot>
                         <tr>
+                            <th style="padding-left: 11px;">
+                                <input type="checkbox" class="all-check" value="0">
+                            </th>
                             <th></th>
                             <th>Idol Username</th>
                             <th>Idol Name</th>
@@ -126,6 +145,36 @@ tr.shown td.details-control {
         </div>
     </div>
 </div>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Are you really sure to remove?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <form action="{{ route('admin-idol-delete') }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="idol_list" id="idol-list" value="">
+                <button type="submit" class="btn btn-success">OK</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('scripts')
@@ -170,9 +219,9 @@ function format ( d ) {
     }
 
     // `d` is the original data object for the row
-    return '<table cellpadding="10" class="w-100" cellspacing="0" border="0" style="padding-left:50px;">' +
+    return '<table cellpadding="11" class="w-100" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr class="expand">' +
-            '<td colspan="10">' +
+            '<td colspan="11">' +
                 '<div class="row m-0 expand-content">' +
                     '<div class="col-4 col-sm-4 col-md-4 fans">' +
                         '<h4 class="mb-0">Pending Orders</h4>' +
@@ -221,6 +270,10 @@ $(document).ready(function() {
     var table = $('#example').DataTable({
         'ajax': "{{ route('admin-idol-list') }}",
         'columns': [
+            { 
+                'data': 'checkbox',
+                'orderable':  false
+            },
             {
                 'className':      'details-control',
                 'orderable':      false,
@@ -281,6 +334,10 @@ $(document).ready(function() {
         table = $('#example').DataTable({
             'ajax': encodeURI(filterlink),
             'columns': [
+                { 
+                    'data': 'checkbox',
+                    'orderable':  false
+                },
                 {
                     'className':      'details-control',
                     'orderable':      false,
@@ -299,6 +356,31 @@ $(document).ready(function() {
             ],
             'order': [[4, 'desc']]
         } );
+    })
+
+    $(document).on('click', '.all-check', function() {
+        if($(this).is(":checked")) {
+            $('input[type=checkbox]').each(function() {
+                $(this).prop('checked', true);
+            })
+        } else {
+            $('input[type=checkbox]').each(function() {
+                $(this).prop('checked', false);
+            })
+        }
+    });
+
+    $('.delete-idol').on('click', function() {
+        var idol_list = [];
+        $("input[name='checkbox']:checked").each(function(){
+            idol_list.push(Number($(this).val()));
+        });
+        if(idol_list.length) {
+            $('#idol-list').val(idol_list);
+            $("#myModal").modal();
+        } else {
+            toastr.error('You should select at least 1 idol!');
+        }
     })
 });
 </script>

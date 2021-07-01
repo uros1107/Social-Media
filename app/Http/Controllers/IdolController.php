@@ -179,7 +179,7 @@ class IdolController extends Controller
         $reviews = Review::where('review_idol_id', Auth::user()->id)->get();
 
         $fans_count = 0;
-        foreach (User::all() as $user) {
+        foreach (User::where('del_flag', 0)->get() as $user) {
             $array = json_decode($user->fandom_lists);
             if($array) {
                 $has_idol = in_array(Auth::user()->id, $array);
@@ -288,7 +288,7 @@ class IdolController extends Controller
         $reviews = Review::where('review_idol_id', $idol_info->idol_user_id)->get();
 
         $fans_count = 0;
-        foreach (User::all() as $user) {
+        foreach (User::where('del_flag', 0)->get() as $user) {
             $array = json_decode($user->fandom_lists);
             if($array) {
                 $has_idol = in_array(Auth::user()->id, $array);
@@ -479,7 +479,7 @@ class IdolController extends Controller
     {
         $search = $request->search;
 
-        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->get();
+        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
 
         return view('idol.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }

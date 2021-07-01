@@ -237,15 +237,15 @@ class FansController extends Controller
 
     public function index()
     {
-        $idols = User::where('role', 1)->where('is_setup', 1)->take(5)->get();
-        $new_idols = User::where('role', 1)->where('is_setup', 1)->orderBy('created_at', 'desc')->take(5)->get();
+        $idols = User::where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->take(5)->get();
+        $new_idols = User::where('role', 1)->where('is_setup', 1)->orderBy('created_at', 'desc')->where('del_flag', 0)->take(5)->get();
         return view('fans.home', compact('idols', 'new_idols'));
     }
 
     public function idol_category_get(Request $request, $name)
     {
         $cat = Category::where('cat_name', $name)->first();
-        $idols = User::where('cat_id', $cat->cat_id)->where('role', 1)->where('is_setup', 1)->get();
+        $idols = User::where('cat_id', $cat->cat_id)->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->get();
 
         return view('fans.idol-category-get', ['idols' => $idols, 'cat' => $cat]);
     }
@@ -325,7 +325,7 @@ class FansController extends Controller
         $reviews = Review::where('review_idol_id', $idol->id)->get();
         
         $fans_count = 0;
-        foreach (User::all() as $user) {
+        foreach (User::where('del_flag', 0)->get() as $user) {
             $array = json_decode($user->fandom_lists);
             if($array) {
                 $has_idol = in_array($idol->id, $array);
@@ -498,14 +498,14 @@ class FansController extends Controller
     {
         $search = $request->search;
 
-        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->get();
+        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
 
         return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }
 
     public function get_idol_list()
     {
-        $idol_names = IdolInfo::pluck('idol_user_name');
+        $idol_names = IdolInfo::where('idol_del_flag', 0)->pluck('idol_user_name');
 
         return response()->json($idol_names);
     }

@@ -16,8 +16,8 @@ class HomeController
 {
     public function index()
     {
-        $idol_count = IdolInfo::get()->count();
-        $fans_count = User::where('role', 2)->get()->count();
+        $idol_count = IdolInfo::where('idol_del_flag', 0)->get()->count();
+        $fans_count = User::where('role', 2)->where('del_flag', 0)->get()->count();
         $total_orders_count = Order::get()->count();
         $completed_orders_count = Order::where('order_status', 1)->get()->count();
         $orders = Order::orderBy('created_at', 'desc')->get();
@@ -70,7 +70,7 @@ class HomeController
             $idol = IdolInfo::where('idol_user_id', $order->order_idol_id)->first();
 
             $fans_count = 0;
-            foreach (User::all() as $user) {
+            foreach (User::where('del_flag', 0)->get() as $user) {
                 $array = json_decode($user->fandom_lists);
                 if($array) {
                     $has_idol = in_array($order->order_idol_id, $array);
@@ -189,7 +189,7 @@ class HomeController
             $idol = IdolInfo::where('idol_user_id', $order->order_idol_id)->first();
 
             $fans_count = 0;
-            foreach (User::all() as $user) {
+            foreach (User::where('del_flag', 0)->get() as $user) {
                 $array = json_decode($user->fandom_lists);
                 if($array) {
                     $has_idol = in_array($order->order_idol_id, $array);
@@ -419,12 +419,12 @@ class HomeController
 
     public function idol_list()
     {
-        $idols = IdolInfo::get();
+        $idols = IdolInfo::where('idol_del_flag', 0)->get();
 
         $data = array();
         foreach ($idols as $key => $idol) {
             $fans_count = 0;
-            foreach (User::all() as $user) {
+            foreach (User::where('del_flag', 0)->get() as $user) {
                 $array = json_decode($user->fandom_lists);
                 if($array) {
                     $has_idol = in_array($idol->idol_user_id, $array);
@@ -441,6 +441,7 @@ class HomeController
             $pending_order_count = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get()->count();
 
             $data[] = [
+                'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
                 'idol_user_name' => $idol->idol_user_name,
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
@@ -456,6 +457,24 @@ class HomeController
             ];
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function delete_idol(Request $request)
+    {
+        $idol_lists = $request->idol_list;
+        $idol_lists = explode(',', $idol_lists);
+        
+        foreach($idol_lists as $idol) {
+            $idol = IdolInfo::where('idol_id', $idol)->first();
+            $idol->idol_del_flag = 1;
+            $idol->save();
+
+            $user = User::where('id', $idol->idol_user_id)->first();
+            $user->del_flag = 1;
+            $user->save();
+        }
+
+        return redirect()->back()->with('success', 'Successfully removed!');
     }
 
     public function idol_filter(Request $request)
@@ -479,7 +498,7 @@ class HomeController
         $data = array();
         foreach ($idols as $key => $idol) {
             $fans_count = 0;
-            foreach (User::all() as $user) {
+            foreach (User::where('del_flag', 0)->get() as $user) {
                 $array = json_decode($user->fandom_lists);
                 if($array) {
                     $has_idol = in_array($idol->idol_user_id, $array);
@@ -496,6 +515,7 @@ class HomeController
             $pending_order_count = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get()->count();
 
             $data[] = [
+                'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
                 'idol_user_name' => $idol->idol_user_name,
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
@@ -530,7 +550,7 @@ class HomeController
 
     public function fans_list()
     {
-        $fans = User::where('role', 2)->get();
+        $fans = User::where('role', 2)->where('del_flag', 0)->get();
 
         $data = array();
         foreach ($fans as $key => $fan) {
@@ -540,6 +560,7 @@ class HomeController
             $pending_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 0)->get();
 
             $data[] = [
+                'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
                 'fans_user_name' => $fan->name,
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
@@ -553,6 +574,20 @@ class HomeController
             ];
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function delete_fans(Request $request)
+    {
+        $fan_lists = $request->fans_list;
+        $fan_lists = explode(',', $fan_lists);
+        
+        foreach($fan_lists as $fan) {
+            $user = User::where('id', $fan)->first();
+            $user->del_flag = 1;
+            $user->save();
+        }
+
+        return redirect()->back()->with('success', 'Successfully removed!');
     }
 
     public function fans_filter(Request $request)
@@ -569,7 +604,7 @@ class HomeController
             $query->where('created_at', '>=', $from.'%');
         }
         if($to != '') {
-            $query->where('created_at', '<=', $to.'%');
+            $query->where('del_flag', 0)->where('created_at', '<=', $to.'%');
         }
         $fans = $query->orderBy('created_at', 'desc')->get();
 
@@ -581,6 +616,7 @@ class HomeController
             $pending_orders = Order::where('order_fans_id', $fan->id)->where('order_status', 0)->get();
 
             $data[] = [
+                'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
                 'fans_user_name' => $fan->name,
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
