@@ -39,7 +39,9 @@
 }
 .datatable th {
     vertical-align: middle!important;
-    text-align: center!important;
+}
+.datatable th:first-child {
+    text-align: center;
 }
 td.details-control {
     background: url('/assets/images/icons/plus.png') no-repeat center center;
@@ -382,7 +384,7 @@ $(document).ready(function() {
             $('#idol-list').val(fans_list);
             $("#myModal").modal();
         } else {
-            toastr.error('You should select at least 1 idol!');
+            toastr.error('You should select at least 1 fan!');
         }
     })
 });

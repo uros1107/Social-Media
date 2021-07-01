@@ -37,10 +37,12 @@ Route::prefix('admin')->group(function() {
         Route::get('/status-orders', 'Admin\HomeController@status_orders')->name('admin-status-orders');
         Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
         Route::get('/idols-list', 'Admin\HomeController@idol_list')->name('admin-idol-list');
+        Route::get('/idol-edit/{idolname}', 'Admin\HomeController@idol_edit')->name('admin-idol-edit');
         Route::POST('/delete-idol', 'Admin\HomeController@delete_idol')->name('admin-idol-delete');
         Route::get('/filter-idol', 'Admin\HomeController@idol_filter')->name('admin-filter-idol');
         Route::get('/add-idol', 'Admin\HomeController@add_idol')->name('admin-add-idol');
         Route::POST('/store-idol', 'Admin\HomeController@store_idol')->name('admin-store-idol');
+        Route::POST('/update-idol', 'Admin\HomeController@update_idol')->name('admin-update-idol');
         Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
         Route::get('/fans-list', 'Admin\HomeController@fans_list')->name('admin-fans-list');
         Route::POST('/delete-fans', 'Admin\HomeController@delete_fans')->name('admin-fans-delete');

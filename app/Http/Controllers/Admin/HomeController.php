@@ -417,6 +417,114 @@ class HomeController
         return response()->json(['success' => true]);
     }
 
+    public function update_idol(Request $request)
+    {
+        $idol_info = $request->all();
+        $video_request = $request->all();
+        
+        // $request->validate([
+        //     'idol_full_name' => 'required|string',
+        //     'idol_user_name' => 'required|string',
+        //     'idol_bio' => 'required|string',
+        //     'idol_email' => 'required|string|email|unique:idol_info',
+        //     'idol_phone' => 'required|string|unique:idol_info',
+        //     'request_video_price' => 'required',
+            // 'request_vocation' => 'required',
+        // ]);
+
+        $idol = IdolInfo::where('idol_id', $request->idol_info_id);
+        if($request->password) {
+            $user_info = [
+                'name' => $request->idol_full_name,
+                'email' => $request->idol_email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->idol_phone,
+                'info' => $request->idol_bio,
+                'cat_id' => $request->idol_cat_id,
+                'role' => 1,
+                'is_setup' => 1
+            ];
+        } else {
+            $user_info = [
+                'name' => $request->idol_full_name,
+                'email' => $request->idol_email,
+                'phone' => $request->idol_phone,
+                'info' => $request->idol_bio,
+                'cat_id' => $request->idol_cat_id,
+                'role' => 1,
+                'is_setup' => 1
+            ];
+        }
+        
+        User::where('id', $idol->first()->idol_user_id)->update($user_info);
+        
+        if($request->idol_photo) {
+            $photo_img_name = $request->idol_photo->getClientOriginalName();
+            $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+            $idol_info['idol_photo'] = $photo_img_name;
+        } else {
+            unset($idol_info['idol_photo']);
+        }
+
+        if($request->idol_banner) {
+            $banner_img_name = $request->idol_banner->getClientOriginalName();
+            $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
+            $idol_info['idol_banner'] = $banner_img_name;
+        } else {
+            unset($idol_info['idol_banner']);
+        }
+
+        unset(
+            $idol_info['request_lang'], 
+            $idol_info['request_video_price'], 
+            $idol_info['request_vocation'], 
+            $idol_info['request_video'], 
+            $idol_info['request_payment_method'],
+            $idol_info['idol_info_id'],
+            $idol_info['_token'],
+            $idol_info['password'],
+        );
+
+        IdolInfo::where('idol_id', $request->idol_info_id)->update($idol_info);
+        
+        if($request->request_video) {
+            $video_name = $request->request_video->getClientOriginalName();
+            $request->request_video->move(public_path('assets/videos'), $video_name);
+            $video_request['request_video'] = $video_name;
+        } else {
+            unset($idol_info['request_video']);
+        }
+
+        unset(
+            $video_request['idol_full_name'], 
+            $video_request['idol_user_name'], 
+            $video_request['idol_email'], 
+            $video_request['idol_phone'], 
+            $video_request['idol_bio'], 
+            $video_request['idol_photo'], 
+            $video_request['idol_banner'],
+            $video_request['idol_cat_id'],
+            $video_request['idol_info_id'],
+            $video_request['password'],
+            $video_request['_token'],
+        );
+
+        if(!isset($video_request['request_vocation'])) {
+            $video_request['request_vocation'] = 0;
+        } else {
+            $video_request['request_vocation'] = 1;
+        }
+
+        $user = User::where('id', $idol->first()->idol_user_id)->first();
+        $user->cat_id = $request->idol_cat_id;
+        $user->is_setup = 1;
+        $user->save();
+        
+        $video_request = VideoRequest::where('request_idol_id', $request->idol_info_id)->update($video_request);
+
+        return response()->json(['success' => true, 'redirect_url' => url('/admin/idol-edit/'.$request->idol_user_name)]);
+    }
+
     public function idol_list()
     {
         $idols = IdolInfo::where('idol_del_flag', 0)->get();
@@ -442,7 +550,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
-                'idol_user_name' => $idol->idol_user_name,
+                'idol_user_name' => '<a href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
                 'join_date' => Carbon\Carbon::parse($idol->created_at)->format('d F Y'),
@@ -457,6 +565,14 @@ class HomeController
             ];
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function idol_edit($idol_name)
+    {
+        $idol_info = IdolInfo::where('idol_user_name', $idol_name)->first();
+        $video_request = VideoRequest::where('request_idol_id', $idol_info->idol_id)->first();
+
+        return view('admin.edit-idol', compact('idol_info', 'video_request'));
     }
 
     public function delete_idol(Request $request)

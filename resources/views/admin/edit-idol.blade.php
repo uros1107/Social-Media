@@ -32,27 +32,31 @@
 
 @section('content')
 <div class="top-header">
-    <h4 class="text-white my-auto">Create Idol</h4>
+    <h4 class="text-white my-auto">{{ $idol_info->idol_full_name }}</h4>
     <div class="custom-breadcrumb my-auto">
-        <h4 class="text-white mb-0"><span style="font-weight: normal!important">Dashboard</span> > Create Idol</h4>
+        <h4 class="text-white mb-0"><span style="font-weight: normal!important">Dashboard</span> > Edit Idol</h4>
     </div>
 </div>
 <div class="row m-0 mt-4">
     <div class="col-12 col-sm-3 col-md-3 mt-2 mb-3">
         <div class="upload-image">
+            @if(!$idol_info->idol_photo)
             <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle" id="profile-img">
+            @else
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle" id="profile-img">
+            @endif
             <div class="upload-btn mt-3">Upload Photo Image</div>
         </div>
     </div>
     <div class="col-12 col-sm-9 col-md-9 mt-2 mb-3">
         <div class="profile">
-            <h4 class="mb-3 ml-3">Create Idols <span class="text-main-color">Profile</span></h4>
+            <h4 class="mb-3 ml-3">{{ $idol_info->idol_full_name }} <span class="text-main-color">Profile</span></h4>
             <form method="POST" enctype="multipart/form-data" id="add-idol">
                 {{ csrf_field() }}
                 <div class="row m-0">
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" name="idol_full_name" placeholder="" value="" required>
+                            <input type="text" name="idol_full_name" placeholder="" value="{{ $idol_info->idol_full_name }}" required>
                             <span>Full Name</span>
                         </label>
                         @if ($errors->has('idol_full_name'))
@@ -63,7 +67,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" name="idol_user_name" placeholder="" value="" required>
+                            <input type="text" name="idol_user_name" placeholder="" value="{{ $idol_info->idol_user_name }}" required>
                             <span>User Name</span>
                         </label>
                         @if ($errors->has('idol_user_name'))
@@ -74,7 +78,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="email" name="idol_email" placeholder="" value="" required>
+                            <input type="email" name="idol_email" placeholder="" value="{{ $idol_info->idol_email }}" required>
                             <span>Email</span>
                         </label>
                         @if ($errors->has('idol_email'))
@@ -85,7 +89,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" name="idol_phone" placeholder="" value="">
+                            <input type="text" name="idol_phone" placeholder="" value="{{ $idol_info->idol_phone }}">
                             <span>Phone Number</span>
                         </label>
                         @if ($errors->has('idol_phone'))
@@ -96,7 +100,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="password" name="password" placeholder="" value="" required>
+                            <input type="password" name="password" placeholder="" value="">
                             <span>Password</span>
                             <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}">
                             <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}">
@@ -111,7 +115,7 @@
                         <div class="select mt-1">
                             <select class="select-text" name="idol_cat_id" required>
                                 @foreach(DB::table('categories')->get() as $cat)
-                                <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == Auth::user()->cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == $idol_info->idol_cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                                 @endforeach
                             </select>
                             <label class="select-label">Category</label>
@@ -119,11 +123,11 @@
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
                         <label class="pure-material-textfield-outlined w-100 mb-0">
-                            <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required></textarea>
+                            <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required>{{ $idol_info->idol_bio }}</textarea>
                             <span>Bio</span>
                         </label>
                         <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
-                        <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Words: <span>0</span></p>
+                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -132,8 +136,8 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" placeholder="" value="" name="request_video_price" class="text-main-color font-weight-bold" required>
-                            <span>My Request Price</span>
+                            <input type="text" placeholder="" value="{{ $video_request->request_video_price }}" name="request_video_price" class="text-main-color font-weight-bold" required>
+                            <span>Request Price</span>
                         </label>
                         @if ($errors->has('request_video_price'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -144,7 +148,7 @@
                     <div class="col-12 col-md-6 col-sm-6">
                         <div class="m-auto">
                             <label class="switch my-auto">
-                                <input type="checkbox" name="request_vocation" value="1" checked>
+                                <input type="checkbox" name="request_vocation" value="1" {{ $video_request->request_vocation == 1? 'checked' : '' }}>
                                 <span class="slider"></span>
                             </label>
                             <span class="switch-label my-auto">Allow fans to request videos</span>
@@ -154,18 +158,18 @@
                         <div>
                             <p class="banner-title mb-2">Upload Banner</p>
                             <div class="banner-upload d-flex text-center">
-                                <img class="mr-2" src="{{ asset('assets/images/icons/upload.png') }}" style="width:20px;height:20px">
-                                <span class="banner_img_label">Upload or Drag & Drop your image here</span>
+                                <!-- <img class="mr-2" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" style="width:20px;height:20px"> -->
+                                <span class="banner_img_label">{{ $idol_info->idol_banner }}</span>
                             </div>
                         </div>
                         <input type="file" class="d-none" name="idol_banner" id="idol_banner">
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
-                        <h4 class="upload-video-title">Upload first video (if have)</h4>
+                        <h4 class="upload-video-title">Upload video (if have)</h4>
                         <div class="upload-video text-center d-flex">
                             <img class="my-auto mr-4" src="{{ asset('assets/images/icons/upload-video.png') }}">
                             <div class="upload-video-text">
-                                <h4>Upload video</h4>
+                                <h4>{{ $video_request->request_video }}</h4>
                                 <p class="mb-0">Drag & Drop your files here</p>
                                 <p class="mb-0">Format ( .mp4 , .mkv )</p>
                             </div>
@@ -173,6 +177,7 @@
                         <input type="file" class="d-none" name="request_video" id="upload-video">
                     </div>
                     <input type="file" class="d-none" name="idol_photo" id="img-upload">
+                    <input type="hidden" name="idol_info_id" value="{{ $idol_info->idol_id }}">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
                         <button type="submit" class="btn custom-btn save-change-btn">Save Changes</button>
                     </div>
@@ -245,14 +250,14 @@ $(document).ready(function() {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size should be 1100px * 200px!");
-                    banner_img = false;
-                } else {
+                // if(this.width != 1100 || this.height != 200) {
+                //     toastr.error("Image size should be 1100px * 200px!");
+                //     banner_img = false;
+                // } else {
                     $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
                     banner_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }
@@ -302,9 +307,7 @@ $(document).ready(function() {
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
-        if(!photo_img || !upload_video || !banner_img) {
-            toastr.error('You should input all field correctly!');
-        } else if(!word_limit) {
+        if(!word_limit) {
             toastr.error('You can input at maximum 100 words!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
@@ -315,7 +318,7 @@ $(document).ready(function() {
                 }
             });
             $.ajax({
-                url: "{{ route('admin-store-idol') }}",
+                url: "{{ route('admin-update-idol') }}",
                 method: 'POST',
                 data: formData,
                 cache: false,
@@ -327,7 +330,7 @@ $(document).ready(function() {
                         $('.save-change-btn').html("Save Changes");
                         $('.save-change-btn').prop('disabled', false);
                         setTimeout(() => {
-                            location.href = "{{ route('admin-idol') }}";
+                            location.href = res.redirect_url;
                         }, 1000);
                     } else {
                         toastr.error('Server error! Please try again later!');
@@ -336,7 +339,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function (error) {
-                    toastr.error('Upload size was exceeds!');
+                    toastr.error(error);
                     $('.save-change-btn').html("Submit");
                     $('.save-change-btn').prop('disabled', false);
                 }
