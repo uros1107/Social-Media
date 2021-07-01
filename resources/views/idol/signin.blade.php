@@ -202,10 +202,10 @@
                                 <div class="col-12 mt-4 mb-5">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
-                                <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
-                                    <!-- <div class="divider-text">OR</div> -->
-                                </div>
-                                <div class="col-6 pl-0">
+                                <!-- <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
+                                    <div class="divider-text">OR</div>
+                                </div> -->
+                                <!-- <div class="col-6 pl-0">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                         <div class="m-auto">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
@@ -224,7 +224,7 @@
                                             <a class="text-white" href="{{ route('redirect-facebook').'?role=1' }}">Sign in with Facebook</a>
                                         </div>
                                     </button>
-                                </div>
+                                </div> -->
                                 <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
@@ -294,10 +294,10 @@
                                 <div class="col-12 mt-4 mb-5 p-0 login-part">
                                     <button class="btn custom-btn w-100">Login</button>
                                 </div>
-                                <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
-                                    <!-- <div class="divider-text">OR</div> -->
-                                </div>
-                                <div class="col-6 p-0 google">
+                                <!-- <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
+                                    <div class="divider-text">OR</div>
+                                </div> -->
+                                <!-- <div class="col-6 p-0 google">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                         <div class="m-auto" style="margin-right: 0px!important">
                                             <img src="{{ asset('assets/images/icons/google.png') }}">
@@ -316,7 +316,7 @@
                                             <a class="text-white" href="{{ route('redirect-facebook').'?role=1' }}">Facebook</a>
                                         </div>
                                     </button>
-                                </div>
+                                </div> -->
                                 <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('idol-registration') }}">Sign Up</a>
