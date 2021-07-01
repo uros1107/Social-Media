@@ -53,7 +53,7 @@
                     </div>
                     <div class="step-item">
                         <div class="step-circle" id="payment_step"></div>
-                        <span class="text-white">Payment method</span>
+                        <span class="text-white">Payment Method</span>
                     </div>
                 </div>
             </div>
@@ -169,9 +169,11 @@
                     <div class="sub-title d-none" id="request_video">
                         <h4 class="text-white mb-4">Request <span class="text-main-color">Video</span></h4>
                         <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <h4 class="text-white sub-title-1">Offered Language Preference(s)</h4>
+                            </div>
                             <div class="col-12 col-sm-5 col-md-5">
-                                <h4 class="text-white sub-title-1">Language Preference</h4>
-                                <p class="sub-description-1">Your fans will choose this language for your request video</p>
+                                <p class="sub-description-1">Your fans will be able to choose these language options for their personalized video</p>
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex lang">
                                 <label class="custom-control black-checkbox mr-4 m-auto">
@@ -191,8 +193,8 @@
                                 </label>
                             </div>
                             <div class="col-12 col-sm-5 col-md-5">
-                                <h4 class="text-white sub-title-1">Request Price</h4>
-                                <p class="sub-description-1">Set your request price for your request videos fee</p>
+                                <h4 class="text-white sub-title-1">Accept Requests?</h4>
+                                <p class="sub-description-1">Set the price for a personalized video that your fans can ask for</p>
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
                                 <label class="pure-material-textfield-outlined w-100  m-auto">
@@ -207,7 +209,7 @@
                             </div>
                             <div class="col-12 col-sm-5 col-md-5">
                                 <h4 class="text-white sub-title-1">On Vacation?</h4>
-                                <p class="sub-description-1">Set your visibility, Let your fans know that you "On Vacation"</p>
+                                <p class="sub-description-1">Set your visibility now. Default is set to allow your fans to request videos on launch. You can switch this off later.</p>
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
                                 <div class="m-auto">
@@ -242,9 +244,9 @@
                                 @endif
                                 <input type="file" name="request_video" id="upload-video" class="d-none">
                             </div>
-                            <div class="col-12 col-sm-12 col-md-12">
+                            <!-- <div class="col-12 col-sm-12 col-md-12">
                                 <button type="button" class="btn custom-btn w-100 upload-video-btn">Upload</button>
-                            </div>
+                            </div> -->
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
                             </div>

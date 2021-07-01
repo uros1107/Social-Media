@@ -20,6 +20,13 @@
     height: 190px!important;
     object-fit: cover;
 }
+.input-icon {
+    right: 15px!important;
+    left: unset;
+    width: 20px;
+    padding: 0px;
+    top: 21px!important;
+}
 </style>
 @endsection
 
@@ -33,7 +40,7 @@
 <div class="row m-0 mt-4">
     <div class="col-12 col-sm-3 col-md-3 mt-2 mb-3">
         <div class="upload-image">
-            <img src="{{ asset('assets/images/actor1.png') }}" class="img-circle" id="profile-img">
+            <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle" id="profile-img">
             <div class="upload-btn mt-3">Upload Photo Image</div>
         </div>
     </div>
@@ -91,6 +98,8 @@
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="password" name="password" placeholder="" value="" required>
                             <span>Password</span>
+                            <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}">
+                            <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}">
                         </label>
                         @if ($errors->has('password'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -178,6 +187,16 @@
 
 <script>
 $(document).ready(function() {
+    $('.eye-hide').on('click', function() {
+        $('input[name=password]').prop('type','text');
+        $(this).addClass('d-none');
+        $('.eye-show').removeClass('d-none');
+    });
+    $('.eye-show').on('click', function() {
+        $('input[name=password]').prop('type','password');
+        $(this).addClass('d-none');
+        $('.eye-hide').removeClass('d-none');
+    });
     $(document).on('click', '.upload-image', function() {
         $('#img-upload').click();
     })

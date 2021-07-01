@@ -16,7 +16,7 @@ class HomeController
 {
     public function index()
     {
-        $idol_count = User::where('role', 1)->get()->count();
+        $idol_count = IdolInfo::get()->count();
         $fans_count = User::where('role', 2)->get()->count();
         $total_orders_count = Order::get()->count();
         $completed_orders_count = Order::where('order_status', 1)->get()->count();

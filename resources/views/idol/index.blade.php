@@ -58,7 +58,7 @@
         <div class="row m-0">
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="grey-part w-100 mb-3">
-                    <p class="mb-0 text-white">Hi, {{ Auth::user()->name }},</p>
+                    <p class="mb-0 text-white">Hi {{ Auth::user()->name }},</p>
                     <h4 class="mb-0 text-white">What's new on your dashboard?</h4>
                 </div>
                 <div class="total-card">

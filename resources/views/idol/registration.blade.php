@@ -38,8 +38,8 @@
         <div class="row m-0">
             <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div class="title-part text-center">
-                    <h2 class="text-white title">Idols Registration</h2>
-                    <h4 class="text-grey sub-title">Start to meet your fans</h4>
+                    <h2 class="text-white title">Idol Registration</h2>
+                    <h4 class="text-grey sub-title">Start meeting your fans</h4>
                 </div>
                 <div class="register-part">
                     <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
@@ -103,7 +103,7 @@
                             <div class="col-12 mt-4 mb-4">
                                 <button class="btn custom-btn w-100" type="button" id="next">Next</button>
                             </div>
-                            <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: you are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
+                            <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: You are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
                             <div class="col-12 text-center signup-part mt-4 mb-3">
                                 <a class="text-white">Have an account?</a>
                                 <a class="text-main-color" href="{{ route('idol-signin') }}">Log In</a>
@@ -178,8 +178,8 @@
                         <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}"></a>
                     </div>
                     <div class="image-title">
-                        <h1 class="text-main-color mb-4 text-uppercase">Lets meet<br>your fans</h1>
-                        <h4 class="text-main-color">Lorem Ipsum is simply dummy text of the printing and<br> typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an<br> unknown printer took a galley of type and scrambled it to<br> make a type specimen book.</h4>
+                        <h1 class="text-main-color mb-4 text-uppercase">Let's meet<br>your fans</h1>
+                        <h4 class="text-main-color" style="max-width: 450px;">MillionK is the definitive Hallyu platform to start and foster a lasting relationship with your fans. Create personalized videos for your fans worldwide and make their dreams come true.</h4>
                     </div>
                 </div>
             </div>
