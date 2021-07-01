@@ -51,6 +51,9 @@ tr.shown td.details-control {
 #example tr td:nth-child(5) {
     width: 200px;
 }
+#example tr td:nth-child(1) {
+    text-align: center;
+}
 #example th {
     color: #FF335C;
 }
@@ -115,7 +118,7 @@ tr.shown td.details-control {
                 <table id="example" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th style="padding-left: 7px;">
+                            <th>
                                 <input type="checkbox" class="all-check" value="0">
                             </th>
                             <th></th>
@@ -130,7 +133,7 @@ tr.shown td.details-control {
                     </thead>
                     <tfoot>
                         <tr>
-                            <th style="padding-left: 7px;">
+                            <th>
                                 <input type="checkbox" class="all-check" value="0">
                             </th>
                             <th></th>
