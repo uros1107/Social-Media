@@ -20,7 +20,7 @@
     padding-right: 40px;
 }
 .form-block {
-    padding: 40px!important;
+    padding: 40px 25px!important;
 }
 .idol-registration .title-part {
     margin: 40px 0px 30px;
@@ -112,10 +112,10 @@
         margin-bottom: 20px!important;
     }
     .google {
-        padding-right: 10px!important;
+        /* padding-right: 10px!important; */
     }
     .facebook {
-        padding-left: 10px!important;
+        /* padding-left: 10px!important; */
     }
     .signup-part {
         margin-top: 20px;
@@ -133,7 +133,7 @@
         margin: 30px 0px 30px;
     }
     .google-btn, .facebook-btn {
-        font-size: 15px;
+        font-size: 18px;
     }
     .idol-registration .title {
         font-size: 36px;
@@ -144,7 +144,7 @@
 }
 @media (min-width: 1250px) and (max-width: 1500px) {
     .google-btn, .facebook-btn {
-        font-size: 15px;
+        font-size: 18px;
         padding-left: 2px;
         padding-right: 2px;
     }
@@ -224,20 +224,22 @@
                             <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                 <!-- <div class="divider-text">OR</div> -->
                             </div>
-                            <div class="col-6 pl-0">
+                            <div class="col-12 mb-3">
                                 <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                    <div class="m-auto">
-                                        <img src="{{ asset('assets/images/icons/google.png') }}">
+                                    <div class="ml-5 my-auto">
+                                        <!-- <img src="{{ asset('assets/images/icons/google.png') }}"> -->
+                                        <i class="fa fa-google fa-fw text-white"></i>
                                     </div>
                                     <div class="m-auto">
-                                        <a href="{{ route('redirect-google').'?role=2' }}">Sign up with Google</a>
+                                        <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign up with Google</a>
                                     </div>
                                 </button>
                             </div>
-                            <div class="col-6 pr-0">
+                            <div class="col-12">
                                 <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                    <div class="m-auto">
-                                        <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;">
+                                    <div class="ml-5 my-auto">
+                                        <!-- <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;"> -->
+                                        <i class="fa fa-facebook fa-fw" style="color:#20335f;background: white;padding-top: 3px;margin-top: 4px;"></i>
                                     </div>
                                     <div class="m-auto">
                                         <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign up with Facebook</a>
@@ -316,23 +318,25 @@
                                 <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
                                     <!-- <div class="divider-text">OR</div> -->
                                 </div>
-                                <div class="col-6 p-0 google">
+                                <div class="col-12 p-0 google mb-3">
                                     <button class="btn custom-btn w-100 google-btn d-flex" type="button">
                                         <div class="m-auto" style="margin-right: 0px!important">
-                                            <img src="{{ asset('assets/images/icons/google.png') }}">
+                                            <!-- <img src="{{ asset('assets/images/icons/google.png') }}"> -->
+                                            <i class="fa fa-google fa-fw text-white"></i>
                                         </div>
                                         <div class="m-auto">
-                                            <a href="{{ route('redirect-google').'?role=2' }}">Google</a>
+                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign in with Google</a>
                                         </div>
                                     </button>
                                 </div> 
-                                <div class="col-6 p-0 facebook">
+                                <div class="col-12 p-0 facebook">
                                     <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
                                         <div class="m-auto" style="margin-right: 0px!important">
-                                            <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;">
+                                            <!-- <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;"> -->
+                                            <i class="fa fa-facebook fa-fw" style="color:#20335f;background: white;padding-top: 3px;margin-top: 4px;"></i>
                                         </div>
                                         <div class="m-auto">
-                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Facebook</a>
+                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign in with Facebook</a>
                                         </div>
                                     </button>
                                 </div>

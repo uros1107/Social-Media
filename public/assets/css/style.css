@@ -371,15 +371,15 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
   }
   .google-btn, .google-btn:focus, .google-btn:hover {
-      background: white!important;
+      background: #dd4b39!important;
       color: #2b2b2b;
-      border: 1px solid #898989!important;
-      font-size: 16px;
+      border: 1px solid #dd4b39!important;
+      font-size: 18px;
   }
   .facebook-btn, .facebook-btn:focus, .facebook-btn:hover {
-        background: #395085!important;
+        background: #20335f!important;
         color: white;
-        border: 1px solid #898989!important;
-        font-size: 16px;
+        border: 1px solid #20335f!important;
+        font-size: 18px;
     }
 /* ====================================== Fans sign in end ==================================== */
