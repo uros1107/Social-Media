@@ -269,6 +269,7 @@ class FansController extends Controller
 
         $request->validate([
             'name' => 'required|string',
+            'user_name' => 'required|string',
             // 'email' => 'required|string|email',
             // 'phone' => 'string',
             'info' => 'required|string'

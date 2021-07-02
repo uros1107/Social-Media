@@ -86,7 +86,7 @@
                         <img class="img-circle mr-2" src="{{ asset('assets/images/no-image.jpg') }}">
                         @endif
                         <div class="user">
-                            <p class="mb-0">{{ '@'.$fans->name }}</p>
+                            <p class="mb-0">{{ '@'.$fans->user_name }}</p>
                             <h4 class="text-main-color">{{ $fans->name }}</h4>
                         </div>
                     </div>

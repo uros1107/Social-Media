@@ -111,38 +111,39 @@ class HomeController
             }
 
             $status = $this->order_status($order->order_status);
-            $order_status = '<select class="custom-select1">
-                <option '.$status['recent'].'>
+            $color = $this->order_color($order->order_status);
+            $order_status = '<div class="color-status '.$color.'"></div>'.'<select class="custom-select1">
+                <option value="5"'.$status['recent'].'>
                     <div class="d-flex">
                         <div class="recent-rectangle my-auto mr-2"></div>
                         <span>Recent</span>
                     </div>
                 </option>
-                <option '.$status['pending'].'>
+                <option value="0"'.$status['pending'].'>
                     <div class="d-flex">
                         <div class="pending-rectangle my-auto mr-2"></div>
                         <span>Pending</span>
                     </div>
                 </option>
-                <option '.$status['completed'].'>
+                <option value="1"'.$status['completed'].'>
                     <div class="d-flex">
                         <div class="completed-rectangle my-auto mr-2"></div>
                         <span>Completed</span>
                     </div>
                 </option>
-                <option '.$status['expired'].'>
+                <option value="4"'.$status['expired'].'>
                     <div class="d-flex">
                         <div class="expired-rectangle my-auto mr-2"></div>
                         <span>Refuned (Expired)</span>
                     </div>
                 </option>
-                <option '.$status['declined'].'>
+                <option value="3"'.$status['declined'].'>
                     <div class="d-flex">
                         <div class="declined-rectangle my-auto mr-2"></div>
                         <span>Refunded (Declined)</span>
                     </div>
                 </option>
-                <option '.$status['paidout'].'>
+                <option value="2"'.$status['paidout'].'>
                     <div class="d-flex">
                         <div class="paidout-rectangle my-auto mr-2"></div>
                         <span>Paid Out</span>
@@ -153,7 +154,7 @@ class HomeController
             $data[] = [
                 'order_date' => Carbon\Carbon::parse($order->created_at)->format('d F Y'),
                 'due_date' => $days == 0 ? 'Today' : $days.' Days Left',
-                'order_id' => '<a class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
+                'order_id' => '<a href="#" class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
                 'fans_name' => $fans->name,
                 'idols_name' => $idol->idol_full_name,
                 'status' => $order_status,
@@ -230,38 +231,39 @@ class HomeController
             }
 
             $status = $this->order_status($order->order_status);
-            $order_status = '<select class="custom-select1">
-                <option '.$status['recent'].'>
+            $color = $this->order_color($order->order_status);
+            $order_status = '<div class="color-status '.$color.'"></div>'.'<select class="custom-select1">
+                <option value="5"'.$status['recent'].'>
                     <div class="d-flex">
                         <div class="recent-rectangle my-auto mr-2"></div>
                         <span>Recent</span>
                     </div>
                 </option>
-                <option '.$status['pending'].'>
+                <option value="0"'.$status['pending'].'>
                     <div class="d-flex">
                         <div class="pending-rectangle my-auto mr-2"></div>
                         <span>Pending</span>
                     </div>
                 </option>
-                <option '.$status['completed'].'>
+                <option value="1"'.$status['completed'].'>
                     <div class="d-flex">
                         <div class="completed-rectangle my-auto mr-2"></div>
                         <span>Completed</span>
                     </div>
                 </option>
-                <option '.$status['expired'].'>
+                <option value="4"'.$status['expired'].'>
                     <div class="d-flex">
                         <div class="expired-rectangle my-auto mr-2"></div>
                         <span>Refuned (Expired)</span>
                     </div>
                 </option>
-                <option '.$status['declined'].'>
+                <option value="3"'.$status['declined'].'>
                     <div class="d-flex">
                         <div class="declined-rectangle my-auto mr-2"></div>
                         <span>Refunded (Declined)</span>
                     </div>
                 </option>
-                <option '.$status['paidout'].'>
+                <option value="2"'.$status['paidout'].'>
                     <div class="d-flex">
                         <div class="paidout-rectangle my-auto mr-2"></div>
                         <span>Paid Out</span>
@@ -272,7 +274,7 @@ class HomeController
             $data[] = [
                 'order_date' => Carbon\Carbon::parse($order->created_at)->format('d F Y'),
                 'due_date' => $days == 0 ? 'Today' : $days.' Days Left',
-                'order_id' => '<a class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
+                'order_id' => '<a href="#" class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
                 'fans_name' => $fans->name,
                 'idols_name' => $idol->idol_full_name,
                 'status' => $order_status,
@@ -286,6 +288,34 @@ class HomeController
         }
 
         return response()->json(['data' => $data]);
+    }
+
+    public function order_color($order_status)
+    {
+        switch ($order_status) {
+            case 0:
+                $color = 'recent-rectangle';
+                break;
+            case 1:
+                $color = 'completed-rectangle';
+                break;
+            case 2:
+                $color = 'paidout-rectangle';
+                break;
+            case 3:
+                $color = 'declined-rectangle';
+                break;
+            case 4:
+                $color = 'expired-rectangle';
+                break;
+            case 5:
+                $color = 'recent-rectangle';
+                break;
+            default:
+                break;
+        }
+
+        return $color;
     }
 
     public function order_status($order_status)
@@ -632,7 +662,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
-                'idol_user_name' => $idol->idol_user_name,
+                'idol_user_name' => '<a href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
                 'join_date' => Carbon\Carbon::parse($idol->created_at)->format('d F Y'),
@@ -677,7 +707,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
-                'fans_user_name' => $fan->name,
+                'fans_user_name' => '<a href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
                 'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
@@ -704,6 +734,58 @@ class HomeController
         }
 
         return redirect()->back()->with('success', 'Successfully removed!');
+    }
+
+    public function update_fans(Request $request)
+    {
+        // $request->validate([
+        //     'idol_full_name' => 'required|string',
+        //     'idol_user_name' => 'required|string',
+        //     'idol_bio' => 'required|string',
+        //     'idol_email' => 'required|string|email|unique:idol_info',
+        //     'idol_phone' => 'required|string|unique:idol_info',
+        // ]);
+
+        if($request->photo) {
+            $photo_img_name = $request->photo->getClientOriginalName();
+            $request->photo->move(public_path('assets/images/img'), $photo_img_name);
+            $user_info = [
+                'photo' => $photo_img_name
+            ];
+            User::where('id', $request->fans_id)->update($user_info);
+        }
+
+        if($request->password) {
+            $user_info = [
+                'name' => $request->_name,
+                'user_name' => $request->user_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'info' => $request->info,
+                'role' => 2
+            ];
+        } else {
+            $user_info = [
+                'name' => $request->_name,
+                'user_name' => $request->user_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'info' => $request->info,
+                'role' => 2
+            ];
+        }
+        
+        User::where('id', $request->fans_id)->update($user_info);
+
+        return response()->json(['success' => true, 'redirect_url' => url('/admin/fans-edit/'.$request->user_name)]);
+    }
+
+    public function fans_edit($fans_name)
+    {
+        $fans = User::where('user_name', $fans_name)->first();
+
+        return view('admin.edit-fans', compact('fans'));
     }
 
     public function fans_filter(Request $request)
@@ -733,7 +815,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
-                'fans_user_name' => $fan->name,
+                'fans_user_name' => '<a href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
                 'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',

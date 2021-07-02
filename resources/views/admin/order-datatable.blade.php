@@ -8,7 +8,7 @@
 <style>
 .custom-select1 {
     color: #2b2b2b!important;
-    padding: 8px 5px!important;
+    padding: 8px 5px 8px 25px!important;
 }
 .order-id {
     color: #2178F9;
@@ -24,6 +24,9 @@ tr.shown td.details-control {
 tr td:nth-child(4) {
     color: #2178F9!important;
 }
+tr td:nth-child(7) {
+    position: relative;
+}
 th {
     color: #FF335C;
 }
@@ -37,6 +40,11 @@ th {
 .chart { 
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+}
+.color-status {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 </style>
 @endsection
@@ -138,7 +146,7 @@ function format ( d ) {
                         '<div class="d-flex fans-content mb-2">' + 
                             '<div class="left">' + 
                                 '<p class="mb-0">Username</p>' + 
-                                '<p class="mb-0 text-main-color">@' + d.fans.name + '</p>' + 
+                                '<p class="mb-0 text-main-color">@' + d.fans.user_name + '</p>' + 
                             '</div>' + 
                             '<div class="right">' + 
                                 '<p class="mb-0">IP Address</p>' + 
@@ -162,7 +170,7 @@ function format ( d ) {
                         '<div class="d-flex fans-content mb-2">' + 
                             '<div class="left">' + 
                                 '<p class="mb-0">Username</p>' + 
-                                '<p class="mb-0 text-main-color">@' + d.idol.idol_full_name + '</p>' + 
+                                '<p class="mb-0 text-main-color">@' + d.idol.idol_user_name + '</p>' + 
                             '</div>' + 
                             '<div class="right">' + 
                                 '<p class="mb-0">Fans</p>' + 
@@ -310,7 +318,35 @@ $(document).ready(function() {
         $('.tab-header').removeClass('tab-deactive');
         $('.chart').removeClass('d-none');
         $('.order-detail-block').addClass('d-none');
-    })
+    });
+
+    $(document).on('change', '.custom-select1', function() {
+        console.log($(this).val())
+        var order_status = $(this).val();
+        switch (order_status) {
+            case '5':
+                $(this).parent().children().first().css('background', '#2178F9');
+                break;
+            case '0':
+                $(this).parent().children().first().css('background', '#FFC107');
+                break;
+            case '1':
+                $(this).parent().children().first().css('background', '#4CAF50');
+                break;
+            case '4':
+                $(this).parent().children().first().css('background', '#7636FF');
+                break;
+            case '3':
+                $(this).parent().children().first().css('background', '#EB001B');
+                break;
+            case '2':
+                $(this).parent().children().first().css('background', '#898989');
+                break;
+        
+            default:
+                break;
+        }
+    });
 });
 </script>
 @endsection

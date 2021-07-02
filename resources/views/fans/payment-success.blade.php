@@ -130,7 +130,7 @@
                             <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
                             @endif
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">{{ '@'.$fans->name }}</p>
+                                <p class="text-grey mb-2">{{ '@'.$fans->user_name }}</p>
                                 <p class="text-main-color mb-0">{{ $fans->name }}</p>
                             </div>
                         </div>

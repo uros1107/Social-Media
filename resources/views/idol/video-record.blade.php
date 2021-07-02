@@ -205,7 +205,7 @@ video {
                             @endif
                         </div>
                         <div class="ml-3 my-auto user-name">
-                            <p class="mb-0">{{ '@'.$fans->name }}</p>
+                            <p class="mb-0">{{ '@'.$fans->user_name }}</p>
                             <p class="text-main-color mb-0">{{ $fans->name }}</p>
                         </div>
                     </div>

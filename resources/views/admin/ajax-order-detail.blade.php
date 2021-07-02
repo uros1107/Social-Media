@@ -170,7 +170,7 @@
                 <img src="{{ asset('assets/images/img/'.$fans->photo) }}" class="img-circle mr-3">
                 @endif
                 <div class="username my-auto">
-                    <p class="mb-0">{{ '@'.$fans->name }}</p>
+                    <p class="mb-0">{{ '@'.$fans->user_name }}</p>
                     <h4 class="mb-0 text-main-color">{{ $fans->name }}</h4>
                 </div>
             </div>

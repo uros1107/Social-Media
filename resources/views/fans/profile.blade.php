@@ -72,7 +72,7 @@
         </div>
         <div class="profile-info">
             <h4 class="text-white">{{ Auth::user()->name }}</h4>
-            <h5 class='text-lowercase'>{{ '@'.Auth::user()->name }}</h5>
+            <h5 class='text-lowercase'>{{ '@'.Auth::user()->user_name }}</h5>
             <p>{{ Auth::user()->info }}</p>
         </div>
         <div class="profile-action">
@@ -137,6 +137,17 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
+                            <input type="text" placeholder="" name="user_name" id="name" value="{{ Auth::user()->user_name }}" required>
+                            <span>Your Username</span>
+                        </label>
+                        @if ($errors->has('name'))
+                            <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                <p class="mb-0" style="font-size: 14px">{{ $errors->first('user_name') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
                             <input type="email" placeholder="" name="email" id="email" value="{{ Auth::user()->email }}"  disabled>
                             <span>Your Email</span>
                         </label>
@@ -146,7 +157,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-12 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" placeholder="" name="phone" id="phone" value="{{ Auth::user()->phone }}">
                             <span>Your Phone Number</span>

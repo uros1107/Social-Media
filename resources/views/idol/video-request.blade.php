@@ -149,7 +149,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     @endif
                                     <div class="msg my-auto">
                                         <h4 class="text-white mb-0" style="font-size: 16px">New Request!</h4>
-                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">{{ $fans->name }}</span></p>
+                                        <p class="text-white mb-0" style="font-size: 13px">from <span class="text-main-color">{{ $fans->user_name }}</span></p>
                                     </div>
                                 </div>
                             </td>

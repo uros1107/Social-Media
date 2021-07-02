@@ -209,7 +209,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                             </td>
                             <td class="user">
                                 <a href="{{ route('idol-earning-per').'?order_id='.$order->order_id }}"><h4 class="mb-0 text-white">Encourage her</h4></a>
-                                <p class="mb-0">from <span class="text-main-color">{{ $fans->name }}</span></p>
+                                <p class="mb-0">from <span class="text-main-color">{{ $fans->user_name }}</span></p>
                             </td>
                             <td class="desktop">
                                 <p class="mb-0 description">{{ $order->order_introduction }}</p>

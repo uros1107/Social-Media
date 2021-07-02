@@ -45,10 +45,12 @@ Route::prefix('admin')->group(function() {
         Route::POST('/update-idol', 'Admin\HomeController@update_idol')->name('admin-update-idol');
         Route::get('/fans', 'Admin\HomeController@fans')->name('admin-fans');
         Route::get('/fans-list', 'Admin\HomeController@fans_list')->name('admin-fans-list');
+        Route::get('/fans-edit/{fansname}', 'Admin\HomeController@fans_edit')->name('admin-fans-edit');
         Route::POST('/delete-fans', 'Admin\HomeController@delete_fans')->name('admin-fans-delete');
         Route::get('/filter-fans', 'Admin\HomeController@fans_filter')->name('admin-filter-fans');
         Route::get('/add-fan', 'Admin\HomeController@add_fan')->name('admin-add-fan');
         Route::POST('/store-fan', 'Admin\HomeController@store_fan')->name('admin-store-fan');
+        Route::POST('/update-fans', 'Admin\HomeController@update_fans')->name('admin-update-fans');
     });
 });
 

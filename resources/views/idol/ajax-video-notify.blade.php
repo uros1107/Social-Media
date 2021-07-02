@@ -13,7 +13,7 @@
             @endif
             <div class="new-msg my-auto">
                 <h4 class="text-white">New Request</h4>
-                <p class="text-white">from <span class="text-main-color">{{ $fans->name }}</span></p>
+                <p class="text-white">from <span class="text-main-color">{{ $fans->user_name }}</span></p>
             </div>
         </div>
         <div class="col-5 col-md-5 m-auto">

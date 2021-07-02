@@ -177,8 +177,8 @@
                         <div class="row m-0">
                             <div class="col-12 col-sm-12 col-md-7">
                                 <div class="inputWithIcon">
-                                    <label class="input-label">Your name</label>
-                                    <input type="text" name="name" placeholder="Your name" class="custom-input" required>
+                                    <label class="input-label">Full Name</label>
+                                    <input type="text" name="name" placeholder="Full name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                             </div>
@@ -187,6 +187,13 @@
                                     <label class="input-label">Your Date Birth</label>
                                     <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Username</label>
+                                    <input type="text" name="user_name" placeholder="username" class="custom-input" required>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
@@ -268,8 +275,8 @@
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
-                                        <label class="input-label">Your Name</label>
-                                        <input type="text" name="name" placeholder="Your Name" class="custom-input" required>
+                                        <label class="input-label">Full Name</label>
+                                        <input type="text" name="name" placeholder="Full Name" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
@@ -278,6 +285,13 @@
                                         <label class="input-label">Your Date Birth</label>
                                         <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker1" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 p-0">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">User Name</label>
+                                        <input type="text" name="user_name" placeholder="username" class="custom-input" required>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">

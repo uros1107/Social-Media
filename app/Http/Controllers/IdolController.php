@@ -487,7 +487,7 @@ class IdolController extends Controller
     public function video_notify(Request $request)
     {
         $status = $request->status;
-        $orders = Order::where('order_status', $status)->orderBy('created_at', 'desc')->get();
+        $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', $status)->orderBy('created_at', 'desc')->get();
 
         return view('idol.ajax-video-notify', compact('orders'));
     }
