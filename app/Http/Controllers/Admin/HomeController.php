@@ -464,7 +464,7 @@ class HomeController
             'idol_user_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_email' => 'required|string|email',
-            'idol_phone' => 'required|string',
+            // 'idol_phone' => 'required|string',
             'request_video_price' => 'required',
         ]);
 
