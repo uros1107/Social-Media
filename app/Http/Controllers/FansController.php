@@ -245,7 +245,7 @@ class FansController extends Controller
     public function idol_category_get(Request $request, $name)
     {
         $cat = Category::where('cat_name', $name)->first();
-        $idols = User::where('cat_id', $cat->cat_id)->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->get();
+        $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat->cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->get();
 
         return view('fans.idol-category-get', ['idols' => $idols, 'cat' => $cat]);
     }

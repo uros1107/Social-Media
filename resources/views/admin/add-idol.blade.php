@@ -3,6 +3,7 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
 .banner-title {
     font-size: 12px;
@@ -27,6 +28,21 @@
     padding: 0px;
     top: 21px!important;
 }
+.ui.fluid.dropdown {
+    padding: 11px;
+    border-radius: 10px;
+    min-height: 50px;
+    background: #fcfcfc;
+    border: 1px solid #b7b7b7;
+}
+.ui.selection.active.dropdown:hover {
+    border-color: #b7b7b7;
+}
+.category-label {
+    background: #fcfcfc;
+    font-size: 12px;
+    top: -7px;
+}
 </style>
 @endsection
 
@@ -47,7 +63,7 @@
     <div class="col-12 col-sm-9 col-md-9 mt-2 mb-3">
         <div class="profile">
             <h4 class="mb-3 ml-3">Create Idols <span class="text-main-color">Profile</span></h4>
-            <form method="POST" enctype="multipart/form-data" id="add-idol">
+            <form method="POST" action="{{ route('admin-store-idol') }}" enctype="multipart/form-data" id="add-idol">
                 {{ csrf_field() }}
                 <div class="row m-0">
                     <div class="col-12 col-md-6 col-sm-6">
@@ -109,12 +125,17 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="select mt-1">
-                            <select class="select-text" name="idol_cat_id" required>
+                            <!-- <select class="select-text" name="idol_cat_id" required>
+                                @foreach(DB::table('categories')->get() as $cat)
+                                <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == Auth::user()->cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                @endforeach
+                            </select> -->
+                            <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                                 @foreach(DB::table('categories')->get() as $cat)
                                 <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == Auth::user()->cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                                 @endforeach
                             </select>
-                            <label class="select-label">Category</label>
+                            <label class="select-label category-label">Category</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
@@ -123,7 +144,7 @@
                             <span>Bio</span>
                         </label>
                         <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
-                        <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Words: <span>0</span></p>
+                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -174,7 +195,7 @@
                     </div>
                     <input type="file" class="d-none" name="idol_photo" id="img-upload">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
-                        <button type="submit" class="btn custom-btn save-change-btn">Save Changes</button>
+                        <button type="button" class="btn custom-btn save-change-btn">Save Changes</button>
                     </div>
                 </div>
             </form>
@@ -184,9 +205,12 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 
 <script>
 $(document).ready(function() {
+    $('.label.ui.dropdown').dropdown();
+
     $('.eye-hide').on('click', function() {
         $('input[name=password]').prop('type','text');
         $(this).addClass('d-none');
@@ -245,14 +269,14 @@ $(document).ready(function() {
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                if(this.width != 1100 || this.height != 200) {
-                    toastr.error("Image size should be 1100px * 200px!");
-                    banner_img = false;
-                } else {
+                // if(this.width != 1100 || this.height != 200) {
+                //     toastr.error("Image size should be 1100px * 200px!");
+                //     banner_img = false;
+                // } else {
                     $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
                     banner_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                }
+                // }
             };
             img.src = objectUrl;
         }
@@ -298,49 +322,17 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('submit', '#add-idol', function(e) {
-        e.preventDefault();
-        var formData = new FormData($(this)[0]);
-
-        if(!photo_img || !upload_video || !banner_img) {
-            toastr.error('You should input all field correctly!');
+    $(document).on('click', '.save-change-btn', function(e) {
+        if(!photo_img || !upload_video || !banner_img || !$('.ui.fluid.dropdown').children('a').length) {
+            toastr.error('You should input all fields correctly!');
+        } else if($('.ui.fluid.dropdown').children('a').length > 5) {
+            toastr.error('You can select maximum 5 categories!');
         } else if(!word_limit) {
             toastr.error('You can input at maximum 100 words!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "{{ route('admin-store-idol') }}",
-                method: 'POST',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (res) {
-                    if(res.success) {
-                        toastr.success('Successfully added!');
-                        $('.save-change-btn').html("Save Changes");
-                        $('.save-change-btn').prop('disabled', false);
-                        setTimeout(() => {
-                            location.href = "{{ route('admin-idol') }}";
-                        }, 1000);
-                    } else {
-                        toastr.error('Server error! Please try again later!');
-                        $('.save-change-btn').html("Submit");
-                        $('.save-change-btn').prop('disabled', false);
-                    }
-                },
-                error: function (error) {
-                    toastr.error('Upload size was exceeds!');
-                    $('.save-change-btn').html("Submit");
-                    $('.save-change-btn').prop('disabled', false);
-                }
-            });
+            $('#add-idol').submit();
         }
     });
 })

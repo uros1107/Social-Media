@@ -204,6 +204,13 @@ class IdolController extends Controller
             'idol_email' => 'required|string|email',
             'idol_phone' => 'string'
         ]);
+
+        $idol_cat_ids = explode(',', $request->idol_cat_id);
+        for ($i=0; $i < count($idol_cat_ids); $i++) { 
+            $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
+        }
+        $idol_cat_ids = json_encode($idol_cat_ids);
+        $idol_info['idol_cat_id'] = $idol_cat_ids;
         
         $idol = IdolInfo::where('idol_user_id', Auth::user()->id);
 
@@ -254,7 +261,7 @@ class IdolController extends Controller
         $video_request->update($request_info);
 
         $user = User::where('id', Auth::user()->id);
-        $cat_id = ['cat_id' => $request->idol_cat_id];
+        $cat_id = ['cat_id' => $idol_cat_ids];
         $user->update($cat_id);
 
         if($request->password) {

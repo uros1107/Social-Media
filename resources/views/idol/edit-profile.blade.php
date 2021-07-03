@@ -3,7 +3,11 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
+.container-fluid {
+    background: #171717;
+}
 .footer .container-fluid {
     padding: 0px!important;
 }
@@ -38,6 +42,12 @@
     .bg-img-part {
         padding: 0px;
     }
+    .ui.fluid.dropdown, .ui.fluid.dropdown:focus {
+        background: #171717!important;
+    }
+    .category-label {
+        background: #171717;
+    }
 }
 </style>
 @endsection
@@ -60,7 +70,7 @@
             <div>
                 <button class="btn custom-btn mb-3 change-password-btn">Change Password</button>
             </div>
-            <h3 class="text-white mb-2">{{ $idol_info->idol_full_name }}<h3>
+            <h3 class="text-white mb-2">{{ $idol_info->idol_full_name }}</h3>
             <h4 class="mb-3">{{ '@'.$idol_info->idol_user_name }}</h4>
             <div class="rating mb-3">
                 <span class="mr-2">Rating</span>
@@ -81,21 +91,27 @@
                 <div class="gradient"></div>
                 <div class="col-12 col-sm-12 col-md-12" style="margin-top:-200px">
                     <div class="idol-profile d-flex">
-                        <div class="idol-image" style="background-image:unset">
+                        <div class="idol-image" style="background-image:unset;display: contents;">
                             <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
-                            <div class="add-img">
+                            <!-- <div class="add-img">
                                 <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
-                            </div>
+                            </div> -->
                         </div>
                         @php
-                            $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
+                            $cats = json_decode($idol_info->idol_cat_id);
                         @endphp
                         <div class="ml-3">
-                            <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
-                            <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
-                            <div class="tik-tok">
-                                <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
-                                <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                            <h5 class="text-white mt-3 mb-2">{{ '@'.$idol_info->idol_user_name }}</h5>
+                            <h3 class="text-white mt-2">{{ $idol_info->idol_full_name }}</h3>
+                            <div class="d-flex" style="flex-wrap: wrap">
+                                @foreach($cats as $cat)
+                                @php
+                                    $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                                @endphp
+                                <div class="tik-tok mb-2 mr-2">
+                                    <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -184,20 +200,24 @@
                     </span>
                 @endif
             </div>
-            <div class="col-12 col-md-6 col-sm-6">
+            <!-- <div class="col-12 col-md-6 col-sm-6">
                 <label class="pure-material-textfield-outlined w-100">
                     <input type="password" placeholder="" value="">
                     <span>Password</span>
                 </label>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6">
+            </div> -->
+            <div class="col-12 col-sm-12 col-md-12">
                 <div class="select mt-1">
-                    <select class="select-text" id="idol_cat_id">
+                    <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                         @foreach(DB::table('categories')->get() as $cat)
-                        <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == $idol_info->idol_cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                        @php
+                            $array = json_decode($idol_info->idol_cat_id);
+                            $has_cat = in_array($cat->cat_id, $array);
+                        @endphp
+                        <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                         @endforeach
                     </select>
-                    <label class="select-label">Category</label>
+                    <label class="select-label category-label">Category</label>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-sm-12 mt-3">
@@ -362,7 +382,7 @@
                         </video>
                         <div class="video-title d-flex mt-1">
                             <h5 class="mb-0">Congratulation Melissa</h5>
-                            <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
+                            <h5 class="mb-0 mt-0" id="duration_{{ $order->order_id }}">00:00</h5>
                         </div>
                         <p class="mb-0 text-left">From <span class="text-main-color">{{ $fans->name }}</span></p>
                     </div>
@@ -385,21 +405,24 @@
                             <h4 class="text-white">Tags</h4>
                             <p class="mb-0">Let your fans find you with your Influencer categories </p>
                         </div>
-                        <button class="btn custom-btn my-auto tag-add-btn">+ Add</button>
+                        <!-- <button class="btn custom-btn my-auto tag-add-btn">+ Add</button> -->
                     </div>
                     <div class="divider"></div>
                 </div>  
-                <div class="col-12 col-sm-12 col-md-12 d-flex mb-2">
+                <div class="col-12 col-sm-12 col-md-12 d-flex mb-2" style="overflow: auto">
+                    @php
+                        $cats = json_decode($idol_info->idol_cat_id);
+                    @endphp
+                    @foreach($cats as $cat)
+                    @php
+                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                    @endphp
                     <div class="tag-item">
                         <img class="my-auto mr-2" src="{{ asset('assets/images/icons/search.png') }}">
-                        <p class="text-white my-auto mb-0 mr-2">Dancer</p>
+                        <p class="text-white my-auto mb-0 mr-2">{{ $cat->cat_name }}</p>
                         <img class="my-auto" src="{{ asset('assets/images/icons/more.png') }}">
                     </div>
-                    <div class="tag-item">
-                        <img class="my-auto mr-2" src="{{ asset('assets/images/icons/search.png') }}">
-                        <p class="text-white my-auto mb-0 mr-2">Tiktok</p>
-                        <img class="my-auto" src="{{ asset('assets/images/icons/more.png') }}">
-                    </div>
+                    @endforeach
                 </div>  
             </div>
         </div>
@@ -454,6 +477,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 <script>
 function format(s) {
     var m = Math.floor(s / 60);
@@ -463,6 +487,8 @@ function format(s) {
     return m + ":" + s;
 }
 $(document).ready(function() {
+    $('.label.ui.dropdown').dropdown();
+
     $(".video-item").each(function() {
         var id = $(this).data('id');
         var myVideo = document.getElementById("video_" + id);
@@ -552,8 +578,14 @@ $(document).ready(function() {
         $('input[name=idol_bio]').val($(this).val());
     })
 
-    $(document).on('change', '#idol_cat_id', function() {
-        $('input[name=idol_cat_id]').val($(this).val());
+    $(document).on('change', '.idol_cat_id', function() {
+        var idol_cat_ids = [];
+        setTimeout(() => {
+            $('.ui.label>a').each(function() {
+                idol_cat_ids.push(Number($(this).data('value')));
+            })
+            $('input[name=idol_cat_id]').val(idol_cat_ids);
+        }, 500);
     })
 
     $(document).on('change', '#password', function() {
@@ -599,6 +631,8 @@ $(document).ready(function() {
     $('.profile-update-btn').on('click', function() {
         if(!word_limit) {
             toastr.error('You can input maximum 100 words!');
+        } else if(!$('.ui.fluid.dropdown').children('a').length) {
+            toastr.error('You can input all fields correctly!');
         } else {
             $('#profile-update').submit();
         }

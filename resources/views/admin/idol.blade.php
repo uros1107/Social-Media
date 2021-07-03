@@ -290,7 +290,7 @@ $(document).ready(function() {
             { 'data': 'perc' },
             { 'data': 'status' },
         ],
-        'order': [[4, 'desc']]
+        'order': [[5, 'desc']]
     } );
 
     // Add event listener for opening and closing details
@@ -354,7 +354,7 @@ $(document).ready(function() {
                 { 'data': 'perc' },
                 { 'data': 'status' },
             ],
-            'order': [[4, 'desc']]
+            'order': [[5, 'desc']]
         } );
     })
 

@@ -37,9 +37,16 @@
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
                             @php
-                                $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
+                                $cats = json_decode($idol_info->idol_cat_id);
                             @endphp
-                            <p class="text-white mb-0">{{ $cat->cat_name }}</p>
+                            <div class="d-flex" style="flex-wrap: wrap">
+                                @foreach($cats as $cat)
+                                @php
+                                    $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                                @endphp
+                                <p class="text-white mr-3 mb-0">{{ $cat->cat_name }}</p>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

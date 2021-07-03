@@ -3,7 +3,11 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
+.container-fluid {
+    background: #e5e5e5;
+}
 .banner-title {
     font-size: 12px;
     color: #898989;
@@ -27,6 +31,26 @@
     padding: 0px;
     top: 21px!important;
 }
+.alert-success {
+    color: #45f10c;
+    background-color: #fcfcfc;
+    border-color: #fcfcfc;
+}
+.ui.fluid.dropdown {
+    padding: 11px;
+    border-radius: 10px;
+    min-height: 50px;
+    background: #fcfcfc;
+    border: 1px solid #b7b7b7;
+}
+.ui.selection.active.dropdown:hover {
+    border-color: #b7b7b7;
+}
+.category-label {
+    background: #fcfcfc;
+    font-size: 12px;
+    top: -7px;
+}
 </style>
 @endsection
 
@@ -37,7 +61,14 @@
         <h4 class="text-white mb-0"><span style="font-weight: normal!important">Dashboard</span> > Edit Idol</h4>
     </div>
 </div>
-<div class="row m-0 mt-4">
+<div class="row m-0 mt-4 edit-idol">
+    @if(Session::has('success'))
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="alert alert-success" role="alert">
+                <strong>Success!</strong> {{ Session::get('success') }}
+            </div>
+        </div>
+    @endif
     <div class="col-12 col-sm-3 col-md-3 mt-2 mb-3">
         <div class="upload-image">
             @if(!$idol_info->idol_photo)
@@ -51,7 +82,7 @@
     <div class="col-12 col-sm-9 col-md-9 mt-2 mb-3">
         <div class="profile">
             <h4 class="mb-3 ml-3">{{ $idol_info->idol_full_name }} <span class="text-main-color">Profile</span></h4>
-            <form method="POST" enctype="multipart/form-data" id="add-idol">
+            <form method="POST" action="{{ route('admin-update-idol') }}" enctype="multipart/form-data" id="add-idol">
                 {{ csrf_field() }}
                 <div class="row m-0">
                     <div class="col-12 col-md-6 col-sm-6">
@@ -113,12 +144,21 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="select mt-1">
-                            <select class="select-text" name="idol_cat_id" required>
+                            <!-- <select class="select-text" name="idol_cat_id" required>
                                 @foreach(DB::table('categories')->get() as $cat)
                                 <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == $idol_info->idol_cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                                 @endforeach
+                            </select> -->
+                            <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
+                                @foreach(DB::table('categories')->get() as $cat)
+                                @php
+                                    $array = json_decode($idol_info->idol_cat_id);
+                                    $has_cat = in_array($cat->cat_id, $array);
+                                @endphp
+                                <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                @endforeach
                             </select>
-                            <label class="select-label">Category</label>
+                            <label class="select-label category-label">Category</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
@@ -179,7 +219,7 @@
                     <input type="file" class="d-none" name="idol_photo" id="img-upload">
                     <input type="hidden" name="idol_info_id" value="{{ $idol_info->idol_id }}">
                     <div class="col-12 col-md-12 col-sm-12 text-right mt-3">
-                        <button type="submit" class="btn custom-btn save-change-btn">Save Changes</button>
+                        <button type="button" class="btn custom-btn save-change-btn">Save Changes</button>
                     </div>
                 </div>
             </form>
@@ -189,9 +229,12 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 
 <script>
 $(document).ready(function() {
+    $('.label.ui.dropdown').dropdown();
+
     $('.eye-hide').on('click', function() {
         $('input[name=password]').prop('type','text');
         $(this).addClass('d-none');
@@ -303,47 +346,18 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('submit', '#add-idol', function(e) {
-        e.preventDefault();
-        var formData = new FormData($(this)[0]);
+    $(document).on('click', '.save-change-btn', function(e) {
 
-        if(!word_limit) {
+        if(!$('.ui.fluid.dropdown').children('a').length) {
+            toastr.error('You should input all fields correctly!');
+        } else if($('.ui.fluid.dropdown').children('a').length > 5) {
+            toastr.error('You can select maximum 5 categories!');
+        } else if(!word_limit) {
             toastr.error('You can input at maximum 100 words!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "{{ route('admin-update-idol') }}",
-                method: 'POST',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (res) {
-                    if(res.success) {
-                        toastr.success('Successfully updated!');
-                        $('.save-change-btn').html("Save Changes");
-                        $('.save-change-btn').prop('disabled', false);
-                        setTimeout(() => {
-                            location.href = res.redirect_url;
-                        }, 1000);
-                    } else {
-                        toastr.error('Server error! Please try again later!');
-                        $('.save-change-btn').html("Submit");
-                        $('.save-change-btn').prop('disabled', false);
-                    }
-                },
-                error: function (error) {
-                    toastr.error(error);
-                    $('.save-change-btn').html("Submit");
-                    $('.save-change-btn').prop('disabled', false);
-                }
-            });
+            $('#add-idol').submit();
         }
     });
 })

@@ -1425,6 +1425,22 @@ input:checked + .slider {
     color: #898989;
 }
 
+@media (max-width: 574px) { 
+    .switch-label {
+        font-size: 14px;
+    }
+    .edit-idol .col-12 {
+        padding: 0px;
+    }
+    .banner-title {
+        margin-top: 22px!important;
+    }
+    .upload-video h4 {
+        font-size: 15px;
+        color: #2B2B2B;
+    }
+}
+
 /* ------------- switch css end ---------------- */
 /* ================================================== Create Idol Css End ================================================= */
 

@@ -32,6 +32,7 @@
                 @foreach(json_decode($fans->fandom_lists) as $idol)
                     @php
                         $idol = DB::table('idol_info')->where('idol_user_id', $idol)->first();
+                        $cats = json_decode($idol->idol_cat_id);
                     @endphp
                     <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol->idol_user_name) }}">
                         <div class="image-item">
@@ -39,7 +40,14 @@
                             <div class="gradient"></div>
                             <div class="image-profile">
                                 <h5 class="text-white">{{ $idol->idol_full_name }}</h5>
-                                <p class="text-white mb-0">Dancer, TikTok</p>
+                                <div class="d-flex" style="flex-wrap: wrap">
+                                    @foreach($cats as $cat)
+                                    @php
+                                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                                    @endphp
+                                    <p class="text-white mr-3 mb-0">{{ $cat->cat_name }}</p>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

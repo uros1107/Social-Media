@@ -27,7 +27,7 @@
     opacity: 1;
 }
 .featured .featured-video {
-    padding: 0px 45px;
+    padding: 0px 25px;
 }
 #myModal {
     top: 10%;
@@ -66,6 +66,9 @@
     }
     .footer .container-fluid {
         padding: 0px!important;
+    }
+    .featured .featured-video {
+        padding: 0px;
     }
 }
 </style>

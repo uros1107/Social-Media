@@ -76,7 +76,7 @@
     @php
         $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
-        $cat = DB::table('categories')->where('cat_id', $idol_info->idol_cat_id)->first();
+        $cats = json_decode($idol_info->idol_cat_id);
     @endphp
     <div class="desktop w-100">
         <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
@@ -94,9 +94,15 @@
                     </div>
                 </div>
                 <div class="idol-information">
-                    <div class="tik-tok">
-                        <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
-                        <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                    <div class="d-flex">
+                        @foreach($cats as $cat)
+                        @php
+                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                        @endphp
+                        <div class="tik-tok mr-2">
+                            <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                        </div>
+                        @endforeach
                     </div>
                     <div class="name-action d-flex">
                         <div class="name-part">
@@ -139,18 +145,24 @@
         <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-200px">
             <div class="idol-profile d-flex">
-                <div class="idol-image" style="background-image:unset">
+                <div class="idol-image" style="background-image:unset;display: contents;">
                     <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
                     <div class="add-img">
                         <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
                     </div>
                 </div>
                 <div class="ml-3">
-                    <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
-                    <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
-                    <div class="tik-tok">
-                        <!-- <button class="btn custom-btn mr-2">TIK - TOK</button> -->
-                        <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                    <h5 class="text-white mt-3">{{ '@'.$idol_info->idol_user_name }}</h5>
+                    <h3 class="text-white mt-2">{{ $idol_info->idol_full_name }}</h3>
+                    <div class="d-flex" style="flex-wrap: wrap;">
+                        @foreach($cats as $cat)
+                        @php
+                            $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                        @endphp
+                        <div class="tik-tok mr-2 mb-2">
+                            <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

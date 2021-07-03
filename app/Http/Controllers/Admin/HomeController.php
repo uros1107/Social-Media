@@ -376,15 +376,20 @@ class HomeController
         $idol_info = $request->all();
         $video_request = $request->all();
         
-        // $request->validate([
-        //     'idol_full_name' => 'required|string',
-        //     'idol_user_name' => 'required|string',
-        //     'idol_bio' => 'required|string',
-        //     'idol_email' => 'required|string|email|unique:idol_info',
-        //     'idol_phone' => 'required|string|unique:idol_info',
-        //     'request_video_price' => 'required',
-            // 'request_vocation' => 'required',
-        // ]);
+        $request->validate([
+            'idol_full_name' => 'required|string',
+            'idol_user_name' => 'required|string|unique:idol_info',
+            'idol_bio' => 'required|string',
+            'idol_email' => 'required|string|email|unique:idol_info',
+            'idol_phone' => 'required|string|unique:idol_info',
+            'request_video_price' => 'required',
+        ]);
+
+        $idol_cat_ids = $request->idol_cat_id;
+        for ($i=0; $i < count($idol_cat_ids); $i++) { 
+            $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
+        }
+        $idol_cat_ids = json_encode($idol_cat_ids);
 
         $user_info = [
             'name' => $request->idol_full_name,
@@ -392,10 +397,11 @@ class HomeController
             'password' => Hash::make($request->password),
             'phone' => $request->idol_phone,
             'info' => $request->idol_bio,
-            'cat_id' => $request->idol_cat_id,
+            'cat_id' => $idol_cat_ids,
             'role' => 1,
             'is_setup' => 1
         ];
+        
         $user = User::create($user_info);
         
         $photo_img_name = $request->idol_photo->getClientOriginalName();
@@ -413,6 +419,7 @@ class HomeController
         );
         $idol_info['idol_photo'] = $photo_img_name;
         $idol_info['idol_banner'] = $banner_img_name;
+        $idol_info['idol_cat_id'] = $idol_cat_ids;
         $idol_info['idol_user_id'] = $user->id;
         
         $video_name = $request->request_video->getClientOriginalName();
@@ -429,7 +436,7 @@ class HomeController
             $video_request['idol_banner'],
             $video_request['idol_cat_id'],
         );
-        $video_request['request_idol_id'] = $idol_info->id;
+        $video_request['request_idol_id'] = $idol_info->idol_id;
         $video_request['request_video'] = $video_name;
 
         if(!isset($request_info['request_vocation'])) {
@@ -438,13 +445,13 @@ class HomeController
             $request_info['request_vocation'] = 1;
         }
 
-        $user->cat_id = $request->idol_cat_id;
-        $user->is_setup = 1;
-        $user->save();
+        // $user->cat_id = $request->idol_cat_id;
+        // $user->is_setup = 1;
+        // $user->save();
         
         $video_request = VideoRequest::create($video_request);
 
-        return response()->json(['success' => true]);
+        return redirect()->route('admin-idol');
     }
 
     public function update_idol(Request $request)
@@ -452,15 +459,20 @@ class HomeController
         $idol_info = $request->all();
         $video_request = $request->all();
         
-        // $request->validate([
-        //     'idol_full_name' => 'required|string',
-        //     'idol_user_name' => 'required|string',
-        //     'idol_bio' => 'required|string',
-        //     'idol_email' => 'required|string|email|unique:idol_info',
-        //     'idol_phone' => 'required|string|unique:idol_info',
-        //     'request_video_price' => 'required',
-            // 'request_vocation' => 'required',
-        // ]);
+        $request->validate([
+            'idol_full_name' => 'required|string',
+            'idol_user_name' => 'required|string',
+            'idol_bio' => 'required|string',
+            'idol_email' => 'required|string|email',
+            'idol_phone' => 'required|string',
+            'request_video_price' => 'required',
+        ]);
+
+        $idol_cat_ids = $request->idol_cat_id;
+        for ($i=0; $i < count($idol_cat_ids); $i++) { 
+            $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
+        }
+        $idol_cat_ids = json_encode($idol_cat_ids);
 
         $idol = IdolInfo::where('idol_id', $request->idol_info_id);
         if($request->password) {
@@ -470,7 +482,7 @@ class HomeController
                 'password' => Hash::make($request->password),
                 'phone' => $request->idol_phone,
                 'info' => $request->idol_bio,
-                'cat_id' => $request->idol_cat_id,
+                'cat_id' => $idol_cat_ids,
                 'role' => 1,
                 'is_setup' => 1
             ];
@@ -480,7 +492,7 @@ class HomeController
                 'email' => $request->idol_email,
                 'phone' => $request->idol_phone,
                 'info' => $request->idol_bio,
-                'cat_id' => $request->idol_cat_id,
+                'cat_id' => $idol_cat_ids,
                 'role' => 1,
                 'is_setup' => 1
             ];
@@ -503,6 +515,7 @@ class HomeController
         } else {
             unset($idol_info['idol_banner']);
         }
+        $idol_info['idol_cat_id'] = $idol_cat_ids;
 
         unset(
             $idol_info['request_lang'], 
@@ -545,14 +558,14 @@ class HomeController
             $video_request['request_vocation'] = 1;
         }
 
-        $user = User::where('id', $idol->first()->idol_user_id)->first();
-        $user->cat_id = $request->idol_cat_id;
-        $user->is_setup = 1;
-        $user->save();
+        // $user = User::where('id', $idol->first()->idol_user_id)->first();
+        // $user->cat_id = $request->idol_cat_id;
+        // $user->is_setup = 1;
+        // $user->save();
         
         $video_request = VideoRequest::where('request_idol_id', $request->idol_info_id)->update($video_request);
 
-        return response()->json(['success' => true, 'redirect_url' => url('/admin/idol-edit/'.$request->idol_user_name)]);
+        return redirect()->route('admin-idol-edit', $request->idol_user_name)->with('success', 'Successfully updated!');
     }
 
     public function idol_list()
@@ -580,7 +593,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
-                'idol_user_name' => '<a href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
+                'idol_user_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
                 'join_date' => Carbon\Carbon::parse($idol->created_at)->format('d F Y'),
@@ -662,7 +675,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
-                'idol_user_name' => '<a href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
+                'idol_user_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'idol_full_name' => $idol->idol_full_name,
                 'email' => $idol->idol_email,
                 'join_date' => Carbon\Carbon::parse($idol->created_at)->format('d F Y'),
@@ -707,7 +720,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
-                'fans_user_name' => '<a href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
+                'fans_user_name' => '<a style="color:#2178F9" href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
                 'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
@@ -815,7 +828,7 @@ class HomeController
 
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="fan-list" name="checkbox" value="'.$fan->id.'">',
-                'fans_user_name' => '<a href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
+                'fans_user_name' => '<a style="color:#2178F9" href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
                 'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
