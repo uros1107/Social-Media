@@ -3,6 +3,7 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
 .container-fluid {
     padding: 0px!important;
@@ -15,6 +16,21 @@
 }
 .close {
     margin-top: -22px;
+}
+.ui.fluid.dropdown {
+    padding: 11px;
+    border-radius: 10px;
+    min-height: 50px;
+    background: #fcfcfc;
+    border: 1px solid #b7b7b7;
+}
+.ui.selection.active.dropdown:hover {
+    border-color: #b7b7b7;
+}
+.category-label {
+    /* background: #fcfcfc; */
+    font-size: 12px;
+    top: -7px;
 }
 </style>
 @endsection
@@ -113,12 +129,16 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="select mt-1">
-                                    <select class="select-text" name="idol_cat_id" required>
+                                    <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                                         @foreach(DB::table('categories')->get() as $cat)
-                                        <option value="{{ $cat->cat_id }}" {{ $cat->cat_id == Auth::user()->cat_id? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                        @php
+                                            $array = json_decode(Auth::user()->cat_id);
+                                            $has_cat = in_array($cat->cat_id, $array);
+                                        @endphp
+                                        <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                                         @endforeach
                                     </select>
-                                    <label class="select-label">Category</label>
+                                    <label class="select-label category-label">Category</label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 mt-3">
@@ -326,8 +346,12 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+
 <script>
 $(document).ready(function(){
+    $('.label.ui.dropdown').dropdown();
+
     $(document).on('click', '#photo_btn', function() {
         $('#photo_img').click();
     });

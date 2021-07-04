@@ -71,8 +71,15 @@ class RegisterController extends Controller
             'email' => 'required|string|email|unique:users',
             'phone' => 'required|string|unique:users',
             'followers' => 'required|numeric',
+            'cat_id' => 'required',
             'info' => 'required|string',
         ]);
+
+        $cat_ids = $request->cat_id;
+        for ($i=0; $i < count($cat_ids); $i++) { 
+            $cat_ids[$i] = intval($cat_ids[$i]);
+        }
+        $cat_ids = json_encode($cat_ids);
 
         User::create([
             'name' => $request->name,
@@ -83,7 +90,7 @@ class RegisterController extends Controller
             'handle_name' => $request->handle_name,
             'followers' => $request->followers,
             'info' => $request->info,
-            'cat_id' => $request->cat_id,
+            'cat_id' => $cat_ids,
             'role' => 1
         ]);
 

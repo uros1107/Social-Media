@@ -3,6 +3,7 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
 .block-1 {
     height: 100vh;
@@ -103,6 +104,29 @@ select {
     background: #2b2b2b!important;
     border-color: #2b2b2b!important;
     color: white!important;
+}
+.ui.fluid.dropdown {
+    padding: 11px;
+    border-radius: 10px;
+    min-height: 50px;
+    background: #2b2b2b!important;
+    border: 1px solid #2b2b2b;
+}
+.ui.selection.dropdown:focus {
+    border-color: #2b2b2b;
+}
+.ui.selection.active.dropdown:hover {
+    border-color: #b7b7b7;
+}
+.ui.selection.dropdown>.delete.icon, .ui.selection.dropdown>.dropdown.icon, .ui.selection.dropdown>.search.icon  {
+    top: 18px;
+}
+.ui.selection.active.dropdown .menu {
+    background: #2b2b2b;
+}
+.ui.selection.dropdown .menu>.item  {
+    border-top: 1px solid #2b2b2b;
+    color: white;
 }
 
 @media screen and (max-width:768px) {
@@ -361,7 +385,12 @@ select {
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="form-group mb-0 mt-2">
                                 <label class="text-white" style="margin-left: 16px">Category</label>
-                                <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                <!-- <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                    @foreach(DB::table('categories')->get() as $cat)
+                                    <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
+                                    @endforeach
+                                </select> -->
+                                <select multiple="" name="cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                                     @foreach(DB::table('categories')->get() as $cat)
                                     <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
                                     @endforeach
@@ -372,7 +401,7 @@ select {
                             <div class="inputWithIcon">
                                 <label class="input-label">Your handle/Username</label>
                                 <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
-                                <img style="top:39px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
+                                <img style="top:35px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
@@ -543,8 +572,12 @@ select {
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+
 <script>
 $(document).ready(function() {
+    $('.label.ui.dropdown').dropdown();
+
     var word_limit = true;
     $("#info").on('keyup', function() {
         var words = 0;
@@ -567,7 +600,9 @@ $(document).ready(function() {
     });
 
     $('.register-btn').on('click', function() {
-        if(!word_limit) {
+        if($('.ui.fluid.dropdown').children('a').length > 5) {
+            toastr.error('You can select maximum 5 categories!');
+        } else if(!word_limit) {
             toastr.error('You can input maximum 100 words!');
         } else {
             $('#register').submit();

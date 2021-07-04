@@ -117,7 +117,7 @@
             <div class="col-12 col-md-12 col-sm-12">
                 <div class="sub-title d-flex w-100 mb-4">
                     <h4 class="text-white w-50">Help Categories</h4>
-                    <p class="mb-0 w-50">Have other issues? Ask our VIP service officers</p>
+                    <!-- <p class="mb-0 w-50">Have other issues? Ask our VIP service officers</p> -->
                 </div>
                 <div class="sub-content w-100">
                     <h4 class="text-white">Payments</h4>

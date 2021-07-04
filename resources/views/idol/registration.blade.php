@@ -3,6 +3,7 @@
 @section('title', 'Welcome to MILLIONK')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
 .image-block {
     background: url("{{ asset('assets/images/girl.png') }}") no-repeat center center;
@@ -28,6 +29,19 @@
 }
 .deactive {
     background: #171717;
+}
+.ui.fluid.dropdown {
+    padding: 11px;
+    border-radius: 10px;
+    min-height: 50px;
+    background: #fcfcfc;
+    border: 1px solid #b7b7b7;
+}
+.ui.selection.active.dropdown:hover {
+    border-color: #b7b7b7;
+}
+.ui.selection.dropdown>.delete.icon, .ui.selection.dropdown>.dropdown.icon, .ui.selection.dropdown>.search.icon  {
+    top: 18px;
 }
 </style>
 @endsection
@@ -142,12 +156,22 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="text-white" style="margin-left: 16px">Category</label>
-                                    <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                    <!-- <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
+                                        @foreach(DB::table('categories')->get() as $cat)
+                                        <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
+                                        @endforeach
+                                    </select> -->
+                                    <select multiple="" name="cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                                         @foreach(DB::table('categories')->get() as $cat)
                                         <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                @if ($errors->has('cat_id'))
+                                    <span class="help-block pl-3 d-block" style="color:#d61919;margin-top: -15px">
+                                        <p class="mb-0 mt-1">{{ $errors->first('cat_id') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon mb-0">
@@ -163,7 +187,7 @@
                                 @endif
                             </div>
                             <div class="col-12 mt-3">
-                                <button class="btn custom-btn w-100" type="submit">Submit</button>
+                                <button class="btn custom-btn w-100 submit" type="button">Submit</button>
                             </div>
                             <div class="col-12 mt-3">
                                 <button class="btn custom-btn w-100" type="button" style="background:#2b2b2b" id="back">Back</button>
@@ -189,8 +213,12 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+
 <script>
     $(document).ready(function() {
+        $('.label.ui.dropdown').dropdown();
+
         $('#next').on('click', function() {
             $('.step-1').addClass('d-none');
             $('.step-2').removeClass('d-none');
@@ -223,6 +251,14 @@
             $('input[name=password]').prop('type','password');
             $(this).addClass('d-none');
             $('.eye-hide').removeClass('d-none');
+        });
+
+        $('.submit').on('click', function() {
+            if($('.ui.fluid.dropdown').children('a').length > 5) {
+                toastr.error('You can select maximum 5 categories!');
+            } else {
+                $('.custom-form').submit();
+            }
         });
 
         var word_limit = true;
