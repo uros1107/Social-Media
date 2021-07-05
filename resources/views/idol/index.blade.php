@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                                 <div class="standard-delivery">
-                                    <a href="{{ route('idol-earning') }}"><span class="text-white">Go To Eearnings</span></a>
+                                    <a href="{{ route('idol-earning') }}"><span class="text-white">Go To Earnings</span></a>
                                 </div>
                             </div>
                         </div>

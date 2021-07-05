@@ -521,8 +521,8 @@ $(document).ready(function(){
         $('#profile_information').removeClass('d-none');
         $('#request_video').addClass('d-none');
         $('#profile_step').addClass('active');
-        $('#profile_step').removeClass('completed');
-        $('#request_step').removeClass('active');
+        // $('#profile_step').removeClass('completed');
+        // $('#request_step').removeClass('active');
         $('#step_number').html('1');
     })
 
@@ -539,8 +539,8 @@ $(document).ready(function(){
         $('#request_video').removeClass('d-none');
         $('#video_introduction').addClass('d-none');
         $('#request_step').addClass('active');
-        $('#request_step').removeClass('completed');
-        $('#introduction_step').removeClass('active');
+        // $('#request_step').removeClass('completed');
+        // $('#introduction_step').removeClass('active');
         $('#step_number').html('2');
     })
 
@@ -561,8 +561,8 @@ $(document).ready(function(){
         $('#video_introduction').removeClass('d-none');
         $('#payment_method').addClass('d-none');
         $('#introduction_step').addClass('active');
-        $('#introduction_step').removeClass('completed');
-        $('#payment_step').removeClass('active');
+        // $('#introduction_step').removeClass('completed');
+        // $('#payment_step').removeClass('active');
         $('#step_number').html('3');
     })
 
