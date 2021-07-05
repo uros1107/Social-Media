@@ -93,7 +93,7 @@
                                 @if($has)
                                     <i class='fas fa-check mr-2' style='font-size:16px'></i>
                                 @endif
-                                Follow
+                                Following
                             </button>
                             @endif
                             <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
@@ -133,7 +133,7 @@
                                     <div class="col-12 how-content">
                                         <div class="content-item d-flex mb-4">
                                             <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">You will receive on email order confirmation</p>
+                                            <p class="mb-0 text-white">You will receive an email order confirmation</p>
                                         </div>
                                         <div class="content-item d-flex mb-4">
                                             <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
@@ -218,7 +218,7 @@
                 @if($has)
                     <i class='fas fa-check mr-2' style='font-size:16px'></i>
                 @endif
-                Follow
+                Following
             </button>
             @endif
             <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>

@@ -205,7 +205,13 @@ class IdolController extends Controller
             'idol_phone' => 'string'
         ]);
 
-        $idol_cat_ids = explode(',', $request->idol_cat_id);
+        if(!strpos($request->idol_cat_id, '[') && !strpos($request->idol_cat_id, ']')) {
+            $idol_cat_ids = explode(',', $request->idol_cat_id);
+        } else {
+            $idol_cat_ids = substr($request->idol_cat_id, 1, -1);
+            $idol_cat_ids = explode(',', $idol_cat_ids);
+        }
+        
         for ($i=0; $i < count($idol_cat_ids); $i++) { 
             $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
         }
