@@ -164,7 +164,7 @@
             <div class="col-12 col-sm-4 col-md-4 form-block">
                 <div style="display: table-cell;vertical-align: middle;">
                     <div class="title-part text-center">
-                        <h2 class="text-white title">Confirm Email!</h2>
+                        <h2 class="text-white title">Confirm Your Email!</h2>
                     </div>
                     <input type="hidden" id="code" value="{{ $code }}">
                     <div class="register-part">
@@ -173,7 +173,7 @@
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <span class="help-block pl-3 mb-4 d-block">
-                                        <p class="mb-0 text-white text-center">We sent verify code to your email address.</p>
+                                        <p class="mb-0 text-white text-center">We have sent a verification code to your email address.</p>
                                     </span>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12">
@@ -190,10 +190,10 @@
                                 <div class="col-12 mt-4 mb-5 text-center">
                                     <a class="text-white">Need help?</a>
                                 </div>
-                                <div class="col-12 text-center" style="margin-top: 100px">
+                                <!-- <div class="col-12 text-center" style="margin-top: 100px">
                                     <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -204,7 +204,7 @@
             <div class="row m-0 fans mobile image-block w-100">
                 <div class="form-block">
                     <div class="title-part">
-                        <h2 class="text-white title">Confirm Email!</h2>
+                        <h2 class="text-white title">Confirm Your Email!</h2>
                     </div>
                     <div class="register-part">
                         <form class="custom-form" action="{{ route('fans-signup') }}" method="POST">
@@ -212,7 +212,7 @@
                             <div class="row m-0">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <span class="help-block mb-4 d-block">
-                                        <p class="mb-0 text-white" style="font-size: 12px">We sent verify code to your email address.</p>
+                                        <p class="mb-0 text-white" style="font-size: 12px">We have sent a verification code to your email address.</p>
                                     </span>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
@@ -229,10 +229,10 @@
                                 <div class="col-12 text-center mb-4">
                                     <a class="text-white need-help">Need help?</a>
                                 </div>
-                                <div class="col-12 text-center signup-part">
+                                <!-- <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have an account?</a>
                                     <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>

@@ -95,7 +95,7 @@ class HomeController
                     $occasion = 'Advice';
                     break;
                 case 5:
-                    $occasion = 'Congrats';
+                    $occasion = 'Congratulations';
                     break;
                 case 6:
                     $occasion = 'Valentine’s';
@@ -215,7 +215,7 @@ class HomeController
                     $occasion = 'Advice';
                     break;
                 case 5:
-                    $occasion = 'Congrats';
+                    $occasion = 'Congratulations';
                     break;
                 case 6:
                     $occasion = 'Valentine’s';

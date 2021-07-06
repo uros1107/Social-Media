@@ -270,7 +270,7 @@
         </div>
         <div class="divider mb-3"></div>
         <div class="who-is w-100 mb-4">
-            <h4 class="text-white w-100">Select on Occasion</h4>
+            <h4 class="text-white w-100">Select an Occasion</h4>
             <div class="row m-0 occasion">
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="8">
@@ -311,7 +311,7 @@
                     <div class="occasion-item" data-id="5">
                         <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-6.png') }}">
                         <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion6.png') }}">
-                        <span class="text-white">Congrats</span>
+                        <span class="text-white">Congratulations</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-6">

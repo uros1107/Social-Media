@@ -55,10 +55,10 @@ class FansController extends Controller
 
         $token = Str::random(5);
 
-        Mail::send('email.verify', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Verify Email');
-        });
+        // Mail::send('email.verify', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Verify Email');
+        // });
 
         return view('fans.confirm-email', ['code' => $token]);
     }

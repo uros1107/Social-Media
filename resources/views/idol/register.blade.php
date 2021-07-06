@@ -241,7 +241,7 @@ select {
                         <h1 class="text-white main-text">MEET THE WORLD'S FIRST<br> HALLYU CELEBRITY PLATFORM</h1>
                         <h3 class="description">Create & Earn by Fulfilling personalized<br> videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5">
-                            <button class="btn custom-btn apply-btn" type="submit">APPLY NOW</button>
+                            <button class="btn custom-btn apply-btn" type="button">APPLY NOW</button>
                         </div>
                     </div>
                     <div class="middle-hand">
@@ -258,7 +258,7 @@ select {
                         <h3 class="text-white m-main-text">MEET THE WORLD'S FIRST HALLYU CELEBRITY PLATFORM</h3>
                         <h3 class="description m-description">Create & Earn by Fulfilling personalized videos from your fans worldwide.</h3>
                         <div class="input-group mb-3 mt-5" style="justify-content: center">
-                            <button class="btn custom-btn apply-btn" type="submit">APPLY NOW</button>
+                            <button class="btn custom-btn apply-btn" type="button">APPLY NOW</button>
                         </div>
                     </div>
                 </div>
@@ -570,6 +570,12 @@ select {
 <script>
 $(document).ready(function() {
     $('.label.ui.dropdown').dropdown();
+
+    $('.apply-btn').click(function() {
+        $('html, body').animate({
+            scrollTop: $(".block-3").offset().top
+        }, 2000)
+    });
 
     var word_limit = true;
     $("#info").on('keyup', function() {
