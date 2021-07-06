@@ -83,20 +83,13 @@
     background: #121212;
     padding: 10px 30px 0px;
 }
-.apply-btn {
+.apply-btn, .apply-btn:hover, .apply-btn:before, .apply-btn:focus {
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.1em;
     width: 178px;
     border-radius: 10px!important;
     height: 45px;
-}
-.apply-btn:hover, .apply-btn:before {
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.1em;
-    width: 178px;
-    border-radius: 10px!important;
 }
 select {
     height: 50px!important;
