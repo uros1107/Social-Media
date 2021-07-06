@@ -418,9 +418,9 @@ a:hover {
 }
 .featured .image-item > img {
     border-radius: 20px;
-    height: 100%;
+    /* height: 100%; */
     object-fit: cover;
-    min-height: 220px;
+    height: 220px;
 }
 .featured .image-item .image-profile {
     position: absolute;

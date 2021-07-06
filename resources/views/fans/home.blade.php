@@ -137,7 +137,7 @@
                 <div class="col-6 col-sm-4 col-md-3">
                     <a href="{{ route('idol-category-get', $cats[$i]->cat_name) }}">
                         <div class="image-item mb-4 category-tab" style="height: unset">
-                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 1).'.png') }}" class="w-100"> 
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 1).'.png') }}" class="w-100" style="height: 100%!important"> 
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i]->cat_name }}</h4>
                             </div>  
@@ -145,7 +145,7 @@
                     </a>
                     <a href="{{ route('idol-category-get', $cats[$i+1]->cat_name) }}">
                         <div class="image-item category-tab" style="height: unset">
-                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 2).'.png') }}" class="w-100">   
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 2).'.png') }}" class="w-100" style="height: 100%!important">   
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i+1]->cat_name }}</h4>
                             </div>
