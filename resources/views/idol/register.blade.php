@@ -286,7 +286,7 @@ select {
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
                         <h4 class="text-main-color text-uppercase item-title">CONCIERGE</h4>
-                        <p class="text-color font-16">Have a question? Need help? Our friendly team is just on email away to assist you</p>
+                        <p class="text-color font-16">Have a question? Need help? Our friendly team is just an email away to assist you</p>
                     </div>
                 </div>
             </div>

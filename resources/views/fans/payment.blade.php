@@ -142,7 +142,7 @@
                         </div>
                         <div class="d-flex" style="position: relative">
                             <h5 class="text-white">Platform Fee(5%)</h5>
-                            <h5 class="text-white">${{ $request_video->request_video_price * 0.05 }}</h5>
+                            <h5 class="text-white">${{ number_format($request_video->request_video_price * 0.05, 2) }}</h5>
                         </div>
                     </div>
                     <div class="divider mb-3 ml-0" style="width:100%!important"></div>

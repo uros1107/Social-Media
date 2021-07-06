@@ -34,6 +34,7 @@
                         $idol = DB::table('idol_info')->where('idol_user_id', $idol)->first();
                         $cats = json_decode($idol->idol_cat_id);
                     @endphp
+                    @if(!$idol->idol_del_flag)
                     <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol->idol_user_name) }}">
                         <div class="image-item">
                             <img src="{{ asset('assets/images/img/'.$idol->idol_photo) }}" class="w-100">    
@@ -51,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
                 @else
                 <div class="col-12 col-md-12 col-sm-12 d-flex" style="height: 200px">

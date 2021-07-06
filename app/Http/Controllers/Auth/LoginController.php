@@ -49,6 +49,10 @@ class LoginController extends Controller
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials))
             return redirect()->back()->with('unsuccess', 'Login credential is incorrect!');
+        if(Auth::user()->del_flag) {
+            Auth::logout();
+            return redirect()->back()->with('unsuccess', 'Login credential is incorrect!');
+        }
         $user = $request->user();
         
         if($user->role == 2) 

@@ -144,7 +144,7 @@ class FansController extends Controller
     
             $user = Socialite::driver('google')->user();
      
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = User::where('google_id', $user->id)->where('del_flag', 0)->first();
      
             if($finduser){
      
@@ -200,7 +200,7 @@ class FansController extends Controller
      
             $user = Socialite::driver('facebook')->user();
       
-            $finduser = User::where('facebook_id', $user->id)->first();
+            $finduser = User::where('facebook_id', $user->id)->where('del_flag', 0)->first();
       
             if($finduser){
       
@@ -321,22 +321,26 @@ class FansController extends Controller
     public function follow_idol(Request $request, $name)
     {
         $idol_info = IdolInfo::where('idol_user_name', $name)->first();
-        $idol = User::where('id', $idol_info->idol_user_id)->first();
-        $orders = Order::where('order_idol_id', $idol->id)->where('order_status', 1)->take(4)->get();
-        $reviews = Review::where('review_idol_id', $idol->id)->get();
-        
-        $fans_count = 0;
-        foreach (User::where('del_flag', 0)->get() as $user) {
-            $array = json_decode($user->fandom_lists);
-            if($array) {
-                $has_idol = in_array($idol->id, $array);
-                if($has_idol) {
-                    $fans_count++;
+        if(!$idol_info->idol_del_flag) {
+            $idol = User::where('id', $idol_info->idol_user_id)->first();
+            $orders = Order::where('order_idol_id', $idol->id)->where('order_status', 1)->take(4)->get();
+            $reviews = Review::where('review_idol_id', $idol->id)->get();
+            
+            $fans_count = 0;
+            foreach (User::where('del_flag', 0)->get() as $user) {
+                $array = json_decode($user->fandom_lists);
+                if($array) {
+                    $has_idol = in_array($idol->id, $array);
+                    if($has_idol) {
+                        $fans_count++;
+                    }
                 }
             }
+    
+            return view('fans.follow-idol', ['idol' => $idol, 'orders' => $orders, 'reviews' => $reviews, 'fans_count' => $fans_count]);
+        } else {
+            return redirect()->back();
         }
-
-        return view('fans.follow-idol', ['idol' => $idol, 'orders' => $orders, 'reviews' => $reviews, 'fans_count' => $fans_count]);
     }
 
     public function new_request(Request $request)

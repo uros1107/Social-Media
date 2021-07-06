@@ -136,7 +136,7 @@
                                             <h4 class="text-white">How does it work?</h4>
                                             <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
                                         </div>
-                                        <p class="text-white">What happen when I request video?</p>
+                                        <p class="text-white">What happen when I submit a request?</p>
                                     </div>
                                     <div class="col-12 how-content">
                                         <div class="content-item d-flex mb-4">
