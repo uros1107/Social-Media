@@ -10,6 +10,9 @@
 .featured .image-part .row {
     flex-wrap: inherit;
 }
+.featured .image-item > img {
+    min-height: 250px;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
