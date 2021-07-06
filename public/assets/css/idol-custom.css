@@ -514,7 +514,7 @@ a:hover {
     }
     .featured .image-item .image-profile h5 {
         font-size: 14px;
-        line-height: 0px;
+        /* line-height: 0px; */
     }
     .featured .image-item .image-profile p {
         font-size: 12px;
