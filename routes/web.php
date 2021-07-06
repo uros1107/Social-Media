@@ -111,7 +111,6 @@ Route::prefix('fans')->group(function() {
     Route::get('/activity', 'FansController@activity')->name('fans-activity');
     Route::get('/myfandoms', 'FansController@myfandoms')->name('myfandom');
     Route::get('/get-idol-list', 'FansController@get_idol_list')->name('get-idol-list');
-    Route::get('/{idolname}', 'FansController@follow_idol')->name('follow-idol');
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');
     Route::POST('/card-save', 'FansController@card_save')->name('card-save');
@@ -122,5 +121,6 @@ Route::prefix('fans')->group(function() {
     Route::POST('/order-summary', 'FansController@order_summary')->name('order-summary');
     Route::POST('/send-review', 'FansController@send_review')->name('send-review');
     Route::POST('/join-fandom', 'FansController@join_fandom')->name('join-fandom');
+    Route::get('/{idolname}', 'FansController@follow_idol')->name('follow-idol');
 });
 

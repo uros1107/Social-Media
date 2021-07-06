@@ -420,7 +420,7 @@ a:hover {
     border-radius: 20px;
     height: 100%;
     object-fit: cover;
-    /* min-height: 250px; */
+    min-height: 220px;
 }
 .featured .image-item .image-profile {
     position: absolute;
@@ -435,7 +435,7 @@ a:hover {
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
 }
 .featured .title-part > .divider {
     border: 1px solid #2b2b2b;
@@ -533,6 +533,9 @@ a:hover {
     }
     .idol-search .row .col-6 .image-item:first-child {
         margin-bottom: 6px!important;
+    }
+    .featured .image-item > img {
+        min-height: 120px;
     }
 }
 

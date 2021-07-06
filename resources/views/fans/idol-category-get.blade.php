@@ -11,11 +11,14 @@
     flex-wrap: inherit;
 }
 .featured .image-item > img {
-    min-height: 250px;
+    min-height: 220px;
 }
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
+    }
+    .featured .image-item > img {
+        min-height: 120px;
     }
 }
 </style>

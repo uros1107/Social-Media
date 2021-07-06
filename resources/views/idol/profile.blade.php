@@ -166,6 +166,9 @@
                     </div>
                 </div>
             </div>
+            <div class="w-100">
+                <p class="text-white">{{ $idol_info->idol_bio }}</p>
+            </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 mt-4">
             <div class="row m-0">

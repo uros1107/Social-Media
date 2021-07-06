@@ -92,7 +92,7 @@
 
     <div class="m-top mobile" style="z-index:999">
         <div class="top-bar">
-            <img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}">
+            <a href="{{ route('index') }}"><img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}"></a>
             <div class="right-side-icons">
                 <i class="fa fa-search" style="color: #FF335C"></i>
                 <i class="fa fa-bell-o text-white"></i>
