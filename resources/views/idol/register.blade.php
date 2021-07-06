@@ -282,18 +282,18 @@ select {
                 <div class="row m-0">
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/create_showcase.png') }}" style="border-radius: 50%">
-                        <h4 class="text-main-color text-uppercase item-title">Create Showcase</h4>
-                        <p class="text-color font-16">Your own pricing for personalized videos for your fans</p>
+                        <h4 class="text-main-color text-uppercase item-title">BORDERLESS</h4>
+                        <p class="text-color font-16">Connect with your fans worldwide & get personalized video messages for a free</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/showcase.png') }}" style="border-radius: 50%">
-                        <h4 class="text-main-color text-uppercase item-title">Showcase</h4>
-                        <p class="text-color font-16">Choosen personalized videos you have given for your fans</p>
+                        <h4 class="text-main-color text-uppercase item-title">FLEXIBILITY</h4>
+                        <p class="text-color font-16">Charge $200, $500 or whatever amount you choose to set, choose to offer english, korean or both languages options.</p>
                     </div>
                     <div class="col-12 col-sm-4 col-md-4 create-showcase">
                         <img src="{{ asset('assets/images/next_gen.png') }}" style="border-radius: 50%">
-                        <h4 class="text-main-color text-uppercase item-title">Next-Gen</h4>
-                        <p class="text-color font-16">Take the next step in connecting with your fans through personalized videos</p>
+                        <h4 class="text-main-color text-uppercase item-title">CONCIERGE</h4>
+                        <p class="text-color font-16">Have a question? Need help? Our friendly team is just on email away to assist you</p>
                     </div>
                 </div>
             </div>
