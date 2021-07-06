@@ -420,6 +420,7 @@ a:hover {
     border-radius: 20px;
     height: 100%;
     object-fit: cover;
+    min-height: 200px;
 }
 .featured .image-item .image-profile {
     position: absolute;
