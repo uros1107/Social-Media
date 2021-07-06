@@ -31,7 +31,7 @@
                 @if(count($idol_infos))
                 @foreach($idol_infos as $idol_info)
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
-                    <div class="image-item">
+                    <div class="image-item" style="position: initial">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
