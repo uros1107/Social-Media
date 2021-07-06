@@ -273,9 +273,9 @@ select {
         </div>  
         <div class="gradient"></div>
         <div class="block-2 text-center">
-            <h1 class="text-color block-title desktop">CONNECT WITH YOUR FRIENDS WORLDWIDE</h1>
+            <h1 class="text-color block-title desktop">CONNECT WITH YOUR FANS WORLDWIDE</h1>
             <div class="mobile" style="margin-bottom: 30px!important;max-width: 240px">
-                <h3 class="text-color" style="font-size: 18px">CONNECT WITH YOUR FRIENDS WORLDWIDE</h3>
+                <h3 class="text-color" style="font-size: 18px">CONNECT WITH YOUR FANS WORLDWIDE</h3>
             </div>
             <div class="horizontal-red-bar"></div>
             <div class="container">
