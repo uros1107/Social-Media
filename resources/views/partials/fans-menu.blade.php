@@ -4,6 +4,18 @@
             <a href="{{ route('index') }}"><img src="{{ asset('assets/images/logo.png') }}"></a>
         </div>
         <ul class="nav" style="width: 280px!important">
+            <li class="d-flex" style="padding: 10px 20px!important;">
+                <div class="m-auto mobile">
+                    <a href="{{ route('fans-signin') }}" class="text-white m-auto" style="font-size: 16px">
+                        Login
+                    </a>
+                </div>
+                <div class="m-auto mobile">
+                    <a href="{{ route('fans-signup') }}" class="text-white m-auto" style="font-size: 16px">
+                        Sign Up
+                    </a>
+                </div>
+            </li>
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('fans-index') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/home.png') }}" class="mr-3" style="width:20px">
