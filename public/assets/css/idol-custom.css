@@ -535,7 +535,7 @@ a:hover {
         margin-bottom: 6px!important;
     }
     .featured .image-item > img {
-        min-height: 120px;
+        height: 120px;
     }
 }
 
