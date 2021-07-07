@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MILLIONK')
+@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols')
 
 @section('styles')
 <style>
@@ -369,8 +369,8 @@
                         <div class="form-group">
                             <label for="comment" class="text-white" style="font-size: 18px">Instructions</label>
                             <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Hi! My friend Ashley is a super-fan of yours and she’s been following you for years. Could you surprise her by wishing her Happy Birthday?"></textarea>
-                            <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 words!</p>
-                            <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Words: <span>0</span></p>
+                            <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 characters!</p>
+                            <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Characters: <span>250</span></p>
                         </div>
                         <input type="hidden" name="order_occasion" id="occasion" value="">
                         <input type="hidden" name="order_who_for" id="who_for" value="2">
@@ -441,13 +441,13 @@ $(document).ready(function() {
 
     var word_limit = true;
     $("#comment").on('keyup', function() {
-        var words = 0;
+        var words = 250 - $(this).val().length;
 
-        if ((this.value.match(/\S+/g)) != null) {
-            words = this.value.match(/\S+/g).length;
-        }
+        // if ((this.value.match(/\S+/g)) != null) {
+        //     words = this.value.match(/\S+/g).length;
+        // }
 
-        if (words > 250) {
+        if (words < 0) {
             $('.limit-message').removeClass('d-none');
             $('.word-count').addClass('d-none');
             word_limit = false;
@@ -464,7 +464,7 @@ $(document).ready(function() {
         if(!$('#comment').val() || !$('.to-input').val() || !$('#occasion').val()) {
             toastr.error('You should input all fields!');
         } else if(!word_limit) {
-            toastr.error('You can input maximun 250 words!');
+            toastr.error('You can input maximun 250 characters!');
         } else {
             $('#continue').submit();
         }

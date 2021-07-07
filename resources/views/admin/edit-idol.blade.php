@@ -166,8 +166,8 @@
                             <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required>{{ $idol_info->idol_bio }}</textarea>
                             <span>Bio</span>
                         </label>
-                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
-                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
+                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
+                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>0</span></p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -327,13 +327,14 @@ $(document).ready(function() {
 
     var word_limit = true;
     $("#idol_bio").on('keyup', function() {
-        var words = 0;
+        // var words = 0;
+        var words = 200 - $(this).val().length;
 
-        if ((this.value.match(/\S+/g)) != null) {
-            words = this.value.match(/\S+/g).length;
-        }
+        // if ((this.value.match(/\S+/g)) != null) {
+        //     words = this.value.match(/\S+/g).length;
+        // }
 
-        if (words > 100) {
+        if (words < 0) {
             $('.limit-message').removeClass('d-none');
             $('.word-count').addClass('d-none');
             word_limit = false;
@@ -353,7 +354,7 @@ $(document).ready(function() {
         } else if($('.ui.fluid.dropdown').children('a').length > 5) {
             toastr.error('You can select maximum 5 categories!');
         } else if(!word_limit) {
-            toastr.error('You can input at maximum 100 words!');
+            toastr.error('You can input maximum 200 characters!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);

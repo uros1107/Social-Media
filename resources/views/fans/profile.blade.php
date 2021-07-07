@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MILLIONK')
+@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols')
 
 @section('styles')
 <style>
@@ -185,8 +185,8 @@
                             <textarea placeholder="" rows="5" name="info" id="info" style="height:100px" required>{{ Auth::user()->info }}</textarea>
                             <span>Your Bio</span>
                         </label>
-                        <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You can input maximum 100 words!</p>
-                        <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
+                        <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
+                        <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
                         @if ($errors->has('info'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('info') }}</p>
@@ -314,13 +314,13 @@
 
         var word_limit = true;
         $("#info").on('keyup', function() {
-            var words = 0;
+            var words = 200 - $(this).val().length;
 
-            if ((this.value.match(/\S+/g)) != null) {
-                words = this.value.match(/\S+/g).length;
-            }
+            // if ((this.value.match(/\S+/g)) != null) {
+            //     words = this.value.match(/\S+/g).length;
+            // }
 
-            if (words > 100) {
+            if (words < 0) {
                 $('.limit-message').removeClass('d-none');
                 $('.word-count').addClass('d-none');
                 word_limit = false;
@@ -335,7 +335,7 @@
 
         $('.save-change-btn').on('click', function() {
             if(!word_limit) {
-                toastr.error('You can input maximum 100 words!');
+                toastr.error('You can input maximum 200 characters!');
             } else {
                 $('#profile-update').submit();
             }

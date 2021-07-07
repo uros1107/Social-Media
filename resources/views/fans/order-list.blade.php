@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Welcome to MILLIONK')
+@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/datatable/datatables.min.css') }}">

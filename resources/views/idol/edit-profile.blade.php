@@ -1,6 +1,6 @@
 @extends('layouts.idol')
 
-@section('title', 'Welcome to MILLIONK')
+@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols')
 
 @section('styles')
 <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
@@ -225,8 +225,8 @@
                     <textarea placeholder="" rows="5" id="idol_bio" style="height:100px">{{ $idol_info->idol_bio }}</textarea>
                     <span>Bio</span>
                 </label>
-                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You should can maximum 100 words!</p>
-                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Words: <span>0</span></p>
+                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
+                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
                 @if ($errors->has('idol_bio'))
                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                         <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
@@ -609,13 +609,13 @@ $(document).ready(function() {
 
     var word_limit = true;
     $("#idol_bio").on('keyup', function() {
-        var words = 0;
+        var words = 200 - $(this).val().length;
 
-        if ((this.value.match(/\S+/g)) != null) {
-            words = this.value.match(/\S+/g).length;
-        }
+        // if ((this.value.match(/\S+/g)) != null) {
+        //     words = this.value.match(/\S+/g).length;
+        // }
 
-        if (words > 100) {
+        if (words < 0) {
             $('.limit-message').removeClass('d-none');
             $('.word-count').addClass('d-none');
             word_limit = false;
@@ -630,7 +630,7 @@ $(document).ready(function() {
 
     $('.profile-update-btn').on('click', function() {
         if(!word_limit) {
-            toastr.error('You can input maximum 100 words!');
+            toastr.error('You can input maximum 200 characters!');
         } else if(!$('.ui.fluid.dropdown').children('a').length) {
             toastr.error('You can input all fields correctly!');
         } else {
