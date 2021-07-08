@@ -19,6 +19,9 @@
 .change-password {
     display: none;
 }
+.user-profile-info {
+    margin-top: -200px;
+}
 @media (max-width: 574px) { 
     .container-fluid {
         padding: 0px!important;
@@ -47,6 +50,9 @@
     }
     .category-label {
         background: #171717;
+    }
+    .user-profile-info {
+        margin-top: 0px;
     }
 }
 </style>
@@ -91,7 +97,7 @@
                     <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
                     <div class="gradient"></div>    
                 </div>
-                <div class="col-12 col-sm-12 col-md-12" style="margin-top:-200px">
+                <div class="col-12 col-sm-12 col-md-12 user-profile-info">
                     <div class="idol-profile d-flex">
                         <div class="idol-image" style="background-image:unset;display: contents;">
                             <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
@@ -116,6 +122,9 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>
+                    <div class="w-100">
+                        <p class="text-white">{{ $idol_info->idol_bio }}</p>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 mt-4">

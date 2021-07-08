@@ -37,14 +37,14 @@
 .video-item:hover {
     cursor: pointer;
 }
-.user-profile {
+.user-profile-info {
     margin-top: -210px;
 }
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
     }
-    .user-profile {
+    .user-profile-info {
         margin-top: 0px;
     }
 }
@@ -167,7 +167,7 @@
             <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
             <div class="gradient"></div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 user-profile">
+        <div class="col-12 col-sm-12 col-md-12 user-profile-info">
             <div class="idol-profile d-flex">
                 <div class="idol-image" style="display: contents;">
                     <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>

@@ -37,6 +37,9 @@
     left: 30px;
     background: transparent;
 }
+.user-profile-info {
+    margin-top: -170px;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
@@ -46,6 +49,9 @@
     }
     .someone .form-group {
         width: 100%!important;
+    }
+    .user-profile-info {
+        margin-top: 0px;
     }
 }
 </style>
@@ -172,7 +178,7 @@
         <div class="custom-breadcrumb">
             <a href="#" class="text-white" style="font-weight: 700">New Request / </a>
         </div>
-        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-170px">
+        <div class="col-12 col-sm-12 col-md-12 user-profile-info">
             <div class="idol-profile d-flex">
                 <div class="idol-image" style="display: contents;">
                     <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
