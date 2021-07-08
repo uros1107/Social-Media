@@ -95,7 +95,7 @@
                     $cats = json_decode($idol_info->idol_cat_id);
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
-                    <div class="image-item" style="position: initial">
+                    <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
@@ -137,7 +137,7 @@
                 <div class="col-6 col-sm-4 col-md-3">
                     <a href="{{ route('idol-category-get', $cats[$i]->cat_name) }}">
                         <div class="image-item mb-4 category-tab" style="height: unset">
-                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 1).'.png') }}" class="w-100" style="height: 100%!important"> 
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 1).'.png') }}" class="w-100" style="min-height: unset!important"> 
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i]->cat_name }}</h4>
                             </div>  
@@ -145,7 +145,7 @@
                     </a>
                     <a href="{{ route('idol-category-get', $cats[$i+1]->cat_name) }}">
                         <div class="image-item category-tab" style="height: unset">
-                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 2).'.png') }}" class="w-100" style="height: 100%!important">   
+                            <img src="{{ asset('assets/images/'.'idol'.($i%8 + 2).'.png') }}" class="w-100" style="min-height: unset!important">   
                             <div>
                                 <h4 class="text-white mb-0">{{ $cats[$i+1]->cat_name }}</h4>
                             </div>
@@ -173,7 +173,7 @@
                     $cats = json_decode($idol_info->idol_cat_id);
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
-                    <div class="image-item" style="position: initial">
+                    <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
@@ -215,7 +215,7 @@
                     $cats = json_decode($idol_info->idol_cat_id);
                 @endphp
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
-                    <div class="image-item" style="position: initial">
+                    <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">

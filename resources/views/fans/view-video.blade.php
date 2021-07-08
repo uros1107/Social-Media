@@ -127,7 +127,7 @@
                 <form class="w-100" id="send-review" action="{{ route('send-review') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="col-12 title mb-3 text-center">
-                        <h4 class="text-white">Your Review</h4>
+                        <h4 class="text-white">Your Comment</h4>
                         <div class="stars">
                             <i class="fa fa-star 1-star" data-value="1"></i>
                             <i class="fa fa-star 2-star" data-value="2"></i>

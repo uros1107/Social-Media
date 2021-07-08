@@ -442,8 +442,8 @@
         <div class="row block m-0">
             <div class="col-12 col-sm-12 col-md-12">
                 <div class="review">
-                    <h4 class="text-white">Review</h4>
-                    <p class="mb-0">Review list from your fans</p>
+                    <h4 class="text-white">Comments</h4>
+                    <p class="mb-0">Comments list from your fans</p>
                 </div>
                 <div class="divider"></div>
             </div>

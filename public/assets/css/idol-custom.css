@@ -406,7 +406,7 @@ a:hover {
     bottom: 0px;
     height: 200px;
     width: 100%;
-    /* background: linear-gradient(0deg, #FF335C -19.53%, rgba(255, 51, 92, 0) 34.33%); */
+    background: linear-gradient(0deg, #000 -19.53%, rgba(255, 51, 92, 0) 37.33%);
     border-radius: 20px;
 }
 .featured .image-item {
@@ -418,9 +418,9 @@ a:hover {
 }
 .featured .image-item > img {
     border-radius: 20px;
-    /* height: 100%; */
+    height: 100%;
     object-fit: cover;
-    height: 220px;
+    min-height: 250px;
 }
 .featured .image-item .image-profile {
     position: absolute;
@@ -535,7 +535,7 @@ a:hover {
         margin-bottom: 6px!important;
     }
     .featured .image-item > img {
-        height: 120px;
+        min-height: 120px;
     }
 }
 

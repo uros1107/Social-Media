@@ -137,10 +137,10 @@
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                             <span>{{ $fans_count }} Fans</span>
                         </div>
-                        <div class="day">
+                        <!-- <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                             <span>Typically responds in 3 days</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -229,6 +229,8 @@
             </div>
         </div>
     @endif
+
+    @if(count($orders))
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
             <h2 class="text-white">Featured Videos</h2>
@@ -238,7 +240,6 @@
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0 video-list">
-            @if(count($orders))
             @foreach($orders as $order)
             @php
                 $fans = DB::table('users')->where('id', $order->order_fans_id)->first();
@@ -258,24 +259,21 @@
                 </div>
             </div>
             @endforeach
-            @else
-            <div class="col-12 col-sm-12 col-md-12 d-flex" style="height:100px">
-                <p class="text-white m-auto" style="font-size: 16px">No video yet.</p>
-            </div>
-            @endif
         </div>
     </div>
+    @endif
 </div>
+
+@if(count($reviews))
 <div class="row featured mb-4 m-0">
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
-            <h2 class="text-white">Review</h2>
-            <p class="text-grey">Review about {{ $idol_info->idol_full_name }}</p>
+            <h2 class="text-white">Comments</h2>
+            <p class="text-grey">Comments about {{ $idol_info->idol_full_name }}</p>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="row m-0">
-            @if(count($reviews))
             @foreach($reviews as $review)
             @php
                 $fans = DB::table('users')->where('id', $review->review_fans_id)->first();
@@ -304,14 +302,10 @@
                 </div>
             </div>
             @endforeach
-            @else
-            <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4">
-                <p class="text-white mb-0 text-center">No review yet.</p>
-            </div>
-            @endif
         </div>
     </div>
 </div>
+@endif
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

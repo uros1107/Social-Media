@@ -196,7 +196,7 @@
                             <p class="mb-0 text-white">Platform Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
-                            <p class="mb-0 text-white">${{ $order['order_fee'] }}</p>
+                            <p class="mb-0 text-white">${{ number_format($order['order_fee'], 2) }}</p>
                         </div>
                     </div>
                     <div class="content-item">
@@ -204,7 +204,7 @@
                             <p class="mb-0 text-white" style="font-weight: 700;font-size:16px!important">Total</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
-                            <p class="mb-0 text-main-color" style="font-weight: 700;font-size:16px!important">${{ $order['order_total_price'] }}</p>
+                            <p class="mb-0 text-main-color" style="font-weight: 700;font-size:16px!important">${{ number_format($order['order_total_price'], 2) }}</p>
                         </div>
                     </div>
                 </div>
@@ -220,18 +220,18 @@
                 <div class="col-12 how-content">
                     <div class="content-item mb-3">
                         <div class="user-img">
-                            <img src="{{ asset('assets/images/actor1.png') }}" class="img-circle">
+                            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle">
                         </div>
                         <div class="ml-3 my-auto user-name">
                             <p class="mb-0">{{ '@'.$idol_info->idol_user_name }}</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_full_name }}</p>
                         </div>
-                        <div class="m-auto user-rating" style="margin-right:0px!important">
+                        <!-- <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0">Rating</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_rating }}/5</p>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="content-item mb-3">
+                    <!-- <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0">Email</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_email }}</p>
@@ -246,7 +246,7 @@
                             <p class="mb-0">Country</p>
                             <p class="text-main-color mb-0">Singapore</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

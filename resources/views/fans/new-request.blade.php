@@ -126,10 +126,10 @@
                             <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                             <span>{{ $idol_info->idol_fans }} Fans</span>
                         </div>
-                        <div class="day">
+                        <!-- <div class="day">
                             <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                             <span>Typically responds in 3 days</span>
-                        </div>
+                        </div> -->
                         <div class="how" style="z-index:10">
                             <div class="text-right">
                                 <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">

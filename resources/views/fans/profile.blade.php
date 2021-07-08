@@ -29,9 +29,6 @@
     background-color: #2b2b2b;
     border-color: #2b2b2b;
 }
-.featured .image-item > img {
-    min-height: 220px;
-}
 
 @media (max-width: 574px) { 
     .save-btn {

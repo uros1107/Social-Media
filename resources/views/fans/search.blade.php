@@ -1,6 +1,6 @@
 @extends('layouts.fans')
 
-@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols)
+@section('title', 'Personalized Videos & Fan Service from your Korean Wave Idols')
 
 @section('styles')
 <style>
@@ -9,9 +9,6 @@
 }
 .featured .image-part .row {
     flex-wrap: inherit;
-}
-.featured .image-item > img {
-    min-height: 220px;
 }
 @media (max-width: 574px) {
     .container-fluid {
@@ -37,7 +34,7 @@
                 @if(count($idol_infos))
                 @foreach($idol_infos as $idol_info)
                 <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
-                    <div class="image-item" style="position: initial">
+                    <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
                         <div class="image-profile">
