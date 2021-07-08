@@ -34,6 +34,13 @@
                     Concierge
                 </a>
             </li>
+            <li class="d-flex" style="padding: 10px 20px!important;">
+                <div class="mx-auto mobile mt-5">
+                    <a href="{{ route('logout') }}" class="text-white m-auto" style="font-size: 16px">
+                        Logout
+                    </a>
+                </div>
+            </li>
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

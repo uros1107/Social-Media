@@ -288,7 +288,7 @@
             <div class="row m-0">
                 <div class="col-12 title mb-2">
                     <div class="d-flex">
-                        <h4 class="text-white">Transantion Detail</h4>
+                        <h4 class="text-white">Transaction Detail</h4>
                     </div>
                 </div>
                 @if($order['order_payment_method'] == 2)

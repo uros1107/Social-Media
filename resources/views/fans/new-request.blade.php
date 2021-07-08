@@ -165,11 +165,13 @@
         </div>
     </div>
     <div class="mobile w-100">
-        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
+        <div style="position:relative">
+            <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
+            <div class="gradient"></div>
+        </div>
         <div class="custom-breadcrumb">
             <a href="#" class="text-white" style="font-weight: 700">New Request / </a>
         </div>
-        <div class="gradient"></div>
         <div class="col-12 col-sm-12 col-md-12" style="margin-top:-170px">
             <div class="idol-profile d-flex">
                 <div class="idol-image" style="display: contents;">

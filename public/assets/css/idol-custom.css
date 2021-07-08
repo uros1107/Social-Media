@@ -982,13 +982,17 @@ a:hover {
         object-fit: cover;
     }
     .follow-idol .bg-img {
-        object-fit: cover;
-        height: 420px;
+        /* object-fit: cover;
+        height: 420px; */
+        height: unset;
     }
     .follow-idol .gradient {
         position: absolute;
-        top: 230px;
-        height: 190px;
+        /* top: 230px;
+        height: 190px; */
+        top: unset;
+        bottom: 0px;
+        height: 80px;
         width: 100%;
         background: linear-gradient(0deg, #171717 7.47%, rgba(255, 51, 92, 0) 100.33%);
     }

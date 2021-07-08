@@ -17,6 +17,14 @@
                     </a>
                 </div>
             </li>
+            @else
+            <li class="d-flex" style="padding: 10px 20px!important;">
+                <div class="m-auto mobile">
+                    <a href="{{ route('logout') }}" class="text-white m-auto" style="font-size: 16px">
+                        Logout
+                    </a>
+                </div>
+            </li>
             @endif
             <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('fans-index') }}" class="nav-link">
