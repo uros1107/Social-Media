@@ -193,7 +193,7 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 mt-4">
             <div class="row m-0">
-                <div class="col-4 p-0 text-center">
+                <div class="col-6 p-0 text-center">
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -203,18 +203,18 @@
                     </div>
                     <span class="text-white">Rating</span>
                 </div>
-                <div class="col-4 p-0 text-center">
+                <div class="col-6 p-0 text-center">
                     <div class="fans">
                         <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
                     </div>
                     <span class="text-white">{{ $fans_count }} Fans</span>
                 </div>
-                <div class="col-4 p-0 text-center">
+                <!-- <div class="col-4 p-0 text-center">
                     <div class="day">
                         <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
                     </div>
                     <span class="text-white">Responds in 3 days</span>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="col-12 mt-3">
