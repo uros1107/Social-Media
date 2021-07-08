@@ -141,6 +141,7 @@ class IdolController extends Controller
             $video_request['idol_email'], 
             $video_request['idol_phone'], 
             $video_request['idol_bio'], 
+            $video_request['idol_head_bio'], 
             $video_request['idol_photo'], 
             $video_request['idol_banner'],
             $video_request['idol_cat_id'],
@@ -201,6 +202,7 @@ class IdolController extends Controller
             'idol_full_name' => 'required|string',
             'idol_user_name' => 'required|string',
             'idol_bio' => 'required|string',
+            'idol_head_bio' => 'required|string',
             'idol_email' => 'required|string|email',
             'idol_phone' => 'string'
         ]);
@@ -254,6 +256,7 @@ class IdolController extends Controller
             $request_info['idol_email'], 
             $request_info['idol_phone'], 
             $request_info['idol_bio'], 
+            $request_info['idol_head_bio'], 
             $request_info['idol_photo'], 
             $request_info['idol_banner'],
             $request_info['idol_cat_id'],

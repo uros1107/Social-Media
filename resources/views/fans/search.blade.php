@@ -39,16 +39,8 @@
                         <div class="gradient"></div>
                         <div class="image-profile">
                             <h5 class="text-white">{{ $idol_info->idol_full_name }}</h5>
-                            @php
-                                $cats = json_decode($idol_info->idol_cat_id);
-                            @endphp
                             <div class="d-flex" style="flex-wrap: wrap">
-                                @foreach($cats as $cat)
-                                @php
-                                    $cat = DB::table('categories')->where('cat_id', $cat)->first();
-                                @endphp
-                                <p class="text-white mr-3 mb-0">{{ $cat->cat_name }}</p>
-                                @endforeach
+                                <p class="text-white mr-3 mb-0">{{ $idol_info->idol_head_bio }}</p>
                             </div>
                         </div>
                     </div>

@@ -92,7 +92,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_user_name" value="">
+                                    <input type="text" placeholder="" name="idol_user_name" value="{{ Auth::user()->user_name }}">
                                     <span>Username</span>
                                 </label>
                                 @if ($errors->has('idol_user_name'))
@@ -124,6 +124,17 @@
                                 @if ($errors->has('idol_phone'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_phone') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name='idol_head_bio' style="padding-right: 90px;" value="">
+                                    <span>Headline Bio</span>
+                                </label>
+                                @if ($errors->has('idol_head_bio'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
                                     </span>
                                 @endif
                             </div>
@@ -495,25 +506,29 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#profile_btn', function() {
+        var is_empty = false;
         $('#profile_information input[type=text]').each(function() {
             if(!$(this).val()) {
                 toastr.error("You should input all fields!");
+                is_empty = true;
                 return false;
             }
         })
-        if(!photo_img) {
-            toastr.error("You should input photo image file correctly!");
-        } else if(!banner_img) {
-            toastr.error("You should input banner image file correctly!");
-        } else if(!word_limit) {
-            toastr.error('You can input maximum 200 characters!');
-        } else {
-            $('#profile_information').addClass('d-none');
-            $('#request_video').removeClass('d-none');
-            $('#profile_step').removeClass('active');
-            $('#profile_step').addClass('completed');
-            $('#request_step').addClass('active');
-            $('#step_number').html('2');
+        if(!is_empty) {
+            if(!photo_img) {
+                toastr.error("You should input photo image file correctly!");
+            } else if(!banner_img) {
+                toastr.error("You should input banner image file correctly!");
+            } else if(!word_limit) {
+                toastr.error('You can input maximum 200 characters!');
+            } else {
+                $('#profile_information').addClass('d-none');
+                $('#request_video').removeClass('d-none');
+                $('#profile_step').removeClass('active');
+                $('#profile_step').addClass('completed');
+                $('#request_step').addClass('active');
+                $('#step_number').html('2');
+            }
         }
     })
 

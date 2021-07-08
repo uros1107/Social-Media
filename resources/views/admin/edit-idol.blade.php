@@ -131,6 +131,17 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
+                            <input type="text" name="idol_head_bio" placeholder="" value="{{ $idol_info->idol_head_bio }}">
+                            <span>Headline Bio</span>
+                        </label>
+                        @if ($errors->has('idol_head_bio'))
+                            <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
                             <input type="password" name="password" placeholder="" value="">
                             <span>Password</span>
                             <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}">
@@ -142,7 +153,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-sm-6 col-md-6">
+                    <div class="col-12 col-sm-12 col-md-12">
                         <div class="select mt-1">
                             <!-- <select class="select-text" name="idol_cat_id" required>
                                 @foreach(DB::table('categories')->get() as $cat)
@@ -161,7 +172,7 @@
                             <label class="select-label category-label">Category</label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 col-sm-12">
+                    <div class="col-12 col-md-12 col-sm-12 mt-2">
                         <label class="pure-material-textfield-outlined w-100 mb-0">
                             <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required>{{ $idol_info->idol_bio }}</textarea>
                             <span>Bio</span>

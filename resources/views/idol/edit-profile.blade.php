@@ -217,6 +217,17 @@
                     <span>Password</span>
                 </label>
             </div> -->
+            <div class="col-12 col-md-12 col-sm-12">
+                <label class="pure-material-textfield-outlined w-100">
+                    <input type="text" placeholder="" id="idol_head_bio" value="{{ $idol_info->idol_head_bio }}">
+                    <span>Headline Bio</span>
+                </label>
+                @if ($errors->has('idol_head_bio'))
+                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
+                    </span>
+                @endif
+            </div>
             <div class="col-12 col-sm-12 col-md-12">
                 <div class="select mt-1">
                     <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
@@ -361,6 +372,7 @@
                         <input type="hidden" name="idol_email" value="{{ $idol_info->idol_email }}">
                         <input type="hidden" name="password" value="">
                         <input type="hidden" name="idol_phone" value="{{ $idol_info->idol_phone }}">
+                        <input type="hidden" name="idol_head_bio" value="{{ $idol_info->idol_head_bio }}">
                         <input type="hidden" name="idol_bio" value="{{ $idol_info->idol_bio }}">
                         <input type="hidden" name="idol_cat_id" value="{{ $idol_info->idol_cat_id }}">
                         <input class="d-none" type="file" name="idol_banner" id="idol_banner">
@@ -583,6 +595,10 @@ $(document).ready(function() {
 
     $(document).on('change', '#idol_phone', function() {
         $('input[name=idol_phone]').val($(this).val());
+    })
+
+    $(document).on('change', '#idol_head_bio', function() {
+        $('input[name=idol_head_bio]').val($(this).val());
     })
 
     $(document).on('change', '#idol_bio', function() {
