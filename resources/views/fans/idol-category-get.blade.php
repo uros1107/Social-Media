@@ -37,7 +37,7 @@
                     $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
                     $cats = json_decode($idol_info->idol_cat_id);
                 @endphp
-                <div class="col-4 col-sm-3 col-md-3 custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
+                <div class="col-4 col-sm-3 col-md-3 custom-col" id="custom-col" data-url="{{ route('follow-idol', $idol_info->idol_user_name) }}">
                     <div class="image-item">
                         <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="w-100">    
                         <div class="gradient"></div>
@@ -69,8 +69,18 @@
 
 @section('scripts')
 <script>
+window.addEventListener("resize", function(e) {
+    $('.custom-col').each(function() {
+        $(this).height($(this).width() * 1.7);
+    })
+});
+
     $(document).ready(function() {
         $('.show').hide();
+
+        $('.custom-col').each(function() {
+            $(this).height($(this).width() * 1.7);
+        })
 
         $('.custom-col').on('click', function() {
             var url = $(this).data('url');

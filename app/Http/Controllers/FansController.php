@@ -355,8 +355,10 @@ class FansController extends Controller
     {
         $info = $request->all();
         Session::put('info', $info);
+        $order = Session::get('info');
+        $order['order_fans_id'] = Auth::user()->id;
 
-        return view('fans.payment', ['idol_id' => $request->order_idol_id]);
+        return view('fans.payment', ['idol_id' => $request->order_idol_id, 'order' => $order]);
     }
 
     public function card_save(Request $request)

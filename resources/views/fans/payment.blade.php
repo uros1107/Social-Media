@@ -80,7 +80,7 @@
         $idol_info = DB::table('idol_info')->where('idol_user_id', $idol_id)->first();
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
     @endphp
-    <div class="col-12 col-sm-8 col-md-8 featured-video">
+    <div class="col-12 col-sm-8 col-md-8 featured-video payment-success">
         <div class="custom-breadcrumb mb-2">
             <a href="{{ route('new-request').'?id='.$idol_id }}" class="text-white" style="font-weight: 700">New Request / </a>
             <a href="#" class="text-white" style="font-weight: 700">Payment</a>
@@ -121,6 +121,96 @@
                     </div>
                 </div>
                 @endif
+            </div>
+        </div>
+        
+        <div class="title-part">
+            <div class="w-100">
+                <h2 class="text-white">Order Confirmation</h2>
+                <p class="text-grey">Please check your order</p>
+                <div class="divider"></div>
+            </div>
+            <div class="row mx-0 mb-5">
+                @php
+                    $fans =  DB::table('users')->where('id', $order['order_fans_id'])->first();
+                @endphp
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile">
+                        <h4 class="text-white">Requested from</h4>
+                        <div class="d-flex">
+                            @if($fans->photo)
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
+                            @else
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
+                            @endif
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">{{ '@'.$fans->user_name }}</p>
+                                <p class="text-main-color mb-0">{{ $fans->name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile">
+                        <h4 class="text-white">Occasion</h4>
+                        <div class="d-flex">
+                            @php
+                                $occasion = DB::table('occasions')->where('occasion_id', $order['order_occasion'])->first();
+                            @endphp
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">Occasion Type</p>
+                                <p class="text-main-color mb-0">{{ $occasion->occasion_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile pt-0">
+                        <h4 class="text-white">For who?</h4>
+                        <div class="d-flex">
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p>
+                                <p class="text-main-color mb-0">{{ $order['order_to'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6">
+                    <div class="order-confirm-profile pt-0">
+                        <h4 class="text-white">Language </h4>
+                        <div class="d-flex">
+                            <div class="profile-detail mt-1">
+                                <p class="text-grey mb-2">Language request for this personalized video</p>
+                                @if($order['order_lang'] == 1)
+                                <p class="text-main-color mb-0">English</p>
+                                @elseif($order['order_lang'] == 2)
+                                <p class="text-main-color mb-0">Korean</p>
+                                @else
+                                <p class="text-main-color mb-0">Mix(English and Korean)</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title-part d-flex">
+            <div>
+                <h2 class="text-white">Your personalized video request detail</h2>
+                <p class="text-grey">This is your detail request</p>
+            </div>
+            <div class="m-auto" style="margin-right: 0px!important">
+                <!-- <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p> -->
+            </div>
+        </div>
+        <div class="w-100">
+            <div class="instruction">
+                <h5 class="text-white">Instruction</h5>
+                <br>
+                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <p class="text-white" style="font-size: 16px">
+                    {{ $order['order_introduction'] }}
+                </p>
             </div>
         </div>
     </div>
