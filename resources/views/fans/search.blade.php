@@ -62,14 +62,14 @@
 <script>
 window.addEventListener("resize", function(e) {
     $('.custom-col').each(function() {
-        $(this).height($(this).width() * 1.7);
+        $(this).height($(this).width() * 1.6);
     })
 });
     $(document).ready(function() {
         $('.show').hide();
 
         $('.custom-col').each(function() {
-            $(this).height($(this).width() * 1.7);
+            $(this).height($(this).width() * 1.6);
         })
 
         $('.custom-col').on('click', function() {
