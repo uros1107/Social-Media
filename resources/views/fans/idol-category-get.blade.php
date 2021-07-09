@@ -71,7 +71,7 @@
 <script>
 window.addEventListener("resize", function(e) {
     $('.custom-col').each(function() {
-        $(this).height($(this).width() * 1.7);
+        $(this).height($(this).width() * 1.6);
     })
 });
 
@@ -79,7 +79,7 @@ window.addEventListener("resize", function(e) {
         $('.show').hide();
 
         $('.custom-col').each(function() {
-            $(this).height($(this).width() * 1.7);
+            $(this).height($(this).width() * 1.6);
         })
 
         $('.custom-col').on('click', function() {
