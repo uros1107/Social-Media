@@ -62,7 +62,16 @@
 
 @section('scripts')
 <script>
+window.addEventListener("resize", function(e) {
+    $('.custom-col').each(function() {
+        $(this).height($(this).width() * 1.7);
+    })
+});
 $(document).ready(function() {
+    $('.custom-col').each(function() {
+            $(this).height($(this).width() * 1.7);
+    })
+    
     $('.custom-col').on('click', function() {
         var url = $(this).data('url');
         location.href = url;
