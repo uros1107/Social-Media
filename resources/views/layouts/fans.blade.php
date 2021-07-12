@@ -30,7 +30,7 @@
             <div class="form-group has-search mb-0" style="position:relative">
                 <!-- <span class="fa fa-search form-control-feedback"></span> -->
                 <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
-                <input type="text" class="form-control text-white" id="search" placeholder="Search">
+                <input type="text" class="form-control text-white search" placeholder="Search">
             </div>
         </div>
 
@@ -94,11 +94,21 @@
         <div class="top-bar">
             <a href="{{ route('index') }}"><img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}"></a>
             <div class="right-side-icons">
-                <i class="fa fa-search" style="color: #FF335C"></i>
-                <i class="fa fa-bell-o text-white"></i>
+                <a id="mobile-search-btn">
+                    <i class="fa fa-search" style="color: #FF335C"></i>
+                </a>
+                <!-- <i class="fa fa-bell-o text-white"></i> -->
                 <a class="sidebar-toggler d-lg-none mr-auto" type="button">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
+            </div>
+            <div class="search mobile-search d-none">
+                <!-- Actual search box -->
+                <div class="form-group has-search mb-0" style="position:relative;width: fit-content;">
+                    <!-- <span class="fa fa-search form-control-feedback"></span> -->
+                    <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
+                    <input type="text" class="form-control text-white search" placeholder="Search">
+                </div>
             </div>
         </div>
     </div>
@@ -128,6 +138,19 @@
     
     <script>
         $(document).ready(function() {
+            var search = false;
+            $('#mobile-search-btn').on('click', function() {
+                search = !search;
+                if(search) {
+                    console.log(search);
+                    $('.mobile-search').removeClass('d-none');
+                } else {
+                    console.log(search);
+                    $('.mobile-search').addClass('d-none');
+                }
+                console.log(123)
+            });
+
             var sidebar_flag = true;
             $('.sidebar-toggler').on('click', function() {
                 if(sidebar_flag) {
@@ -168,16 +191,12 @@
                 },
                 async: false
             });
-            $('#search').autocomplete({
+            $('.search').autocomplete({
                 source: idol_names,
                 select: function( event , ui ) {
                     var idol_name = ui.item.label;
                     location.href = "{{ route('fans-search') }}" + '?search=' + idol_name;
                 }
-            });
-
-            $('#search').on('change', function() {
-                location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
             });
         })
     </script>

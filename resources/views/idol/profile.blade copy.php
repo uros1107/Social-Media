@@ -66,18 +66,12 @@
 .user-profile-info {
     margin-top: -200px;
 }
-.featured .featured-video {
-    padding: 0px 20px;
-}
 @media (max-width: 574px) { 
     .featured {
         padding: 0px 15px;
     }
     .user-profile-info {
         margin-top: 0px;
-    }
-    .featured .featured-video {
-        padding: 0px;
     }
 }
 </style>
@@ -90,55 +84,152 @@
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
         $cats = json_decode($idol_info->idol_cat_id);
     @endphp
-    <div class="col-12 col-md-4 col-sm-4 new-profile-video">
-        <div style="position: relative">
-            <video class="w-100 idol-video" id="idol-video">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
-                Your browser does not support the video tag.
-            </video>
-            <div class="play-video text-center">
-                <img src="{{ asset('assets/images/icons/play-video.png') }}">
-            </div>
-            <div class="pause-video text-center d-none">
-                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
+    <div class="desktop w-100">
+        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
+        <div class="action-btn">
+            <button type="button" class="btn custom-btn mr-3 edit-btn">Change Password</button>
+            <button type="button" class="btn custom-btn edit-btn">Edit Profile</button>
+        </div>
+        <div class="gradient"></div>
+        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
+            <div class="idol-profile d-flex">
+                <div class="idol-image" style="background-image:unset">
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
+                    <div class="add-img">
+                        <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
+                    </div>
+                </div>
+                <div class="idol-information">
+                    <div class="d-flex">
+                        @foreach($cats as $cat)
+                        @php
+                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                        @endphp
+                        <div class="tik-tok mr-2">
+                            <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="name-action d-flex">
+                        <div class="name-part">
+                            <div class="name d-flex">
+                                <h3>{{ $idol_info->idol_full_name }}</h3>
+                                <h5 class="my-auto ml-3">{{ '@'.$idol_info->idol_user_name }}</h5>
+                            </div>
+                            <div class="description">
+                                <p>{{ $idol_info->idol_bio }}</p>
+                            </div>
+                        </div>
+                        <div class="action-part d-flex">
+                            <button type="button" class="btn custom-btn">Request - ${{ $request_video->request_video_price }}</button>
+                        </div>
+                    </div>
+                    <div class="review-part d-flex">
+                        <div class="rating mr-4">
+                            <span class="mr-2">Rating</span>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="fans mr-4">
+                            <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
+                            <span>{{ $fans_count }} Fans</span>
+                        </div>
+                        <!-- <div class="day">
+                            <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
+                            <span>Typically responds in 3 days</span>
+                        </div> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-8 col-sm-8 idol-information">
-        <div class="new-profile">
-            <div class="w-50 profile-left">
-                <h4 class="text-white mb-3">{{ $idol_info->idol_full_name }}</h4>
-                <p class="text-white mb-3">{{ $idol_info->idol_full_name }}</p>
-                <p class="text-white mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
-            </div>
-            <div class="w-50 profile-right">
-                <div class="mb-4">
-                    <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
-                    <span class="text-white">Following</span>
+    <div class="mobile w-100">
+        <div style="position: relative">
+            <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
+            <div class="gradient"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 user-profile-info">
+            <div class="idol-profile d-flex">
+                <div class="idol-image" style="background-image:unset;display: contents;">
+                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
+                    <div class="add-img">
+                        <p class="text-white text-center mb-0" style="font-size: 30px">+</p>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <img src="{{ asset('assets/images/icons/fill-heart.png') }}" class="mr-2">
+                <div class="ml-3">
+                    <h5 class="text-white mt-3">{{ '@'.$idol_info->idol_user_name }}</h5>
+                    <h3 class="text-white mt-2">{{ $idol_info->idol_full_name }}</h3>
+                    <div class="d-flex" style="flex-wrap: wrap;">
+                        @foreach($cats as $cat)
+                        @php
+                            $cat = DB::table('categories')->where('cat_id', $cat)->first();
+                        @endphp
+                        <div class="tik-tok mr-2 mb-2">
+                            <button class="btn custom-btn">{{ $cat->cat_name }}</button>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="w-100">
+                <p class="text-white">{{ $idol_info->idol_bio }}</p>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 mt-4">
+            <div class="row m-0">
+                <div class="col-6 p-0 text-center">
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <span class="text-white">Rating</span>
+                </div>
+                <div class="col-6 p-0 text-center">
+                    <div class="fans">
+                        <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
+                    </div>
                     <span class="text-white">{{ $fans_count }} Fans</span>
                 </div>
-                <div class="mb-2">
-                    <img src="{{ asset('assets/images/icons/fill-chat.png') }}" class="mr-2">
-                    <span class="text-white">{{ $reviews->count() }} Comments</span>
-                </div>
+                <!-- <div class="col-4 p-0 text-center">
+                    <div class="day">
+                        <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
+                    </div>
+                    <span class="text-white">Responds in 3 days</span>
+                </div> -->
             </div>
         </div>
-        <div class="mb-2" style="border: 1px solid #2b2b2b;width: 100%;"></div>
-        <div class="w-100">
-            <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
+        <div class="col-12 mt-3">
+            <div class="action-btn text-center" style="position:initial">
+                <button type="button" class="btn custom-btn mr-3 edit-btn">Change Password</button>
+                <button type="button" class="btn custom-btn edit-btn">Edit Profile</button>
+            </div>
         </div>
-        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
-        <div class="w-100 d-flex new-profile-btn">
-            <button class="btn custom-btn question-btn" style="font-size: 16px">?</button>
-            <button class="btn custom-btn w-100" style="font-size: 16px">Request Now - $ {{ $request_video->request_video_price }}</button>
+        <div class="col-12 mt-3">
+            <button type="button" class="btn custom-btn w-100">Request - ${{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>
 <div class="row featured mb-5 m-0">
+    @if(Session::has('success'))
+        <div class="col-12 col-md-12 col-sm-12 mb-3">
+            <div class="alert alert-success mb-0" role="alert">
+                <strong>Success!</strong> {{ Session::get('success') }}
+            </div>
+        </div>
+    @elseif(Session::has('unsuccess'))
+        <div class="col-12 col-md-12 col-sm-12 mb-3">
+            <div class="alert alert-unsuccess mb-0" role="alert">
+                <strong>Unsuccess!</strong> {{ Session::get('unsuccess') }}
+            </div>
+        </div>
+    @endif
+
     @if(count($orders))
     <div class="col-12 col-sm-12 col-md-12 featured-video">
         <div class="title-part">
@@ -345,41 +436,9 @@ $(document).ready(function() {
     $(document).on('click', '.add-img', function() {
         $('#uploadModal').modal('toggle');
     });
-
     $(document).on('click', '.edit-btn', function() {
         location.href = "{{ route('idol-edit-profile') }}";
     });
-
-    $(document).on('ended', '.idol-video', function() {
-        $(".play-video").removeClass('d-none');
-        $(".pause-video").addClass('d-none');
-    });
-
-    $(document).on('click', '.play-video, .pause-video', function() {
-        // $('.idol-video').get(0).play();
-
-        var video = $(".idol-video").get(0);
-
-        if ( video.paused ) {
-            video.play();
-            $(".play-video").addClass('d-none');
-            $(".pause-video").removeClass('d-none');
-        } else {
-            video.pause();
-            $(".play-video").removeClass('d-none');
-            $(".pause-video").addClass('d-none');
-        }
-
-        return false;
-    });
 })
-
-var video = $(".idol-video").get(0);
-
-video.addEventListener("ended", function() {
-    $(".play-video").removeClass('d-none');
-    $(".pause-video").addClass('d-none');
-});
-
 </script>
 @endsection

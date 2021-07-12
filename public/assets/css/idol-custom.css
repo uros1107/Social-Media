@@ -233,6 +233,20 @@ a:hover {
     pointer-events: none;
     color: #aaa;
 }
+.mobile-search {
+    margin-top: 8px;
+    margin-left: 10px;
+}
+.mobile-search img {
+    width: 20px;
+    position: absolute;
+    top: 13px;
+    left: 18px;
+}
+.mobile-search .has-search .form-control {
+    height: 45px!important;
+    width: initial!important;
+}
 .app-header .has-search .search-icon {
     width: 20px;
     position: absolute;
@@ -367,6 +381,9 @@ a:hover {
     }
     a {
         font-size: 14px;
+    }
+    .ui-corner-all, .ui-corner-bottom, .ui-corner-br, .ui-corner-right {
+        top: 60px!important;
     }
 }
 @media (max-width: 992px) {
@@ -909,6 +926,21 @@ a:hover {
 }
 .follow-idol .how-work-view .content-item p {
     font-size: 14px;
+}
+.play-video, .pause-video {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+.play-video img,
+.pause-video img {
+    margin-top: 10px;
+    margin-left: 3px;
 }
 @media (max-width: 1500px) { 
     .featured .featured-video {
@@ -2379,6 +2411,26 @@ input:checked + .slider {
     border-radius: 10px!important;
     padding: 0px 25px;
 }
+.profile-left h4 {
+    font-size: 30px;
+    font-weight: bold;
+}
+.profile-left p {
+    font-weight: 600;
+    font-size: 18px;
+}
+.profile-right span {
+    font-size: 16px;
+}
+.question-btn {
+    width: 20%;
+    margin-right: 20px;
+    background-color: #171717!important;
+    border-color: #FF335C!important;
+}
+.new-profile {
+    display: flex;
+}
 @media (max-width: 574px) { 
     .action-btn button,
     .action-btn button:hover {
@@ -2389,6 +2441,12 @@ input:checked + .slider {
     }
     .idol-profile .ml-3 > h3 {
         font-size: 24px;
+    }
+    .new-profile-btn .btn {
+        height: 40px!important;
+    }
+    .new-profile-video {
+        padding: 0px;
     }
 }
 /* ================================================== Idol profile Css End ================================================= */
