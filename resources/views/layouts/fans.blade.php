@@ -30,7 +30,7 @@
             <div class="form-group has-search mb-0" style="position:relative">
                 <!-- <span class="fa fa-search form-control-feedback"></span> -->
                 <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
-                <input type="text" class="form-control text-white search" placeholder="Search">
+                <input type="text" class="form-control text-white search-idol" placeholder="Search">
             </div>
         </div>
 
@@ -107,7 +107,7 @@
                 <div class="form-group has-search mb-0" style="position:relative;width: fit-content;">
                     <!-- <span class="fa fa-search form-control-feedback"></span> -->
                     <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
-                    <input type="text" class="form-control text-white search" placeholder="Search">
+                    <input type="text" class="form-control text-white search-idol" placeholder="Search">
                 </div>
             </div>
         </div>
@@ -191,7 +191,7 @@
                 },
                 async: false
             });
-            $('.search').autocomplete({
+            $('.search-idol').autocomplete({
                 source: idol_names,
                 select: function( event , ui ) {
                     var idol_name = ui.item.label;
@@ -199,7 +199,7 @@
                 }
             });
 
-            $('.search').on('change', function() {
+            $('.search-idol').on('change', function() {
                 location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
             });
         })
