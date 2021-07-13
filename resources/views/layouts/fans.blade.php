@@ -198,6 +198,10 @@
                     location.href = "{{ route('fans-search') }}" + '?search=' + idol_name;
                 }
             });
+
+            $('.search').on('change', function() {
+                location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
+            });
         })
     </script>
     @yield('scripts')
