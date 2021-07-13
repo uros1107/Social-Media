@@ -395,6 +395,27 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+            <video id="video" controls autoplay>
+                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mp4">
+                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mkv">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
 @endsection
 
 @section('scripts')
@@ -403,6 +424,10 @@ function goto_category(url) {
     location.href = url;
 }
 $(document).ready(function() {
+    $(document).on('click', '.idol-image', function() {
+        $('#myModal').modal('toggle');
+    });
+    
     var show = false;
     $(document).on('click', '.how', function() {
         show = !show;

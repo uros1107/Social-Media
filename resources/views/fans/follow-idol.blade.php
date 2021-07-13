@@ -324,7 +324,11 @@
         </button>        
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+            <video id="video" controls autoplay>
+                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mp4">
+                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mkv">
+                Your browser does not support the video tag.
+            </video>
         </div>
       </div>
     </div>
@@ -349,6 +353,10 @@ function goto_category(url) {
 }
 
 $(document).ready(function() {
+
+    $(document).on('click', '.idol-image', function() {
+        $('#myModal').modal('toggle');
+    });
 
     $(".video-item").each(function() {
         var id = $(this).data('id');
