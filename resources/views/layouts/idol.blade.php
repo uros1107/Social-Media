@@ -45,16 +45,16 @@
                 @php
                     $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
                 @endphp
-                <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;object-fit: cover;">
+                <a href="{{ route('idol-profile') }}"><img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;object-fit: cover;"></a>
                 @else
-                <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;">
+                <a href="{{ route('idol-profile') }}"><img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle ml-5 mr-3" style="width: 50px;height:50px;"></a>
                 @endif
                 <span class="text-white" style="font-size:16px">{{ Auth::user()->name }}</span>
                 <img src="{{ asset('assets/images/icons/down-arrow.png') }}" class="img-circle ml-3" id="sub-menu" style="width: 20px;height:20px">
                 <div class="sub-menu d-none">
                     @if(Auth::user()->is_setup)
                     <div class="mb-2">
-                        <a href="{{ route('idol-profile') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Profile</a>
+                        <a href="{{ route('idol-edit-profile') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Profile</a>
                     </div>
                     @endif
                     <div>

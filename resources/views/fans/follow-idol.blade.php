@@ -40,9 +40,15 @@
 .user-profile-info {
     margin-top: -210px;
 }
+.featured .featured-video {
+    padding: 0px 20px;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
+    }
+    .featured .featured-video {
+        padding: 0px;
     }
     .user-profile-info {
         margin-top: 0px;
@@ -52,190 +58,61 @@
 @endsection
 
 @section('content')
-<div class="row follow-idol mb-4 m-0">
-    <div class="desktop w-100">
-        @php
-            $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
-            $idol_request = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
-            $cats = json_decode($idol_info->idol_cat_id);
-        @endphp
-        <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
-        <div class="gradient"></div>
-        <div class="col-12 col-sm-12 col-md-12" style="margin-top:-87px">
-            <div class="idol-profile d-flex">
-                <div class="idol-image" style="display: contents;">
-                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
-                </div>
-                <div class="idol-information">
-                    <div class="d-flex">
-                        @foreach($cats as $cat)
-                        @php
-                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
-                        @endphp
-                        <div class="tik-tok mr-2">
-                            <button class="btn custom-btn" onclick='goto_category("{{ route('idol-category-get', $cat->cat_name) }}")'>{{ $cat->cat_name }}</button>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="name-action d-flex">
-                        <div class="name-part">
-                            <div class="name d-flex">
-                                <h3>{{ $idol_info->idol_full_name }}</h3>
-                                <h5 class="my-auto ml-3">{{ '@'.$idol_info->idol_user_name }}</h5>
-                            </div>
-                            <div class="description">
-                                <p>{{ $idol_info->idol_bio }}</p>
-                            </div>
-                        </div>
-                        <div class="action-part d-flex">
-                            @if(!Auth::check())
-                            <button type="button" class="btn custom-btn mr-2 active join-fandom" data-id="{{ $idol->id }}" style="width: 160px">Follow</button>
-                            @else
-                            @php
-                                $user = DB::table('users')->where('id', Auth::user()->id)->first();
-                                $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
-                            @endphp
-                            <button type="button" class="btn custom-btn mr-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px">
-                                @if($has)
-                                    <i class='fas fa-check mr-2' style='font-size:16px'></i>
-                                @endif
-                                Following
-                            </button>
-                            @endif
-                            <button type="button" class="btn custom-btn" id="new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
-                        </div>
-                    </div>
-                    <div class="review-part d-flex">
-                        <div class="rating mr-4">
-                            <span class="mr-2">Rating</span>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="fans mr-4">
-                            <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                            <span>{{ $fans_count }} Fans</span>
-                        </div>
-                        <!-- <div class="day">
-                            <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
-                            <span>Typically responds in 3 days</span>
-                        </div> -->
-                        <div class="how" style="z-index:10">
-                            <div class="text-right">
-                                <img src="{{ asset('assets/images/icons/quiz.png') }}" class="mr-1">
-                                <span class="text-white">How does it work?</span>
-                            </div>
-                            <div class="how-work-view d-none">
-                                <div class="row">
-                                    <div class="col-12 title mb-3">
-                                        <div class="d-flex">
-                                            <h4 class="text-white">How does it work?</h4>
-                                            <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
-                                        </div>
-                                        <p class="text-white">What happen when I submit a request?</p>
-                                    </div>
-                                    <div class="col-12 how-content">
-                                        <div class="content-item d-flex mb-4">
-                                            <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">You will receive an email order confirmation</p>
-                                        </div>
-                                        <div class="content-item d-flex mb-4">
-                                            <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
-                                        </div>
-                                        <div class="content-item d-flex mb-4">
-                                            <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
-                                        </div>
-                                        <div class="content-item d-flex">
-                                            <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="row idol follow-idol mb-4 m-0">
+    @php
+        $idol_info = DB::table('idol_info')->where('idol_user_id', $idol->id)->first();
+        $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+        $cats = json_decode($idol_info->idol_cat_id);
+    @endphp
+    <div class="col-12 col-md-4 col-sm-4 new-profile-video">
+        <div style="position: relative">
+            <video class="w-100 idol-video" id="idol-video">
+                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
+                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
+                Your browser does not support the video tag.
+            </video>
+            <div class="play-video text-center">
+                <img src="{{ asset('assets/images/icons/play-video.png') }}">
+            </div>
+            <div class="pause-video text-center d-none">
+                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
             </div>
         </div>
     </div>
-    <div class="mobile w-100">
-        <div style="position: relative">
-            <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
-            <div class="gradient"></div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 user-profile-info">
-            <div class="idol-profile d-flex">
-                <div class="idol-image" style="display: contents;">
-                    <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class='img-circle'>
-                </div>
-                <div class="ml-3">
-                    <h5 class="text-white mt-2">{{ '@'.$idol_info->idol_user_name }}</h5>
-                    <h3 class="text-white">{{ $idol_info->idol_full_name }}</h3>
-                    <div class="d-flex" style="flex-wrap: wrap;">
-                        @foreach($cats as $cat)
-                        @php
-                        $cat = DB::table('categories')->where('cat_id', $cat)->first();
-                        @endphp
-                        <div class="tik-tok mr-2 mb-2">
-                            <button class="btn custom-btn" onclick='goto_category("{{ route('idol-category-get', $cat->cat_name) }}")'>{{ $cat->cat_name }}</button>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
+    <div class="col-12 col-md-8 col-sm-8 idol-information">
+        <div class="new-profile">
+            <div class="w-50 profile-left">
+                <h4 class="text-white mb-3">{{ $idol_info->idol_full_name }}</h4>
+                <p class="text-white mb-3">{{ $idol_info->idol_full_name }}</p>
+                <p class="text-white mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
             </div>
-            <div class="w-100">
-                <p class="text-white">{{ $idol_info->idol_bio }}</p>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 mt-4">
-            <div class="row m-0">
-                <div class="col-6 p-0 text-center">
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <span class="text-white">Rating</span>
+            <div class="w-50 profile-right">
+                <div class="mb-4">
+                    <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
+                    <span class="text-white">Following</span>
                 </div>
-                <div class="col-6 p-0 text-center">
-                    <div class="fans">
-                        <img src="{{ asset('assets/images/icons/heart-dot.png') }}" class="mr-2">
-                    </div>
+                <div class="mb-4">
+                    <img src="{{ asset('assets/images/icons/fill-heart.png') }}" class="mr-2">
                     <span class="text-white">{{ $fans_count }} Fans</span>
                 </div>
-                <!-- <div class="col-4 p-0 text-center">
-                    <div class="day">
-                        <img src="{{ asset('assets/images/icons/clock.png') }}" class="mr-2">
-                    </div>
-                    <span class="text-white">Responds in 3 days</span>
-                </div> -->
+                <div class="mb-2">
+                    <img src="{{ asset('assets/images/icons/fill-chat.png') }}" class="mr-2">
+                    <span class="text-white">{{ $reviews->count() }} Comments</span>
+                </div>
             </div>
         </div>
-        <div class="col-12 mt-3">
-            @if(!Auth::check())
-            <button type="button" class="btn custom-btn w-100 mb-2 active join-fandom" data-id="{{ $idol->id }}">Follow</button>
-            @else
-            @php
-                $user = DB::table('users')->where('id', Auth::user()->id)->first();
-                $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
-            @endphp
-            <button type="button" class="btn custom-btn w-100 mb-2 {{ $has ? '' : 'active' }} join-fandom" data-id="{{ $idol->id }}" style="width: 160px">
-                @if($has)
-                    <i class='fas fa-check mr-2' style='font-size:16px'></i>
-                @endif
-                Following
-            </button>
-            @endif
-            <button type="button" class="btn custom-btn w-100" id="m-new-request" data-id="{{ $idol->id }}">Request - ${{ $idol_request->request_video_price }}</button>
+        <div class="mb-2" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+        <div class="w-100">
+            <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
+        </div>
+        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+        <div class="w-100 d-flex new-profile-btn">
+            <button class="btn custom-btn question-btn" style="font-size: 16px">?</button>
+            <button class="btn custom-btn w-100" style="font-size: 16px" id="new-request" data-id="{{ $idol->id }}">Request - $ {{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>
+
 @if(count($orders))
 <div class="row featured mb-5 m-0">
     <div class="col-12 col-sm-12 col-md-12 featured-video">
@@ -325,8 +202,8 @@
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
             <video id="video" controls>
-                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mp4">
-                <source src="{{ asset('assets/videos/'.$idol_request->request_video) }}" type="video/mkv">
+                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
+                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -427,6 +304,34 @@ $(document).ready(function() {
             });
         @endif
     });
+
+    $(document).on('ended', '.idol-video', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
+    });
+
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $(".idol-video").get(0);
+
+        if ( video.paused ) {
+            video.play();
+            $(".play-video").addClass('d-none');
+            $(".pause-video").removeClass('d-none');
+        } else {
+            video.pause();
+            $(".play-video").removeClass('d-none');
+            $(".pause-video").addClass('d-none');
+        }
+
+        return false;
+    });
 })
+
+var video = $(".idol-video").get(0);
+
+video.addEventListener("ended", function() {
+    $(".play-video").removeClass('d-none');
+    $(".pause-video").addClass('d-none');
+});
 </script>
 @endsection

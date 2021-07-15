@@ -347,8 +347,20 @@ class FansController extends Controller
     {
         $id = $request->id;
         $idol = User::where('id', $id)->first();
+        $reviews = Review::where('review_idol_id', $idol->id)->get();
+        
+        $fans_count = 0;
+        foreach (User::where('del_flag', 0)->get() as $user) {
+            $array = json_decode($user->fandom_lists);
+            if($array) {
+                $has_idol = in_array($idol->id, $array);
+                if($has_idol) {
+                    $fans_count++;
+                }
+            }
+        }
 
-        return view('fans.new-request', compact('idol'));
+        return view('fans.new-request', ['idol' => $idol, 'reviews' => $reviews, 'fans_count' => $fans_count]);
     }
 
     public function payment(Request $request)
