@@ -90,7 +90,7 @@ class FansController extends Controller
             'token' => $token,
         ];
 
-        Mail::to($request->email)->send(new MailVerify($data));
+        Mail::to()->send(new MailVerify($data));
 
         // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
         //     $message->to($request->email);
