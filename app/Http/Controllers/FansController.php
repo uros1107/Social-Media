@@ -56,11 +56,17 @@ class FansController extends Controller
 
         $token = Str::random(5);
 
-        Mail::send('email.verify', ['token' => $token], function($message) use($request){
-            // $message->to($request->email);
-            $message->to('amar.chan9655@gmail.com');
-            $message->subject('Verify Email');
-        });
+        $data = [
+            'token' => $token,
+        ];
+
+        Mail::to($request->email)->send(new MailVerify($data));
+
+        // Mail::send('email.verify', ['token' => $token], function($message) use($request){
+        //     // $message->to($request->email);
+        //     $message->to('amar.chan9655@gmail.com');
+        //     $message->subject('Verify Email');
+        // });
 
         return view('fans.confirm-email', ['code' => $token]);
     }
@@ -91,8 +97,6 @@ class FansController extends Controller
         ];
 
         Mail::to($request->email)->send(new MailVerify($data));
-        echo "1212313";
-        die;
 
         // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
         //     $message->to($request->email);
