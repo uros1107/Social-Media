@@ -14,6 +14,7 @@ use DB;
 use Carbon\Carbon; 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Mail\MailVerify;
 
 use App\User;
 use App\IdolInfo;
@@ -85,10 +86,16 @@ class FansController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
+        $data = [
+            'token' => $token,
+        ];
+
+        Mail::to($request->email)->send(new MailVerify($data));
+
+        // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Reset Password');
+        // });
 
         return back()->with('message', 'We have e-mailed your password reset link!');
     }
