@@ -300,33 +300,11 @@ $(document).ready(function() {
         @endif
     });
 
-    $(document).on('ended', '.idol-video', function() {
-        $(".play-video").removeClass('d-none');
-        $(".pause-video").addClass('d-none');
-    });
-
-    $(document).on('click', '.play-video, .pause-video', function() {
-        var video = $(".idol-video").get(0);
-
-        if ( video.paused ) {
-            video.play();
-            $(".play-video").addClass('d-none');
-            $(".pause-video").removeClass('d-none');
-        } else {
-            video.pause();
-            $(".play-video").removeClass('d-none');
-            $(".pause-video").addClass('d-none');
-        }
-
-        return false;
+    $(document).on('click', '.play-video', function() {
+        var videoSrc = $(this).data('src');
+        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
+        $('#myModal').modal('toggle');
     });
 })
-
-var video = $(".idol-video").get(0);
-
-video.addEventListener("ended", function() {
-    $(".play-video").removeClass('d-none');
-    $(".pause-video").addClass('d-none');
-});
 </script>
 @endsection
