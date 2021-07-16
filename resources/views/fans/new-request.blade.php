@@ -271,7 +271,7 @@
         </button>        
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
-            <video id="video" controls autoplay>
+            <video id="video" controls>
                 <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
                 <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
                 Your browser does not support the video tag.
