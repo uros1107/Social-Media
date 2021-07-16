@@ -2431,6 +2431,11 @@ input:checked + .slider {
 .new-profile {
     display: flex;
 }
+.new-profile-video .idol-img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
 @media (max-width: 574px) { 
     .action-btn button,
     .action-btn button:hover {

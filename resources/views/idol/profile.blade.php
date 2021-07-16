@@ -92,16 +92,9 @@
     @endphp
     <div class="col-12 col-md-4 col-sm-4 new-profile-video">
         <div style="position: relative">
-            <video class="w-100 idol-video" id="idol-video">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
-                Your browser does not support the video tag.
-            </video>
-            <div class="play-video text-center">
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="idol-img">
+            <div class="play-video text-center" data-src="{{ asset('assets/videos/'.$request_video->request_video) }}">
                 <img src="{{ asset('assets/images/icons/play-video.png') }}">
-            </div>
-            <div class="pause-video text-center d-none">
-                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
             </div>
         </div>
     </div>
@@ -127,8 +120,9 @@
                 </div>
             </div>
         </div>
-        <div class="mb-2" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
         <div class="w-100">
+            <h4 class="text-white" style="font-size: 16px;">{{ $idol_info->idol_head_bio }}</h4>
             <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
         </div>
         <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
@@ -279,6 +273,7 @@ function format(s) {
     return m + ":" + s;
 }
 $(document).ready(function() {
+    $('.idol-img').height($('.idol-img').width());
 
     $(".video-item").each(function() {
         var id = $(this).data('id');
@@ -350,36 +345,12 @@ $(document).ready(function() {
         location.href = "{{ route('idol-edit-profile') }}";
     });
 
-    $(document).on('ended', '.idol-video', function() {
-        $(".play-video").removeClass('d-none');
-        $(".pause-video").addClass('d-none');
-    });
-
-    $(document).on('click', '.play-video, .pause-video', function() {
-        // $('.idol-video').get(0).play();
-
-        var video = $(".idol-video").get(0);
-
-        if ( video.paused ) {
-            video.play();
-            $(".play-video").addClass('d-none');
-            $(".pause-video").removeClass('d-none');
-        } else {
-            video.pause();
-            $(".play-video").removeClass('d-none');
-            $(".pause-video").addClass('d-none');
-        }
-
-        return false;
+    $(document).on('click', '.play-video', function() {
+        var videoSrc = $(this).data('src');
+        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
+        $('#myModal').modal('toggle');
     });
 })
-
-var video = $(".idol-video").get(0);
-
-video.addEventListener("ended", function() {
-    $(".play-video").removeClass('d-none');
-    $(".pause-video").addClass('d-none');
-});
 
 </script>
 @endsection

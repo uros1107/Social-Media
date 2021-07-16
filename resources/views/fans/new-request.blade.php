@@ -72,16 +72,9 @@
     @endphp
     <div class="col-12 col-md-4 col-sm-4 new-profile-video">
         <div style="position: relative">
-            <video class="w-100 idol-video" id="idol-video">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
-                <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
-                Your browser does not support the video tag.
-            </video>
-            <div class="play-video text-center">
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="idol-img">
+            <div class="play-video text-center" data-src="{{ asset('assets/videos/'.$request_video->request_video) }}">
                 <img src="{{ asset('assets/images/icons/play-video.png') }}">
-            </div>
-            <div class="pause-video text-center d-none">
-                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
             </div>
         </div>
     </div>
@@ -107,8 +100,9 @@
                 </div>
             </div>
         </div>
-        <div class="mb-2" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
         <div class="w-100">
+            <h4 class="text-white" style="font-size: 16px;">{{ $idol_info->idol_head_bio }}</h4>
             <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
         </div>
         <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
@@ -296,6 +290,8 @@ function goto_category(url) {
     location.href = url;
 }
 $(document).ready(function() {
+    $('.idol-img').height($('.idol-img').width());
+    
     $(document).on('click', '.idol-image', function() {
         $('#myModal').modal('toggle');
     });
