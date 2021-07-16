@@ -56,17 +56,10 @@ class FansController extends Controller
 
         $token = Str::random(5);
 
-        $data = [
-            'token' => $token,
-        ];
-
-        Mail::to($request->email)->send(new MailVerify($data));
-
-        // Mail::send('email.verify', ['token' => $token], function($message) use($request){
-        //     // $message->to($request->email);
-        //     $message->to('amar.chan9655@gmail.com');
-        //     $message->subject('Verify Email');
-        // });
+        Mail::send('email.verify', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verify Email');
+        });
 
         return view('fans.confirm-email', ['code' => $token]);
     }
@@ -92,16 +85,10 @@ class FansController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        $data = [
-            'token' => $token,
-        ];
-
-        Mail::to($request->email)->send(new MailVerify($data));
-
-        // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-        //     $message->to($request->email);
-        //     $message->subject('Reset Password');
-        // });
+        Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
 
         return back()->with('message', 'We have e-mailed your password reset link!');
     }
