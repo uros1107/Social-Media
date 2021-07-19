@@ -7,6 +7,10 @@ Route::get('/privacy', 'MailChimpController@privacy')->name('privacy');
 Route::get('/faq', 'MailChimpController@faq')->name('faq');
 Route::get('/terms', 'MailChimpController@terms')->name('terms');
 Route::get('/contest-terms', 'MailChimpController@contest_terms')->name('contest-terms');
+Route::get('/contact-us', 'MailChimpController@contactus')->name('contact-us');
+Route::post('/contact-us', 'MailChimpController@contact')->name('contact');
+Route::get('/request-idol', 'MailChimpController@request_idol')->name('request-idol');
+Route::post('/request-idol-store', 'MailChimpController@request_idol_store')->name('request-idol-store');
 
 Route::get('/google', 'FansController@redirect_google')->name('redirect-google');
 Route::get('/google/callback', 'FansController@google_callback')->name('google-callback');
@@ -88,6 +92,7 @@ Route::prefix('idol')->group(function() {
         Route::get('/concierge', 'IdolController@concierge')->name('idol-concierge');
         Route::POST('/send-concierge', 'IdolController@send_concierge')->name('idol-send-concierge');
         Route::POST('/update-video', 'IdolController@update_video')->name('idol-update-video');
+        Route::POST('/update-profile-stage', 'IdolController@update_stage')->name('update-profile-stage');
     });
 });
 

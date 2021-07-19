@@ -118,9 +118,6 @@ class IdolController extends Controller
         $photo_img_name = $request->idol_photo->getClientOriginalName();
         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
 
-        $banner_img_name = $request->idol_banner->getClientOriginalName();
-        $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
-
         unset(
             $idol_info['request_lang'], 
             $idol_info['request_video_price'], 
@@ -129,7 +126,6 @@ class IdolController extends Controller
             $idol_info['request_payment_method']
         );
         $idol_info['idol_photo'] = $photo_img_name;
-        $idol_info['idol_banner'] = $banner_img_name;
         
         $video_name = $request->request_video->getClientOriginalName();
         $request->request_video->move(public_path('assets/videos'), $video_name);
@@ -138,12 +134,12 @@ class IdolController extends Controller
         unset(
             $video_request['idol_full_name'], 
             $video_request['idol_user_name'], 
+            $video_request['idol_k_name'], 
             $video_request['idol_email'], 
             $video_request['idol_phone'], 
             $video_request['idol_bio'], 
             $video_request['idol_head_bio'], 
             $video_request['idol_photo'], 
-            $video_request['idol_banner'],
             $video_request['idol_cat_id'],
             $video_request['idol_stripe_account_id'],
         );
@@ -167,6 +163,42 @@ class IdolController extends Controller
         } else {
             return response()->json(['success' => false]);
         }
+    }
+
+    public function update_stage(Request $request)
+    {
+        $stage = $request->stage;
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->profile_stage = $stage;
+        $user->save();
+
+        // if($stage == 25) {
+        //     $idol_info = IdolInfo::where('idol_user_id', $user->id)->first();
+        //     if(!$idol_info) {
+        //         $idol_info = $request->all();
+        //         $idol_info['idol_user_id'] = Auth::user()->id;
+
+        //         $photo_img_name = $request->idol_photo->getClientOriginalName();
+        //         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+        //         $idol_info['idol_photo'] = $photo_img_name;
+
+        //         $idol_info = IdolInfo::create($idol_info);
+        //     } else {
+        //         $idol_info = $request->all();
+
+        //         $photo_img_name = $request->idol_photo->getClientOriginalName();
+        //         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+        //         $idol_info['idol_photo'] = $photo_img_name;
+
+        //         $idol_info = IdolInfo::where('idol_user_id', $user->id)->update($idol_info);
+        //     }
+        // } elseif ($stage == 50) {
+            
+        // } elseif ($stage == 75) {
+            
+        // }
+
+        return response()->json(['success' => true]);
     }
 
     public function payment_completed()

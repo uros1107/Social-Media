@@ -902,10 +902,10 @@ a:hover {
     padding: 20px;
     background: #2b2b2b;
     border-radius: 20px;
-    /* position: absolute; */
-    right: 65px;
-    top: 170px;
-    height: 370px;
+    position: absolute;
+    /* right: 65px; */
+    /* top: 170px; */
+    /* height: 370px; */
     max-width: 360px;
     z-index: 10;
 }
@@ -955,10 +955,6 @@ a:hover {
     .follow-idol .idol-profile .review-part .how {
         right: 20px;
     }
-    .follow-idol .how-work-view {
-        right: 20px;
-        bottom: -75px;
-    }
 }
 
 @media (max-width: 360px) {
@@ -975,6 +971,12 @@ a:hover {
 }
 
 @media (max-width: 574px) {
+    .follow-idol .how-work-view {
+        position: initial;
+    }
+    .follow-idol .idol-information {
+        padding: 15px;
+    }
     .featured .featured-video {
         padding: 0px;
     }
@@ -1317,6 +1319,14 @@ input[type=radio]:checked ~ label{
     border-color: #2b2b2b;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(119 119 119 / 25%);
+}
+
+.paypal-pay-btn,
+.paypal-pay-btn:hover,
+.paypal-pay-btn:focus {
+    border-radius: 15px!important;
+    font-size: 16px;
+    height: 40px;
 }
 @media (max-width: 1245px) { 
     .featured-video .lang-preference .standard-delivery {
@@ -1668,7 +1678,8 @@ input[type=radio]:checked ~ label{
     line-height: 25px;
 }
 .get-started,
-.get-started:hover {
+.get-started:hover,
+.get-started:focus {
     background: #2B2B2B!important;
     border-radius: 8px!important;
     width: 107px;
@@ -2140,7 +2151,7 @@ input[type=radio]:checked ~ label{
     height: 55px;
     background: #121212;
     border-radius: 15px;
-    padding-top: 15px;
+    padding-top: 17px;
 }
 .wizard .wizard-block .left-part .step-item span {
     font-weight: 600;

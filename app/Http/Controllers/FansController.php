@@ -47,6 +47,8 @@ class FansController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email|unique:users',
+            'user_name' => 'required|string|unique:users',
+            'password' => 'required|confirmed',
         ]);
 
         $user_info = $request->all();
@@ -160,6 +162,7 @@ class FansController extends Controller
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
+                    'user_name' => Str::random(10),
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'role' => Session::get('role'),
@@ -216,6 +219,7 @@ class FansController extends Controller
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
+                    'user_name' => Str::random(10),
                     'email' => $user->email,
                     'facebook_id'=> $user->id,
                     'role' => Session::get('role'),
@@ -518,14 +522,14 @@ class FansController extends Controller
     {
         $search = $request->search;
 
-        $idol_infos = IdolInfo::where('idol_user_name', 'like', '%'.$search.'%')->orWhere('idol_full_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
+        $idol_infos = IdolInfo::where('idol_full_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
 
         return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }
 
     public function get_idol_list()
     {
-        $idol_names = IdolInfo::where('idol_del_flag', 0)->pluck('idol_user_name');
+        $idol_names = IdolInfo::where('idol_del_flag', 0)->pluck('idol_full_name');
 
         return response()->json($idol_names);
     }

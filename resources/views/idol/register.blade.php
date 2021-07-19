@@ -121,6 +121,9 @@ select {
     border-top: 1px solid #2b2b2b;
     color: white;
 }
+.input-icon {
+    top: 31px;
+}
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
@@ -322,8 +325,8 @@ select {
                     <h3 class="text-color mobile" style="max-width: 220px;font-size: 18px">APPLY TO JOIN MILLIONK AS AN IDOL NOW</h3>
                 </div>
                 <div class="horizontal-red-bar"></div>
-                <h5 class="text-color desktop" style="font-size: 24px;max-width: 55%;margin: auto">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
-                <h5 class="text-color mobile">If you are part of the Korean Wave sweeping the globe, you can apply here and we will get in touch with you within 72hours.</h5>
+                <h5 class="text-color desktop" style="font-size: 24px;max-width: 55%;margin: auto">Apply To Join MillionK As An Idol Now – If you are part of the Korean Wave sweeping the globe, start your application here!</h5>
+                <h5 class="text-color mobile">Apply To Join MillionK As An Idol Now – If you are part of the Korean Wave sweeping the globe, start your application here!</h5>
             </div>
             <div class="container">
                 <form class="custom-form" action="{{ route('idol-register') }}" method="POST" id="register">

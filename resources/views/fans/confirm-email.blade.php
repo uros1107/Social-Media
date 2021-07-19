@@ -188,7 +188,7 @@
                                     <button type="button" class="btn custom-btn w-100">Verify Email</button>
                                 </div>
                                 <div class="col-12 mt-4 mb-5 text-center">
-                                    <a class="text-white">Need help?</a>
+                                    <a href="mailto:hello@millionk.com" class="text-white">Need help?</a>
                                 </div>
                                 <!-- <div class="col-12 text-center" style="margin-top: 100px">
                                     <a class="text-white">Don't have an account?</a>
@@ -227,7 +227,7 @@
                                     <button class="btn custom-btn w-100" type="button">Verify Email</button>
                                 </div>
                                 <div class="col-12 text-center mb-4">
-                                    <a class="text-white need-help">Need help?</a>
+                                    <a href="mailto:hello@millionk.com" class="text-white need-help">Need help?</a>
                                 </div>
                                 <!-- <div class="col-12 text-center signup-part">
                                     <a class="text-white">Don't have an account?</a>

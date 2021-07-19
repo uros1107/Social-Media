@@ -46,6 +46,9 @@
 .input-icon {
     top: 31px;
 }
+.help-block {
+    margin-top: -12px;
+}
 </style>
 @endsection
 
@@ -101,6 +104,20 @@
                                     <label class="input-label">Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                     <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('password') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Confirm Password</label>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
                                     <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                     <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>

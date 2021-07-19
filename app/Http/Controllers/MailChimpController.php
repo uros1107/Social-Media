@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Newsletter;
+use Auth;
 
 class MailChimpController extends Controller
 {
@@ -37,5 +39,38 @@ class MailChimpController extends Controller
     public function contest_terms(Request $request)
     {
         return view('contest');
+    }
+
+    public function contactus(Request $request)
+    {
+        return view('contactus');
+    }
+
+    public function contact(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+
+        Mail::send('email.contact', ['question' => $request->question, 'from' => $request->email], function($message) use($request){
+            $message->to('hello@millionk.com');
+            $message->subject('Contact Us');
+        });
+
+        return redirect()->back()->with('success', 'Successfully submit!');
+    }
+
+    public function request_idol()
+    {
+        return view('request-idol');
+    }
+
+    public function request_idol_store(Request $request)
+    {
+        if(!Auth::check()) {
+            return redirect()->route('fans-signup');
+        }
+
+        return redirect()->back()->with('success', 'Successfully submit!');
     }
 }

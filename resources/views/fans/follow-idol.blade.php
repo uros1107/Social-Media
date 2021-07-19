@@ -5,7 +5,7 @@
 @section('styles')
 <style>
 .container-fluid {
-    padding: 0px!important;
+    padding: 10px!important;
 }
 .modal-dialog {
     max-width: 800px;
@@ -72,37 +72,80 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-8 col-sm-8 idol-information">
-        <div class="new-profile">
-            <div class="w-50 profile-left">
-                <h4 class="text-white mb-3">{{ $idol_info->idol_full_name }}</h4>
-                <p class="text-white mb-3">{{ $idol_info->idol_full_name }}</p>
-                <p class="text-white mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
+    <div class="col-12 col-md-8 col-sm-8 idol-information" style="vertical-align: middle;display: flex">
+        <div class="my-auto w-100">
+            <div class="new-profile">
+                <div class="w-50 profile-left">
+                    <h4 class="text-white mb-3">{{ $idol_info->idol_full_name }}</h4>
+                    <p class="text-white mb-3">{{ $idol_info->idol_full_name }}</p>
+                    <p class="text-white mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
+                </div>
+                <div class="w-50 profile-right">
+                    <div class="mb-4">
+                        @if(!Auth::check())
+                        <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Following</span></a>
+                        @else
+                        @php
+                            $user = DB::table('users')->where('id', Auth::user()->id)->first();
+                            $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
+                        @endphp
+                            @if($has)
+                                <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
+                                <span class="text-white">Following</span>
+                            @else
+                                <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Following</span></a>
+                            @endif
+                        @endif
+                    </div>
+                    <div class="mb-4">
+                        <img src="{{ asset('assets/images/icons/fill-heart.png') }}" class="mr-2">
+                        <span class="text-white">{{ $fans_count }} Fans</span>
+                    </div>
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/icons/fill-chat.png') }}" class="mr-2">
+                        <span class="text-white">{{ $reviews->count() }} Comments</span>
+                    </div>
+                </div>
             </div>
-            <div class="w-50 profile-right">
-                <div class="mb-4">
-                    <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
-                    <span class="text-white">Following</span>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('assets/images/icons/fill-heart.png') }}" class="mr-2">
-                    <span class="text-white">{{ $fans_count }} Fans</span>
-                </div>
-                <div class="mb-2">
-                    <img src="{{ asset('assets/images/icons/fill-chat.png') }}" class="mr-2">
-                    <span class="text-white">{{ $reviews->count() }} Comments</span>
+            <div class="mb-3 mt-2" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+            <div class="w-100">
+                <h4 class="text-white" style="font-size: 16px;">{{ $idol_info->idol_head_bio }}</h4>
+                <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
+            </div>
+            <div class="mb-4" style="border: 1px solid #2b2b2b;width: 100%;"></div>
+            <div class="w-100 d-flex new-profile-btn">
+                <button class="btn custom-btn question-btn" style="font-size: 16px">?</button>
+                <button class="btn custom-btn w-100" style="font-size: 16px" id="new-request" data-id="{{ $idol->id }}">Request - $ {{ $request_video->request_video_price }}</button>
+            </div>
+            <div class="how-work-view mt-2 d-none">
+                <div class="row">
+                    <div class="col-12 title mb-3">
+                        <div class="d-flex">
+                            <h4 class="text-white">How does it work?</h4>
+                            <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
+                        </div>
+                        <p class="text-white">What happen when I submit a request?</p>
+                    </div>
+                    <div class="col-12 how-content">
+                        <div class="content-item d-flex mb-4">
+                            <img src="{{ asset('assets/images/icons/paper.png') }}" class="mr-4">
+                            <p class="mb-0 text-white">You will receive an email order confirmation</p>
+                        </div>
+                        <div class="content-item d-flex mb-4">
+                            <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
+                            <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
+                        </div>
+                        <div class="content-item d-flex mb-4">
+                            <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
+                            <p class="mb-0 text-white">You will receive an email where you can view, share, or download your video</p>
+                        </div>
+                        <div class="content-item d-flex">
+                            <img src="{{ asset('assets/images/icons/wallet.png') }}" class="mr-4">
+                            <p class="mb-0 text-white">If your request is uncompleted, the hold on your card will be removed within 5-7 business days</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
-        <div class="w-100">
-            <h4 class="text-white" style="font-size: 16px;">{{ $idol_info->idol_head_bio }}</h4>
-            <p class="text-white" style="font-size: 14px;">{{ $idol_info->idol_bio }}</p>
-        </div>
-        <div class="mb-3" style="border: 1px solid #2b2b2b;width: 100%;"></div>
-        <div class="w-100 d-flex new-profile-btn">
-            <button class="btn custom-btn question-btn" style="font-size: 16px">?</button>
-            <button class="btn custom-btn w-100" style="font-size: 16px" id="new-request" data-id="{{ $idol->id }}">Request - $ {{ $request_video->request_video_price }}</button>
         </div>
     </div>
 </div>
@@ -242,10 +285,8 @@ $(document).ready(function() {
         location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
     })
 
-    var show = false;
-    $(document).on('click', '.how', function() {
-        show = !show;
-        if(show) {
+    $(document).on('click', '.question-btn', function() {
+        if($('.how-work-view').hasClass('d-none')) {
             $('.how-work-view').removeClass('d-none');    
         } else {
             $('.how-work-view').addClass('d-none');

@@ -28,6 +28,9 @@
 .google-btn a {
     color: #000000;
 }
+.help-block {
+    margin-top: -12px;
+}
 
 @media screen and (max-width: 1024px) {
     .form-block {
@@ -123,6 +126,10 @@
     .signup-part a {
         font-size: 12px;
     }
+    .help-block {
+        margin-top: -5px;
+        font-size: 12px;
+    }
 }
 
 @media (min-width: 1024px) and (max-width: 1250px) {
@@ -195,6 +202,11 @@
                                     <input type="text" name="user_name" placeholder="username" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
+                                @if ($errors->has('user_name'))
+                                    <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('user_name') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
@@ -203,7 +215,7 @@
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                                 @if ($errors->has('email'))
-                                    <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                    <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
                                         <p class="mb-0">{{ $errors->first('email') }}</p>
                                     </span>
                                 @endif
@@ -213,6 +225,20 @@
                                     <label class="input-label">Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                     <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('password') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Confirm Password</label>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
                                     <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                     <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
@@ -257,13 +283,17 @@
                                 <a class="text-white">Have an account?</a>
                                 <a class="text-main-color" href="{{ route('fans-signin') }}">Login</a>
                             </div>
+                            <div class="col-12 text-center signup-part mt-2">
+                                    <a class="text-white">Signing up as an Idol? Click</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> here</a>
+                                </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <div class="mobile">
-            <div class="row m-0 fans image-block w-100">
+            <div class="row m-0 fans image-block w-100" style="background: url('/assets/images/girl-blur.png') !important;">
                 <div class="form-block">
                     <div class="title-part">
                         <h2 class="text-white title">Sign Up!</h2>
@@ -293,6 +323,11 @@
                                         <input type="text" name="user_name" placeholder="username" class="custom-input" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
+                                    @if ($errors->has('user_name'))
+                                        <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
+                                            <p class="mb-0">{{ $errors->first('user_name') }}</p>
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
@@ -301,7 +336,7 @@
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                     @if ($errors->has('email'))
-                                        <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                        <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
                                             <p class="mb-0">{{ $errors->first('email') }}</p>
                                         </span>
                                     @endif
@@ -311,6 +346,20 @@
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                         <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                    </div>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block pl-3 mb-1 d-block" style="color:#d61919">
+                                            <p class="mb-0">{{ $errors->first('password') }}</p>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 p-0">
+                                    <div class="inputWithIcon">
+                                        <label class="input-label">Confirm Password</label>
+                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                        <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
                                         <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                         <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
@@ -357,6 +406,10 @@
                                 <div class="col-12 text-center signup-part">
                                     <a class="text-white">Have an account?</a>
                                     <a class="text-main-color" href="{{ route('fans-signin') }}">Login</a>
+                                </div>
+                                <div class="col-12 text-center signup-part mt-1">
+                                    <a class="text-white">Signing up as an Idol? Click</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> here</a>
                                 </div>
                             </div>
                         </form>

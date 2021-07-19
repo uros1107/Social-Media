@@ -52,6 +52,7 @@ class User extends Authenticatable
         'status',
         'google_id',
         'facebook_id',
+        'profile_stage',
         'del_flag',
     ];
 

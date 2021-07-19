@@ -110,26 +110,21 @@ ul {
     @endif
     <div class="col-12 col-sm-12 col-md-12">
         <div class="row m-0">
-            <div class="col-12 col-sm-12 col-md-12 d-flex success" style="align-items:center">
-                <div class="mr-5">
-                    <img class="mb-3" src="{{ asset('assets/images/stripe.png') }}">
-                </div>
-                <div class="description ml-4">
-                    <h4 class="text-white">Stripe<span>(Direct to Local Bank)</span></h4>
-                    <ul class="text-white">
-                        <li>US$3 Per Withdrawal</li>
-                        <li>Stripe may charge additional fees for you to withdraw additional funds. Funds withdrawn will be in your local currency.</li>
-                    </ul>
-                </div>
-                <div class="my-auto set-up">
-                    <button class="btn custom-btn set-up-btn my-auto setup-payment">Set Up Payment</button>
-                </div>
+            <div class="col-12 col-sm-12 col-md-12 success text-center">
+                <div id="paypal-button-container" class="w-100"></div>
+                <form id="setup_payment" action="{{ route('idol-setup-payment') }}" method="POST" class="d-none">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="idol_stripe_account_id" id="idol_stripe_account_id">
+                    <div class="my-auto set-up">
+                        <button type="submit" class="btn custom-btn set-up-btn my-auto setup-payment">Set Up Payment</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -166,11 +161,39 @@ ul {
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection
 
 @section('scripts')
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AebDV6DljLVnoJwImUC4fxxsppb_7_LFupktKrw37RcUnMyJLdzgytpd6LA6CKdXiVS9ToqMUr62wovp"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+</script>
 <script>
+paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: 0.1
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        toastr.success('Payment method verified!');
+        $('#idol_stripe_account_id').val(1);
+        $('#setup_payment').removeClass('d-none');
+      });
+    },
+    onError: function (err) {
+        // For example, redirect to a specific error page
+        toastr.error(err);
+    }
+  }).render('#paypal-button-container');
 $(document).on('click', '.setup-payment', function() {
     $('#myModal').modal('toggle');
 });

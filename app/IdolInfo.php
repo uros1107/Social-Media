@@ -14,6 +14,7 @@ class IdolInfo extends Model
         'idol_user_id',
         'idol_full_name',
         'idol_user_name',
+        'idol_k_name',
         'idol_email',
         'idol_phone',
         'idol_bio',

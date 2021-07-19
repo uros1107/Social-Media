@@ -79,6 +79,26 @@
                     <div class="sub-title" id="profile_information">
                         <h4 class="text-white mb-4">Profile <span class="text-main-color">Information</span></h4>
                         <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 img-upload mb-3">
+                                <!-- <label class="ml-2 upload-photo">Upload Photo Profile (500px x 500px)</label> -->
+                                <div class="d-flex">
+                                    <div class="img-preview text-center w-50">
+                                        <img src="{{ asset('assets/images/no-image.jpg') }}" id="profile-img" class="mb-2 w-100">
+                                    </div>
+                                    <div class="p-3 w-50 my-auto">
+                                        <div class="upload-btn text-center w-100" id="photo_btn">
+                                            <img src="{{ asset('assets/images/icons/upload.png') }}">
+                                            <span class="ml-1 photo_img_label" style="color: #898989">Upload image</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($errors->has('idol_photo'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_photo') }}</p>
+                                    </span>
+                                @endif
+                                <input type="file" name="idol_photo" id="photo_img" class="d-none" >
+                            </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
                                     <input type="text" placeholder="" name="idol_full_name" value="{{ Auth::user()->name }}">
@@ -127,18 +147,18 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="col-12 col-sm-12 col-md-12">
+                            <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name='idol_head_bio' style="padding-right: 90px;" value="">
-                                    <span>Headline Bio</span>
+                                    <input type="text" placeholder="" name='idol_k_name' style="padding-right: 90px;" value="{{ Auth::user()->k_name }}">
+                                    <span>Korean Name</span>
                                 </label>
-                                @if ($errors->has('idol_head_bio'))
+                                @if ($errors->has('idol_k_name'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_k_name') }}</p>
                                     </span>
                                 @endif
                             </div>
-                            <div class="col-12 col-sm-12 col-md-12">
+                            <div class="col-12 col-sm-6 col-md-6">
                                 <div class="select mt-1">
                                     <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
                                         @foreach(DB::table('categories')->get() as $cat)
@@ -152,44 +172,29 @@
                                     <label class="select-label category-label">Category</label>
                                 </div>
                             </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name='idol_head_bio' style="padding-right: 90px;" value="">
+                                    <span>Headline Bio</span>
+                                </label>
+                                @if ($errors->has('idol_head_bio'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="col-12 col-sm-12 col-md-12 mt-3">
                                 <label class="pure-material-textfield-outlined w-100 mb-0">
                                     <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px">{{ Auth::user()->info }}</textarea>
                                     <span>Bio</span>
                                 </label>
-                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
-                                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
+                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 250 characters!</p>
+                                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>250</span></p>
                                 @if ($errors->has('idol_bio'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
                                     </span>
                                 @endif
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 img-upload">
-                                <label class="ml-2 upload-photo">Upload Photo Profile (500px x 500px)</label>
-                                <div class="upload-btn text-center" id="photo_btn">
-                                    <img src="{{ asset('assets/images/icons/upload.png') }}">
-                                    <span class="ml-1 photo_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
-                                </div>
-                                @if ($errors->has('idol_photo'))
-                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_photo') }}</p>
-                                    </span>
-                                @endif
-                                <input type="file" name="idol_photo" id="photo_img" class="d-none" >
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 img-upload">
-                                <label class="ml-2 upload-banner">Upload Banner (1100px x 200px)</label>
-                                <div class="upload-btn text-center" id="banner_btn">
-                                    <img src="{{ asset('assets/images/icons/upload.png') }}">
-                                    <span class="ml-1 banner_img_label" style="color: #898989">Upload or Drag & Drop your image here</span>
-                                </div>
-                                @if ($errors->has('idol_banner'))
-                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_banner') }}</p>
-                                    </span>
-                                @endif
-                                <input type="file" name="idol_banner" id="banner_img" class="d-none" >
                             </div>
                             <input type="hidden" name="idol_user_id" value="{{ Auth::user()->id }}">
                             <div class="col-12 col-sm-12 col-md-12 text-right mt-4">
@@ -268,6 +273,18 @@
                                     <h5>Upload Video</h5>
                                     <p class="mb-0">Format ( .mp4 , .mkv )</p>
                                 </div>
+                                <div class="text-center" style="position: relative">
+                                    <video class="w-100 d-none" id="video-tag" style="height: 300px;">
+                                        <source src="" id="video_here">
+                                        Your browser does not support HTML5 video.
+                                    </video>
+                                    <div class="play-video text-center d-none">
+                                        <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                                    </div>
+                                    <div class="pause-video text-center d-none">
+                                        <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
+                                    </div>
+                                </div>
                                 @if ($errors->has('request_video'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video') }}</p>
@@ -290,20 +307,8 @@
                         <h4 class="text-white mb-5">Payment <span class="text-main-color">Method</span></h4>
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 stripe">
-                                <div class="mobile-view">
-                                    <img class="mb-3" src="{{ asset('assets/images/stripe.png') }}">
-                                    <h4 class="text-white">Stripe<span>(Direct to Local Bank)</span></h4>
-                                </div>
-                                <ul class="text-white">
-                                    <li>
-                                        <p class="mb-0 text-white">US$3 Per Withdrawal</p>
-                                    </li>
-                                    <li>
-                                        <p class="mb-0 text-white">Stripe may charge additional fees for you to withdraw additional funds. Funds withdrawn will be in your local currency.</p>
-                                    </li>
-                                </ul>
-                                <button type="button" class="btn custom-btn setup_payment_btn">Set Up Payment</button>
-                                <input type="hidden" name="idol_stripe_account_id" id="stripe_account_id" value="">
+                                <div id="paypal-button-container"></div>
+                                <input type="hidden" name="idol_stripe_account_id" id="paypal_account_id" value="">
                                 <input type="hidden" name="request_payment_method" id="setup_payment" value="1">
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
@@ -319,47 +324,39 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="well">
-                            <div class="row-fluid">
-                                <div class="col-sm-12">
-                                    <h4 class="text-white mb-4" style="font-size: 16px">Please input your stripe account id.</h4>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-sm-12">
-                                    <label class="pure-material-textfield-outlined w-100 mb-4">
-                                        <input type="text" id="m_stripe_account_id" placeholder="">
-                                        <span>Account Id</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-sm-12 text-right">
-                                    <button type="button" class="btn custom-btn w-100 save-card" data-dismiss="modal" style="border-radius: 15px!important;font-size: 16px">OK</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AebDV6DljLVnoJwImUC4fxxsppb_7_LFupktKrw37RcUnMyJLdzgytpd6LA6CKdXiVS9ToqMUr62wovp"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+</script>
 
 <script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: 0.1
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        toastr.success('Payment method verified!');
+        $('#paypal_account_id').val(1);
+      });
+    },
+    onError: function (err) {
+        // For example, redirect to a specific error page
+        toastr.error(err);
+    }
+  }).render('#paypal-button-container');
 $(document).ready(function(){
     $('.label.ui.dropdown').dropdown();
 
@@ -371,7 +368,7 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
-        if(!$('#stripe_account_id').val()) {
+        if(!$('#paypal_account_id').val()) {
             toastr.error('You should setup payment method');
         } else {
             $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
@@ -424,7 +421,9 @@ $(document).ready(function(){
                 //     $('.upload-photo').addClass('text-main-color');
                 //     photo_img = false;
                 // } else {
-                    $('.photo_img_label').html($('#photo_img')[0].files[0].name);
+                    // $('.photo_img_label').html($('#photo_img')[0].files[0].name);
+                    $('.img-preview').removeClass('d-none');
+                    $('#profile-img').attr("src", objectUrl);
                     $('.upload-photo').removeClass('text-main-color');
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
@@ -434,42 +433,9 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '#banner_btn', function() {
-        $('#banner_img').click();
-    })
-
-    var banner_img = false;
-    $(document).on('change', '#banner_img', function() {
-        const  fileType = $('#banner_img')[0].files[0].type;
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-        var file, img;
-
-        if (!validImageTypes.includes(fileType)) {
-            toastr.error("You should input valid image file!");
-            $('.upload-banner').addClass('text-main-color');
-            banner_img = false;
-        } else if((file = this.files[0])) {
-            img = new Image();
-            var objectUrl = _URL.createObjectURL(file);
-            img.onload = function () {
-                // if(this.width != 1100 || this.height != 200) {
-                //     toastr.error("Image size should be 1100px * 200px!");
-                //     $('.upload-banner').addClass('text-main-color');
-                //     banner_img = false;
-                // } else {
-                    $('.banner_img_label').html($('#banner_img')[0].files[0].name);
-                    $('.upload-banner').removeClass('text-main-color');
-                    _URL.revokeObjectURL(objectUrl);
-                    banner_img = true;
-                // }
-            };
-            img.src = objectUrl;
-        }
-    });
-
     var word_limit = true;
     $("#idol_bio").on('keyup', function() {
-        var words = 200 - $(this).val().length;
+        var words = 250 - $(this).val().length;
 
         // if ((this.value.match(/\S+/g)) != null) {
         //     words = this.value.match(/\S+/g).length;
@@ -488,21 +454,53 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '.upload-video, .upload-video-btn', function() {
+    $(document).on('click', '.upload-video, #video-tag', function() {
         $('#upload-video').click();
     })
 
+    var video_check = false;
     $(document).on('change', '#upload-video', function() {
         const  fileType = $('#upload-video')[0].files[0].type;
         const validVideoTypes = ['video/mp4', 'video/mkv'];
         var file;
 
         if (!validVideoTypes.includes(fileType)) {
+            $('.upload-video').removeClass('d-none');
+            $('#video-tag').addClass('d-none');
+            $('.play-video, .pause-video').addClass('d-none');
+            video_check = false;
             toastr.error("You should input valid video file!");
         } else if((file = this.files[0])) {
-            $('.upload-video > h5').html($(this)[0].files[0].name);
-            $('.upload-video > p').hide();
+            $('#video-tag').removeClass('d-none');
+            $('.upload-video').addClass('d-none');
+            $(".play-video").removeClass('d-none');
+
+            var $source = $('#video_here');
+            $source[0].src = URL.createObjectURL(this.files[0]);
+            $source.parent()[0].load();
+            video_check = true;
         }
+    });
+
+    $(document).on('ended', '#video-tag', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
+    });
+
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $("#video-tag").get(0);
+
+        if ( video.paused ) {
+            video.play();
+            $(".play-video").addClass('d-none');
+            $(".pause-video").removeClass('d-none');
+        } else {
+            video.pause();
+            $(".play-video").removeClass('d-none');
+            $(".pause-video").addClass('d-none');
+        }
+
+        return false;
     });
 
     $(document).on('click', '#profile_btn', function() {
@@ -517,17 +515,40 @@ $(document).ready(function(){
         if(!is_empty) {
             if(!photo_img) {
                 toastr.error("You should input photo image file correctly!");
-            } else if(!banner_img) {
-                toastr.error("You should input banner image file correctly!");
             } else if(!word_limit) {
-                toastr.error('You can input maximum 200 characters!');
+                toastr.error('You can input maximum 250 characters!');
             } else {
-                $('#profile_information').addClass('d-none');
-                $('#request_video').removeClass('d-none');
-                $('#profile_step').removeClass('active');
-                $('#profile_step').addClass('completed');
-                $('#request_step').addClass('active');
-                $('#step_number').html('2');
+                // var formdata = new FormData();
+                // formdata.append('idol_full_name', $("input[name=idol_full_name]").val());
+                // formdata.append('idol_user_name', $("input[name=idol_user_name]").val());
+                // formdata.append('idol_cat_id', $(".idol_cat_id").val());
+                // formdata.append('idol_email', $("input[name=idol_email]").val());
+                // formdata.append('idol_phone', $("input[name=idol_phone]").val());
+                // formdata.append('idol_head_bio', $("input[name=idol_head_bio]").val());
+                // formdata.append('idol_bio', $("input[name=idol_bio]").val());
+                // formdata.append('idol_photo', $("input[name=idol_photo]").get(0).files[0]);
+                // formdata.append('stage', 25);
+                // formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('update-profile-stage') }}",
+                    method: "POST",
+                    data: { stage: 25 },
+                    success: function(data) {
+                        $('#profile_information').addClass('d-none');
+                        $('#request_video').removeClass('d-none');
+                        $('#profile_step').removeClass('active');
+                        $('#profile_step').addClass('completed');
+                        $('#request_step').addClass('active');
+                        $('#step_number').html('2');
+                    }
+                });
             }
         }
     })
@@ -542,12 +563,24 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#request_btn', function() {
-        $('#request_video').addClass('d-none');
-        $('#video_introduction').removeClass('d-none');
-        $('#request_step').removeClass('active');
-        $('#request_step').addClass('completed');
-        $('#introduction_step').addClass('active');
-        $('#step_number').html('3');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('update-profile-stage') }}",
+            method: "POST",
+            data: { stage: 50 },
+            success: function(data) {
+                $('#request_video').addClass('d-none');
+                $('#video_introduction').removeClass('d-none');
+                $('#request_step').removeClass('active');
+                $('#request_step').addClass('completed');
+                $('#introduction_step').addClass('active');
+                $('#step_number').html('3');
+            }
+        });
     })
 
     $(document).on('click', '#to_request', function() {
@@ -560,15 +593,27 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#introduction_btn', function() {
-        if(!$('#upload-video').val()) {
+        if(!video_check) {
             toastr.error("You should upload video file!");
         } else {
-            $('#video_introduction').addClass('d-none');
-            $('#payment_method').removeClass('d-none');
-            $('#introduction_step').removeClass('active');
-            $('#introduction_step').addClass('completed');
-            $('#payment_step').addClass('active');
-            $('#step_number').html('4');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('update-profile-stage') }}",
+                method: "POST",
+                data: { stage: 75 },
+                success: function(data) {
+                    $('#video_introduction').addClass('d-none');
+                    $('#payment_method').removeClass('d-none');
+                    $('#introduction_step').removeClass('active');
+                    $('#introduction_step').addClass('completed');
+                    $('#payment_step').addClass('active');
+                    $('#step_number').html('4');
+                }
+            });
         }
     })
 
@@ -580,14 +625,13 @@ $(document).ready(function(){
         // $('#payment_step').removeClass('active');
         $('#step_number').html('3');
     })
-
-    $(document).on('click', '.setup_payment_btn', function() {
-        $('#myModal').modal('toggle');
-    });
-
-    $(document).on('change', '#m_stripe_account_id', function() {
-        $('#stripe_account_id').val($(this).val());
-    });
 })
+
+var video = $("#video-tag").get(0);
+
+video.addEventListener("ended", function() {
+    $(".play-video").removeClass('d-none');
+    $(".pause-video").addClass('d-none');
+});
 </script>
 @endsection

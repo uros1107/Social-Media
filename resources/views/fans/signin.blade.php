@@ -24,6 +24,22 @@
 .google-btn a {
     color: #000000;
 }
+.mobile-bg-img {
+    background: url('/assets/images/girl.png') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+.mobile .form-block {
+    height: initial;
+    padding: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+}
 
 @media screen and (max-width: 1024px) {
     .form-block {
@@ -253,87 +269,86 @@
             </div>
         </div>
         <div class="mobile">
-            <div class="row m-0 fans image-block w-100">
-                <div class="form-block">
-                    <div class="title-part">
-                        <h2 class="text-white title">Welcome Back!</h2>
-                        <h4 class="text-grey sub-title">Sign in to continue</h4>
-                    </div>
-                    <div class="register-part">
-                        <form class="custom-form" action="{{ route('login') }}" method="POST">
-                            {{ csrf_field() }}
-                            @if (Session::has('message'))
-                                <span class="help-block pl-3 mb-4 d-block">
-                                    <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
-                                </span>
-                            @endif
-                            @if (Session::has('unsuccess'))
-                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                    <p class="mb-0 text-center" style="color:#d61919">{{ Session::get('unsuccess') }}</p>
-                                </span>
-                            @endif
-                            <div class="row m-0">
-                                <div class="col-12 col-sm-12 col-md-12 p-0">
-                                    <div class="inputWithIcon">
-                                        <label class="input-label">Email</label>
-                                        <input type="text" name="email" placeholder="Email" class="custom-input" required>
-                                        <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 p-0">
-                                    <div class="inputWithIcon">
-                                        <label class="input-label">Password</label>
-                                        <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                        <input type="password" name="password" placeholder="Password" class="custom-input" required>
-                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
-                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
-                                    </div>
-                                </div>
-                                <div class="col-6 p-0">
-                                    <label class="custom-control black-checkbox">
-                                        <input type="checkbox" class="fill-control-input d-none" value="true">
-                                        <span class="fill-control-indicator"></span>
-                                        <span class="fill-control-description text-white">Remember me</span>
-                                    </label>
-                                </div>
-                                <div class="col-6 text-right p-0">
-                                    <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
-                                </div>
-                                <div class="col-12 mt-4 mb-5 p-0 login-part">
-                                    <button class="btn custom-btn w-100">Login</button>
-                                </div>
-                                <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
-                                    <!-- <div class="divider-text">OR</div> -->
-                                </div>
-                                <div class="col-12 p-0 google mb-2">
-                                    <button class="btn custom-btn w-100 google-btn d-flex" type="button">
-                                        <div class="m-auto" style="margin-right: 0px!important">
-                                            <!-- <img src="{{ asset('assets/images/icons/google.png') }}"> -->
-                                            <i class="fa fa-google fa-fw text-white"></i>
-                                        </div>
-                                        <div class="m-auto">
-                                            <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign in with Google</a>
-                                        </div>
-                                    </button>
-                                </div> 
-                                <div class="col-12 p-0 facebook">
-                                    <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
-                                        <div class="m-auto mr-1" style="margin-right: 0px!important">
-                                            <!-- <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;"> -->
-                                            <i class="fa fa-facebook fa-fw" style="color:#20335f;background: white;padding-top: 3px;margin-top: 4px;"></i>
-                                        </div>
-                                        <div class="m-auto">
-                                            <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign in with Facebook</a>
-                                        </div>
-                                    </button>
-                                </div>
-                                <div class="col-12 text-center signup-part">
-                                    <a class="text-white">Don't have an account?</a>
-                                    <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+            <div class="mobile-bg-img"></div>
+            <div class="form-block">
+                <div class="title-part">
+                    <h2 class="text-white title">Welcome Back!</h2>
+                    <h4 class="text-grey sub-title">Sign in to continue</h4>
+                </div>
+                <div class="register-part">
+                    <form class="custom-form" action="{{ route('login') }}" method="POST">
+                        {{ csrf_field() }}
+                        @if (Session::has('message'))
+                            <span class="help-block pl-3 mb-4 d-block">
+                                <p class="mb-0 text-white text-center">{{ Session::get('message') }}</p>
+                            </span>
+                        @endif
+                        @if (Session::has('unsuccess'))
+                            <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
+                                <p class="mb-0 text-center" style="color:#d61919">{{ Session::get('unsuccess') }}</p>
+                            </span>
+                        @endif
+                        <div class="row m-0">
+                            <div class="col-12 col-sm-12 col-md-12 p-0">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Email</label>
+                                    <input type="text" name="email" placeholder="Email" class="custom-input" required>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-12 col-sm-12 col-md-12 p-0">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Password</label>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <label class="custom-control black-checkbox">
+                                    <input type="checkbox" class="fill-control-input d-none" value="true">
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description text-white">Remember me</span>
+                                </label>
+                            </div>
+                            <div class="col-6 text-right p-0">
+                                <a href="{{ route('fans-forgot-password') }}" class="text-white forgot">Forgot password?</a>
+                            </div>
+                            <div class="col-12 mt-4 mb-5 p-0 login-part">
+                                <button class="btn custom-btn w-100">Login</button>
+                            </div>
+                            <div class="divider mb-5" style="width:100%;height:1px;background:#898989;">
+                                <!-- <div class="divider-text">OR</div> -->
+                            </div>
+                            <div class="col-12 p-0 google mb-2">
+                                <button class="btn custom-btn w-100 google-btn d-flex" type="button">
+                                    <div class="m-auto" style="margin-right: 0px!important">
+                                        <!-- <img src="{{ asset('assets/images/icons/google.png') }}"> -->
+                                        <i class="fa fa-google fa-fw text-white"></i>
+                                    </div>
+                                    <div class="m-auto">
+                                        <a class="text-white" href="{{ route('redirect-google').'?role=2' }}">Sign in with Google</a>
+                                    </div>
+                                </button>
+                            </div> 
+                            <div class="col-12 p-0 facebook">
+                                <button class="btn custom-btn w-100 facebook-btn d-flex" type="button">
+                                    <div class="m-auto mr-1" style="margin-right: 0px!important">
+                                        <!-- <img src="{{ asset('assets/images/icons/face.png') }}" style="margin-top: -5px;"> -->
+                                        <i class="fa fa-facebook fa-fw" style="color:#20335f;background: white;padding-top: 3px;margin-top: 4px;"></i>
+                                    </div>
+                                    <div class="m-auto">
+                                        <a class="text-white" href="{{ route('redirect-facebook').'?role=2' }}">Sign in with Facebook</a>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 text-center signup-part">
+                                <a class="text-white">Don't have an account?</a>
+                                <a class="text-main-color" href="{{ route('fans-signup') }}">Sign Up</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

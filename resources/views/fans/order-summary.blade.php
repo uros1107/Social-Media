@@ -7,12 +7,18 @@
 .container-fluid {
     padding: 0px!important;
 }
+.featured .featured-video {
+    padding: 0px 25px;
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
     }
     .footer .container-fluid {
         padding: 0px!important;
+    }
+    .featured .featured-video {
+        padding: 0px;
     }
 }
 </style>
@@ -160,7 +166,7 @@
                         <h4 class="text-white">Transaction Detail</h4>
                     </div>
                 </div>
-                @if($order['order_payment_method'] == 2)
+                <!-- @if($order['order_payment_method'] == 2)
                 <div class="col-12 mb-2">
                     <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
                         <h5 class="text-white">Payment Method</h5>
@@ -181,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+                @endif -->
                 <div class="col-12 how-content transaction">
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">

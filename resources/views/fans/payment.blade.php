@@ -43,7 +43,7 @@
     padding-top: 0px;
 }
 .card, .well {
-    background: #2B2B2B;
+    background: #000;
     padding: 15px;
     margin-bottom: 0px!important;
 }
@@ -87,8 +87,9 @@
         </div>
         <div class="title-part">
             <h2 class="text-white">Payment Info</h2>
+            <div class="divider mb-2"></div>
         </div>
-        <div class="who-is w-100 mb-2 mt-4">
+        <!-- <div class="who-is w-100 mb-2 mt-4">
             <div class="d-flex">
                 <h4 class="text-white w-50">Your card</h4>
                 <div class="w-50 text-right mb-2">
@@ -121,6 +122,17 @@
                     </div>
                 </div>
                 @endif
+            </div>
+        </div> -->
+        <div class="who-is w-100 mb-3">
+            <div class="d-flex payment-method">
+                <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
+                    <div class="first-block active paypal-btn">
+                        <div>
+                            <span class="text-white">Pay with Paypal</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -244,7 +256,7 @@
                     <form action="{{ route('order-summary') }}" method="post" id="order-summary">
                         {{ csrf_field() }}
                         <input type="hidden" name="order_payment_method" id="payment_method" value="">
-                        <input type="hidden" name="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
+                        <input type="hidden" name="order_total_price" id="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
                         <input type="hidden" name="order_price"value="{{ $request_video->request_video_price }}">
                         <input type="hidden" name="order_fee" value="{{ $request_video->request_video_price * 0.05 }}">
                         <div class="submit">
@@ -335,12 +347,74 @@
     </div>
 </div>
 
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form method="POST">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+                                <div class="row-fluid">
+                                    <div class="col-sm-12">
+                                        <h4 class="text-white mt-2 mb-4" style="font-size: 16px">Please pay with Paypal.</h4>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="col-sm-12">
+                                        <div id="paypal-button-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script src="{{ asset('assets/js/card.js') }}"></script>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AebDV6DljLVnoJwImUC4fxxsppb_7_LFupktKrw37RcUnMyJLdzgytpd6LA6CKdXiVS9ToqMUr62wovp"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+</script>
 
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: $('#order_total_price').val()
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        toastr.success('Transaction completed by ' + details.payer.name.given_name);
+        $('#payment_method').val(1);
+        $('#payModal').modal('hide');
+      });
+    },
+    onError: function (err) {
+        // For example, redirect to a specific error page
+        toastr.error(err);
+    }
+  }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>
 <script>
 function stripeResponseHandler(status, response) {
     if (response.error) {
@@ -434,9 +508,13 @@ $(document).ready(function() {
         }
     })
 
+    $(document).on('click', '.paypal-btn', function() {
+        $('#payModal').modal('toggle');
+    });
+
     $(document).on('click', '#book_now', function() {
         if(!$('#payment_method').val()) {
-            toastr.error('Please choose your card!');
+            toastr.error('Please pay with Paypal!');
         } else {
             $('#order-summary').submit();
         }

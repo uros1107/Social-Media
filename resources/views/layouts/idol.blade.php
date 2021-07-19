@@ -107,7 +107,7 @@
         </div>
     </div>
 
-    <div class="app-body mt-0">
+    <div class="app-body mt-0" style="background: #171717;">
         @include('partials.idol-menu')
         <main class="main" style="">
 

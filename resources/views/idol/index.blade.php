@@ -46,7 +46,7 @@
                 <p class="text-white">Status: <span class="font-weight-bold">Pending</span></p>
             </div>
             <div class="circle-percent">
-                <p class="mb-0 text-white">0%</p>
+                <p class="mb-0 text-white">{{ Auth::user()->profile_stage }}%</p>
                 <p class="mb-0 text-white">Done</p>
             </div>
         </div>

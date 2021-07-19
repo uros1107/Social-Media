@@ -203,6 +203,31 @@
                 location.href = "{{ route('fans-search') }}" + '?search=' + $(this).val();
             });
         })
+
+        $('#request_invite').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('send-mail') }}",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data) {
+                    if(data['success']) {
+                        toastr.success("We've sent you an email! Open up your email and click the subscribe button to confirm your email address.")
+                    } else {
+                        toastr.error("We have already subscribed to your email address.")
+                    }
+                },
+                error: function() {
+                    toastr.error('Server error!');
+                }
+            })
+        })
     </script>
     @yield('scripts')
 </body>
