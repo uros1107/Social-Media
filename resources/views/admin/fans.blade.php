@@ -388,16 +388,45 @@ $(document).ready(function() {
         }
     });
 
+    let user_id;
     $(document).on('click', '.credits', function() {
-        var user_id = $(this).data('id');
+        user_id = $(this).data('id');
         var credit = $(this).find('span').text();
-        $(this).html('<input type="text" class="credit_input" value="' + credit + '">');
+        $(this).html('<input type="number" class="credit_input" value="' + credit + '">');
+        $(this).find('input').focus();
         $(this).removeClass('credits');
     });
 
-    $(document).on('blur', '.credit_input', function() {
-        
+    $(document).on('change', '.credit_input', function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('admin-credit-update') }}",
+            type: "POST",
+            data: {
+                user_id: user_id,
+                credit: $(this).val(),
+            },
+            success: function(data) {
+                if(data['success']) {
+                    toastr.success('Successfully updated!');
+                } else {
+                    toastr.error('Server error!');
+                }
+            },
+            error: function() {
+                toastr.error('Server error!');
+            }
+        })
     })
+
+    $(document).on('blur', '.credit_input', function() {
+        $("div[data-id=" + user_id + "]").addClass('credits');
+        $("div[data-id=" + user_id + "]").html("$ <span class='text-main-color'>" + $(this).val() + "</span>");
+    });
 });
 </script>
 @endsection

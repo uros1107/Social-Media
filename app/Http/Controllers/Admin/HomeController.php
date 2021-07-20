@@ -808,6 +808,15 @@ class HomeController
         return view('admin.edit-fans', compact('fans'));
     }
 
+    public function credit_update(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+        $user->credits = $request->credit;
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }   
+
     public function fans_filter(Request $request)
     {
         $from = $request->from;
