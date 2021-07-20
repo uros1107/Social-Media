@@ -78,13 +78,17 @@
                 </div>
             </div>
             <div class="col-12 col-sm-8 col-md-8 right-part">
-                <form action="" id="setup-submit" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="sub-title" id="profile_information">
-                        <h4 class="text-white mb-4">Profile <span class="text-main-color">Information</span></h4>
+                <div class="sub-title" id="profile_information">
+                    <h4 class="text-white mb-4">Profile <span class="text-main-color">Information</span></h4>
+                    <input type="hidden" value="{{ Auth::user()->profile_stage }}" id="profile_stage">
+                    @php
+                        $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
+                    @endphp
+                    @if(Auth::user()->profile_stage == 0)
+                    <form action="" id="setup-submit-1" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 img-upload mb-3">
-                                <!-- <label class="ml-2 upload-photo">Upload Photo Profile (500px x 500px)</label> -->
                                 <div class="d-flex">
                                     <div class="img-preview text-center w-50">
                                         <img src="{{ asset('assets/images/no-image.jpg') }}" id="profile-img" class="mb-2">
@@ -207,13 +211,265 @@
                                 @endif
                             </div>
                             <input type="hidden" name="idol_user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="stage" value="25">
                             <div class="col-12 col-sm-12 col-md-12 text-right mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px" id="profile_btn">Next</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="sub-title d-none" id="request_video">
-                        <h4 class="text-white mb-4">Video Request <span class="text-main-color">Settings</span></h4>
+                    </form>
+                    @else
+                    <form action="" id="setup-submit-1" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 img-upload mb-3">
+                                <div class="d-flex">
+                                    <div class="img-preview text-center w-50">
+                                        <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" id="profile-img" class="mb-2">
+                                    </div>
+                                    <div class="p-3 w-50 my-auto">
+                                        <div class="upload-btn text-center w-100" id="photo_btn">
+                                            <img src="{{ asset('assets/images/icons/upload.png') }}">
+                                            <span class="ml-1 photo_img_label" style="color: #898989">Upload image</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($errors->has('idol_photo'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_photo') }}</p>
+                                    </span>
+                                @endif
+                                <input type="file" name="idol_photo" id="photo_img" class="d-none" >
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name="idol_full_name" value="{{ $idol_info->idol_full_name }}">
+                                    <span>Full Name</span>
+                                </label>
+                                @if ($errors->has('idol_full_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_full_name') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name="idol_user_name" value="{{ $idol_info->idol_user_name }}">
+                                    <span>Username</span>
+                                </label>
+                                @if ($errors->has('idol_user_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_user_name') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;" value="{{ $idol_info->idol_email }}">
+                                    <span>Email</span>
+                                    <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
+                                    <span class="text-white mb-0 verified d-none">Verified!</span>
+                                </label>
+                                @if ($errors->has('idol_email'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_email') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;" value="{{ $idol_info->idol_phone }}">
+                                    <span>Phone Number</span>
+                                    <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
+                                    <span class="text-white mb-0 verified d-none">Verified!</span>
+                                </label>
+                                @if ($errors->has('idol_phone'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_phone') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name='idol_k_name' style="padding-right: 90px;" value="{{ $idol_info->idol_k_name }}">
+                                    <span>Korean Name</span>
+                                </label>
+                                @if ($errors->has('idol_k_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_k_name') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="select mt-1">
+                                    <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
+                                        @foreach(DB::table('categories')->get() as $cat)
+                                        @php
+                                            $array = json_decode($idol_info->idol_cat_id);
+                                            $has_cat = in_array($cat->cat_id, $array);
+                                        @endphp
+                                        <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label class="select-label category-label">Category</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <label class="pure-material-textfield-outlined w-100">
+                                    <input type="text" placeholder="" name='idol_head_bio' style="padding-right: 90px;" value="{{ $idol_info->idol_head_bio }}">
+                                    <span>Headline Bio</span>
+                                </label>
+                                @if ($errors->has('idol_head_bio'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 mt-3">
+                                <label class="pure-material-textfield-outlined w-100 mb-0">
+                                    <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px">{{ $idol_info->idol_bio }}</textarea>
+                                    <span>Bio</span>
+                                </label>
+                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 250 characters!</p>
+                                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>250</span></p>
+                                @if ($errors->has('idol_bio'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0 text-right" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <input type="hidden" name="stage" value="25">
+                            <div class="col-12 col-sm-12 col-md-12 text-right mt-4">
+                                <button type="button" class="btn custom-btn" style="font-size: 14px" id="profile_btn">Next</button>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
+                </div>
+                <div class="sub-title d-none" id="request_video">
+                    <h4 class="text-white mb-4">Video Request <span class="text-main-color">Settings</span></h4>
+                    @if(Auth::user()->profile_stage >= 25)
+                        @php
+                            $video_request = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+                        @endphp
+                        @if(!$video_request)
+                        <form action="" id="setup-submit-2" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <h4 class="text-white sub-title-1">Offered Language Preference(s)</h4>
+                                </div>
+                                <div class="col-12 col-sm-5 col-md-5">
+                                    <p class="sub-description-1">Your fans will be able to choose these language options for their personalized video</p>
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex lang">
+                                    <label class="custom-control black-checkbox mr-4 m-auto">
+                                        <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" checked>
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">English</span>
+                                    </label>
+                                    <label class="custom-control black-checkbox mr-4 m-auto">
+                                        <input type="radio" name="request_lang" value="2" class="fill-control-input d-none">
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">Korean</span>
+                                    </label>
+                                    <label class="custom-control black-checkbox m-auto">
+                                        <input type="radio" name="request_lang" value="3" class="fill-control-input d-none">
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">Mix (English + Korean)</span>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-sm-5 col-md-5 mt-4">
+                                    <h4 class="text-white sub-title-1">Accept Requests?</h4>
+                                    <p class="sub-description-1">Set the price for a personalized video that your fans can ask for</p>
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex mt-4">
+                                    <label class="pure-material-textfield-outlined w-100  m-auto">
+                                        <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="100">
+                                        <span>My Request Price</span>
+                                    </label>
+                                    @if ($errors->has('request_video_price'))
+                                        <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                            <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video_price') }}</p>
+                                        </span>
+                                    @endif
+                                </div>
+                                <!-- <div class="col-12 col-sm-5 col-md-5">
+                                    <h4 class="text-white sub-title-1">On Vacation?</h4>
+                                    <p class="sub-description-1">Set your visibility now. Default is set to allow your fans to request videos on launch. You can switch this off later.</p>
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
+                                    <div class="m-auto">
+                                        <label class="switch">
+                                            <input type="checkbox" name="request_vocation" value="1" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                        <span class="switch-label">Allow fans to request videos</span>
+                                    </div>
+                                </div> -->
+                                <input type="hidden" name="stage" value="50">
+                                <div class="col-6 col-sm-6 col-md-6 mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_profile">Back</button>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px" id="request_btn">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                        @else
+                        <form action="" id="setup-submit-2" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <h4 class="text-white sub-title-1">Offered Language Preference(s)</h4>
+                                </div>
+                                <div class="col-12 col-sm-5 col-md-5">
+                                    <p class="sub-description-1">Your fans will be able to choose these language options for their personalized video</p>
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex lang">
+                                    <label class="custom-control black-checkbox mr-4 m-auto">
+                                        <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" {{ $video_request->request_lang == 1 ? 'checked' : '' }}>
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">English</span>
+                                    </label>
+                                    <label class="custom-control black-checkbox mr-4 m-auto">
+                                        <input type="radio" name="request_lang" value="2" class="fill-control-input d-none" {{ $video_request->request_lang == 2 ? 'checked' : '' }}>
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">Korean</span>
+                                    </label>
+                                    <label class="custom-control black-checkbox m-auto">
+                                        <input type="radio" name="request_lang" value="3" class="fill-control-input d-none" {{ $video_request->request_lang == 3 ? 'checked' : '' }}>
+                                        <span class="fill-control-indicator"></span>
+                                        <span class="fill-control-description text-white">Mix (English + Korean)</span>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-sm-5 col-md-5 mt-4">
+                                    <h4 class="text-white sub-title-1">Accept Requests?</h4>
+                                    <p class="sub-description-1">Set the price for a personalized video that your fans can ask for</p>
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex mt-4">
+                                    <label class="pure-material-textfield-outlined w-100  m-auto">
+                                        <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="{{ $video_request->request_video_price }}">
+                                        <span>My Request Price</span>
+                                    </label>
+                                    @if ($errors->has('request_video_price'))
+                                        <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                            <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video_price') }}</p>
+                                        </span>
+                                    @endif
+                                </div>
+                                <input type="hidden" name="stage" value="50">
+                                <div class="col-6 col-sm-6 col-md-6 mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_profile">Back</button>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px" id="request_btn">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                        @endif
+                    @else
+                    <form action="" id="setup-submit-2" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12">
                                 <h4 class="text-white sub-title-1">Offered Language Preference(s)</h4>
@@ -244,7 +500,7 @@
                             </div>
                             <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex mt-4">
                                 <label class="pure-material-textfield-outlined w-100  m-auto">
-                                    <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="190">
+                                    <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="100">
                                     <span>My Request Price</span>
                                 </label>
                                 @if ($errors->has('request_video_price'))
@@ -266,6 +522,7 @@
                                     <span class="switch-label">Allow fans to request videos</span>
                                 </div>
                             </div> -->
+                            <input type="hidden" name="stage" value="50">
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_profile">Back</button>
                             </div>
@@ -273,9 +530,101 @@
                                 <button type="button" class="btn custom-btn" style="font-size: 14px" id="request_btn">Next</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="sub-title d-none" id="video_introduction">
-                        <h4 class="text-white mb-4">Self-Introduction <span class="text-main-color">Video - Required</span></h4>
+                    </form>
+                    @endif
+                </div>
+                <div class="sub-title d-none" id="video_introduction">
+                    <h4 class="text-white mb-4">Self-Introduction <span class="text-main-color">Video - Required</span></h4>
+                    @if(Auth::user()->profile_stage >= 50)
+                        @php
+                            $video_request = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
+                        @endphp
+                        @if(!$video_request->request_video)
+                        <form action="" id="setup-submit-3" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 mb-3">
+                                    <div class="upload-video w-100 text-center">
+                                        <img class="mb-2" src="{{ asset('assets/images/icons/upload-video.png') }}">
+                                        <h5>Upload Video</h5>
+                                        <p class="mb-0">Format ( .mp4 , .mkv )</p>
+                                    </div>
+                                    <div class="text-center" style="position: relative">
+                                        <video class="w-100 d-none" id="video-tag" style="height: 300px;">
+                                            <source src="" id="video_here">
+                                            Your browser does not support HTML5 video.
+                                        </video>
+                                        <div class="play-video text-center d-none">
+                                            <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                                        </div>
+                                        <div class="pause-video text-center d-none">
+                                            <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('request_video'))
+                                        <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                            <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video') }}</p>
+                                        </span>
+                                    @endif
+                                    <input type="file" name="request_video" id="upload-video" class="d-none">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <p class="text-white text-center" style="font-size: 14px">Kindly take a quick 15-30 second video of yourself introducing your name, what you do, and how you will be reaching out to your fans as part of the MillionK family. The Self-Introduction video will be part of your public profile on the platform and will serve as a verification step for us</p>
+                                </div>
+                                <input type="hidden" name="stage" value="75">
+                                <div class="col-6 col-sm-6 col-md-6 mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px" id="introduction_btn">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                        @else
+                        <form action="" id="setup-submit-3" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 mb-3">
+                                    <div class="upload-video w-100 text-center d-none">
+                                        <img class="mb-2" src="{{ asset('assets/images/icons/upload-video.png') }}">
+                                        <h5>Upload Video</h5>
+                                        <p class="mb-0">Format ( .mp4 , .mkv )</p>
+                                    </div>
+                                    <div class="text-center" style="position: relative">
+                                        <video class="w-100" id="video-tag" style="height: 300px;">
+                                            <source src="{{ asset('assets/videos/'.$video_request->request_video) }}" id="video_here">
+                                            Your browser does not support HTML5 video.
+                                        </video>
+                                        <div class="play-video text-center">
+                                            <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                                        </div>
+                                        <div class="pause-video text-center d-none">
+                                            <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('request_video'))
+                                        <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                            <p class="mb-0" style="font-size: 14px">{{ $errors->first('request_video') }}</p>
+                                        </span>
+                                    @endif
+                                    <input type="file" name="request_video" id="upload-video" class="d-none">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <p class="text-white text-center" style="font-size: 14px">Kindly take a quick 15-30 second video of yourself introducing your name, what you do, and how you will be reaching out to your fans as part of the MillionK family. The Self-Introduction video will be part of your public profile on the platform and will serve as a verification step for us</p>
+                                </div>
+                                <input type="hidden" name="stage" value="75">
+                                <div class="col-6 col-sm-6 col-md-6 mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
+                                    <button type="button" class="btn custom-btn" style="font-size: 14px" id="introduction_btn">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                        @endif
+                    @else
+                    <form action="" id="setup-submit-3" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 mb-3">
                                 <div class="upload-video w-100 text-center">
@@ -305,6 +654,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <p class="text-white text-center" style="font-size: 14px">Kindly take a quick 15-30 second video of yourself introducing your name, what you do, and how you will be reaching out to your fans as part of the MillionK family. The Self-Introduction video will be part of your public profile on the platform and will serve as a verification step for us</p>
                             </div>
+                            <input type="hidden" name="stage" value="75">
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
                             </div>
@@ -312,24 +662,29 @@
                                 <button type="button" class="btn custom-btn" style="font-size: 14px" id="introduction_btn">Next</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="sub-title d-none" id="payment_method">
-                        <h4 class="text-white mb-5">Payment <span class="text-main-color">Method</span></h4>
+                    </form>
+                    @endif
+                </div>
+                <div class="sub-title d-none" id="payment_method">
+                    <h4 class="text-white mb-5">Payment <span class="text-main-color">Method</span></h4>
+                    <form id="setup-submit-4" action="{{ route('update-profile-stage') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 stripe">
                                 <div id="paypal-button-container"></div>
-                                <input type="hidden" name="idol_stripe_account_id" id="paypal_account_id" value="">
+                                <input type="hidden" name="idol_paypal_id" id="paypal_id" value="">
                                 <input type="hidden" name="request_payment_method" id="setup_payment" value="1">
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_introduction">Back</button>
                             </div>
+                            <input type="hidden" name="stage" value="100">
                             <div class="col-6 col-sm-6 col-md-6 text-right mt-4">
-                                <button type="submit" class="btn custom-btn submit-btn" style="font-size: 14px">Submit</button>
+                                <button type="button" class="btn custom-btn submit-btn" style="font-size: 14px">Submit</button>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -359,7 +714,7 @@
       return actions.order.capture().then(function(details) {
         // This function shows a transaction success message to your buyer.
         toastr.success('Payment method verified!');
-        $('#paypal_account_id').val(1);
+        $('#paypal_id').val(1);
       });
     },
     onError: function (err) {
@@ -369,6 +724,7 @@
   }).render('#paypal-button-container');
 $(document).ready(function(){
     $('.label.ui.dropdown').dropdown();
+    $('#profile-img').height($('#profile-img').width() * 1.6);
 
     $(document).on('click', '#photo_btn', function() {
         $('#photo_img').click();
@@ -378,7 +734,7 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
-        if(!$('#paypal_account_id').val()) {
+        if(!$('#paypal_id').val()) {
             toastr.error('You should setup payment method');
         } else {
             $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
@@ -524,13 +880,14 @@ $(document).ready(function(){
             }
         })
         if(!is_empty) {
-            if(!photo_img) {
+            if(!photo_img && !$('#profile_stage').val()) {
                 toastr.error("You should input photo image file correctly!");
             } else if(!word_limit) {
                 toastr.error('You can input maximum 250 characters!');
             } else if($('.ui.fluid.dropdown').children('a').length > 5 || !$('.ui.fluid.dropdown').children('a').length) {
                 toastr.error('You can select maximum 5 categories!');
             } else {
+                var form = new FormData($("#setup-submit-1")[0]);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -540,7 +897,9 @@ $(document).ready(function(){
                 $.ajax({
                     url: "{{ route('update-profile-stage') }}",
                     method: "POST",
-                    data: { stage: 25 },
+                    data: form,
+                    processData: false,
+                    contentType: false,
                     success: function(data) {
                         $('#profile_information').addClass('d-none');
                         $('#request_video').removeClass('d-none');
@@ -564,15 +923,19 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#request_btn', function() {
+        var form = new FormData($("#setup-submit-2")[0]);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $.ajax({
             url: "{{ route('update-profile-stage') }}",
             method: "POST",
-            data: { stage: 50 },
+            data: form,
+            processData: false,
+            contentType: false,
             success: function(data) {
                 $('#request_video').addClass('d-none');
                 $('#video_introduction').removeClass('d-none');
@@ -594,18 +957,22 @@ $(document).ready(function(){
     })
 
     $(document).on('click', '#introduction_btn', function() {
-        if(!video_check) {
+        if(!video_check && $('#profile_stage').val() != 75) {
             toastr.error("You should upload video file!");
         } else {
+            var form = new FormData($("#setup-submit-3")[0]);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
                 url: "{{ route('update-profile-stage') }}",
                 method: "POST",
-                data: { stage: 75 },
+                data: form,
+                processData: false,
+                contentType: false,
                 success: function(data) {
                     $('#video_introduction').addClass('d-none');
                     $('#payment_method').removeClass('d-none');
@@ -625,7 +992,43 @@ $(document).ready(function(){
         // $('#introduction_step').removeClass('completed');
         // $('#payment_step').removeClass('active');
         $('#step_number').html('3');
-    })
+    });
+
+    $(document).on('click', '.submit-btn', function() {
+        if(!$('#paypal_id').val()) {
+            toastr.error('You should setup payment method');
+        } else {
+            $('.submit-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
+            $('.submit-btn').prop('disabled', true);
+
+            var form = new FormData($("#setup-submit-4")[0]);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{ route('update-profile-stage') }}",
+                method: "POST",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if(res.success) {
+                        location.href = "{{ route('idol-payment-completed') }}";
+                    } else {
+                        toastr.error('Server error! Please try again later!');
+                    }
+                },
+                error: function (error) {
+                    toastr.error('Upload size was exceeds!');
+                    $('.submit-btn').html("Submit");
+                    $('.submit-btn').prop('disabled', false);
+                }
+            });
+        }
+    });
 })
 
 var video = $("#video-tag").get(0);

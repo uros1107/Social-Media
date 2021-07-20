@@ -114,7 +114,7 @@ ul {
                 <div id="paypal-button-container" class="w-100"></div>
                 <form id="setup_payment" action="{{ route('idol-setup-payment') }}" method="POST" class="d-none">
                     {{ csrf_field() }}
-                    <input type="hidden" name="idol_stripe_account_id" id="idol_stripe_account_id">
+                    <input type="hidden" name="idol_paypal_id" id="idol_paypal_id">
                     <div class="my-auto set-up">
                         <button type="submit" class="btn custom-btn set-up-btn my-auto setup-payment">Set Up Payment</button>
                     </div>
@@ -185,7 +185,7 @@ paypal.Buttons({
       return actions.order.capture().then(function(details) {
         // This function shows a transaction success message to your buyer.
         toastr.success('Payment method verified!');
-        $('#idol_stripe_account_id').val(1);
+        $('#idol_paypal_id').val(1);
         $('#setup_payment').removeClass('d-none');
       });
     },

@@ -169,34 +169,100 @@ class IdolController extends Controller
     {
         $stage = $request->stage;
         $user = User::where('id', Auth::user()->id)->first();
-        $user->profile_stage = $stage;
-        $user->save();
 
-        // if($stage == 25) {
-        //     $idol_info = IdolInfo::where('idol_user_id', $user->id)->first();
-        //     if(!$idol_info) {
-        //         $idol_info = $request->all();
-        //         $idol_info['idol_user_id'] = Auth::user()->id;
+        if($stage == 25) {
+            $idol_info = IdolInfo::where('idol_user_id', $user->id)->first();
+            if(!$idol_info) {
+                $user->profile_stage = $stage;
+                $user->save();
 
-        //         $photo_img_name = $request->idol_photo->getClientOriginalName();
-        //         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
-        //         $idol_info['idol_photo'] = $photo_img_name;
+                $idol_info = $request->all();
 
-        //         $idol_info = IdolInfo::create($idol_info);
-        //     } else {
-        //         $idol_info = $request->all();
+                $idol_cat_ids = $request->idol_cat_id;
+                for ($i=0; $i < count($idol_cat_ids); $i++) { 
+                    $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
+                }
+                $idol_cat_ids = json_encode($idol_cat_ids);
+                $idol_info['idol_cat_id'] = $idol_cat_ids;
 
-        //         $photo_img_name = $request->idol_photo->getClientOriginalName();
-        //         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
-        //         $idol_info['idol_photo'] = $photo_img_name;
+                $photo_img_name = $request->idol_photo->getClientOriginalName();
+                $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+                $idol_info['idol_photo'] = $photo_img_name;
 
-        //         $idol_info = IdolInfo::where('idol_user_id', $user->id)->update($idol_info);
-        //     }
-        // } elseif ($stage == 50) {
+                $idol_info = IdolInfo::create($idol_info);
+            } else {
+                $idol_info = $request->all();
+
+                $idol_cat_ids = $request->idol_cat_id;
+                for ($i=0; $i < count($idol_cat_ids); $i++) { 
+                    $idol_cat_ids[$i] = intval($idol_cat_ids[$i]);
+                }
+                $idol_cat_ids = json_encode($idol_cat_ids);
+                $idol_info['idol_cat_id'] = $idol_cat_ids;
+
+                if($request->idol_photo) {
+                    $photo_img_name = $request->idol_photo->getClientOriginalName();
+                    $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
+                    $idol_info['idol_photo'] = $photo_img_name;
+                } else {
+                    unset($idol_info['idol_photo']);
+                }
+                unset($idol_info['_token']);
+                unset($idol_info['stage']);
+
+                $idol_info = IdolInfo::where('idol_user_id', $user->id)->update($idol_info);
+            }
+        } elseif ($stage == 50) {
+            $video_request = $request->all();
+            $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+            $video = VideoRequest::where('request_idol_id', $idol_info->idol_id)->first();
             
-        // } elseif ($stage == 75) {
+            if(!$video) {
+                $user->profile_stage = $stage;
+                $user->save();
+
+                $video_request['request_idol_id'] = $idol_info->idol_id;
+                
+                $video_request = VideoRequest::create($video_request);
+            } else {
+                unset($video_request['stage'], $video_request['_token']);
+
+                VideoRequest::where('request_idol_id', $idol_info->idol_id)->update($video_request);
+            }
+        } elseif ($stage == 75) {
+            $video_request = $request->all();
+            $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+            $video = VideoRequest::where('request_idol_id', $idol_info->idol_id)->first();
+
+            if($request->request_video) {
+                $video_name = $request->request_video->getClientOriginalName();
+                $request->request_video->move(public_path('assets/videos'), $video_name);
+                $video_request['request_video'] = $video_name;
+            } else {
+                unset($video_request['request_video']);
+            }
+
+            if(!$video->request_video) {
+                $user->profile_stage = $stage;
+                $user->save();
+            }
+            unset($video_request['stage'], $video_request['_token']);
+            VideoRequest::where('request_idol_id', $idol_info->idol_id)->update($video_request);
+        } elseif ($stage == 100) {
+            $user->is_setup = 1;
+            $user->profile_stage = $stage;
+            $user->save();
+
+            $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+            $idol_info->idol_paypal_id = $request->idol_paypal_id;
+            $idol_info->save();
+
+            $video_request = $request->all();
+            unset($video_request['stage'], $video_request['_token'], $video_request['idol_paypal_id']);
             
-        // }
+            $idol_info = IdolInfo::where('idol_user_id', Auth::user()->id)->first();
+            VideoRequest::where('request_idol_id', $idol_info->idol_id)->update($video_request);
+        }
 
         return response()->json(['success' => true]);
     }
