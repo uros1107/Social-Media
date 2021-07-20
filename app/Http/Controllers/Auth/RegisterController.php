@@ -68,31 +68,18 @@ class RegisterController extends Controller
     protected function idol_register(Request $request)
     {
         $request->validate([
+            'name' => 'required|string',
+            'k_name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|confirmed',
-            'phone' => 'required|string|unique:users',
-            'followers' => 'required|numeric',
-            'cat_id' => 'required',
-            'info' => 'required|string',
         ]);
-
-        $cat_ids = $request->cat_id;
-        for ($i=0; $i < count($cat_ids); $i++) { 
-            $cat_ids[$i] = intval($cat_ids[$i]);
-        }
-        $cat_ids = json_encode($cat_ids);
 
         User::create([
             'name' => $request->name,
-            'user_name' => $request->handle_name,
+            'k_name' => $request->k_name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'where_find' => $request->where_find,
-            'handle_name' => $request->handle_name,
-            'followers' => $request->followers,
-            'info' => $request->info,
-            'cat_id' => $cat_ids,
             'role' => 1
         ]);
 

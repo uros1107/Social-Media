@@ -1039,6 +1039,20 @@ div.dataTables_wrapper div.dataTables_filter label {
     font-size: 15px;
     color: #898989;
 }
+.play-video, .pause-video {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+.play-video img, .pause-video img {
+    margin-top: 10px;
+    margin-left: 3px;
+}
 .save-change-btn,
 .save-change-btn:hover,
 .save-change-btn:focus {

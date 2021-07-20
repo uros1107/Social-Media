@@ -5,20 +5,12 @@
 @section('styles')
 <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
 <style>
-.banner-title {
-    font-size: 12px;
-    color: #898989;
-    padding-left: 10px;
-}
-.banner-upload {
-    justify-content: center;
-    padding: 15px;
+.main .container-fluid {
     background: #e5e5e5;
-    border-radius: 15px;
 }
 #profile-img {
     width: 190px!important;
-    height: 190px!important;
+    /* height: 190px!important; */
     object-fit: cover;
 }
 .input-icon {
@@ -43,6 +35,14 @@
     font-size: 12px;
     top: -7px;
 }
+@media (max-width: 574px) {
+    .main .container-fluid {
+        padding: 20px 0px!important;
+    }
+    .upload-video > img {
+        margin-right: 0px!important;
+    }
+}
 </style>
 @endsection
 
@@ -55,8 +55,8 @@
 </div>
 <div class="row m-0 mt-4">
     <div class="col-12 col-sm-3 col-md-3 mt-2 mb-3">
-        <div class="upload-image">
-            <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle" id="profile-img">
+        <div class="upload-image pt-5">
+            <img src="{{ asset('assets/images/no-image.jpg') }}" class="w-100" id="profile-img">
             <div class="upload-btn mt-3">Upload Photo Image</div>
         </div>
     </div>
@@ -134,7 +134,18 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12">
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="text" name="idol_k_name" placeholder="" value="">
+                            <span>Korean Name</span>
+                        </label>
+                        @if ($errors->has('idol_k_name'))
+                            <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_k_name') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
                         <div class="select mt-1">
                             <!-- <select class="select-text" name="idol_cat_id" required>
                                 @foreach(DB::table('categories')->get() as $cat)
@@ -149,20 +160,20 @@
                             <label class="select-label category-label">Category</label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 col-sm-12 mt-3">
+                    <div class="col-12 col-md-12 col-sm-12 mt-2">
                         <label class="pure-material-textfield-outlined w-100 mb-0">
                             <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required></textarea>
                             <span>Bio</span>
                         </label>
-                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
-                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
+                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 250 characters!</p>
+                        <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>250</span></p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_bio') }}</p>
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
+                    <div class="col-12 col-md-6 col-sm-6 mt-2">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" placeholder="" value="" name="request_video_price" class="text-main-color font-weight-bold" required>
                             <span>My Request Price</span>
@@ -173,33 +184,37 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
-                        <div class="m-auto">
+                    <div class="col-12 col-md-6 col-sm-6" style="margin-bottom: 10px;">
+                        <div class="m-auto d-flex">
                             <label class="switch my-auto">
                                 <input type="checkbox" name="request_vocation" value="1" checked>
                                 <span class="slider"></span>
                             </label>
-                            <span class="switch-label my-auto">Allow fans to request videos</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12 col-sm-12 mb-3">
-                        <div>
-                            <p class="banner-title mb-2">Upload Banner</p>
-                            <div class="banner-upload d-flex text-center">
-                                <img class="mr-2" src="{{ asset('assets/images/icons/upload.png') }}" style="width:20px;height:20px">
-                                <span class="banner_img_label">Upload or Drag & Drop your image here</span>
+                            <div class="my-auto" style="padding-top: 26px;">
+                                <span class="switch-label">Allow fans to request videos</span>
                             </div>
                         </div>
-                        <input type="file" class="d-none" name="idol_banner" id="idol_banner">
                     </div>
-                    <div class="col-12 col-md-12 col-sm-12">
-                        <h4 class="upload-video-title">Upload first video (if have)</h4>
+                    <div class="col-12 col-md-12 col-sm-12 mt-3">
+                        <h4 class="upload-video-title">Self Introduction Video (Required)</h4>
                         <div class="upload-video text-center d-flex">
                             <img class="my-auto mr-4" src="{{ asset('assets/images/icons/upload-video.png') }}">
                             <div class="upload-video-text">
                                 <h4>Upload video</h4>
                                 <p class="mb-0">Drag & Drop your files here</p>
                                 <p class="mb-0">Format ( .mp4 , .mkv )</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="position: relative">
+                            <video class="w-100 d-none" id="video-tag" style="height: 300px;">
+                                <source src="" id="video_here">
+                                Your browser does not support HTML5 video.
+                            </video>
+                            <div class="play-video text-center d-none">
+                                <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                            </div>
+                            <div class="pause-video text-center d-none">
+                                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
                             </div>
                         </div>
                         <input type="file" class="d-none" name="request_video" id="upload-video">
@@ -255,6 +270,7 @@ $(document).ready(function() {
                 //     photo_img = false;
                 // } else {
                     $('#profile-img').attr("src", objectUrl);
+                    $('#profile-img').height($('#profile-img').width() * 1.6);
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
                 // }
@@ -263,37 +279,7 @@ $(document).ready(function() {
         }
     });
 
-    var banner_img = false;
-    $(document).on('click', '.banner-upload', function() {
-        $('#idol_banner').click();
-    });
-
-    $(document).on('change', '#idol_banner', function() {
-        const  fileType = $(this)[0].files[0].type;
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-        var file, img;
-
-        if (!validImageTypes.includes(fileType)) {
-            toastr.error("You should input valid image file!");
-            banner_img = false;
-        } else if((file = this.files[0])) {
-            img = new Image();
-            var objectUrl = _URL.createObjectURL(file);
-            img.onload = function () {
-                // if(this.width != 1100 || this.height != 200) {
-                //     toastr.error("Image size should be 1100px * 200px!");
-                //     banner_img = false;
-                // } else {
-                    $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
-                    banner_img = true;
-                    _URL.revokeObjectURL(objectUrl);
-                // }
-            };
-            img.src = objectUrl;
-        }
-    });
-
-    $(document).on('click', '.upload-video', function() {
+    $(document).on('click', '.upload-video, #video-tag', function() {
         $('#upload-video').click();
     })
 
@@ -305,16 +291,50 @@ $(document).ready(function() {
 
         if (!validVideoTypes.includes(fileType)) {
             toastr.error("You should input valid video file!");
+            $('#video-tag').addClass('d-none');
+            $('.upload-video').addClass('d-flex');
+            $('.upload-video').removeClass('d-none');
+            $(".play-video").addClass('d-none');
             upload_video = false;
         } else if((file = this.files[0])) {
-            $('.upload-video-text > h4').html($(this)[0].files[0].name);
+            $('#video-tag').removeClass('d-none');
+            $('.upload-video').removeClass('d-flex');
+            $('.upload-video').addClass('d-none');
+            $(".play-video").removeClass('d-none');
+
+            var $source = $('#video_here');
+            $source[0].src = URL.createObjectURL(this.files[0]);
+            $source.parent()[0].load();
+
+            // $('.upload-video-text > h4').html($(this)[0].files[0].name);
             upload_video = true;
         }
     });
 
+    $(document).on('ended', '#video-tag', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
+    });
+
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $("#video-tag").get(0);
+
+        if ( video.paused ) {
+            video.play();
+            $(".play-video").addClass('d-none');
+            $(".pause-video").removeClass('d-none');
+        } else {
+            video.pause();
+            $(".play-video").removeClass('d-none');
+            $(".pause-video").addClass('d-none');
+        }
+
+        return false;
+    });
+
     var word_limit = true;
     $("#idol_bio").on('keyup', function() {
-        var words = 200 - $(this).val().length;
+        var words = 250 - $(this).val().length;
 
         // if ((this.value.match(/\S+/g)) != null) {
         //     words = this.value.match(/\S+/g).length;
@@ -334,12 +354,12 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.save-change-btn', function(e) {
-        if(!photo_img || !upload_video || !banner_img || !$('.ui.fluid.dropdown').children('a').length) {
+        if(!photo_img || !upload_video || !$('.ui.fluid.dropdown').children('a').length) {
             toastr.error('You should input all fields correctly!');
         } else if($('.ui.fluid.dropdown').children('a').length > 5) {
             toastr.error('You can select maximum 5 categories!');
         } else if(!word_limit) {
-            toastr.error('You can input maximum 200 characters!');
+            toastr.error('You can input maximum 250 characters!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);

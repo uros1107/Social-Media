@@ -17,6 +17,10 @@
 .close {
     margin-top: -22px;
 }
+#profile-img {
+    width: 190px;
+    object-fit: cover;
+}
 .ui.fluid.dropdown {
     padding: 11px;
     border-radius: 10px;
@@ -83,7 +87,7 @@
                                 <!-- <label class="ml-2 upload-photo">Upload Photo Profile (500px x 500px)</label> -->
                                 <div class="d-flex">
                                     <div class="img-preview text-center w-50">
-                                        <img src="{{ asset('assets/images/no-image.jpg') }}" id="profile-img" class="mb-2 w-100">
+                                        <img src="{{ asset('assets/images/no-image.jpg') }}" id="profile-img" class="mb-2">
                                     </div>
                                     <div class="p-3 w-50 my-auto">
                                         <div class="upload-btn text-center w-100" id="photo_btn">
@@ -161,6 +165,7 @@
                             <div class="col-12 col-sm-6 col-md-6">
                                 <div class="select mt-1">
                                     <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
+                                    @if(Auth::user()->cat_id)
                                         @foreach(DB::table('categories')->get() as $cat)
                                         @php
                                             $array = json_decode(Auth::user()->cat_id);
@@ -168,6 +173,11 @@
                                         @endphp
                                         <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
                                         @endforeach
+                                    @else
+                                        @foreach(DB::table('categories')->get() as $cat)
+                                        <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
+                                        @endforeach
+                                    @endif
                                     </select>
                                     <label class="select-label category-label">Category</label>
                                 </div>
@@ -203,7 +213,7 @@
                         </div>
                     </div>
                     <div class="sub-title d-none" id="request_video">
-                        <h4 class="text-white mb-4">Request <span class="text-main-color">Video</span></h4>
+                        <h4 class="text-white mb-4">Video Request <span class="text-main-color">Settings</span></h4>
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12">
                                 <h4 class="text-white sub-title-1">Offered Language Preference(s)</h4>
@@ -228,11 +238,11 @@
                                     <span class="fill-control-description text-white">Mix (English + Korean)</span>
                                 </label>
                             </div>
-                            <div class="col-12 col-sm-5 col-md-5">
+                            <div class="col-12 col-sm-5 col-md-5 mt-4">
                                 <h4 class="text-white sub-title-1">Accept Requests?</h4>
                                 <p class="sub-description-1">Set the price for a personalized video that your fans can ask for</p>
                             </div>
-                            <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex">
+                            <div class="col-12 col-sm-7 col-md-7 pl-0 d-flex mt-4">
                                 <label class="pure-material-textfield-outlined w-100  m-auto">
                                     <input type="text" placeholder="" name="request_video_price" class="text-main-color" value="190">
                                     <span>My Request Price</span>
@@ -243,7 +253,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="col-12 col-sm-5 col-md-5">
+                            <!-- <div class="col-12 col-sm-5 col-md-5">
                                 <h4 class="text-white sub-title-1">On Vacation?</h4>
                                 <p class="sub-description-1">Set your visibility now. Default is set to allow your fans to request videos on launch. You can switch this off later.</p>
                             </div>
@@ -255,7 +265,7 @@
                                     </label>
                                     <span class="switch-label">Allow fans to request videos</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_profile">Back</button>
                             </div>
@@ -265,7 +275,7 @@
                         </div>
                     </div>
                     <div class="sub-title d-none" id="video_introduction">
-                        <h4 class="text-white mb-4">Video <span class="text-main-color">Introduction</span></h4>
+                        <h4 class="text-white mb-4">Self-Introduction <span class="text-main-color">Video - Required</span></h4>
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 mb-3">
                                 <div class="upload-video w-100 text-center">
@@ -292,9 +302,9 @@
                                 @endif
                                 <input type="file" name="request_video" id="upload-video" class="d-none">
                             </div>
-                            <!-- <div class="col-12 col-sm-12 col-md-12">
-                                <button type="button" class="btn custom-btn w-100 upload-video-btn">Upload</button>
-                            </div> -->
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <p class="text-white text-center" style="font-size: 14px">Kindly take a quick 15-30 second video of yourself introducing your name, what you do, and how you will be reaching out to your fans as part of the MillionK family. The Self-Introduction video will be part of your public profile on the platform and will serve as a verification step for us</p>
+                            </div>
                             <div class="col-6 col-sm-6 col-md-6 mt-4">
                                 <button type="button" class="btn custom-btn" style="font-size: 14px;background:#2b2b2b" id="to_request">Back</button>
                             </div>
@@ -424,6 +434,7 @@ $(document).ready(function(){
                     // $('.photo_img_label').html($('#photo_img')[0].files[0].name);
                     $('.img-preview').removeClass('d-none');
                     $('#profile-img').attr("src", objectUrl);
+                    $('#profile-img').height($('#profile-img').width() * 1.6);
                     $('.upload-photo').removeClass('text-main-color');
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
@@ -517,19 +528,9 @@ $(document).ready(function(){
                 toastr.error("You should input photo image file correctly!");
             } else if(!word_limit) {
                 toastr.error('You can input maximum 250 characters!');
+            } else if($('.ui.fluid.dropdown').children('a').length > 5 || !$('.ui.fluid.dropdown').children('a').length) {
+                toastr.error('You can select maximum 5 categories!');
             } else {
-                // var formdata = new FormData();
-                // formdata.append('idol_full_name', $("input[name=idol_full_name]").val());
-                // formdata.append('idol_user_name', $("input[name=idol_user_name]").val());
-                // formdata.append('idol_cat_id', $(".idol_cat_id").val());
-                // formdata.append('idol_email', $("input[name=idol_email]").val());
-                // formdata.append('idol_phone', $("input[name=idol_phone]").val());
-                // formdata.append('idol_head_bio', $("input[name=idol_head_bio]").val());
-                // formdata.append('idol_bio', $("input[name=idol_bio]").val());
-                // formdata.append('idol_photo', $("input[name=idol_photo]").get(0).files[0]);
-                // formdata.append('stage', 25);
-                // formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
-
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

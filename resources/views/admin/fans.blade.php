@@ -386,6 +386,17 @@ $(document).ready(function() {
         } else {
             toastr.error('You should select at least 1 fan!');
         }
+    });
+
+    $(document).on('click', '.credits', function() {
+        var user_id = $(this).data('id');
+        var credit = $(this).find('span').text();
+        $(this).html('<input type="text" class="credit_input" value="' + credit + '">');
+        $(this).removeClass('credits');
+    });
+
+    $(document).on('blur', '.credit_input', function() {
+        
     })
 });
 </script>

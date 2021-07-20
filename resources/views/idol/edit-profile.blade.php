@@ -69,7 +69,7 @@
     @endif
     <div class="col-12 col-sm-3 col-md-3 bg-img-part">
         <div class="text-center block left desktop">
-            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" id="profile-img" class="img-circle mb-3 mt-5">
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" id="profile-img" class="mb-3 mt-5">
             <div>
                 <button class="btn custom-btn mb-3 change-photo-btn">Change Photo Profile</button>
             </div>
@@ -511,6 +511,7 @@ function format(s) {
 }
 $(document).ready(function() {
     $('.label.ui.dropdown').dropdown();
+    $('#profile-img').height($('#profile-img').width() * 1.6);
 
     $(".video-item").each(function() {
         var id = $(this).data('id');
@@ -573,6 +574,7 @@ $(document).ready(function() {
                 //     photo_img = false;
                 // } else {
                     $('#profile-img').attr("src", objectUrl);
+                    $('#profile-img').height($('#profile-img').width() * 1.6);
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
                 // }

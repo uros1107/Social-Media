@@ -124,6 +124,9 @@ select {
 .input-icon {
     top: 31px;
 }
+.help-block {
+    margin-top: -10px;
+}
 
 @media screen and (max-width:768px) {
     .footer-subscribe {
@@ -339,16 +342,22 @@ select {
                                 <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                             </div>
+                            @if ($errors->has('name'))
+                                <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('name') }}</p>
+                                </span>
+                            @endif
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
-                                <label class="input-label">Phone Number(Never Shared)</label>
-                                <input type="text" name="phone" placeholder="Phone number" class="custom-input">
-                                <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
+                                <label class="input-label">Korean Name</label>
+                                <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
+                                <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
+                                <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                             </div>
-                            @if ($errors->has('phone'))
+                            @if ($errors->has('k_name'))
                                 <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                    <p class="mb-0">{{ $errors->first('phone') }}</p>
+                                    <p class="mb-0">The korean name is required.</p>
                                 </span>
                             @endif
                         </div>
@@ -366,64 +375,34 @@ select {
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
+                                <label class="input-label">Phone Number(Never Shared)</label>
+                                <input type="text" name="phone" placeholder="Phone number" class="custom-input">
+                                <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
+                            </div>
+                            @if ($errors->has('phone'))
+                                <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('phone') }}</p>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="inputWithIcon">
                                 <label class="input-label">Password</label>
                                 <input type="password" name="password" placeholder="Password" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="inputWithIcon">
-                                <label class="input-label">Where can we find you?</label>
-                                <input type="text" name="where_find" placeholder="Twitter" class="custom-input" required>
-                                <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="form-group mb-0 mt-2">
-                                <label class="text-white" style="margin-left: 16px">Category</label>
-                                <!-- <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
-                                    @foreach(DB::table('categories')->get() as $cat)
-                                    <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
-                                    @endforeach
-                                </select> -->
-                                <select multiple="" name="cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
-                                    @foreach(DB::table('categories')->get() as $cat)
-                                    <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="inputWithIcon">
-                                <label class="input-label">Your handle/Username</label>
-                                <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
-                                <img style="top:35px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="inputWithIcon">
-                                <label class="input-label">How many followers do you have?</label>
-                                <input type="text" name="followers" placeholder="20" class="custom-input" required>
-                                <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
-                            </div>
-                            @if ($errors->has('followers'))
-                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                    <p class="mb-0">{{ $errors->first('followers') }}</p>
+                            @if ($errors->has('password'))
+                                <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                    <p class="mb-0">{{ $errors->first('password') }}</p>
                                 </span>
                             @endif
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
-                                <label class="input-label">Anything else we should know about you?</label>
-                                <textarea class="custom-textarea" name="info" id="info" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
+                                <label class="input-label">Confirm Password</label>
+                                <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                             </div>
-                            <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
-                            <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
-                            @if ($errors->has('info'))
-                                <span class="help-block pl-3 mb-4 d-block" style="color:#d61919">
-                                    <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
-                                </span>
-                            @endif
                         </div>
                         <div class="col-12 mt-3">
                             <button class="btn custom-btn w-100 register-btn" type="button">Submit</button>

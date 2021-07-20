@@ -39,6 +39,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/order-detail', 'Admin\HomeController@order_detail')->name('admin-order-detail');
         Route::get('/order-status-list', 'Admin\HomeController@order_status_list')->name('admin-order-status-list');
         Route::get('/status-orders', 'Admin\HomeController@status_orders')->name('admin-status-orders');
+        Route::post('/order-status-update', 'Admin\HomeController@order_status_update')->name('admin-order-status-update');
         Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
         Route::get('/idols-list', 'Admin\HomeController@idol_list')->name('admin-idol-list');
         Route::get('/idol-edit/{idolname}', 'Admin\HomeController@idol_edit')->name('admin-idol-edit');

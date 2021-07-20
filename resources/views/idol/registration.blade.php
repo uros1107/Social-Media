@@ -64,7 +64,7 @@
                 <div class="register-part">
                     <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
                         {{ csrf_field() }}
-                        <div class="stepwizard col-md-offset-3 mb-3">
+                        <!-- <div class="stepwizard col-md-offset-3 mb-3">
                             <div class="stepwizard-row setup-panel">
                                 <div class="stepwizard-step">
                                     <a href="#step-1" class="btn btn-circle mr-1 step-1-circle">1</a>
@@ -78,7 +78,7 @@
                                     <span class="text-grey step-2-text">Your Identify</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row m-0 step-1">
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
@@ -86,6 +86,23 @@
                                     <input type="text" name="name" placeholder="Your name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
+                                @if ($errors->has('name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('name') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Korean Name</label>
+                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
+                                </div>
+                                @if ($errors->has('k_name'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('k_name') }}</p>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
@@ -96,6 +113,18 @@
                                 @if ($errors->has('email'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0">{{ $errors->first('email') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Phone Number(Never Shared)</label>
+                                    <input type="text" name="phone" placeholder="Phone number" class="custom-input">
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
+                                </div>
+                                @if ($errors->has('phone'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('phone') }}</p>
                                     </span>
                                 @endif
                             </div>
@@ -118,99 +147,17 @@
                                     <label class="input-label">Confirm Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                     <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
-                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
-                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
-                                    <label class="input-label">Phone Number(Never Shared)</label>
-                                    <input type="text" name="phone" placeholder="Phone number" class="custom-input">
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
-                                </div>
-                                @if ($errors->has('phone'))
-                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
-                                        <p class="mb-0">{{ $errors->first('phone') }}</p>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="col-12 mt-4 mb-4">
-                                <button class="btn custom-btn w-100" type="button" id="next">Next</button>
+                            <div class="col-12 mt-3">
+                                <button class="btn custom-btn w-100 submit" type="submit">Submit</button>
                             </div>
                             <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: You are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
                             <div class="col-12 text-center signup-part mt-4 mb-3">
                                 <a class="text-white">Have an account?</a>
                                 <a class="text-main-color" href="{{ route('idol-signin') }}">Log In</a>
-                            </div>
-                        </div>
-
-                        <div class="row m-0 step-2 d-none">
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
-                                    <label class="input-label">Where can we find you?</label>
-                                    <input type="text" name="where_find" placeholder="Twitter" class="custom-input" required>
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/twitter.png') }}">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
-                                    <label class="input-label">Social Media handle/Username</label>
-                                    <input type="text" placeholder="User name" class="custom-input" required>
-                                    <img style="top:34px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
-                                    <label class="input-label">Your handle/Username</label>
-                                    <input type="text" name="handle_name" placeholder="User name" class="custom-input" required>
-                                    <img style="top:34px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon">
-                                    <label class="input-label">How many followers do you have?</label>
-                                    <input type="text" name="followers" placeholder="20" class="custom-input" required>
-                                    <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="text-white" style="margin-left: 16px">Category</label>
-                                    <!-- <select class="form-control" name="cat_id" style="height: 50px;border-radius: 15px">
-                                        @foreach(DB::table('categories')->get() as $cat)
-                                        <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
-                                        @endforeach
-                                    </select> -->
-                                    <select multiple="" name="cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
-                                        @foreach(DB::table('categories')->get() as $cat)
-                                        <option value="{{ $cat->cat_id }}">{{ $cat->cat_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @if ($errors->has('cat_id'))
-                                    <span class="help-block pl-3 d-block" style="color:#d61919;margin-top: -15px">
-                                        <p class="mb-0 mt-1">{{ $errors->first('cat_id') }}</p>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div class="inputWithIcon mb-0">
-                                    <label class="input-label">Anything else we should know about you?</label>
-                                    <textarea class="custom-textarea mb-0" name="info" id="info" placeholder="Let us know about you..." required></textarea>
-                                </div>
-                                <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
-                                <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>
-                                @if ($errors->has('info'))
-                                    <span class="help-block pl-3 d-block" style="color:#d61919;margin-top: -15px">
-                                        <p class="mb-0 text-right">{{ $errors->first('info') }}</p>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="col-12 mt-3">
-                                <button class="btn custom-btn w-100 submit" type="button">Submit</button>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <button class="btn custom-btn w-100" type="button" style="background:#2b2b2b" id="back">Back</button>
                             </div>
                         </div>
                     </form>
@@ -273,34 +220,24 @@
             $('.eye-hide').removeClass('d-none');
         });
 
-        $('.submit').on('click', function() {
-            if($('.ui.fluid.dropdown').children('a').length > 5) {
-                toastr.error('You can select maximum 5 categories!');
-            } else {
-                $('.custom-form').submit();
-            }
+        $('.eye-hide1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show1').removeClass('d-none');
+        });
+        $('.eye-show1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide1').removeClass('d-none');
         });
 
-        var word_limit = true;
-        $("#info").on('keyup', function() {
-            var words = 200 - $(this).val().length;
-
-            // if ((this.value.match(/\S+/g)) != null) {
-            //     words = this.value.match(/\S+/g).length;
-            // }
-
-            if (words < 0) {
-                $('.limit-message').removeClass('d-none');
-                $('.word-count').addClass('d-none');
-                word_limit = false;
-            }
-            else {
-                $('.limit-message').addClass('d-none');
-                $('.word-count').removeClass('d-none');
-                $('.word-count span').html(words);
-                word_limit = true;
-            }
-        });
+        // $('.submit').on('click', function() {
+        //     if($('.ui.fluid.dropdown').children('a').length > 5) {
+        //         toastr.error('You can select maximum 5 categories!');
+        //     } else {
+        //         $('.custom-form').submit();
+        //     }
+        // });
     })
 </script>
 @endsection

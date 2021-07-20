@@ -280,7 +280,7 @@
                         </div>
                     </div>
                     <div class="standard-delivery">
-                        <a href="{{ route('idol-video-request') }}"><span class="text-white">See all request</span></a>
+                        <a href="{{ route('idol-video-request') }}"><span class="text-white">See All Requests</span></a>
                     </div>
                 </div>
             </div>

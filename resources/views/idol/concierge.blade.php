@@ -112,12 +112,11 @@
     @endif
 </div>
 <div class="row m-3 mb-4 block">
-    <div class="col-12 col-sm-8 col-md-8">
+    <!-- <div class="col-12 col-sm-8 col-md-8">
         <div class="row m-0">
             <div class="col-12 col-md-12 col-sm-12">
                 <div class="sub-title d-flex w-100 mb-4">
                     <h4 class="text-white w-50">Help Categories</h4>
-                    <!-- <p class="mb-0 w-50">Have other issues? Ask our VIP service officers</p> -->
                 </div>
                 <div class="sub-content w-100">
                     <h4 class="text-white">Payments</h4>
@@ -130,7 +129,6 @@
                 <div class="sub-content w-100">
                     <h4 class="text-white">Payment Options</h4>
                     <div class="d-flex">
-                        <!-- <p class="mb-0 w-50 text-main-color">Paypal</p> -->
                         <p class="mb-0 w-50 text-main-color">Stripe</p>
                     </div>
                 </div>
@@ -152,12 +150,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div class="v-divider"></div> -->
-    <div class="col-12 col-sm-4 col-md-4">
+    </div> -->
+    <div class="col-12 col-sm-12 col-md-12">
         <form action="{{ route('idol-send-concierge') }}" method="POST">
             {{ csrf_field() }}
-            <h4 class="text-white service mb-3">Send A Message To Our Customer Services</h4>
+            <h4 class="text-white service mb-3">Reach Out To Us</h4>
             @php
                 $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
             @endphp
@@ -167,16 +164,16 @@
                     <span>Issue Type</span>
                 </label>
             </div>
-            <div class="w-100">
+            <div class="w-100 mb-3">
                 <label class="pure-material-textfield-outlined w-100">
                     <input placeholder="" name="email" value="{{ Auth::user()->email }}">
                     <span>Email</span>
                 </label>
             </div>
-            <div class="w-100">
+            <div class="w-100 mb-4">
                 <label class="pure-material-textfield-outlined w-100 mb-0">
                     <textarea placeholder="" name="message" rows="5" style="height:100px" required></textarea>
-                    <span>Your messages</span>
+                    <span>Your message</span>
                 </label>
             </div>
             <div class="w-100">

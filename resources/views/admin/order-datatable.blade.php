@@ -321,26 +321,32 @@ $(document).ready(function() {
     });
 
     $(document).on('change', '.custom-select1', function() {
-        console.log($(this).val())
+        var order_id = $(this).parent().parent().find('.order-id').data('id');
         var order_status = $(this).val();
         switch (order_status) {
             case '5':
                 $(this).parent().children().first().css('background', '#2178F9');
+                order_status_update(order_id, order_status);
                 break;
             case '0':
                 $(this).parent().children().first().css('background', '#FFC107');
+                order_status_update(order_id, order_status);
                 break;
             case '1':
                 $(this).parent().children().first().css('background', '#4CAF50');
+                order_status_update(order_id, order_status);
                 break;
             case '4':
                 $(this).parent().children().first().css('background', '#7636FF');
+                order_status_update(order_id, order_status);
                 break;
             case '3':
                 $(this).parent().children().first().css('background', '#EB001B');
+                order_status_update(order_id, order_status);
                 break;
             case '2':
                 $(this).parent().children().first().css('background', '#898989');
+                order_status_update(order_id, order_status);
                 break;
         
             default:
@@ -348,5 +354,30 @@ $(document).ready(function() {
         }
     });
 });
+function order_status_update(order_id, order_status) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "{{ route('admin-order-status-update') }}",
+        type: "POST",
+        data: {
+            order_id: order_id,
+            order_status: order_status,
+        },
+        success: function(data) {
+            if(data['success']) {
+                toastr.success('Successfully updated!');
+            } else {
+                toastr.error('Server error!');
+            }
+        },
+        error: function() {
+            toastr.error('Server error!');
+        }
+    })
+}
 </script>
 @endsection

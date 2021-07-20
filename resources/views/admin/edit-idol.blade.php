@@ -8,20 +8,8 @@
 .container-fluid {
     background: #e5e5e5;
 }
-.banner-title {
-    font-size: 12px;
-    color: #898989;
-    padding-left: 10px;
-}
-.banner-upload {
-    justify-content: center;
-    padding: 15px;
-    background: #e5e5e5;
-    border-radius: 15px;
-}
 #profile-img {
     width: 190px!important;
-    height: 190px!important;
     object-fit: cover;
 }
 .input-icon {
@@ -70,11 +58,11 @@
         </div>
     @endif
     <div class="col-12 col-sm-3 col-md-3 mt-2 mb-3">
-        <div class="upload-image">
+        <div class="upload-image pt-5">
             @if(!$idol_info->idol_photo)
-            <img src="{{ asset('assets/images/no-image.jpg') }}" class="img-circle" id="profile-img">
+            <img src="{{ asset('assets/images/no-image.jpg') }}" class="" id="profile-img">
             @else
-            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="img-circle" id="profile-img">
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" class="" id="profile-img">
             @endif
             <div class="upload-btn mt-3">Upload Photo Image</div>
         </div>
@@ -153,7 +141,18 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12">
+                    <div class="col-12 col-md-6 col-sm-6">
+                        <label class="pure-material-textfield-outlined w-100">
+                            <input type="text" name="idol_k_name" placeholder="" value="{{ $idol_info->idol_k_name }}">
+                            <span>Korean Name</span>
+                        </label>
+                        @if ($errors->has('idol_k_name'))
+                            <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_k_name') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
                         <div class="select mt-1">
                             <!-- <select class="select-text" name="idol_cat_id" required>
                                 @foreach(DB::table('categories')->get() as $cat)
@@ -185,7 +184,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
+                    <div class="col-12 col-md-6 col-sm-6 mt-2">
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" placeholder="" value="{{ $video_request->request_video_price }}" name="request_video_price" class="text-main-color font-weight-bold" required>
                             <span>Request Price</span>
@@ -196,33 +195,37 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-12 col-md-6 col-sm-6">
-                        <div class="m-auto">
+                    <div class="col-12 col-md-6 col-sm-6" style="margin-bottom: 10px;">
+                        <div class="m-auto d-flex">
                             <label class="switch my-auto">
                                 <input type="checkbox" name="request_vocation" value="1" {{ $video_request->request_vocation == 1? 'checked' : '' }}>
                                 <span class="slider"></span>
                             </label>
-                            <span class="switch-label my-auto">Allow fans to request videos</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12 col-sm-12 mb-3">
-                        <div>
-                            <p class="banner-title mb-2">Upload Banner</p>
-                            <div class="banner-upload d-flex text-center">
-                                <!-- <img class="mr-2" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" style="width:20px;height:20px"> -->
-                                <span class="banner_img_label">{{ $idol_info->idol_banner }}</span>
+                            <div class="my-auto" style="padding-top: 26px;">
+                                <span class="switch-label">Allow fans to request videos</span>
                             </div>
                         </div>
-                        <input type="file" class="d-none" name="idol_banner" id="idol_banner">
                     </div>
                     <div class="col-12 col-md-12 col-sm-12">
-                        <h4 class="upload-video-title">Upload video (if have)</h4>
-                        <div class="upload-video text-center d-flex">
+                        <h4 class="upload-video-title">Self Introduction Video (Required)</h4>
+                        <div class="upload-video text-center d-none">
                             <img class="my-auto mr-4" src="{{ asset('assets/images/icons/upload-video.png') }}">
                             <div class="upload-video-text">
                                 <h4>{{ $video_request->request_video }}</h4>
                                 <p class="mb-0">Drag & Drop your files here</p>
                                 <p class="mb-0">Format ( .mp4 , .mkv )</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="position: relative">
+                            <video class="w-100 {{ $video_request->request_video? '' : 'd-none' }}" id="video-tag" style="height: 300px;">
+                                <source src="{{ asset('assets/videos/'.$video_request->request_video) }}" id="video_here">
+                                Your browser does not support HTML5 video.
+                            </video>
+                            <div class="play-video text-center {{ $video_request->request_video? '' : 'd-none' }}">
+                                <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                            </div>
+                            <div class="pause-video text-center d-none">
+                                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
                             </div>
                         </div>
                         <input type="file" class="d-none" name="request_video" id="upload-video">
@@ -245,6 +248,7 @@
 <script>
 $(document).ready(function() {
     $('.label.ui.dropdown').dropdown();
+    $('#profile-img').height($('#profile-img').width() * 1.6);
 
     $('.eye-hide').on('click', function() {
         $('input[name=password]').prop('type','text');
@@ -279,6 +283,7 @@ $(document).ready(function() {
                 //     photo_img = false;
                 // } else {
                     $('#profile-img').attr("src", objectUrl);
+                    $('#profile-img').height($('#profile-img').width() * 1.6);
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
                 // }
@@ -287,37 +292,7 @@ $(document).ready(function() {
         }
     });
 
-    var banner_img = false;
-    $(document).on('click', '.banner-upload', function() {
-        $('#idol_banner').click();
-    });
-
-    $(document).on('change', '#idol_banner', function() {
-        const  fileType = $(this)[0].files[0].type;
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-        var file, img;
-
-        if (!validImageTypes.includes(fileType)) {
-            toastr.error("You should input valid image file!");
-            banner_img = false;
-        } else if((file = this.files[0])) {
-            img = new Image();
-            var objectUrl = _URL.createObjectURL(file);
-            img.onload = function () {
-                // if(this.width != 1100 || this.height != 200) {
-                //     toastr.error("Image size should be 1100px * 200px!");
-                //     banner_img = false;
-                // } else {
-                    $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
-                    banner_img = true;
-                    _URL.revokeObjectURL(objectUrl);
-                // }
-            };
-            img.src = objectUrl;
-        }
-    });
-
-    $(document).on('click', '.upload-video', function() {
+    $(document).on('click', '.upload-video, #video-tag', function() {
         $('#upload-video').click();
     })
 
@@ -329,11 +304,44 @@ $(document).ready(function() {
 
         if (!validVideoTypes.includes(fileType)) {
             toastr.error("You should input valid video file!");
+            $('#video-tag').addClass('d-none');
+            $('.upload-video').addClass('d-flex');
+            $('.upload-video').removeClass('d-none');
+            $(".play-video").addClass('d-none');
             upload_video = false;
         } else if((file = this.files[0])) {
-            $('.upload-video-text > h4').html($(this)[0].files[0].name);
+            $('#video-tag').removeClass('d-none');
+            $('.upload-video').removeClass('d-flex');
+            $('.upload-video').addClass('d-none');
+            $(".play-video").removeClass('d-none');
+
+            var $source = $('#video_here');
+            $source[0].src = URL.createObjectURL(this.files[0]);
+            $source.parent()[0].load();
+            // $('.upload-video-text > h4').html($(this)[0].files[0].name);
             upload_video = true;
         }
+    });
+
+    $(document).on('ended', '#video-tag', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
+    });
+
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $("#video-tag").get(0);
+
+        if ( video.paused ) {
+            video.play();
+            $(".play-video").addClass('d-none');
+            $(".pause-video").removeClass('d-none');
+        } else {
+            video.pause();
+            $(".play-video").removeClass('d-none');
+            $(".pause-video").addClass('d-none');
+        }
+
+        return false;
     });
 
     var word_limit = true;

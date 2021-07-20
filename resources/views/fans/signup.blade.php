@@ -239,8 +239,8 @@
                                     <label class="input-label">Confirm Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                     <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
-                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
-                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -360,8 +360,8 @@
                                         <label class="input-label">Confirm Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
                                         <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
-                                        <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
-                                        <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                        <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
                                 </div>
                                 <div class="col-6 p-0">
@@ -437,6 +437,17 @@
             $('input[name=password]').prop('type','password');
             $(this).addClass('d-none');
             $('.eye-hide').removeClass('d-none');
+        });
+
+        $('.eye-hide1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show1').removeClass('d-none');
+        });
+        $('.eye-show1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide1').removeClass('d-none');
         });
     })
 </script>

@@ -55,7 +55,7 @@ class HomeController
 
     public function order_list()
     {
-        $orders = Order::get(); 
+        $orders = Order::orderBy('created_at', 'desc')->get(); 
 
         $data = array();
         foreach ($orders as $key => $order) {
@@ -155,8 +155,8 @@ class HomeController
                 'order_date' => Carbon\Carbon::parse($order->created_at)->format('d F Y'),
                 'due_date' => $days == 0 ? 'Today' : $days.' Days Left',
                 'order_id' => '<a href="#" class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
-                'fans_name' => $fans->name,
-                'idols_name' => $idol->idol_full_name,
+                'fans_name' => '<a style="color:#2178F9" href="'.url('/admin/fans-edit/'.$fans->user_name).'">'.$fans->user_name.'</a>',
+                'idols_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'status' => $order_status,
                 'total' => '$ '.$order->order_price,
                 'occasion' => $occasion,
@@ -275,8 +275,8 @@ class HomeController
                 'order_date' => Carbon\Carbon::parse($order->created_at)->format('d F Y'),
                 'due_date' => $days == 0 ? 'Today' : $days.' Days Left',
                 'order_id' => '<a href="#" class="order-id" data-id="' .$order->order_id. '">#'.$order->order_id.'</a>',
-                'fans_name' => $fans->name,
-                'idols_name' => $idol->idol_full_name,
+                'fans_name' => '<a style="color:#2178F9" href="'.url('/admin/fans-edit/'.$fans->user_name).'">'.$fans->user_name.'</a>',
+                'idols_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
                 'status' => $order_status,
                 'total' => '$ '.$order->order_price,
                 'occasion' => $occasion,
@@ -366,6 +366,15 @@ class HomeController
         return view('admin.ajax-order-status', compact('orders'));
     }
 
+    public function order_status_update(Request $request)
+    {
+        $order = Order::where('order_id', $request->order_id)->first();
+        $order->order_status = $request->order_status;
+        $order->save();
+
+        return response()->json(['success' => true]);
+    }
+
     public function idol()
     {
         return view('admin.idol');
@@ -378,11 +387,12 @@ class HomeController
         
         $request->validate([
             'idol_full_name' => 'required|string',
+            'idol_k_name' => 'required|string',
             'idol_user_name' => 'required|string|unique:idol_info',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',
             'idol_email' => 'required|string|email|unique:idol_info',
-            'idol_phone' => 'required|string|unique:idol_info',
+            // 'idol_phone' => 'string|unique:idol_info',
             'request_video_price' => 'required',
         ]);
 
@@ -394,6 +404,7 @@ class HomeController
 
         $user_info = [
             'name' => $request->idol_full_name,
+            'k_name' => $request->idol_k_name,
             'email' => $request->idol_email,
             'password' => Hash::make($request->password),
             'phone' => $request->idol_phone,
@@ -408,9 +419,6 @@ class HomeController
         $photo_img_name = $request->idol_photo->getClientOriginalName();
         $request->idol_photo->move(public_path('assets/images/img'), $photo_img_name);
 
-        $banner_img_name = $request->idol_banner->getClientOriginalName();
-        $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
-
         unset(
             $idol_info['request_lang'], 
             $idol_info['request_video_price'], 
@@ -419,7 +427,6 @@ class HomeController
             $idol_info['request_payment_method']
         );
         $idol_info['idol_photo'] = $photo_img_name;
-        $idol_info['idol_banner'] = $banner_img_name;
         $idol_info['idol_cat_id'] = $idol_cat_ids;
         $idol_info['idol_user_id'] = $user->id;
         
@@ -429,13 +436,13 @@ class HomeController
 
         unset(
             $video_request['idol_full_name'], 
+            $video_request['idol_k_name'], 
             $video_request['idol_user_name'], 
             $video_request['idol_email'], 
             $video_request['idol_phone'], 
             $video_request['idol_bio'], 
             $video_request['idol_head_bio'], 
             $video_request['idol_photo'], 
-            $video_request['idol_banner'],
             $video_request['idol_cat_id'],
         );
         $video_request['request_idol_id'] = $idol_info->idol_id;
@@ -463,6 +470,7 @@ class HomeController
         
         $request->validate([
             'idol_full_name' => 'required|string',
+            'idol_k_name' => 'required|string',
             'idol_user_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',
@@ -481,6 +489,7 @@ class HomeController
         if($request->password) {
             $user_info = [
                 'name' => $request->idol_full_name,
+                'k_name' => $request->idol_k_name,
                 'email' => $request->idol_email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->idol_phone,
@@ -492,6 +501,7 @@ class HomeController
         } else {
             $user_info = [
                 'name' => $request->idol_full_name,
+                'k_name' => $request->idol_k_name,
                 'email' => $request->idol_email,
                 'phone' => $request->idol_phone,
                 'info' => $request->idol_bio,
@@ -511,13 +521,6 @@ class HomeController
             unset($idol_info['idol_photo']);
         }
 
-        if($request->idol_banner) {
-            $banner_img_name = $request->idol_banner->getClientOriginalName();
-            $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
-            $idol_info['idol_banner'] = $banner_img_name;
-        } else {
-            unset($idol_info['idol_banner']);
-        }
         $idol_info['idol_cat_id'] = $idol_cat_ids;
 
         unset(
@@ -543,13 +546,13 @@ class HomeController
 
         unset(
             $video_request['idol_full_name'], 
+            $video_request['idol_k_name'], 
             $video_request['idol_user_name'], 
             $video_request['idol_email'], 
             $video_request['idol_phone'], 
             $video_request['idol_bio'], 
             $video_request['idol_head_bio'], 
             $video_request['idol_photo'], 
-            $video_request['idol_banner'],
             $video_request['idol_cat_id'],
             $video_request['idol_info_id'],
             $video_request['password'],
@@ -574,7 +577,7 @@ class HomeController
 
     public function idol_list()
     {
-        $idols = IdolInfo::where('idol_del_flag', 0)->get();
+        $idols = IdolInfo::where('idol_del_flag', 0)->orderBy('created_at', 'desc')->get();
 
         $data = array();
         foreach ($idols as $key => $idol) {
@@ -713,7 +716,7 @@ class HomeController
 
     public function fans_list()
     {
-        $fans = User::where('role', 2)->where('del_flag', 0)->get();
+        $fans = User::where('role', 2)->orderBy('created_at', 'desc')->where('del_flag', 0)->get();
 
         $data = array();
         foreach ($fans as $key => $fan) {
@@ -727,7 +730,7 @@ class HomeController
                 'fans_user_name' => '<a style="color:#2178F9" href="'.url('/admin/fans-edit/'.$fan->user_name).'">'.$fan->user_name.'</a>',
                 'fans_full_name' => $fan->name,
                 'email' => $fan->email,
-                'credits' => '<div class="credits">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
+                'credits' => '<div class="credits" data-id="'.$fan->id.'">$  <span class="text-main-color">'.$fan->credits.'</span></div>',
                 'join_date' => Carbon\Carbon::parse($fan->created_at)->format('d F Y'),
                 'order_count' => $order_count,
                 'save' => '<button class="btn custom-btn">Save</button>',
