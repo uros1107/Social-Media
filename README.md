@@ -19,8 +19,6 @@ From that boilerplate you can manually create more CRUDs, assign permissions etc
 
 ![Laravel + CoreUI screenshot 03](https://millionk.com/assets/images/millionk3.PNG)
 
-![Laravel + CoreUI screenshot 04](https://millionk.com/assets/images/millionk3.PNG)
-
 ## How to use
 
 - Clone the repository with __git clone__
