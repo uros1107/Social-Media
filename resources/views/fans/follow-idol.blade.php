@@ -77,7 +77,7 @@
             <div class="new-profile">
                 <div class="w-50 profile-left">
                     <h4 class="text-white mb-3">{{ $idol_info->idol_full_name }}</h4>
-                    <p class="text-white mb-3">{{ $idol_info->idol_full_name }}</p>
+                    <p class="text-white mb-3">{{ $idol_info->idol_k_name }}</p>
                     <p class="text-white mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
                 </div>
                 <div class="w-50 profile-right">
