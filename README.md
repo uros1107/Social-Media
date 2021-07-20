@@ -13,13 +13,13 @@ From that boilerplate you can manually create more CRUDs, assign permissions etc
 
 ## Screenshots
 
-![Laravel + CoreUI screenshot 01](https://millionk.com/assets/images/millionk1.png)
+![Laravel + CoreUI screenshot 01](https://millionk.com/assets/images/millionk1.PNG)
 
-![Laravel + CoreUI screenshot 02](https://millionk.com/assets/images/millionk2.png)
+![Laravel + CoreUI screenshot 02](https://millionk.com/assets/images/millionk2.PNG)
 
-![Laravel + CoreUI screenshot 03](https://millionk.com/assets/images/millionk3.png)
+![Laravel + CoreUI screenshot 03](https://millionk.com/assets/images/millionk3.PNG)
 
-![Laravel + CoreUI screenshot 04](https://millionk.com/assets/images/millionk4.png)
+![Laravel + CoreUI screenshot 04](https://millionk.com/assets/images/millionk3.PNG)
 
 ## How to use
 
