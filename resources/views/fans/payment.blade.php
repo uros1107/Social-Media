@@ -57,8 +57,8 @@
     background-color: #424242;
     border-color: #424242;
 }
-.custom-breadcrumb {
-   
+.featured-video .payment-method {
+    background: #171717;
 }
 @media (max-width: 574px) {
     .container-fluid {
@@ -127,11 +127,7 @@
         <div class="who-is w-100 mb-3">
             <div class="d-flex payment-method">
                 <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
-                    <div class="first-block active paypal-btn">
-                        <div>
-                            <span class="text-white">Pay with Paypal</span>
-                        </div>
-                    </div>
+                    <div id="paypal-button-container" class="w-100 p-4 text-center"></div>
                 </div>
             </div>
         </div>

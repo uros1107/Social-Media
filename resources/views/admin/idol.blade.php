@@ -283,7 +283,10 @@ $(document).ready(function() {
             { 'data': 'idol_user_name' },
             { 'data': 'idol_full_name' },
             { 'data': 'email' },
-            { 'data': 'join_date' },
+            { 
+                'data': 'join_date',
+                'type': 'date' 
+            },
             { 'data': 'fans_count' },
             { 'data': 'total_order_count' },
             { 'data': 'pending_order_count' },
@@ -347,7 +350,10 @@ $(document).ready(function() {
                 { 'data': 'idol_user_name' },
                 { 'data': 'idol_full_name' },
                 { 'data': 'email' },
-                { 'data': 'join_date' },
+                { 
+                    'data': 'join_date',
+                    'type': 'date' 
+                },
                 { 'data': 'fans_count' },
                 { 'data': 'total_order_count' },
                 { 'data': 'pending_order_count' },

@@ -291,7 +291,10 @@ $(document).ready(function() {
             { 'data': 'fans_user_name' },
             { 'data': 'fans_full_name' },
             { 'data': 'email' },
-            { 'data': 'join_date' },
+            { 
+                'data': 'join_date',
+                'type': 'date' 
+            },
             { 'data': 'order_count' },
             { 'data': 'credits' },
             { 'data': 'save' },
@@ -353,7 +356,10 @@ $(document).ready(function() {
                 { 'data': 'fans_user_name' },
                 { 'data': 'fans_full_name' },
                 { 'data': 'email' },
-                { 'data': 'join_date' },
+                { 
+                    'data': 'join_date',
+                    'type': 'date' 
+                },
                 { 'data': 'order_count' },
                 { 'data': 'credits' },
                 { 'data': 'save' },
