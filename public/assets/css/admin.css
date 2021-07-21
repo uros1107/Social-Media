@@ -1042,7 +1042,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 .play-video, .pause-video {
     width: 35px;
     height: 35px;
-    background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
+    /* background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C); */
     border-radius: 50%;
     position: absolute;
     bottom: 25px;
@@ -1052,6 +1052,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 .play-video img, .pause-video img {
     margin-top: 10px;
     margin-left: 3px;
+    width: 40px;
 }
 .save-change-btn,
 .save-change-btn:hover,

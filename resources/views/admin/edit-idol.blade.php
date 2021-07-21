@@ -227,7 +227,7 @@
                                 <img src="{{ asset('assets/images/icons/play-video.png') }}">
                             </div>
                             <div class="pause-video text-center d-none">
-                                <img src="{{ asset('assets/images/icons/pause-video.png') }}" class="ml-0" style="width: 12px;">
+                                <img src="{{ asset('assets/images/icons/pause-video.png') }}">
                             </div>
                         </div>
                         <input type="file" class="d-none" name="request_video" id="upload-video">

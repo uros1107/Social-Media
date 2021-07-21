@@ -930,7 +930,7 @@ a:hover {
 .play-video, .pause-video {
     width: 35px;
     height: 35px;
-    background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C);
+    /* background: linear-gradient(to right,#29C9FF,#7636FF,#FF335C); */
     border-radius: 50%;
     position: absolute;
     bottom: 25px;
@@ -941,6 +941,7 @@ a:hover {
 .pause-video img {
     margin-top: 10px;
     margin-left: 3px;
+    width: 40px;
 }
 @media (max-width: 1500px) { 
     .featured .featured-video {

@@ -577,7 +577,7 @@ class HomeController
 
     public function idol_list()
     {
-        $idols = User::where('role', 1)->where('idol_del_flag', 0)->where('is_setup', 1)->get();
+        // $idols = User::where('role', 1)->where('idol_del_flag', 0)->where('is_setup', 1)->get();
         $idols = IdolInfo::where('idol_del_flag', 0)->orderBy('created_at', 'desc')->get();
 
         $data = array();
