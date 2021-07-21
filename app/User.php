@@ -35,7 +35,7 @@ class User extends Authenticatable
         'phone',
         'birth',
         'where_find',
-        'handle_name',
+        'social_name',
         'followers',
         'info',
         'photo',

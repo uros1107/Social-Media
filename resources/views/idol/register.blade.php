@@ -561,7 +561,7 @@ $(document).ready(function() {
 
     var word_limit = true;
     $("#info").on('keyup', function() {
-        var words = 200 - $(this).val().length;
+        var words = 250 - $(this).val().length;
 
         // if ((this.value.match(/\S+/g)) != null) {
         //     words = this.value.match(/\S+/g).length;
@@ -584,7 +584,7 @@ $(document).ready(function() {
         if($('.ui.fluid.dropdown').children('a').length > 5) {
             toastr.error('You can select maximum 5 categories!');
         } else if(!word_limit) {
-            toastr.error('You can input maximum 200 characters!');
+            toastr.error('You can input maximum 250 characters!');
         } else {
             $('#register').submit();
         }

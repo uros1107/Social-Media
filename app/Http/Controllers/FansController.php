@@ -14,7 +14,6 @@ use DB;
 use Carbon\Carbon; 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Mail\MailVerify;
 
 use App\User;
 use App\IdolInfo;
