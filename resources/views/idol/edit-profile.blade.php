@@ -219,7 +219,7 @@
             </div> -->
             <div class="col-12 col-md-12 col-sm-12">
                 <label class="pure-material-textfield-outlined w-100">
-                    <input type="text" placeholder="" id="idol_head_bio" value="{{ $idol_info->idol_head_bio }}">
+                    <input type="text" placeholder="" id="idol_head_bio" value="{{ $idol_info->idol_head_bio }}" maxlength="15">
                     <span>Headline Bio</span>
                 </label>
                 <p class="text-main-color text-right mb-0 limit-message1 d-none" style="font-size: 12px">You can input maximum 15 characters!</p>
