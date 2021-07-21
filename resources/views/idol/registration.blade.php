@@ -67,14 +67,14 @@
                         <div class="stepwizard col-md-offset-3 mb-5">
                             <div class="stepwizard-row setup-panel">
                                 <div class="stepwizard-step">
-                                    <a href="#step-1" class="btn btn-circle mr-1 step-1-circle">1</a>
+                                    <a href="#step-1" class="btn btn-circle mr-1 step-1-circle">2</a>
                                     <span class="text-white step-1-text">Account Info</span>
                                 </div>
                                 <div class="stepwizard-step" style="top: -2px">
                                     <div class="line"></div>
                                 </div>
                                 <div class="stepwizard-step">
-                                    <a href="#step-2" class="btn btn-circle mr-1 deactive step-2-circle" disabled="disabled">2</a>
+                                    <a href="#step-2" class="btn btn-circle mr-1 deactive step-2-circle" disabled="disabled">3</a>
                                     <span class="text-grey step-2-text">Your Identify</span>
                                 </div>
                             </div>
