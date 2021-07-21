@@ -108,7 +108,6 @@ class IdolController extends Controller
             // 'idol_photo' => 'required|image|mimes:jpeg,png,jpg,gif|dimensions:min_width=500,min_height=500',
             // 'idol_banner' => 'required|image|mimes:jpeg,png,jpg,gif|dimensions:min_width=1100,min_height=200',
             // 'idol_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
-            // 'idol_banner' => 'required|image|mimes:jpeg,png,jpg,gif',
             // 'request_lang' => 'required',
             // 'request_video_price' => 'required',
             // 'request_vocation' => 'required',
@@ -299,6 +298,7 @@ class IdolController extends Controller
         $request->validate([
             'idol_full_name' => 'required|string',
             'idol_user_name' => 'required|string',
+            'idol_k_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',
             'idol_email' => 'required|string|email',
@@ -328,14 +328,6 @@ class IdolController extends Controller
             unset($idol_info['idol_photo']);
         }
 
-        if($request->idol_banner) {
-            $banner_img_name = $request->idol_banner->getClientOriginalName();
-            $request->idol_banner->move(public_path('assets/images/img'), $banner_img_name);
-            $idol_info['idol_banner'] = $banner_img_name;
-        } else {
-            unset($idol_info['idol_banner']);
-        }
-
         unset(
             $idol_info['_token'], 
             $idol_info['request_lang'], 
@@ -351,15 +343,24 @@ class IdolController extends Controller
             $request_info['_token'], 
             $request_info['idol_full_name'], 
             $request_info['idol_user_name'], 
+            $request_info['idol_k_name'], 
             $request_info['idol_email'], 
             $request_info['idol_phone'], 
             $request_info['idol_bio'], 
             $request_info['idol_head_bio'], 
             $request_info['idol_photo'], 
-            $request_info['idol_banner'],
             $request_info['idol_cat_id'],
             $request_info['password'],
         );
+
+        if($request->request_video) {
+            $video_name = $request->request_video->getClientOriginalName();
+            $request->request_video->move(public_path('assets/videos'), $video_name);
+            $request_info['request_video'] = $video_name;
+        } else {
+            unset($request_info['request_video']);
+        }
+
         if(!isset($request_info['request_vocation'])) {
             $request_info['request_vocation'] = 0;
         } else {

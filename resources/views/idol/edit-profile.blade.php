@@ -191,6 +191,17 @@
             </div>
             <div class="col-12 col-md-6 col-sm-6">
                 <label class="pure-material-textfield-outlined w-100">
+                    <input type="text" placeholder="" id="idol_k_name" value="{{ $idol_info->idol_k_name }}">
+                    <span>Korean Name</span>
+                </label>
+                @if ($errors->has('idol_k_name'))
+                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                        <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_k_name') }}</p>
+                    </span>
+                @endif
+            </div>
+            <div class="col-12 col-md-6 col-sm-6">
+                <label class="pure-material-textfield-outlined w-100">
                     <input type="email" placeholder="" id="idol_email" value="{{ $idol_info->idol_email }}" disabled>
                     <span>Email</span>
                 </label>
@@ -211,12 +222,20 @@
                     </span>
                 @endif
             </div>
-            <!-- <div class="col-12 col-md-6 col-sm-6">
-                <label class="pure-material-textfield-outlined w-100">
-                    <input type="password" placeholder="" value="">
-                    <span>Password</span>
-                </label>
-            </div> -->
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="select mt-1 mb-2">
+                    <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
+                        @foreach(DB::table('categories')->get() as $cat)
+                        @php
+                            $array = json_decode($idol_info->idol_cat_id);
+                            $has_cat = in_array($cat->cat_id, $array);
+                        @endphp
+                        <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
+                        @endforeach
+                    </select>
+                    <label class="select-label category-label">Category</label>
+                </div>
+            </div>
             <div class="col-12 col-md-12 col-sm-12">
                 <label class="pure-material-textfield-outlined w-100">
                     <input type="text" placeholder="" id="idol_head_bio" value="{{ $idol_info->idol_head_bio }}" maxlength="15">
@@ -230,21 +249,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-12 col-sm-12 col-md-12">
-                <div class="select mt-1">
-                    <select multiple="" name="idol_cat_id[]" class="label ui selection fluid dropdown idol_cat_id">
-                        @foreach(DB::table('categories')->get() as $cat)
-                        @php
-                            $array = json_decode($idol_info->idol_cat_id);
-                            $has_cat = in_array($cat->cat_id, $array);
-                        @endphp
-                        <option value="{{ $cat->cat_id }}" {{ $has_cat? 'selected' : '' }}>{{ $cat->cat_name }}</option>
-                        @endforeach
-                    </select>
-                    <label class="select-label category-label">Category</label>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-sm-12 mt-3">
+            <div class="col-12 col-md-12 col-sm-12">
                 <label class="pure-material-textfield-outlined w-100 mb-0">
                     <textarea placeholder="" rows="5" id="idol_bio" style="height:100px">{{ $idol_info->idol_bio }}</textarea>
                     <span>Bio</span>
@@ -258,11 +263,23 @@
                 @endif
             </div>
             <div class="col-12 col-md-12 col-sm-12">
-                <div>
-                    <p class="banner-title mb-2">Upload Banner</p>
+                <!-- <div>
+                    <p class="banner-title mb-2">Profile Video</p>
                     <div class="banner-upload d-flex text-center">
                         <img class="mr-2" src="{{ asset('assets/images/icons/upload.png') }}">
                         <span class="text-white banner_img_label">{{ $idol_info->idol_banner }}</span>
+                    </div>
+                </div> -->
+                <div class="text-center my-3" style="position: relative">
+                    <video class="w-100" id="video-tag" style="height: 300px;">
+                        <source src="{{ asset('assets/videos/'.$video_request->request_video) }}" id="video_here">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <div class="play-video text-center">
+                        <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                    </div>
+                    <div class="pause-video text-center d-none">
+                        <img src="{{ asset('assets/images/icons/pause-video.png') }}">
                     </div>
                 </div>
             </div>
@@ -362,15 +379,17 @@
                     <div class="request-price">
                         <div class="desktop">
                             <h4 class="text-white">Request Price</h4>
-                            <p>Set your request price for your request videos fee</p>
+                            <p class="mb-3">Set your request price for your request videos fee</p>
                         </div>
                         <label class="pure-material-textfield-outlined w-100">
                             <input type="text" class="text-main-color" name="request_video_price" value="{{ $video_request->request_video_price }}">
                             <span>My Request Price</span>
                         </label>
                         <input type="file" name="idol_photo" class="d-none" id="idol_photo">
+                        <input type="file" class="d-none" name="request_video" id="upload-video">
                         <input type="hidden" name="idol_full_name" value="{{ $idol_info->idol_full_name }}">
                         <input type="hidden" name="idol_user_name" value="{{ $idol_info->idol_user_name }}">
+                        <input type="hidden" name="idol_k_name" value="{{ $idol_info->idol_k_name }}">
                         <input type="hidden" name="idol_email" value="{{ $idol_info->idol_email }}">
                         <input type="hidden" name="password" value="">
                         <input type="hidden" name="idol_phone" value="{{ $idol_info->idol_phone }}">
@@ -523,36 +542,61 @@ $(document).ready(function() {
         };
     });
 
-    var _URL = window.URL || window.webkitURL;
-    var banner_img = false;
-    $(document).on('click', '.banner-upload', function() {
-        $('#idol_banner').click();
+    // play video
+    $(document).on('ended', '#video-tag', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
     });
 
-    $(document).on('change', '#idol_banner', function() {
-        const  fileType = $(this)[0].files[0].type;
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-        var file, img;
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $("#video-tag").get(0);
 
-        if (!validImageTypes.includes(fileType)) {
-            toastr.error("You should input valid image file!");
-            banner_img = false;
+        if ( video.paused ) {
+            video.play();
+            $(".play-video").addClass('d-none');
+            $(".pause-video").removeClass('d-none');
+        } else {
+            video.pause();
+            $(".play-video").removeClass('d-none');
+            $(".pause-video").addClass('d-none');
+        }
+
+        return false;
+    });
+
+    // Upload video
+    $(document).on('click', '.upload-video, #video-tag', function() {
+        $('#upload-video').click();
+    })
+
+    var upload_video = true;
+    $(document).on('change', '#upload-video', function() {
+        const  fileType = $('#upload-video')[0].files[0].type;
+        const validVideoTypes = ['video/mp4', 'video/mkv'];
+        var file;
+
+        if (!validVideoTypes.includes(fileType)) {
+            toastr.error("You should input valid video file!");
+            $('#video-tag').addClass('d-none');
+            $('.upload-video').addClass('d-flex');
+            $('.upload-video').removeClass('d-none');
+            $(".play-video").addClass('d-none');
+            upload_video = false;
         } else if((file = this.files[0])) {
-            img = new Image();
-            var objectUrl = _URL.createObjectURL(file);
-            img.onload = function () {
-                // if(this.width != 1100 || this.height != 200) {
-                //     toastr.error("Image size should be 1100px * 200px!");
-                //     banner_img = false;
-                // } else {
-                    $('.banner_img_label').html($('#idol_banner')[0].files[0].name);
-                    banner_img = true;
-                    _URL.revokeObjectURL(objectUrl);
-                // }
-            };
-            img.src = objectUrl;
+            $('#video-tag').removeClass('d-none');
+            $('.upload-video').removeClass('d-flex');
+            $('.upload-video').addClass('d-none');
+            $(".play-video").removeClass('d-none');
+
+            var $source = $('#video_here');
+            $source[0].src = URL.createObjectURL(this.files[0]);
+            $source.parent()[0].load();
+            // $('.upload-video-text > h4').html($(this)[0].files[0].name);
+            upload_video = true;
         }
     });
+
+    var _URL = window.URL || window.webkitURL;
 
     $(document).on('click', '.change-photo-btn', function() {
         $('#idol_photo').click();
@@ -591,6 +635,10 @@ $(document).ready(function() {
 
     $(document).on('change', '#idol_user_name', function() {
         $('input[name=idol_user_name]').val($(this).val());
+    })
+
+    $(document).on('change', '#idol_k_name', function() {
+        $('input[name=idol_k_name]').val($(this).val());
     })
 
     $(document).on('change', '#idol_email', function() {

@@ -541,7 +541,7 @@ class HomeController
             $request->request_video->move(public_path('assets/videos'), $video_name);
             $video_request['request_video'] = $video_name;
         } else {
-            unset($idol_info['request_video']);
+            unset($video_request['request_video']);
         }
 
         unset(
