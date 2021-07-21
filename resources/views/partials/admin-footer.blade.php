@@ -45,12 +45,12 @@
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy policy</a>
+                            <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of service</a>
+                            <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of Service</a>
                         </div>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px;border-top: 1px solid #2b2b2b;">

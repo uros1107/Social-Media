@@ -187,10 +187,10 @@
                         <a href="{{ route('contact-us') }}"><p class="text-main-color mb-0">Contact Us</p></a>
                     </div>
                     <div class="footer-text">
-                        <a href="{{ route('privacy') }}"><p class="text-main-color mb-0">Privacy policy</p></a>
+                        <a href="{{ route('privacy') }}"><p class="text-main-color mb-0">Privacy Policy</p></a>
                     </div>
                     <div class="footer-text">
-                        <a href="{{ route('terms') }}"><p class="text-main-color mb-0">Terms of service</p></a>
+                        <a href="{{ route('terms') }}"><p class="text-main-color mb-0">Terms of Service</p></a>
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-4 d-flex" style="justify-content: flex-end;margin: 10px 0px">
@@ -255,12 +255,12 @@
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy policy</a>
+                            <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of service</a>
+                            <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of Service</a>
                         </div>
                     </div>
                     <div class="col-12 text-center" style="padding: 0px 15px;border-top: 1px solid #2b2b2b;">

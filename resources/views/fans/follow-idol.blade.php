@@ -83,7 +83,7 @@
                 <div class="w-50 profile-right">
                     <div class="mb-4">
                         @if(!Auth::check())
-                        <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Following</span></a>
+                        <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Follow</span></a>
                         @else
                         @php
                             $user = DB::table('users')->where('id', Auth::user()->id)->first();
@@ -91,9 +91,9 @@
                         @endphp
                             @if($has)
                                 <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
-                                <span class="text-white">Following</span>
+                                <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white" >Following</span></a>
                             @else
-                                <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Following</span></a>
+                                <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Follow</span></a>
                             @endif
                         @endif
                     </div>
