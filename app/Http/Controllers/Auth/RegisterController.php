@@ -67,26 +67,45 @@ class RegisterController extends Controller
 
     protected function idol_register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'k_name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|confirmed',
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'k_name' => $request->k_name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 1
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-        Auth::login($user);
-
-        return redirect()->route('idol-index');
+        if(!$request->no_password) {
+            $request->validate([
+                'name' => 'required|string',
+                'k_name' => 'required|string',
+                'email' => 'required|string|email|unique:users',
+                'password' => 'required|confirmed',
+            ]);
+    
+            User::create([
+                'name' => $request->name,
+                'k_name' => $request->k_name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 1
+            ]);
+    
+            $user = User::where('email', $request->email)->first();
+            Auth::login($user);
+    
+            return redirect()->route('idol-index');
+        } else {
+            $request->validate([
+                'name' => 'required|string',
+                'k_name' => 'required|string',
+                'email' => 'required|string|email|unique:users',
+            ]);
+    
+            User::create([
+                'name' => $request->name,
+                'k_name' => $request->k_name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'password' => Hash::make($request->name),
+                'role' => 1
+            ]);
+    
+            return redirect()->back()->with('success', 'Successfully submited!');
+        }
     }
 
     protected function fans_signup(Request $request)

@@ -64,7 +64,7 @@
                 <div class="register-part">
                     <form class="custom-form" action="{{ route('idol-register') }}" method="POST">
                         {{ csrf_field() }}
-                        <div class="stepwizard col-md-offset-3 mb-5">
+                        <!-- <div class="stepwizard col-md-offset-3 mb-3">
                             <div class="stepwizard-row setup-panel">
                                 <div class="stepwizard-step">
                                     <a href="#step-1" class="btn btn-circle mr-1 step-1-circle">1</a>
@@ -78,12 +78,12 @@
                                     <span class="text-grey step-2-text">Your Identify</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row m-0 step-1">
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Your name" class="custom-input" required>
+                                    <input type="text" name="name" placeholder="Your name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('name'))
@@ -95,7 +95,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Korean Name</label>
-                                    <input type="text" name="k_name" id="k_name" placeholder="Korean name" class="custom-input" required>
+                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('k_name'))
@@ -104,21 +104,10 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="col-12 mt-4 mb-4">
-                                <button class="btn custom-btn w-100" type="button" id="next">Next</button>
-                            </div>
-                            <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: You are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
-                            <div class="col-12 text-center signup-part mt-4 mb-3">
-                                <a class="text-white">Have an account?</a>
-                                <a class="text-main-color" href="{{ route('idol-signin') }}">Log In</a>
-                            </div>
-                        </div>
-
-                        <div class="row m-0 step-2 d-none">
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Email" class="custom-input" required>
+                                    <input type="email" name="email" placeholder="Email" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                                 @if ($errors->has('email'))
@@ -130,7 +119,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Phone Number(Never Shared)</label>
-                                    <input type="text" name="phone" id="phone" placeholder="Phone number" class="custom-input">
+                                    <input type="text" name="phone" placeholder="Phone number" class="custom-input">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                                 </div>
                                 @if ($errors->has('phone'))
@@ -139,12 +128,36 @@
                                     </span>
                                 @endif
                             </div>
-                            <input type="hidden" name="no_password" value="1">
-                            <div class="col-12 mt-3">
-                                <button class="btn custom-btn w-100 submit" type="button">Submit</button>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Password</label>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ $errors->first('password') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="inputWithIcon">
+                                    <label class="input-label">Confirm Password</label>
+                                    <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                    <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                    <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                    <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
+                                </div>
                             </div>
                             <div class="col-12 mt-3">
-                                <button class="btn custom-btn w-100" type="button" style="background:#2b2b2b" id="back">Back</button>
+                                <button class="btn custom-btn w-100 submit" type="submit">Submit</button>
+                            </div>
+                            <p class="text-grey mb-0 text-center" style="margin-top: 30px">Note: You are not automatically enrolled on MillionK. If you meet the eligibility requirements, a talent representative will contact you within a few days to finish onboarding.</p>
+                            <div class="col-12 text-center signup-part mt-4 mb-3">
+                                <a class="text-white">Have an account?</a>
+                                <a class="text-main-color" href="{{ route('idol-signin') }}">Log In</a>
                             </div>
                         </div>
                     </form>
@@ -171,26 +184,19 @@
 
 <script>
     $(document).ready(function() {
-        @if(Session::get('success'))
-            toastr.success("{{ Session::get('success') }}");
-        @endif
         $('.label.ui.dropdown').dropdown();
 
         $('#next').on('click', function() {
-            if(!$('#name').val() || !$('#k_name').val()) {
-                toastr.error('You should fill all fields!');
-            } else {
-                $('.step-1').addClass('d-none');
-                $('.step-2').removeClass('d-none');
-                $('.title').addClass('d-none');
+            $('.step-1').addClass('d-none');
+            $('.step-2').removeClass('d-none');
+            $('.title').addClass('d-none');
 
-                $('.step-1-text').removeClass('text-white');
-                $('.step-1-text').addClass('text-grey');
-                $('.step-2-circle').removeClass('deactive');
-                $('.step-2-text').removeClass('text-grey');
-                $('.step-2-text').addClass('text-white');
-            }
-        });
+            $('.step-1-text').removeClass('text-white');
+            $('.step-1-text').addClass('text-grey');
+            $('.step-2-circle').removeClass('deactive');
+            $('.step-2-text').removeClass('text-grey');
+            $('.step-2-text').addClass('text-white');
+        })
         $('#back').on('click', function() {
             $('.step-1').removeClass('d-none');
             $('.step-2').addClass('d-none');
@@ -201,15 +207,37 @@
             $('.step-2-text').addClass('text-grey');
             $('.step-1-text').removeClass('text-grey');
             $('.step-1-text').addClass('text-white');
+        })
+
+        $('.eye-hide').on('click', function() {
+            $('input[name=password]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show').removeClass('d-none');
+        });
+        $('.eye-show').on('click', function() {
+            $('input[name=password]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide').removeClass('d-none');
         });
 
-        $('.submit').on('click', function() {
-            if(!$('#email').val() || !$('#phone').val()) {
-                toastr.error('You should fill all fields!');
-            } else {
-                $('.custom-form').submit();
-            }
+        $('.eye-hide1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','text');
+            $(this).addClass('d-none');
+            $('.eye-show1').removeClass('d-none');
         });
+        $('.eye-show1').on('click', function() {
+            $('input[name=password_confirmation]').prop('type','password');
+            $(this).addClass('d-none');
+            $('.eye-hide1').removeClass('d-none');
+        });
+
+        // $('.submit').on('click', function() {
+        //     if($('.ui.fluid.dropdown').children('a').length > 5) {
+        //         toastr.error('You can select maximum 5 categories!');
+        //     } else {
+        //         $('.custom-form').submit();
+        //     }
+        // });
     })
 </script>
 @endsection
