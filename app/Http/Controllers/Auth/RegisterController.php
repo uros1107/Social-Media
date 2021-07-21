@@ -91,7 +91,7 @@ class RegisterController extends Controller
             ]);
 
             Mail::send('email.new-idol', ['idol_information' => $request->all()], function($message) use($request){
-                $message->to('amar.chan9655@gmail.com');
+                $message->to('VIP@MILLIONK.COM');
                 $message->subject('New Idol Registration Required!');
             });
     

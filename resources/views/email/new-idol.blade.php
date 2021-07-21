@@ -1,21 +1,21 @@
 <h1>New Idol Registration Required!</h1>
    
 <h3>User Information:<h4>
-<div style="display:flex">
+<div>
     <h4>Full Name : </h4>
     <p>{{ $idol_information['name'] }}</p>
 </div>
-<div style="display:flex">
+<div>
     <h4>Korean Name : </h4>
     <p>{{ $idol_information['k_name'] }}</p>
 </div>
 
-<div style="display:flex">
+<div>
     <h4>Email : </h4>
     <p>{{ $idol_information['email'] }}</p>
 </div>
 
-<div style="display:flex">
+<div>
     <h4>Phone Number : </h4>
     <p>{{ $idol_information['phone'] }}</p>
 </div>
