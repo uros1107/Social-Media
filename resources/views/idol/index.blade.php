@@ -39,7 +39,7 @@
         <div class="profile-info">
             <h4 class="text-white">You are not set up yet</h4>
             <h5 class="text-white" style="font-weight: unset">Complete your profile first so you can go<br>LIVE and start reaching out to your fans.</h5>
-            <button class="btn custom-btn get-started">Get Started</button>
+            <button class="btn custom-btn get-started">{{ Auth::user()->profile_stage > 0? 'Continue Set Up' : 'Get Started' }}</button>
         </div>
         <div class="profile-action">
             <div class="grey-btn">
@@ -110,7 +110,36 @@
                                         </div>
                                         <p class="mb-2">Net Earnings and Potential Earnings</p>
                                     </div>
-                                    <div class="col-12 how-content">
+                                    <div class="col-12 how-content desktop mb-3">
+                                        <div class="divider mb-3"></div>
+                                        <div class="mb-2">
+                                            <div class="col-sm-12 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
+                                                <h5 class="text-white">Total Booking</h5>
+                                                <h5 class="text-main-color">${{ number_format($total_booking) }}</h5>
+                                            </div>
+                                            <div class="divider mb-3"></div>
+                                            <div class="col-sm-12 text-center m-auto p-0">
+                                                <h5 class="text-white">Pending Booking</h5>
+                                                <h5 class="text-main-color">${{ number_format($pending_booking) }}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 how-content desktop">
+                                        <div class="divider mb-3"></div>
+                                        <div class="mb-2">
+                                            <div class="col-sm-12 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
+                                                <h5 class="text-white">Net Earnings</h5>
+                                                <h5 class="text-main-color">$0</h5>
+                                            </div>
+                                            <div class="divider mb-3"></div>
+                                            <div class="col-sm-12 text-center m-auto p-0">
+                                                <h5 class="text-white">Paid Out</h5>
+                                                <h5 class="text-main-color">$0</h5>
+                                            </div>
+                                        </div>
+                                        <div class="divider mb-3"></div>
+                                    </div>
+                                    <div class="col-12 how-content mobile">
                                         <div class="divider mb-3"></div>
                                         <div class="d-flex mb-2">
                                             <div class="col-sm-6 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
@@ -123,7 +152,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 how-content">
+                                    <div class="col-12 how-content mobile">
                                         <div class="divider mb-3"></div>
                                         <div class="d-flex mb-2">
                                             <div class="col-sm-6 text-center m-auto p-0" style="border-right: 1px solid #2b2b2b;">
@@ -137,7 +166,7 @@
                                         </div>
                                         <div class="divider mb-3"></div>
                                     </div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <div class="chart d-flex">
                                             <span class="mr-2 text-white">500</span>
                                             <div class="my-auto" style="height: 1px;background: #898989;width: 100%"></div>
@@ -174,7 +203,7 @@
                                             <span class="text-white m-auto">Sep</span>
                                             <span class="text-white m-auto">Okt</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="standard-delivery">
                                     <a href="{{ route('idol-earning') }}"><span class="text-white">Go To Earnings</span></a>

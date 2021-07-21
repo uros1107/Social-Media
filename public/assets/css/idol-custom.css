@@ -1682,7 +1682,7 @@ input[type=radio]:checked ~ label{
 .get-started:focus {
     background: #2B2B2B!important;
     border-radius: 8px!important;
-    width: 107px;
+    /* width: 107px; */
     height: 39px;
     font-size: 14px;
     margin-top: 20px;

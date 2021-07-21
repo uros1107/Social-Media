@@ -112,9 +112,11 @@
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">
                         <label class="pure-material-textfield-outlined w-100">
-                            <input type="text" name="idol_head_bio" placeholder="" value="">
+                            <input type="text" name="idol_head_bio" id="idol_head_bio" placeholder="" value="">
                             <span>Headline Bio</span>
                         </label>
+                        <p class="text-main-color text-right mb-0 limit-message1 d-none" style="font-size: 12px">You can input maximum 15 characters!</p>
+                        <p class="text-right mb-0 mr-2 word-count1 d-none" style="font-size: 12px">Characters: <span>15</span></p>
                         @if ($errors->has('idol_head_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_head_bio') }}</p>
@@ -165,7 +167,7 @@
                             <textarea placeholder="" name="idol_bio" id="idol_bio" rows="5" style="height:100px" required></textarea>
                             <span>Bio</span>
                         </label>
-                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 250 characters!</p>
+                        <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 12px">You can input maximum 250 characters!</p>
                         <p class="text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>250</span></p>
                         @if ($errors->has('idol_bio'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -353,13 +355,36 @@ $(document).ready(function() {
         }
     });
 
+    var word_limit1 = true;
+    $("#idol_head_bio").on('keyup', function() {
+        var words = 15 - $(this).val().length;
+
+        // if ((this.value.match(/\S+/g)) != null) {
+        //     words = this.value.match(/\S+/g).length;
+        // }
+
+        if (words < 0) {
+            $('.limit-message1').removeClass('d-none');
+            $('.word-count1').addClass('d-none');
+            word_limit1 = false;
+        }
+        else {
+            $('.limit-message1').addClass('d-none');
+            $('.word-count1').removeClass('d-none');
+            $('.word-count1 span').html(words);
+            word_limit1 = true;
+        }
+    });
+
     $(document).on('click', '.save-change-btn', function(e) {
         if(!photo_img || !upload_video || !$('.ui.fluid.dropdown').children('a').length) {
             toastr.error('You should input all fields correctly!');
         } else if($('.ui.fluid.dropdown').children('a').length > 5) {
             toastr.error('You can select maximum 5 categories!');
         } else if(!word_limit) {
-            toastr.error('You can input maximum 250 characters!');
+            toastr.error('You can input maximum 250 characters for bio!');
+        } else if(!word_limit1) {
+            toastr.error('You can input maximum 15 characters for head bio!');
         } else {
             $('.save-change-btn').html("<span class='spinner-grow spinner-grow-sm mr-1'></span>Submitting..");
             $('.save-change-btn').prop('disabled', true);
