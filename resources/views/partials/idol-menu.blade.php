@@ -28,12 +28,12 @@
                     Payment Method
                 </a>
             </li>
-            <li class="nav-item" style="padding: 10px 20px!important;">
+            <!-- <li class="nav-item" style="padding: 10px 20px!important;">
                 <a href="{{ route('idol-concierge') }}" class="nav-link">
                     <img src="{{ asset('assets/images/icons/user-3.png') }}" class="mr-3" style="width:20px">
                     Concierge
                 </a>
-            </li>
+            </li> -->
             <li class="d-flex" style="padding: 10px 20px!important;">
                 <div class="mx-auto mobile mt-5">
                     <a href="{{ route('logout') }}" class="text-white m-auto" style="font-size: 16px">
