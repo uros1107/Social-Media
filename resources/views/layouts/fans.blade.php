@@ -98,7 +98,7 @@
                     <i class="fa fa-search" style="color: #FF335C"></i>
                 </a>
                 <!-- <i class="fa fa-bell-o text-white"></i> -->
-                <a class="sidebar-toggler d-lg-none mr-auto" type="button">
+                <a class="sidebar-toggler d-lg-none mr-auto" type="button" style="background: #000;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
             </div>

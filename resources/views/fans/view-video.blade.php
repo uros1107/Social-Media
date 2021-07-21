@@ -141,8 +141,8 @@
                         <input type="hidden" name="review_rating" value="0" id="review_rating">
                         <input type="hidden" name="review_fans_id" value="{{ $order->order_fans_id }}">
                         <input type="hidden" name="review_idol_id" value="{{ $order->order_idol_id }}">
-                        <textarea style="background:#2b2b2b!important" name="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Tell your idol what they want to say on the video" required></textarea>
-                        <button type="submit" class="btn custom-btn w-100 send-feedback-btn">Send Feedback</button>
+                        <textarea style="background:#2b2b2b!important" name="review_feedback" id="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Please leave your message about this video." required></textarea>
+                        <button type="button" class="btn custom-btn w-100 send-feedback-btn">Send Feedback</button>
                     </div>
                 </form>
             </div>
@@ -230,13 +230,15 @@ $(document).ready(function() {
             $('.' + i + '-star').css('color', '#23282c');
         }
     });
-    $(document).on('submit', '#send-review', function(e) {
-        e.preventDefault();
-
+    $(document).on('click', '.send-feedback-btn', function(e) {
         @if(!Auth::check())
             location.href = "{{ route('fans-signin') }}";
         @else
-            $(this).submit();
+            if(!$('#review_feedback').val()) {
+                toastr.error('You should leave feedback!');
+            } else {
+                $('#send-review').submit();
+            }
         @endif
     })
 });
