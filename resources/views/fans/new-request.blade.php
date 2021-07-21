@@ -166,6 +166,7 @@
             <h4 class="text-white w-100">Who is this for?</h4>
             <div class="d-flex someone">
                 <div class="col-12 col-sm-6 col-md-6 user-block d-flex">
+                    @if(!Session::get('info'))
                     <div class="first-block mr-2">
                         <img src="{{ asset('assets/images/icons/users.png') }}">
                         <div>
@@ -178,12 +179,26 @@
                             <span class="text-white">For me</span>
                         </div>
                     </div>
+                    @else
+                    <div class="first-block mr-2 {{ Session::get('info')['order_who_for'] == 1 ? '' : 'deactive' }}">
+                        <img src="{{ asset('assets/images/icons/users.png') }}">
+                        <div>
+                            <span class="text-white">Someone else</span>
+                        </div>
+                    </div>
+                    <div class="first-block {{ Session::get('info')['order_who_for'] == 2 ? '' : 'deactive' }}">
+                        <img src="{{ asset('assets/images/icons/users.png') }}">
+                        <div>
+                            <span class="text-white">For me</span>
+                        </div>
+                    </div>
+                    @endif
                 </div>
                 <div class="vertical-line desktop"></div>
                 <div class="col-12 col-sm-6 col-md-6 to">
                     <div class="form-group" style="width: 80%">
                         <label for="usr" class="text-white">To:</label>
-                        <input type="text" class="custom-input to-input">
+                        <input type="text" class="custom-input to-input" value="{{ Session::get('info')? Session::get('info')['order_to'] : '' }}">
                     </div>
                 </div>
             </div>
@@ -191,6 +206,7 @@
         <div class="divider mb-3"></div>
         <div class="who-is w-100 mb-4">
             <h4 class="text-white w-100">Select an Occasion</h4>
+            @if(!Session::get('info'))
             <div class="row m-0 occasion">
                 <div class="col-6 col-md-6">
                     <div class="occasion-item" data-id="8">
@@ -249,6 +265,66 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="row m-0 occasion">
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 8 ? 'active' : '' }}" data-id="8">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-1.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion1.png') }}">
+                        <span class="text-white">None</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 1 ? 'active' : '' }}" data-id="1">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-2.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion2.png') }}">
+                        <span class="text-white">Encouragement</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 2 ? 'active' : '' }}" data-id="2">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-3.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion3.png') }}">
+                        <span class="text-white">Birthday</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 3 ? 'active' : '' }}" data-id="3">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-4.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion4.png') }}">
+                        <span class="text-white">Gift</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 4 ? 'active' : '' }}" data-id="4">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-5.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion5.png') }}">
+                        <span class="text-white">Advice</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 5 ? 'active' : '' }}" data-id="5">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-6.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion6.png') }}">
+                        <span class="text-white">Congratulations</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 6 ? 'active' : '' }}" data-id="6">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-7.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion7.png') }}">
+                        <span class="text-white">Valentine’s</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="occasion-item {{ Session::get('info')['order_occasion'] == 7 ? 'active' : '' }}" data-id="7">
+                        <img class="mr-2 ml-1 grey-img" src="{{ asset('assets/images/icons/g-8.png') }}">
+                        <img class="mr-2 ml-1 white-img d-none" src="{{ asset('assets/images/icons/occasion8.png') }}">
+                        <span class="text-white">Other</span>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4 featured-video">
@@ -263,6 +339,7 @@
                 <div class="col-12 how-content">
                     <form action="{{ route('payment') }}" method="POST" id="continue">
                         {{ csrf_field() }}
+                        @if(!Session::get('info'))
                         <div class="language-setting mb-3">
                             <ul>
                                 @if($request_video->request_lang == 1)
@@ -289,23 +366,48 @@
                                     <div class="check"><div class="inside"></div></div>
                                 </li>
                                 @endif
-                                <!-- <li>
-                                    <input type="radio" id="t-option" name="order_lang" value="3">
-                                    <label for="t-option">Mix</label>
-                                    <div class="check"><div class="inside"></div></div>
-                                </li> -->
                             </ul>
                         </div>
+                        @else
+                        <div class="language-setting mb-3">
+                            <ul>
+                                @if($request_video->request_lang == 1)
+                                <li>
+                                    <input type="radio" id="f-option" name="order_lang" value="1" {{ Session::get('info')['order_lang'] == 1 ? 'checked' : '' }}>
+                                    <label for="f-option">English</label>
+                                    <div class="check"></div>
+                                </li>
+                                @elseif($request_video->request_lang == 2)
+                                <li>
+                                    <input type="radio" id="s-option" name="order_lang" value="2" {{ Session::get('info')['order_lang'] == 2 ? 'checked' : '' }}>
+                                    <label for="s-option">Korean</label>
+                                    <div class="check"><div class="inside"></div></div>
+                                </li>
+                                @elseif($request_video->request_lang == 3)
+                                <li>
+                                    <input type="radio" id="f-option" name="order_lang" value="1" {{ Session::get('info')['order_lang'] == 1 ? 'checked' : '' }}>
+                                    <label for="f-option">English</label>
+                                    <div class="check"></div>
+                                </li>
+                                <li>
+                                    <input type="radio" id="s-option" name="order_lang" value="2" {{ Session::get('info')['order_lang'] == 2 ? 'checked' : '' }}>
+                                    <label for="s-option">Korean</label>
+                                    <div class="check"><div class="inside"></div></div>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
+                        @endif
                         <div class="divider mb-3"></div>
                         <div class="form-group">
                             <label for="comment" class="text-white" style="font-size: 18px">Instructions</label>
-                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Hi! My friend Ashley is a super-fan of yours and she’s been following you for years. Could you surprise her by wishing her Happy Birthday?"></textarea>
+                            <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Hi! My friend Ashley is a super-fan of yours and she’s been following you for years. Could you surprise her by wishing her Happy Birthday?">{{ Session::get('info') ? Session::get('info')['order_introduction'] : '' }}</textarea>
                             <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 characters!</p>
                             <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Characters: <span>250</span></p>
                         </div>
-                        <input type="hidden" name="order_occasion" id="occasion" value="">
-                        <input type="hidden" name="order_who_for" id="who_for" value="2">
-                        <input type="hidden" name="order_to" id="to" value="">
+                        <input type="hidden" name="order_occasion" id="occasion" value="{{ Session::get('info') ? Session::get('info')['order_occasion'] : '' }}">
+                        <input type="hidden" name="order_who_for" id="who_for" value="{{ Session::get('info') ? Session::get('info')['order_who_for'] : 2 }}">
+                        <input type="hidden" name="order_to" id="to" value="{{ Session::get('info') ? Session::get('info')['order_to'] : '' }}">
                         <input type="hidden" name="order_idol_id" value="{{ $idol->id }}">
                         <div class="divider mb-3"></div>
                         <div class="submit">
