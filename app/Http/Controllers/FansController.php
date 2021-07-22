@@ -355,7 +355,7 @@ class FansController extends Controller
         
         $fans_count = 0;
         foreach (User::where('del_flag', 0)->get() as $user) {
-            $array = json_decode($user->fandom_lists);
+            $array = json_decode($user->fandom_lpists);
             if($array) {
                 $has_idol = in_array($idol->id, $array);
                 if($has_idol) {
@@ -404,34 +404,36 @@ class FansController extends Controller
         $order = Session::get('info');
         
         if(Order::create($order)) {
-            if($order['order_payment_method'] == 1) {
-                $card_token = Auth::user()->visa_card_token;
-            } else {
-                $card_token = Auth::user()->master_card_token;
-            }
+            // if($order['order_payment_method'] == 1) {
+            //     $card_token = Auth::user()->visa_card_token;
+            // } else {
+            //     $card_token = Auth::user()->master_card_token;
+            // }
 
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            $status = Stripe\Charge::create ([
-                    "amount" => $order['order_total_price'] * 100,
-                    "currency" => "usd",
-                    "customer" => $card_token,
-                    "description" => "Fans paid from Millionk.com" 
-            ]);
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // $status = Stripe\Charge::create ([
+            //         "amount" => $order['order_total_price'] * 100,
+            //         "currency" => "usd",
+            //         "customer" => $card_token,
+            //         "description" => "Fans paid from Millionk.com" 
+            // ]);
 
-            if ($status[ 'status' ] == "succeeded") { 
-                return view('fans.payment-success', ['order' => $order]);
-            } else {
-                return view('fans.payment-cancel', ['order' => $order]);
-            }
+            // if ($status[ 'status' ] == "succeeded") { 
+            Session::forget('info');
+            return view('fans.payment-success', ['order' => $order]);
+            // } else {
+            //     return view('fans.payment-cancel', ['order' => $order]);
+            // }
 
         } else {
+            Session::forget('info');
             return view('fans.payment-cancel', ['order' => $order]);
         }
     }
 
     public function payment_cancel()
     {
-        return view('fans.payment-cancel');
+        return view('fans.payment-cancel', ['order' => $order]);
     }
 
     public function view_video(Request $request)
@@ -457,8 +459,12 @@ class FansController extends Controller
         $order['order_total_price'] = $request->order_total_price;
         $order['order_fans_id'] = Auth::user()->id;
         Session::put('info', $order);
-        
-        return view('fans.order-summary', ['order' => $order]);
+
+        if($request->order_payment_method) {
+            return view('fans.order-summary', ['order' => $order]);
+        } else {
+            return view('fans.payment-cancel', ['order' => $order]);
+        }
     }
 
     public function send_review(Request $request)

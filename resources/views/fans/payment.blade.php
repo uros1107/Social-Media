@@ -80,30 +80,18 @@
         $idol_info = DB::table('idol_info')->where('idol_user_id', $idol_id)->first();
         $request_video = DB::table('video_request')->where('request_idol_id', $idol_info->idol_id)->first();
     @endphp
-    <div class="col-12 col-sm-8 col-md-8 featured-video payment-success">
+    <div class="col-12 col-sm-12 col-md-12 featured-video payment-success">
         <div class="custom-breadcrumb mb-2">
             <a href="{{ route('new-request').'?id='.$idol_id }}" class="text-white" style="font-weight: 700">New Request / </a>
             <a href="#" class="text-white" style="font-weight: 700">Payment</a>
         </div>
-        <div class="title-part">
-            <h2 class="text-white">Payment Info</h2>
-            <div class="divider mb-2"></div>
-        </div>
-        <div class="who-is w-100 mb-3">
-            <div class="d-flex payment-method">
-                <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
-                    <div id="paypal-button-container" class="w-100 p-4 text-center"></div>
-                </div>
-            </div>
-        </div>
-        
         <div class="title-part">
             <div class="w-100">
                 <h2 class="text-white">Order Confirmation</h2>
                 <p class="text-grey">Please check your order</p>
                 <div class="divider"></div>
             </div>
-            <div class="row mx-0 mb-5">
+            <div class="row mx-0 mb-1">
                 @php
                     $fans =  DB::table('users')->where('id', $order['order_fans_id'])->first();
                 @endphp
@@ -167,15 +155,15 @@
                 </div>
             </div>
         </div>
-        <div class="title-part d-flex">
+        <!-- <div class="title-part d-flex">
             <div>
                 <h2 class="text-white">Your personalized video request detail</h2>
                 <p class="text-grey">This is your detail request</p>
             </div>
             <div class="m-auto" style="margin-right: 0px!important">
-                <!-- <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p> -->
+                <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p>
             </div>
-        </div>
+        </div> -->
         <div class="w-100">
             <div class="instruction">
                 <h5 class="text-white">Instruction</h5>
@@ -186,8 +174,49 @@
                 </p>
             </div>
         </div>
+        <div class="title-part mt-3">
+            <h2 class="text-white">Payment Info</h2>
+            <div class="divider mb-2"></div>
+        </div>
+        <div class="pb-0">
+            <div class="row m-0 mt-4" style="justify-content: center">
+                <div class="col-12 how-content" style="max-width: 750px;">
+                    <div class="payment-info mb-2">
+                        <div class="d-flex" style="position: relative">
+                            <h5 class="text-white">Request Fee</h5>
+                            <h5 class="text-white">${{ $request_video->request_video_price }}</h5>
+                        </div>
+                        <div class="d-flex" style="position: relative">
+                            <h5 class="text-white">Platform Fee(5%)</h5>
+                            <h5 class="text-white">${{ number_format($request_video->request_video_price * 0.05, 2) }}</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-2 total">
+                        <h5 class="text-white">Total</h5>
+                        <h5 class="text-main-color">${{ number_format($request_video->request_video_price + $request_video->request_video_price * 0.05, 2) }}</h5>
+                    </div>
+                    <form action="{{ route('order-summary') }}" class="d-none" method="post" id="order-summary">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="order_payment_method" id="payment_method" value="">
+                        <input type="hidden" name="order_total_price" id="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">
+                        <input type="hidden" name="order_price"value="{{ $request_video->request_video_price }}">
+                        <input type="hidden" name="order_fee" value="{{ $request_video->request_video_price * 0.05 }}">
+                        <div class="submit">
+                            <button type="button" class="btn custom-btn w-100" id="book_now" style="font-size: 16px">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="who-is w-100 mb-3">
+            <div class="d-flex payment-method">
+                <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
+                    <div id="paypal-button-container" class="w-100 p-4 text-center"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-sm-4 col-md-4 featured-video">
+    <!-- <div class="col-12 col-sm-4 col-md-4 featured-video">
         <div class="lang-preference pb-0">
             <div class="row m-0 mb-3">
                 <div class="col-12 title">
@@ -230,113 +259,8 @@
                 <span>Standard delivery from 3-7 days</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <form id="card" method="POST" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}">
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="well">
-                                    <div class="card-wrapper mt-3" style="border-width: 0px">
-                                    </div>
-                                    <br />
-                                    <div class="row-fluid">
-                                        <div class="col-sm-12">
-                                            <h5 class="text-white" style="font-size: 12px">Fill card data</h5>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <h4 class="text-white" style="font-size: 16px">Your new debit/credit card</h4>
-                                        </div>
-                                    </div>
-                                    <div class="row-fluid">
-                                        <div class="col-sm-12">
-                                            <label class="pure-material-textfield-outlined w-100">
-                                                <input type="text" name="name" id="name" placeholder="" value="">
-                                                <span>Name</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label class="pure-material-textfield-outlined w-100">
-                                                <input type="text" name="number" id="number" placeholder="" value="">
-                                                <span>Credit Card Number</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-left: 0px;margin-right:0px">
-                                        <div class="col-sm-6">
-                                            <label class="pure-material-textfield-outlined w-100">
-                                                <input type="text" name="expiry" id="expiry" placeholder="" value="">
-                                                <span>Expiration</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label class="pure-material-textfield-outlined w-100">
-                                                <input type="text" name="cvc" id="cvc" placeholder="" value="">
-                                                <span>CVC</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-12 col-md-12 col-sm-12">
-                                            <div class="alert error d-none alert-unsuccess" role="alert">
-                                                {{ Session::get('unsuccess') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="card_type" id="card_type" value="">
-                                    <div class="row-fluid mb-3">
-                                        <div class="col-sm-12 text-right">
-                                            <button type="submit" class="btn custom-btn w-100 save-card" style="border-radius: 15px!important">Save Card</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <form method="POST">
-                    {{ csrf_field() }}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="well">
-                                <div class="row-fluid">
-                                    <div class="col-sm-12">
-                                        <h4 class="text-white mt-2 mb-4" style="font-size: 16px">Please pay with Paypal.</h4>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="col-sm-12">
-                                        <div id="paypal-button-container"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 @endsection
 
@@ -365,12 +289,14 @@
         // This function shows a transaction success message to your buyer.
         toastr.success('Transaction completed by ' + details.payer.name.given_name);
         $('#payment_method').val(1);
-        $('#payModal').modal('hide');
+        $('#order-summary').submit();
       });
     },
     onError: function (err) {
         // For example, redirect to a specific error page
         toastr.error(err);
+        $('#payment_method').val(0);
+        $('#order-summary').submit();
     }
   }).render('#paypal-button-container');
   //This function displays Smart Payment Buttons on your web page.

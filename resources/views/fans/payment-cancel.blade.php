@@ -57,9 +57,12 @@
         <img src="{{ asset('assets/images/cancel.png') }}" class="mb-2">
         <h3 class="text-white mb-2">Your order is canceled!</h3>
         <p class="text-white mb-2">Your idol cancelled your order, Your payment will be refunded.</p>
-        <button type="button" class="btn custom-btn">Go To My Orders</button>
+        <button type="button" class="btn custom-btn done-btn">Go To My Orders</button>
     </div>
 </div>
+@php
+    $idol_info = DB::table('idol_info')->where('idol_user_id', $order['order_idol_id'])->first();
+@endphp
 <div class="row featured payment-success mb-5 m-0">
     <div class="col-12 col-sm-8 col-md-8">
         <!-- <div class="row m-0 mb-4">
@@ -288,14 +291,21 @@
                         <h4 class="text-white">Transaction Detail</h4>
                     </div>
                 </div>
-                @if($order['order_payment_method'] == 2)
+                <div class="col-12 mb-2">
+                    <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
+                        <h5 class="text-white">Payment Method</h5>
+                        <div class="d-flex">
+                            <p class="text-main-color mb-0 ml-2">Paypal</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- @if($order['order_payment_method'] == 2)
                 <div class="col-12 mb-2">
                     <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
                         <h5 class="text-white">Payment Method</h5>
                         <div class="d-flex">
                             <img src="{{ asset('assets/images/master-card.png') }}">
                             <p class="text-main-color mb-0 ml-2">Mastercard</p>
-                            <p class="ml-2 mb-0">***2423</p>
                         </div>
                     </div>
                 </div>
@@ -309,7 +319,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+                @endif -->
                 <div class="col-12 how-content transaction">
                     <div class="content-item mb-3">
                         <div class="my-auto user-name">
@@ -361,6 +371,10 @@ $(document).ready(function() {
             });
         }
     });
+
+    $(document).on('click', '.done-btn', function() {
+        location.href = "{{ route('fans-index') }}";
+    })
 });
 </script>
 @endsection

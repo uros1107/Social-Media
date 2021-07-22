@@ -277,7 +277,7 @@ window.addEventListener("resize", function(e) {
                 "<h3 class='text-white text-uppercase' style='font-size: 50px'>Ulzzang</h3>",
                 "<h3 class='text-white text-uppercase' style='font-size: 50px'>Oppa</h3>",
             ],
-            typeSpeed: 30
+            typeSpeed: 100
         });
         $('.show').hide();
 
