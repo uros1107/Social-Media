@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
-                                    <label class="input-label">Korean Name</label>
+                                    <label class="input-label">Korean Name(Optional)</label>
                                     <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
