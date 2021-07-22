@@ -10,6 +10,15 @@
 .featured .image-part .row {
     flex-wrap: inherit;
 }
+/* Cursor */
+.typed-cursor {
+    color: white;
+    font-size: 16px;
+}
+
+/* If fade out option is set */
+.typed-fade-out {
+}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
@@ -30,10 +39,11 @@
         <div class="discover">
             <img src="{{ asset('assets/images/discover.png') }}" class="w-100">
         </div>
-        <div class="image-title">
-            <h2 class="text-white">FIND YOUR IDOL<br>CELEBRATE WITH THEM</h2>
+        <div class="image-title text-center" style="width: 90%">
+            <div class="typing"></div>
+            <!-- <h2 class="text-white">FIND YOUR IDOL<br>CELEBRATE WITH THEM</h2>
             <p class="text-white desktop">Personalized fans service videos from your favourite<br>Korean-wave idols.</p>
-            <p class="text-white mobile">Personalized fans service videos from<br>your favourite Korean-wave idols.</p>
+            <p class="text-white mobile">Personalized fans service videos from<br>your favourite Korean-wave idols.</p> -->
         </div>
     </div>
 </div>
@@ -229,6 +239,8 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
 <script>
 window.addEventListener("resize", function(e) {
     $('.custom-col').each(function() {
@@ -236,6 +248,15 @@ window.addEventListener("resize", function(e) {
     })
 });
     $(document).ready(function() {
+        var typed = new Typed('.typing', {
+            strings: [
+                "<p class='text-white' style='font-size: 20px'>The world's favourite platform to get in touch with your Korean Wave</p>", 
+                "<p class='text-white' style='font-size: 20px'>- Idols</p>",
+                "<p class='text-white' style='font-size: 20px'>- Youtubers</p>",
+                "<p class='text-white' style='font-size: 20px'>- Twitch Streamers</p>",
+            ],
+            typeSpeed: 30
+        });
         $('.show').hide();
 
         $('.custom-col').each(function() {
