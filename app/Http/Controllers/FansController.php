@@ -216,22 +216,24 @@ class FansController extends Controller
                 }
       
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'user_name' => Str::random(10),
-                    'email' => $user->email,
-                    'facebook_id'=> $user->id,
-                    'role' => Session::get('role'),
-                    'password' => Hash::make($user->email)
-                ]);
+                var_export($user);
+                die;
+                // $newUser = User::create([
+                //     'name' => $user->name,
+                //     'user_name' => Str::random(10),
+                //     'email' => $user->email,
+                //     'facebook_id'=> $user->id,
+                //     'role' => Session::get('role'),
+                //     'password' => Hash::make($user->email)
+                // ]);
      
-                Auth::login($newUser);
+                // Auth::login($newUser);
       
-                if(Session::get('role') == 1) {
-                    return redirect()->route('idol-index');
-                } else if(Session::get('role') == 2) {
-                    return redirect()->route('fans-index');
-                }
+                // if(Session::get('role') == 1) {
+                //     return redirect()->route('idol-index');
+                // } else if(Session::get('role') == 2) {
+                //     return redirect()->route('fans-index');
+                // }
             }
      
         } catch (Exception $e) {
