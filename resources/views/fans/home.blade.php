@@ -12,7 +12,7 @@
 }
 /* Cursor */
 .typed-cursor {
-    color: white;
+    color: transparent;
     font-size: 16px;
 }
 
@@ -250,32 +250,32 @@ window.addEventListener("resize", function(e) {
     $(document).ready(function() {
         var typed = new Typed('.typing', {
             strings: [
-                "<h3 class='text-white' style='font-size: 20px'>- Vloggers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- YouTubers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Actors</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Comedians</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- TikTok</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Creators</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Gamers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Influencers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Twitch</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Streamers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Models</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Magicians</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Dancers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Stylists</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- TV Hosts</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Musicians</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Singers</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Kpop</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Entrepreneurs</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Cosplay</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- For Kids</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Sports Stars</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- ASMR</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Mukbang</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Ulzzang</h3>",
-                "<h3 class='text-white' style='font-size: 20px'>- Oppa</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Vloggers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>YouTubers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Actors</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Comedians</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>TikTok</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Creators</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Gamers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Influencers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Twitch</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Streamers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Models</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Magicians</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Dancers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Stylists</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>TV Hosts</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Musicians</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Singers</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Kpop</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Entrepreneurs</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Cosplay</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>For Kids</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Sports Stars</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>ASMR</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Mukbang</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Ulzzang</h3>",
+                "<h3 class='text-white text-uppercase' style='font-size: 50px'>Oppa</h3>",
             ],
             typeSpeed: 30
         });
