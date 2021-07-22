@@ -297,6 +297,11 @@ $(document).ready(function() {
         $('.how-work-view').addClass('d-none');
     })
 
+    $(document).on('click', '.close', function() {
+        $('#myModal').modal('hide');
+        $("#video").get(0).pause();
+    })
+
     $(document).on('click', '#new-request, #m-new-request', function() {
         @if(Auth::check())
             var id = $(this).data('id');

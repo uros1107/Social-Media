@@ -562,6 +562,11 @@ $(document).ready(function() {
         @endif
     });
 
+    $(document).on('click', '.close', function() {
+        $('#myModal').modal('hide');
+        $("#video").get(0).pause();
+    })
+
     $(document).on('click', '.play-video', function() {
         var videoSrc = $(this).data('src');
         $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 

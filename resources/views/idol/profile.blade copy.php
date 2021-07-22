@@ -317,7 +317,7 @@
         </button>        
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
-            <video id="video" controls autoplay>
+            <video id="video" controls>
                 <source src="" type="video/mp4">
                 <source src="" type="video/mkv">
                 Your browser does not support the video tag.
