@@ -219,7 +219,7 @@ class FansController extends Controller
                 $newUser = User::create([
                     'name' => $user->name,
                     'user_name' => Str::random(10),
-                    'email' => 'aaa@gmail.com',
+                    'email' => $user->email,
                     'facebook_id'=> $user->id,
                     'role' => Session::get('role'),
                     'password' => Hash::make($user->email)
