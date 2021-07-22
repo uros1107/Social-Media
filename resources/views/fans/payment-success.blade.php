@@ -65,7 +65,7 @@
 </div>
 <div class="row featured payment-success mb-5 m-0">
     <div class="col-12 col-sm-8 col-md-8">
-        <div class="row m-0 mb-4">
+        <!-- <div class="row m-0 mb-4">
             <div class="w-40">
                 <div class="title-part">
                     <h2 class="text-white">Let Get Know Each Other</h2>
@@ -109,7 +109,7 @@
                     <button type="button" class="btn custom-btn">Save</button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="title-part">
             <div class="w-100">
                 <h2 class="text-white">Order Confirmation</h2>
@@ -244,7 +244,7 @@
                 </div>
             </div>
         </div>
-        <div class="lang-preference mb-3">
+        <!-- <div class="lang-preference mb-3">
             <div class="row m-0">
                 <div class="col-12 title mb-2">
                     <div class="d-flex">
@@ -260,12 +260,12 @@
                             <p class="mb-0">{{ '@'.$idol_info->idol_user_name }}</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_full_name }}</p>
                         </div>
-                        <!-- <div class="m-auto user-rating" style="margin-right:0px!important">
+                        <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0">Rating</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_rating }}/5</p>
-                        </div> -->
+                        </div>
                     </div>
-                    <!-- <div class="content-item mb-3">
+                    <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0">Email</p>
                             <p class="text-main-color mb-0">{{ $idol_info->idol_email }}</p>
@@ -280,10 +280,10 @@
                             <p class="mb-0">Country</p>
                             <p class="text-main-color mb-0">Singapore</p>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="lang-preference">
             <div class="row m-0">
                 <div class="col-12 title mb-2">
@@ -297,8 +297,7 @@
                         <h5 class="text-white">Payment Method</h5>
                         <div class="d-flex">
                             <img src="{{ asset('assets/images/master-card.png') }}">
-                            <p class="text-main-color mb-0 ml-2">Mastercard</p>
-                            <p class="ml-2 mb-0">***2423</p>
+                            <p class="text-main-color mb-0 ml-2">Paypal</p>
                         </div>
                     </div>
                 </div>

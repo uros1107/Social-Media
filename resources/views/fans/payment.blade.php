@@ -89,41 +89,6 @@
             <h2 class="text-white">Payment Info</h2>
             <div class="divider mb-2"></div>
         </div>
-        <!-- <div class="who-is w-100 mb-2 mt-4">
-            <div class="d-flex">
-                <h4 class="text-white w-50">Your card</h4>
-                <div class="w-50 text-right mb-2">
-                    <button type="button" class="btn custom-btn add-card"><i class='fa fa-plus text-main-color mr-2'
-                            style='font-size:14px'></i>Add new card</button>
-                </div>
-            </div>
-            <div class="divider mb-2"></div>
-            <div class="row m-0 occasion card-item">
-                @if(Auth::user()->master_card_token)
-                <div class="col-12 col-md-6">
-                    <div class="occasion-item" data-id="2">
-                        <img class="mr-2 ml-1" src="{{ asset('assets/images/master-card.png') }}">
-                        <span class="text-white">Mastercard</span>
-                        <img class="mr-2 ml-1 delete" src="{{ asset('assets/images/icons/delete.png') }}">
-                        <div class="card-number mt-2 ml-2">
-                            <span class="text-white">***1234</span>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @if(Auth::user()->visa_card_token)
-                <div class="col-12 col-md-6">
-                    <div class="occasion-item" data-id="1">
-                        <span class="text-white">VISA</span>
-                        <img class="mr-2 ml-1 delete" src="{{ asset('assets/images/icons/delete.png') }}">
-                        <div class="card-number mt-2 ml-2">
-                            <span class="text-white">***1234</span>
-                        </div>
-                    </div>
-                </div>
-                @endif
-            </div>
-        </div> -->
         <div class="who-is w-100 mb-3">
             <div class="d-flex payment-method">
                 <div class="col-12 col-sm-12 col-md-12 user-block d-flex">
@@ -269,14 +234,13 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <!-- 16:9 aspect ratio -->
                 <div class="embed-responsive embed-responsive-16by9">
                     <form id="card" method="POST" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}">
                         {{ csrf_field() }}
@@ -341,9 +305,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -372,7 +336,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 @endsection
 
