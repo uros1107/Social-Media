@@ -158,7 +158,7 @@
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
                                     <input type="text" placeholder="" name='idol_k_name' style="padding-right: 90px;" value="{{ Auth::user()->k_name }}">
-                                    <span>Korean Name</span>
+                                    <span>Korean Name(Optional)</span>
                                 </label>
                                 @if ($errors->has('idol_k_name'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -293,7 +293,7 @@
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
                                     <input type="text" placeholder="" name='idol_k_name' style="padding-right: 90px;" value="{{ $idol_info->idol_k_name }}">
-                                    <span>Korean Name</span>
+                                    <span>Korean Name(Optional)</span>
                                 </label>
                                 @if ($errors->has('idol_k_name'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
