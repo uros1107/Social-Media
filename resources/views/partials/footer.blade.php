@@ -40,10 +40,10 @@
             </div>
             <div class="d-flex" style="margin: 10px 0px;right: 35px;position:absolute">
                 <div class="footer-social">
-                    <a href="https://www.facebook.com"><img src="{{ asset('assets/images/icons/facebook.png') }}" style="height: 18px"></a>
+                    <a href="https://www.facebook.com/MillionK.official"><img src="{{ asset('assets/images/icons/facebook.png') }}" style="height: 18px"></a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
+                    <a href="https://www.instagram.com/millionk.official"><img src="{{ asset('assets/images/icons/instagram.png') }}" style="height: 18px"></a>
                 </div>
                 <div class="footer-social">
                     <a href="mailto:hello@millionk.com"><img src="{{ asset('assets/images/icons/gmail.png') }}" style="height: 18px"></a>
