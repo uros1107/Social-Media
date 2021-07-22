@@ -398,7 +398,7 @@ a:hover {
 .discover-favourite .image-title {
     position: absolute;
     top: 25%;
-    margin-left: 30px;
+    /* margin-left: 30px; */
     display: table-cell;
     vertical-align: middle;
 }
@@ -504,7 +504,7 @@ a:hover {
         height: 145px;
     }
     .discover-favourite .image-title {
-        margin-left: 10px;
+        margin-left: 0px;
     }
     .discover-favourite .image-title > h2 {
         font-weight: bold;

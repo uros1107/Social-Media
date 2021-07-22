@@ -35,14 +35,14 @@
         <button class="btn custom-btn deactive favourite-btn" type="button">My Favourite</button>
         @endif
     </div> -->
-    <div class="col-12 col-sm-12 col-md-12 hide" style="display:table">
+    <div class="col-12 col-sm-12 col-md-12 hide" style="display:inline-grid">
         <div class="discover">
             <img src="{{ asset('assets/images/discover.png') }}" class="w-100">
         </div>
-        <div class="image-title text-center" style="width: 90%">
+        <div class="image-title text-center w-100">
+            <h2 class="text-white">The world's favourite platform to get in touch<br>with your Korean Wave</h2>
             <div class="typing"></div>
-            <!-- <h2 class="text-white">FIND YOUR IDOL<br>CELEBRATE WITH THEM</h2>
-            <p class="text-white desktop">Personalized fans service videos from your favourite<br>Korean-wave idols.</p>
+            <!-- <p class="text-white desktop">Personalized fans service videos from your favourite<br>Korean-wave idols.</p>
             <p class="text-white mobile">Personalized fans service videos from<br>your favourite Korean-wave idols.</p> -->
         </div>
     </div>
@@ -250,10 +250,32 @@ window.addEventListener("resize", function(e) {
     $(document).ready(function() {
         var typed = new Typed('.typing', {
             strings: [
-                "<p class='text-white' style='font-size: 20px'>The world's favourite platform to get in touch with your Korean Wave</p>", 
-                "<p class='text-white' style='font-size: 20px'>- Idols</p>",
-                "<p class='text-white' style='font-size: 20px'>- Youtubers</p>",
-                "<p class='text-white' style='font-size: 20px'>- Twitch Streamers</p>",
+                "<h3 class='text-white' style='font-size: 20px'>- Vloggers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- YouTubers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Actors</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Comedians</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- TikTok</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Creators</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Gamers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Influencers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Twitch</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Streamers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Models</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Magicians</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Dancers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Stylists</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- TV Hosts</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Musicians</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Singers</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Kpop</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Entrepreneurs</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Cosplay</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- For Kids</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Sports Stars</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- ASMR</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Mukbang</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Ulzzang</h3>",
+                "<h3 class='text-white' style='font-size: 20px'>- Oppa</h3>",
             ],
             typeSpeed: 30
         });
