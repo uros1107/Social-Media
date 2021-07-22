@@ -562,10 +562,9 @@ $(document).ready(function() {
         @endif
     });
 
-    $(document).on('click', '.close', function() {
-        $('#myModal').modal('hide');
+    $("#myModal").on("hidden.bs.modal", function () {
         $("#video").get(0).pause();
-    })
+    });
 
     $(document).on('click', '.play-video', function() {
         var videoSrc = $(this).data('src');
