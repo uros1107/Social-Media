@@ -98,9 +98,25 @@
                     <i class="fa fa-search" style="color: #FF335C"></i>
                 </a>
                 <!-- <i class="fa fa-bell-o text-white"></i> -->
-                <a class="sidebar-toggler d-lg-none mr-auto" type="button" style="background: #000;">
+                <a class="sidebar-toggler mr-auto" type="button" style="background: #000;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
+                @if(!Auth::check() || Auth::user()->role != 2)
+                <a type="button" style="background: #000;" id="sub-menu1">
+                    <i class="fas fa-ellipsis-v text-white" style="margin: 0px 10px;font-size: 18px;"></i>
+                </a>
+                <div class="sub-menu d-none" style="width: 140px;top:40px">
+                    <div class="mb-2">
+                        <a href="{{ route('fans-profile') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Profile</a>
+                    </div>
+                    <div class="mb-2">
+                        <a href="{{ route('fans-activity') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Requests</a>
+                    </div>
+                    <div>
+                        <a href="{{ route('logout') }}" class="text-white"><i class='fas fa-angle-double-left mr-3' style='font-size:12px'></i>Logout</a>
+                    </div>
+                </div>
+                @endif
             </div>
             <div class="search mobile-search d-none">
                 <!-- Actual search box -->
@@ -170,7 +186,7 @@
             $('.signup-btn').on('click', function() {
                 location.href = "{{ route('fans-signup') }}";
             })
-            $('#sub-menu').on('click', function() {
+            $('#sub-menu, #sub-menu1').on('click', function() {
                 if($('.sub-menu').hasClass('d-none')) {
                     $('.sub-menu').removeClass('d-none')
                 } else {
