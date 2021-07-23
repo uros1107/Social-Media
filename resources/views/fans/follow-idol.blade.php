@@ -47,9 +47,12 @@
     bottom: 78px;
     right: 35px;
 }
+#send-review h4 {
+    font-size: 22px;
+}
 @media (max-width: 574px) {
     .featured {
-        padding: 0px 10px!important;
+        padding: 0px 0px!important;
     }
     .featured .featured-video {
         padding: 0px;
@@ -206,7 +209,7 @@
 
 @if(count($reviews))
 <div class="row featured mb-4 m-0">
-    <div class="col-12 col-sm-12 col-md-12 featured-video">
+    <div class="col-12 col-sm-12 col-md-12 featured-video d-flex">
         <div class="title-part">
             <h2 class="text-white">Comments</h2>
             <p class="text-grey">Comments about {{ $idol_info->idol_full_name }}</p>
@@ -243,6 +246,33 @@
             </div>
             @endforeach
         </div>
+        <div class="col-12 col-sm-12 col-md-12 payment-next">
+            <div class="lang-preference mb-3">
+                <div class="row m-0">
+                    <form class="w-100" id="send-review" action="{{ route('send-review') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="col-12 title mb-3 text-center">
+                            <h4 class="text-white">Your Comment</h4>
+                            <div class="stars">
+                                <i class="fa fa-star 1-star" style="font-size: 30px" data-value="1"></i>
+                                <i class="fa fa-star 2-star" style="font-size: 30px" data-value="2"></i>
+                                <i class="fa fa-star 3-star" style="font-size: 30px" data-value="3"></i>
+                                <i class="fa fa-star 4-star" style="font-size: 30px" data-value="4"></i>
+                                <i class="fa fa-star 5-star" style="font-size: 30px" data-value="5"></i>
+                            </div>
+                        </div>
+                        <div class="col-12 title mb-3 text-center">
+                            <h4 class="text-white mb-3">Leave Feedback</h4>
+                            <input type="hidden" name="review_rating" value="0" id="review_rating">
+                            <input type="hidden" name="review_fans_id" value="{{ Auth::check() ? Auth::user()->id : '' }}">
+                            <input type="hidden" name="review_idol_id" value="{{ $idol->id }}">
+                            <textarea style="background:#2b2b2b!important" name="review_feedback" id="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Please leave your message about this video." required></textarea>
+                            <button type="button" class="btn custom-btn w-100 send-feedback-btn">Send Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <div>
     </div>
 </div>
 @endif
@@ -286,6 +316,14 @@ function goto_category(url) {
 }
 
 $(document).ready(function() {
+    @if(Session::get('success'))
+        toastr.success('Successfully submitted!');
+    @endif
+
+    @if(Session::get('ussuccess'))
+        toastr.error('Unsuccessfully your comment!');
+    @endif
+
     $('.video-item video').each(function() {
         $(this).height($(this).width() * 1.6);
     })
@@ -394,6 +432,29 @@ $(document).ready(function() {
         $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
         $('#myModal').modal('toggle');
     });
+
+    $(document).on('click', '.fa-star', function() {
+        var count = $(this).data('value');
+        $('#review_rating').val(count);
+        for (let i = 1; i <= count; i++) {
+            $('.' + i + '-star').css('color', '#FFC107');
+        }
+        for (let i = count + 1; i <= 5; i++) {
+            $('.' + i + '-star').css('color', '#23282c');
+        }
+    });
+
+    $(document).on('click', '.send-feedback-btn', function(e) {
+        @if(!Auth::check())
+            location.href = "{{ route('fans-signin') }}";
+        @else
+            if(!$('#review_feedback').val()) {
+                toastr.error('You should leave feedback!');
+            } else {
+                $('#send-review').submit();
+            }
+        @endif
+    })
 })
 </script>
 @endsection
