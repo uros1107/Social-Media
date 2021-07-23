@@ -549,6 +549,19 @@ class IdolController extends Controller
         $order->order_status = 3;
         $order->save();
 
+        $fans = User::where('id', $order->order_fans_id)->first();
+        $idol_info = IdolInfo::where('idol_user_id', $order->order_idol_id)->first();
+        $data = [
+            'idol_full_name' => $idol_info->idol_full_name,
+            'order' => $order,
+        ];
+
+        Mail::send('email.order-decline', ['data' => $data], function($message) use($fans){
+            $message->to('amar.chan9655@gmail.com');
+            $message->subject('Order was declined!');
+        });
+
+
         return redirect()->route('idol-video-request');
     }
 
