@@ -27,5 +27,6 @@ class IdolInfo extends Model
         'idol_paypal_id',
         'idol_status',
         'idol_del_flag',
+        'idol_wallet'
     ];
 }
