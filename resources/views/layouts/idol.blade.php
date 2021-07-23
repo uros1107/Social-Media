@@ -95,7 +95,7 @@
                 <a class="sidebar-toggler d-lg-none mr-auto" type="button" style="background: #000;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
-                @if(!Auth::check() || Auth::user()->role != 1)
+                @if(Auth::check() && Auth::user()->role != 1)
                 <a type="button" style="background: #000;" id="sub-menu1">
                     <i class="fas fa-ellipsis-v text-white" style="margin: 0px 10px;font-size: 18px;"></i>
                 </a>

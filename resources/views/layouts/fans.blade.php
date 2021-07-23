@@ -101,7 +101,7 @@
                 <a class="sidebar-toggler mr-auto" type="button" style="background: #000;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
-                @if(!Auth::check() || Auth::user()->role != 2)
+                @if(Auth::check() && Auth::user()->role != 2)
                 <a type="button" style="background: #000;" id="sub-menu1">
                     <i class="fas fa-ellipsis-v text-white" style="margin: 0px 10px;font-size: 18px;"></i>
                 </a>
