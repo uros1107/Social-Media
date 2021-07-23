@@ -133,7 +133,7 @@ function format ( d ) {
     } else if(d.order.order_lang == 2) {
         lang = 'Korean';
     } else {
-        lang = 'Mix (English and Korean)';
+        lang = 'Both (English and Korean)';
     }
     // `d` is the original data object for the row
     return '<table cellpadding="8" class="w-100" cellspacing="0" border="0" style="padding-left:50px;">' +
