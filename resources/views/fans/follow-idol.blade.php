@@ -301,7 +301,7 @@ $(document).ready(function() {
         // location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
     // })
 
-    $(document).on('ended', '#video-tag', function() {
+    $(document).on('ended', '.video-item video', function() {
         $(".play-video").removeClass('d-none');
         $(".pause-video").addClass('d-none');
     });
@@ -381,6 +381,12 @@ $(document).ready(function() {
                 }
             });
         @endif
+    });
+
+    $(document).on('click', '.new-profile-video .play-video', function() {
+        var videoSrc = $(this).data('src');
+        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
+        $('#myModal').modal('toggle');
     });
 })
 </script>
