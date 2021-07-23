@@ -516,7 +516,7 @@ class IdolController extends Controller
             $idol_info->idol_wallet += $order->first()->order_price * 0.75;
             $idol_info->save();
 
-            $fans = User::where('id', $order->order_fans_id)->first();
+            $fans = User::where('id', $order->first()->order_fans_id)->first();
             $data = [
                 'idol_full_name' => $idol_info->idol_full_name,
                 'order' => $order->first(),
