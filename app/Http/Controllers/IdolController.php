@@ -500,19 +500,32 @@ class IdolController extends Controller
         $order = Order::where('order_id', $request->order_id);
         $info = ['order_video' => $video_name, 'order_status' => 1];
         if($order->update($info)) {
-            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            try {
-                $tranfer = \Stripe\Transfer::create(array(
-                    'amount' => $order->first()->order_price * 0.75 * 100,
-                    'currency' => "usd",
-                    'destination' => $idol_info->idol_stripe_account_id
-                ));
-            } catch(Exception $e) {
-                $info = ['order_status' => 0];
-                $order->update($info);
+            // \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // try {
+            //     $tranfer = \Stripe\Transfer::create(array(
+            //         'amount' => $order->first()->order_price * 0.75 * 100,
+            //         'currency' => "usd",
+            //         'destination' => $idol_info->idol_stripe_account_id
+            //     ));
+            // } catch(Exception $e) {
+            //     $info = ['order_status' => 0];
+            //     $order->update($info);
 
-                return response()->json(['success' => false, 'error' => $e->getMessage()]);
-            }
+            //     return response()->json(['success' => false, 'error' => $e->getMessage()]);
+            // }
+            $idol_info->idol_wallet += $order->first()->order_price * 0.75;
+            $idol_info->save();
+
+            $fans = User::where('id', $order->order_fans_id)->first();
+            $data = [
+                'idol_full_name' => $idol_info->idol_full_name,
+                'order' => $order->first(),
+            ];
+
+            Mail::send('email.order-accept', ['data' => $data], function($message) use($fans){
+                $message->to($fans->email);
+                $message->subject('Order was accepted!');
+            });
 
             return response()->json(['success' => true]);
         } else {
@@ -557,10 +570,9 @@ class IdolController extends Controller
         ];
 
         Mail::send('email.order-decline', ['data' => $data], function($message) use($fans){
-            $message->to('amar.chan9655@gmail.com');
+            $message->to($fans->email);
             $message->subject('Order was declined!');
         });
-
 
         return redirect()->route('idol-video-request');
     }
