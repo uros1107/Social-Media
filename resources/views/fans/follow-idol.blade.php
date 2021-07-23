@@ -43,6 +43,10 @@
 .featured .featured-video {
     padding: 0px 20px;
 }
+.video-item .play-video, .video-item .pause-video {
+    bottom: 78px;
+    right: 35px;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 10px!important;
@@ -175,6 +179,12 @@
                         <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="play-video text-center">
+                        <img src="{{ asset('assets/images/icons/play-video.png') }}">
+                    </div>
+                    <div class="pause-video text-center d-none">
+                        <img src="{{ asset('assets/images/icons/pause-video.png') }}">
+                    </div>
                     <div class="video-title d-flex mt-1">
                         <h5 class="mb-0">Congratulation Melissa</h5>
                         <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
@@ -284,9 +294,30 @@ $(document).ready(function() {
         };
     });
 
-    $(document).on('click', '.video-item', function() {
-        location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
-    })
+    // $(document).on('click', '.video-item', function() {
+        // location.href = "{{ route('view-video') }}" + '?order_id=' + $(this).data('id');
+    // })
+
+    $(document).on('ended', '#video-tag', function() {
+        $(".play-video").removeClass('d-none');
+        $(".pause-video").addClass('d-none');
+    });
+
+    $(document).on('click', '.play-video, .pause-video', function() {
+        var video = $(this).parent().find('video').get(0);
+
+        if ( video.paused ) {
+            video.play();
+            $(this).parent().find('.play-video').addClass('d-none');
+            $(this).parent().find('.pause-video').removeClass('d-none');
+        } else {
+            video.pause();
+            $(this).parent().find('.play-video').removeClass('d-none');
+            $(this).parent().find('.pause-video').addClass('d-none');
+        }
+
+        return false;
+    });
 
     $(document).on('click', '.question-btn', function() {
         if($('.how-work-view').hasClass('d-none')) {
@@ -347,12 +378,6 @@ $(document).ready(function() {
                 }
             });
         @endif
-    });
-
-    $(document).on('click', '.play-video', function() {
-        var videoSrc = $(this).data('src');
-        $("#video").attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0"); 
-        $('#myModal').modal('toggle');
     });
 })
 </script>
