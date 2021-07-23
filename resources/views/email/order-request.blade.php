@@ -3,7 +3,7 @@
 <h3>Order details:</h3>
 <div>
     <h4>Who is this for? : </h4>
-    <p>{{ $data['order']['order_who_for == 1']? 'For me' : 'Someone else' }}</p>
+    <p>{{ $data['order']['order_who_for'] == 1? 'For me' : 'Someone else' }}</p>
 </div>
 <div>
     <h4>To : </h4>
