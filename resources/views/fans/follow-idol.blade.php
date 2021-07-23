@@ -280,6 +280,9 @@ function goto_category(url) {
 }
 
 $(document).ready(function() {
+    $('.video-item video').each(function() {
+        $(this).height($(this).width() * 1.6);
+    })
     $('.idol-img').height($('.idol-img').width());
 
     $(document).on('click', '.idol-image', function() {
