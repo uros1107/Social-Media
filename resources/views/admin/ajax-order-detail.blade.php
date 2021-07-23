@@ -129,7 +129,7 @@
                     @elseif($order->order_lang == 2)
                     <h4 class="text-main-color mb-0">Korean</h4>
                     @else
-                    <h4 class="text-main-color mb-0">Mix(English and Korean)</h4>
+                    <h4 class="text-main-color mb-0">Both(English and Korean)</h4>
                     @endif
                 </div>
             </div>
@@ -155,7 +155,7 @@
                 @elseif($order->order_lang == 2)
                 <h4 class="text-main-color mb-0">Korean</h4>
                 @else
-                <h4 class="text-main-color mb-0">Mix(English and Korean)</h4>
+                <h4 class="text-main-color mb-0">Both(English and Korean)</h4>
                 @endif
             </div>
         </div>

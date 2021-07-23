@@ -16,7 +16,7 @@
     @elseif($data['order']['order_lang'] == 2)
     <p>Korean</p>
     @else
-    <p>Mix(English and Korean)</p>
+    <p>Both(English and Korean)</p>
     @endif
 </div>
 <div>

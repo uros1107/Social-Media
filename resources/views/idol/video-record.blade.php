@@ -235,7 +235,7 @@ video {
                             @elseif($order->order_lang == 2)
                             <h4 class="text-main-color">Korean</h4>
                             @else
-                            <h4 class="text-main-color">Mix(English and Korean)</h4>
+                            <h4 class="text-main-color">Both(English and Korean)</h4>
                             @endif
                         </div>
                     </div>

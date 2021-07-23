@@ -368,7 +368,7 @@
                                 </li>
                                 <li>
                                     <input type="radio" id="t-option" name="order_lang" value="3">
-                                    <label for="t-option">Mix</label>
+                                    <label for="t-option">Both</label>
                                     <div class="check"><div class="inside"></div></div>
                                 </li>
                             </ul>

@@ -165,7 +165,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                         @elseif($order->order_lang == 2)
                                         <p class="mb-0" style="color:#898989">Korean</p>
                                         @else
-                                        <p class="mb-0" style="color:#898989">Mix(English and Korean)</p>
+                                        <p class="mb-0" style="color:#898989">Both(English and Korean)</p>
                                         @endif
                                     </div>
                                     <div class="d-flex">

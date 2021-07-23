@@ -190,7 +190,7 @@
                             @elseif($order->order_lang == 2)
                             <p class="text-main-color mb-0">Korean</p>
                             @else
-                            <p class="text-main-color mb-0">Mix(English and Korean)</p>
+                            <p class="text-main-color mb-0">Both(English and Korean)</p>
                             @endif
                         </div>
                     </div>

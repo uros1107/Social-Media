@@ -344,7 +344,7 @@
                             <label class="custom-control black-checkbox m-auto">
                                 <input type="radio" name="request_lang" value="3" class="fill-control-input d-none" {{ $video_request->request_lang == 3? 'checked' : '' }}>
                                 <span class="fill-control-indicator"></span>
-                                <span class="fill-control-description text-white">Mix (English + Korean)</span>
+                                <span class="fill-control-description text-white">Both (English + Korean)</span>
                             </label>
                         </div>
                         <div class="desktop">
@@ -362,7 +362,7 @@
                                 <label class="custom-control black-checkbox m-auto">
                                     <input type="radio" name="request_lang" value="3" class="fill-control-input d-none" {{ $video_request->request_lang == 3? 'checked' : '' }}>
                                     <span class="fill-control-indicator"></span>
-                                    <span class="fill-control-description text-white">Mix (English + Korean)</span>
+                                    <span class="fill-control-description text-white">Both (English + Korean)</span>
                                 </label>
                             </div>
                         </div>

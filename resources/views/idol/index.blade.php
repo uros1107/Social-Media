@@ -279,7 +279,7 @@
                                                 @elseif($order->order_lang == 2)
                                                 <span class="mb-0" style="font-size: 13px;color:#898989">Korean</span>
                                                 @else
-                                                <span class="mb-0" style="font-size: 13px;color:#898989">Mix(English and Korean)</span>
+                                                <span class="mb-0" style="font-size: 13px;color:#898989">Both(English and Korean)</span>
                                                 @endif
                                             </div>
                                             <div class="d-flex">
