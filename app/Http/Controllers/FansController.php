@@ -539,7 +539,7 @@ class FansController extends Controller
     {
         $search = $request->search;
 
-        $idol_infos = IdolInfo::where('idol_full_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
+        $idol_infos = IdolInfo::where('idol_full_name', 'like', '%'.$search.'%')->orWhere('idol_k_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
 
         return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }
