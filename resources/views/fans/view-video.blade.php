@@ -115,7 +115,6 @@
         <div class="w-100">
             <div class="instruction">
                 <h5 class="text-white">Instruction</h5>
-                <p class="text-white" style="font-size: 16px">Request fulfillment usually takes 3-7 days</p>
                 <br>
                 <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
                 <p class="text-white" style="font-size: 16px">{{ $order->order_introduction }}</p>

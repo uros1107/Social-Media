@@ -404,6 +404,7 @@
                             <textarea class="form-control introduction text-white" name="order_introduction" rows="5" id="comment" placeholder="Hi! My friend Ashley is a super-fan of yours and she’s been following you for years. Could you surprise her by wishing her Happy Birthday?">{{ Session::get('info') ? Session::get('info')['order_introduction'] : '' }}</textarea>
                             <p class="text-main-color text-right mt-1 limit-message d-none" style="font-size: 12px">You can input maximun 250 characters!</p>
                             <p class="text-white text-right mb-0 mr-2 word-count mt-1 d-none" style="font-size: 12px">Characters: <span>250</span></p>
+                            <p class="text-white text-center mt-2" style="font-size: 14px">Request fulfillment usually takes 3-7 days</p>
                         </div>
                         <input type="hidden" name="order_occasion" id="occasion" value="{{ Session::get('info') ? Session::get('info')['order_occasion'] : '' }}">
                         <input type="hidden" name="order_who_for" id="who_for" value="{{ Session::get('info') ? Session::get('info')['order_who_for'] : 2 }}">
