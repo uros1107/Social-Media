@@ -306,7 +306,7 @@ $(document).ready(function() {
         $(".pause-video").addClass('d-none');
     });
 
-    $(document).on('click', '.play-video, .pause-video', function() {
+    $(document).on('click', '.video-item .play-video, .video-item .pause-video', function() {
         var video = $(this).parent().find('video').get(0);
 
         if ( video.paused ) {
