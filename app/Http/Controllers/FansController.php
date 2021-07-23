@@ -419,8 +419,6 @@ class FansController extends Controller
             // ]);
 
             // if ($status[ 'status' ] == "succeeded") { 
-            var_export($order);
-            die;
             $fans = User::where('id', $order['order_fans_id'])->first();
             $idol_info = IdolInfo::where('idol_user_id', $order['order_idol_id'])->first();
             $data = [
