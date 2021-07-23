@@ -83,7 +83,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Name</label>
-                                    <input type="text" name="name" placeholder="Your name" class="custom-input" required>
+                                    <input type="text" name="name" id="name" placeholder="Your name" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('name'))
@@ -95,7 +95,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Korean Name(Optional)</label>
-                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
+                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('k_name'))
@@ -107,7 +107,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="email" name="email" placeholder="Email" class="custom-input" required>
+                                    <input type="email" name="email" id="email" placeholder="Email" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                                 @if ($errors->has('email'))
@@ -119,7 +119,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Phone Number(Never Shared)</label>
-                                    <input type="text" name="phone" placeholder="Phone number" class="custom-input">
+                                    <input type="text" name="phone" id="phone" placeholder="Phone number" class="custom-input">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                                 </div>
                                 @if ($errors->has('phone'))
@@ -169,7 +169,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">How many followers do you have?</label>
-                                    <input type="text" name="followers" id="followers" placeholder="20" class="custom-input" required>
+                                    <input type="text" name="followers" id="followers" placeholder="0" class="custom-input" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
                                 </div>
                             </div>
@@ -224,16 +224,8 @@
 
         $('.label.ui.dropdown').dropdown();
 
-        let is_filled = false; 
         $('#next').on('click', function() {
-            is_filled = true; 
-            $('.step-1 input').each(function(){
-                if (!$(this).val()) {
-                    is_filled = false
-                    return false;
-                }
-            });
-            if(!is_filled) {
+            if(!$('#name').val() || !$('#email').val() || !$('#phone').val()) {
                 toastr.error('You should fill all fields!');
             } else {
                 $('.step-1').addClass('d-none');

@@ -90,13 +90,14 @@
                             $user = DB::table('users')->where('id', Auth::user()->id)->first();
                             $has = !$user->fandom_lists? '': in_array($idol->id, json_decode($user->fandom_lists));
                         @endphp
-                            @if($has)
+                            <div class="following {{ !$has ? 'd-none' : '' }}">
                                 <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
                                 <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white" >Following</span></a>
-                            @else
+                            </div>
+                            <div class="follow {{ $has ? 'd-none' : '' }}">
                                 <img src="{{ asset('assets/images/icons/follow.png') }}" class="mr-2">
                                 <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Follow</span></a>
-                            @endif
+                            </div>
                         @endif
                     </div>
                     <div class="mb-4">
@@ -126,7 +127,7 @@
                             <h4 class="text-white">How does it work?</h4>
                             <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
                         </div>
-                        <p class="text-white">What happen when I submit a request?</p>
+                        <p class="text-white">What happens when I submit a request?</p>
                     </div>
                     <div class="col-12 how-content">
                         <div class="content-item d-flex mb-4">
@@ -135,7 +136,7 @@
                         </div>
                         <div class="content-item d-flex mb-4">
                             <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
-                            <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
+                            <p class="mb-0 text-white">Your idol will fulfill your video request within 3~7 days</p>
                         </div>
                         <div class="content-item d-flex mb-4">
                             <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
@@ -318,6 +319,13 @@ $(document).ready(function() {
         @if(!Auth::check())
             location.href = "{{ route('fans-signin') }}";
         @else
+            if($(this).parent().hasClass('following')) {
+                $('.following').addClass('d-none');
+                $('.follow').removeClass('d-none');
+            } else {
+                $('.following').removeClass('d-none');
+                $('.follow').addClass('d-none');
+            }
             $.ajaxSetup({
                 headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -329,15 +337,9 @@ $(document).ready(function() {
                 data: { idol_user_id: id },
                 success: function (res) {
                     if(res['status'] == 1) {
-                        toastr.success('Successfully added!');
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
+                        toastr.success('Successfully updated!');
                     } else if(res['status'] == 2) {
-                        toastr.success('Successfully removed!');
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
+                        toastr.success('Successfully updated!');
                     }
                 },
                 error: function (error) {

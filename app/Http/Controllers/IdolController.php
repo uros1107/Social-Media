@@ -298,7 +298,7 @@ class IdolController extends Controller
         $request->validate([
             'idol_full_name' => 'required|string',
             'idol_user_name' => 'required|string',
-            'idol_k_name' => 'required|string',
+            // 'idol_k_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',
             'idol_email' => 'required|string|email',

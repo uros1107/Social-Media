@@ -284,8 +284,8 @@
                                 <a class="text-main-color" href="{{ route('fans-signin') }}">Login</a>
                             </div>
                             <div class="col-12 text-center signup-part mt-2">
-                                    <a class="text-white">Signing up as an Idol? Click</a>
-                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> here</a>
+                                    <a class="text-white">Signing up as an Idol?</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> Click here</a>
                                 </div>
                         </div>
                     </form>
@@ -408,8 +408,8 @@
                                     <a class="text-main-color" href="{{ route('fans-signin') }}">Login</a>
                                 </div>
                                 <div class="col-12 text-center signup-part mt-1">
-                                    <a class="text-white">Signing up as an Idol? Click</a>
-                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> here</a>
+                                    <a class="text-white">Signing up as an Idol?</a>
+                                    <a class="text-main-color" href="{{ route('idol-registration') }}"> Click here</a>
                                 </div>
                             </div>
                         </form>

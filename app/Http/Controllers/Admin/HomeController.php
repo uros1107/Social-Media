@@ -387,7 +387,7 @@ class HomeController
         
         $request->validate([
             'idol_full_name' => 'required|string',
-            'idol_k_name' => 'required|string',
+            // 'idol_k_name' => 'required|string',
             'idol_user_name' => 'required|string|unique:idol_info',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',
@@ -470,7 +470,7 @@ class HomeController
         
         $request->validate([
             'idol_full_name' => 'required|string',
-            'idol_k_name' => 'required|string',
+            // 'idol_k_name' => 'required|string',
             'idol_user_name' => 'required|string',
             'idol_bio' => 'required|string',
             'idol_head_bio' => 'required|string',

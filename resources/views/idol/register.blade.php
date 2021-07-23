@@ -351,7 +351,7 @@ select {
                         <div class="col-12 col-sm-6 col-md-6">
                             <div class="inputWithIcon">
                                 <label class="input-label">Korean Name(Optional)</label>
-                                <input type="text" name="k_name" placeholder="Korean name" class="custom-input" required>
+                                <input type="text" name="k_name" placeholder="Korean name" class="custom-input">
                                 <!-- <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i> -->
                                 <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                             </div>
@@ -390,6 +390,8 @@ select {
                                 <label class="input-label">Password</label>
                                 <input type="password" name="password" placeholder="Password" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                             </div>
                             @if ($errors->has('password'))
                                 <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
@@ -402,6 +404,8 @@ select {
                                 <label class="input-label">Confirm Password</label>
                                 <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
                                 <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
+                                <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
+                                <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
@@ -588,6 +592,28 @@ $(document).ready(function() {
         } else {
             $('#register').submit();
         }
+    });
+
+    $('.eye-hide').on('click', function() {
+        $('input[name=password]').prop('type','text');
+        $(this).addClass('d-none');
+        $('.eye-show').removeClass('d-none');
+    });
+    $('.eye-show').on('click', function() {
+        $('input[name=password]').prop('type','password');
+        $(this).addClass('d-none');
+        $('.eye-hide').removeClass('d-none');
+    });
+
+    $('.eye-hide1').on('click', function() {
+        $('input[name=password_confirmation]').prop('type','text');
+        $(this).addClass('d-none');
+        $('.eye-show1').removeClass('d-none');
+    });
+    $('.eye-show1').on('click', function() {
+        $('input[name=password_confirmation]').prop('type','password');
+        $(this).addClass('d-none');
+        $('.eye-hide1').removeClass('d-none');
     });
 })
 </script>

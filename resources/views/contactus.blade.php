@@ -140,7 +140,7 @@
                         <div class="col-12 col-sm-12 col-md-12">
                             <div class="inputWithIcon">
                                 <label class="input-label">What is your question?</label>
-                                <textarea class="custom-textarea" name="question" style="height:120px!important" placeholder="Let us know about you..." required></textarea>
+                                <textarea class="custom-textarea" name="question" style="height:120px!important" placeholder="Let us know how can we help you." required></textarea>
                             </div>
                             <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 200 characters!</p>
                             <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>200</span></p>

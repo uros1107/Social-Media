@@ -99,7 +99,7 @@ class RegisterController extends Controller
         } else {
             $request->validate([
                 'name' => 'required|string',
-                'k_name' => 'required|string',
+                // 'k_name' => 'required|string',
                 'password' => 'required|confirmed',
                 'email' => 'required|string|email',
                 'phone' => 'required|string|numeric|unique:users',

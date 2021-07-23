@@ -105,11 +105,11 @@
                                         <p class="mb-0" style="font-size: 14px">{{ $errors->first('idol_photo') }}</p>
                                     </span>
                                 @endif
-                                <input type="file" name="idol_photo" id="photo_img" class="d-none" >
+                                <input type="file" name="idol_photo" id="photo_img" class="d-none profile_information_input" >
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_full_name" value="{{ Auth::user()->name }}">
+                                    <input type="text" placeholder="" name="idol_full_name" value="{{ Auth::user()->name }}" class="profile_information_input">
                                     <span>Full Name</span>
                                 </label>
                                 @if ($errors->has('idol_full_name'))
@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name="idol_user_name" value="{{ Auth::user()->user_name }}">
+                                    <input type="text" placeholder="" name="idol_user_name" value="{{ Auth::user()->user_name }}" class="profile_information_input">
                                     <span>Username</span>
                                 </label>
                                 @if ($errors->has('idol_user_name'))
@@ -131,7 +131,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;" value="{{ Auth::user()->email }}">
+                                    <input type="email" placeholder="" name="idol_email" style="padding-right: 90px;" value="{{ Auth::user()->email }}" class="profile_information_input">
                                     <span>Email</span>
                                     <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
                                     <span class="text-white mb-0 verified d-none">Verified!</span>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;" value="{{ Auth::user()->phone }}">
+                                    <input type="text" placeholder="" name='idol_phone' style="padding-right: 90px;" value="{{ Auth::user()->phone }}" class="profile_information_input">
                                     <span>Phone Number</span>
                                     <img src="{{ asset('assets/images/icons/verified.png') }}" class="d-none">
                                     <span class="text-white mb-0 verified d-none">Verified!</span>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <label class="pure-material-textfield-outlined w-100">
-                                    <input type="text" placeholder="" name='idol_head_bio' id="idol_head_bio" style="padding-right: 90px;" value="" maxlength="15">
+                                    <input type="text" placeholder="" name='idol_head_bio' id="idol_head_bio" style="padding-right: 90px;" value="" maxlength="15" class="profile_information_input">
                                     <span>Headline Bio</span>
                                 </label>
                                 <p class="text-main-color text-right mb-0 limit-message1 d-none" style="font-size: 12px">You can input maximum 15 characters!</p>
@@ -895,7 +895,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#profile_btn', function() {
         var is_empty = false;
-        $('#profile_information input[type=text]').each(function() {
+        $('#profile_information .profile_information_input').each(function() {
             if(!$(this).val()) {
                 toastr.error("You should input all fields!");
                 is_empty = true;

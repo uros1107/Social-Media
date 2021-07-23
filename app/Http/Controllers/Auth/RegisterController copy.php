@@ -70,7 +70,7 @@ class RegisterController extends Controller
         if(!$request->no_password) {
             $request->validate([
                 'name' => 'required|string',
-                'k_name' => 'required|string',
+                // 'k_name' => 'required|string',
                 'email' => 'required|string|email|unique:users',
                 'password' => 'required|confirmed',
             ]);
@@ -91,7 +91,7 @@ class RegisterController extends Controller
         } else {
             $request->validate([
                 'name' => 'required|string',
-                'k_name' => 'required|string',
+                // 'k_name' => 'required|string',
                 'email' => 'required|string|email|unique:users',
             ]);
     

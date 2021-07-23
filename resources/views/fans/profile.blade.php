@@ -143,7 +143,7 @@
                             <input type="text" placeholder="" name="user_name" id="name" value="{{ Auth::user()->user_name }}" required>
                             <span>Your Username</span>
                         </label>
-                        @if ($errors->has('name'))
+                        @if ($errors->has('user_name'))
                             <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                 <p class="mb-0" style="font-size: 14px">{{ $errors->first('user_name') }}</p>
                             </span>
@@ -275,6 +275,10 @@ window.addEventListener("resize", function(e) {
     })
 });
     $(document).ready(function() {
+        @if($errors->has('name') || $errors->has('user_name') || $errors->has('naminfoe'))
+            $('.edit-profile').css('display', 'block');
+        @endif
+
         $('.custom-col').each(function() {
             $(this).height($(this).width() * 1.6);
         })

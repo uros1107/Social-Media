@@ -134,7 +134,7 @@
                                             <h4 class="text-white">How does it work?</h4>
                                             <img src="{{ asset('assets/images/icons/close.png') }}" class="close-btn">
                                         </div>
-                                        <p class="text-white">What happen when I submit a request?</p>
+                                        <p class="text-white">What happens when I submit a request?</p>
                                     </div>
                                     <div class="col-12 how-content">
                                         <div class="content-item d-flex mb-4">
@@ -143,7 +143,7 @@
                                         </div>
                                         <div class="content-item d-flex mb-4">
                                             <img src="{{ asset('assets/images/icons/play.png') }}" class="mr-4">
-                                            <p class="mb-0 text-white">Your idol will fulfill your video request within 7 days</p>
+                                            <p class="mb-0 text-white">Your idol will fulfill your video request within 3~7 days</p>
                                         </div>
                                         <div class="content-item d-flex mb-4">
                                             <img src="{{ asset('assets/images/icons/message.png') }}" class="mr-4">
