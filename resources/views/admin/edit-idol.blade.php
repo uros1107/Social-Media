@@ -208,6 +208,47 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-md-6 col-sm-6 mb-4 mt-3">
+                        <h4 class="">Language Preference</h4>
+                        <div class="mobile">
+                            <div class="d-flex mb-3">
+                                <label class="custom-control black-checkbox m-auto" style="margin-left: 0px!important">
+                                    <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" {{ $video_request->request_lang == 1? 'checked' : '' }}>
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description">English</span>
+                                </label>
+                                <label class="custom-control black-checkbox mr-4 m-auto">
+                                    <input type="radio" name="request_lang" value="2" class="fill-control-input d-none" {{ $video_request->request_lang == 2? 'checked' : '' }}>
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description">Korean</span>
+                                </label>
+                            </div>
+                            <label class="custom-control black-checkbox m-auto">
+                                <input type="radio" name="request_lang" value="3" class="fill-control-input d-none" {{ $video_request->request_lang == 3? 'checked' : '' }}>
+                                <span class="fill-control-indicator"></span>
+                                <span class="fill-control-description">Both (English + Korean)</span>
+                            </label>
+                        </div>
+                        <div class="desktop">
+                            <div class="d-flex">
+                                <label class="custom-control black-checkbox m-auto" style="margin-left: 0px!important">
+                                    <input type="radio" name="request_lang" value="1" class="fill-control-input d-none" {{ $video_request->request_lang == 1? 'checked' : '' }}>
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description">English</span>
+                                </label>
+                                <label class="custom-control black-checkbox mr-4 m-auto">
+                                    <input type="radio" name="request_lang" value="2" class="fill-control-input d-none" {{ $video_request->request_lang == 2? 'checked' : '' }}>
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description">Korean</span>
+                                </label>
+                                <label class="custom-control black-checkbox m-auto">
+                                    <input type="radio" name="request_lang" value="3" class="fill-control-input d-none" {{ $video_request->request_lang == 3? 'checked' : '' }}>
+                                    <span class="fill-control-indicator"></span>
+                                    <span class="fill-control-description">Both (English + Korean)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-md-12 col-sm-12">
                         <h4 class="upload-video-title">Self Introduction Video (Required)</h4>
                         <div class="upload-video text-center d-none">
