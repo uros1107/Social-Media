@@ -26,7 +26,7 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
             <h2 class="text-white">{{ "'".$search."'" }} Results</h2>
-            <p class="text-grey">Influencer recommendation for you.</p>
+            <!-- <p class="text-grey">Influencer recommendation for you.</p> -->
             <div class="divider mb-4 desktop"></div>
         </div>
         <div class="image-part">

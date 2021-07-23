@@ -83,6 +83,7 @@
                 <div class="w-50 profile-right">
                     <div class="mb-4">
                         @if(!Auth::check())
+                        <img src="{{ asset('assets/images/icons/follow.png') }}" class="mr-2">
                         <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Follow</span></a>
                         @else
                         @php
@@ -93,6 +94,7 @@
                                 <img src="{{ asset('assets/images/icons/tick.png') }}" class="mr-2">
                                 <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white" >Following</span></a>
                             @else
+                                <img src="{{ asset('assets/images/icons/follow.png') }}" class="mr-2">
                                 <a href="#" class="join-fandom" data-id="{{ $idol->id }}"><span class="text-white">Follow</span></a>
                             @endif
                         @endif
