@@ -427,7 +427,7 @@ class FansController extends Controller
             ];
 
             Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
-                $message->to('amar.chan9655@gmail.com');
+                $message->to($idol_info->idol_email);
                 $message->subject('New Order Request!');
             });
 
