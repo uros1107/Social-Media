@@ -57,6 +57,12 @@
     .user-profile-info {
         margin-top: 0px;
     }
+    .featured .featured-video .video-item img {
+        height: unset;
+    }
+    .video-item .play-video, .video-item .pause-video {
+        right: 25px;
+    }
 }
 </style>
 @endsection
