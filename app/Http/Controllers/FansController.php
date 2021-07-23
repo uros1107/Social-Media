@@ -419,6 +419,18 @@ class FansController extends Controller
             // ]);
 
             // if ($status[ 'status' ] == "succeeded") { 
+            $fans = User::where('id', $order->first()->order_fans_id)->first();
+            $idol_info = IdolInfo::where('idol_user_id', $order->first()->order_fans_id)->first();
+            $data = [
+                'fans' => $fans,
+                'order' => $order,
+            ];
+
+            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+                $message->to('amar.chan9655@gmail.com');
+                $message->subject('New Order Request!');
+            });
+
             Session::forget('info');
             return view('fans.payment-success', ['order' => $order]);
             // } else {
