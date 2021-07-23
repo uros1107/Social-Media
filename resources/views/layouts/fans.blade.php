@@ -98,11 +98,11 @@
                     <i class="fa fa-search" style="color: #FF335C"></i>
                 </a>
                 <!-- <i class="fa fa-bell-o text-white"></i> -->
-                <a class="sidebar-toggler d-lg-none mr-auto" type="button" style="background: #000!important;">
+                <a class="sidebar-toggler d-lg-none mr-auto" style="background: #000!important;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>
                 @if(Auth::check() && Auth::user()->role == 2)
-                <a type="button" style="background: #000;" id="sub-menu1">
+                <a style="background: #000;" id="sub-menu1">
                     <i class="fas fa-ellipsis-v text-white" style="margin: 0px 10px;font-size: 18px;"></i>
                 </a>
                 <div class="sub-menu d-none" style="width: 140px;top:40px">
