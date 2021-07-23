@@ -267,7 +267,7 @@
                             <input type="hidden" name="review_fans_id" value="{{ Auth::check() ? Auth::user()->id : '' }}">
                             <input type="hidden" name="review_idol_id" value="{{ $idol->id }}">
                             <textarea style="background:#2b2b2b!important" name="review_feedback" id="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Please leave your message about this video." required></textarea>
-                            <button type="button" class="btn custom-btn w-100 send-feedback-btn">Send Comment</button>
+                            <button type="button" class="btn custom-btn w-100 send-feedback-btn">Submit</button>
                         </div>
                     </form>
                 </div>
