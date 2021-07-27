@@ -44,6 +44,7 @@ class FansController extends Controller
 
     public function confirm_email(Request $request)
     {
+        Session::put('signup_info', $request->all());
         $request->validate([
             'email' => 'required|string|email|unique:users',
             'user_name' => 'required|string|unique:users',
@@ -549,5 +550,66 @@ class FansController extends Controller
         $idol_names = IdolInfo::where('idol_del_flag', 0)->pluck('idol_full_name');
 
         return response()->json($idol_names);
+    }
+
+    public function get_sort_idol(Request $request)
+    {
+        $cat_id = $request->cat_id;
+        $sort = $request->sort;
+        $cat = Category::where('cat_id', $cat_id)->first();
+
+        switch ($sort) {
+            case 1:
+                # Newest...
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('created_at', 'desc')->get();
+                return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+                break;
+
+            case 2:
+                # Name(A-Z)...
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'asc')->get();
+                return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+                break;
+
+            case 3:
+                # Name(Z-A)...
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'desc')->get();
+                return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+                break;
+
+            case 4:
+                # Price(Low to High)...
+                $idols = DB::table('users')
+                                    ->leftJoin('idol_info', 'users.id', '=', 'idol_info.idol_user_id')
+                                    ->leftJoin('video_request', 'video_request.request_idol_id', '=', 'idol_info.idol_id')
+                                    ->select('users.id', 'users.cat_id', 'users.role', 'users.is_setup', 'users.del_flag', 'video_request.request_video_price')
+                                    ->whereRaw("JSON_CONTAINS(users.cat_id,'".$cat_id."','$')=1")->where('users.role', 1)
+                                    ->where('users.is_setup', 1)
+                                    ->where('users.del_flag', 0)
+                                    ->orderby('video_request.request_video_price', 'asc')
+                                    ->get();
+
+                return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+                break;
+
+            case 5:
+                # Price(High to Low)...
+                $idols = DB::table('users')
+                                    ->leftJoin('idol_info', 'users.id', '=', 'idol_info.idol_user_id')
+                                    ->leftJoin('video_request', 'video_request.request_idol_id', '=', 'idol_info.idol_id')
+                                    ->select('users.id', 'users.cat_id', 'users.role', 'users.is_setup', 'users.del_flag', 'video_request.request_video_price')
+                                    ->whereRaw("JSON_CONTAINS(users.cat_id,'".$cat_id."','$')=1")->where('users.role', 1)
+                                    ->where('users.is_setup', 1)
+                                    ->where('users.del_flag', 0)
+                                    ->orderby('video_request.request_video_price', 'desc')
+                                    ->get();
+
+                return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 }

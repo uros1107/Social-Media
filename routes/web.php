@@ -112,6 +112,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/', 'FansController@index')->name('fans-index');
     Route::get('/fans-search', 'FansController@fans_search')->name('fans-search');
     Route::get('/category/{catname}', 'FansController@idol_category_get')->name('idol-category-get');
+    Route::get('/get-sort-idol', 'FansController@get_sort_idol')->name('get-sort-idol');
     Route::get('/profile', 'FansController@profile')->name('fans-profile');
     Route::POST('/profile', 'FansController@profile_update')->name('fans-profile-update');
     Route::POST('/change-password', 'FansController@change_password')->name('fans-change-password');

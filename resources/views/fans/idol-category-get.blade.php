@@ -7,15 +7,33 @@
 .footer .container-fluid {
     padding: 0px!important;
 }
-.featured .image-part .row {
-    flex-wrap: inherit;
+.category-sort{
+    position: absolute;
+    right: 15px;
+}
+.category-sort select {
+    border-radius: 25px;
+    color: #5c6873;
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(119 119 119 / 25%);
+}
+.custom-col {
+    margin-bottom: 20px; 
 }
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
     }
+    .featured .image-part .row {
+        flex-wrap: wrap;
+    }
     .featured .image-item > img {
         min-height: 120px;
+    }
+    .custom-col {
+        margin-bottom: 10px; 
     }
 }
 </style>
@@ -25,12 +43,22 @@
 <div class="row featured mb-4 hide">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part">
-            <h2 class="text-white">{{ $cat->cat_name }}</h2>
-            <!-- <p class="text-grey">Influencer recommendation for you.</p> -->
-            <div class="divider mb-4 desktop"></div>
+            <div class="d-flex">
+                <h2 class="text-white">{{ $cat->cat_name }}</h2>
+                <div class="category-sort my-auto form-group">
+                    <select class="form-control text-white sort">
+                        <option value="1">Newest</option>
+                        <option value="2">Name(A-Z)</option>
+                        <option value="3">Name(Z-A)</option>
+                        <option value="4">Price(Low to High)</option>
+                        <option value="5">Price(High to Low)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="divider mb-4"></div>
         </div>
         <div class="image-part">
-            <div class="row m-0">
+            <div class="row m-0" id="cat_idol_list">
                 @if(count($idols))
                 @foreach($idols as $idol)
                 @php
@@ -76,7 +104,8 @@ window.addEventListener("resize", function(e) {
             $(this).height($(this).width() * 1.6);
         })
 
-        $('.custom-col').on('click', function() {
+        // $('.custom-col').on('click', function() {
+        $(document).on('click', '.custom-col' ,function() {
             var url = $(this).data('url');
             location.href = url;
         })
@@ -93,6 +122,26 @@ window.addEventListener("resize", function(e) {
             $('.favourite-btn').addClass('deactive');
             $('.hide').show();
             $('.show').hide();
+        });
+
+        $('.sort').on('change', function() {
+            var cat_id = "{{ $cat->cat_id }}";
+            var sort = $(this).val();
+
+            $.ajax({
+                url: "{{ route('get-sort-idol') }}",
+                method: 'get',
+                data: { 
+                    cat_id: cat_id,
+                    sort: sort
+                },
+                success: function (res) {
+                    $('#cat_idol_list').html(res);
+                    $('.custom-col').each(function() {
+                        $(this).height($(this).width() * 1.6);
+                    })
+                }
+            });
         });
     })
 </script>

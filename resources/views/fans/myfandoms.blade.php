@@ -8,11 +8,20 @@
     padding: 0px!important;
 }
 .featured .image-part .row {
-    flex-wrap: inherit;
+    /* flex-wrap: inherit; */
+}
+.custom-col {
+    margin-bottom: 20px; 
 }
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
+    }
+    .featured .image-part .row {
+        flex-wrap: wrap;
+    }
+    .custom-col {
+        margin-bottom: 10px; 
     }
 }
 </style>

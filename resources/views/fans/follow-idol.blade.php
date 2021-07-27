@@ -50,6 +50,18 @@
 #send-review h4 {
     font-size: 22px;
 }
+.comment-block {
+    justify-content: flex-end;
+    display: flex;
+    margin-top: 30px;
+}
+.send-feedback-btn,
+.send-feedback-btn:hover,
+.send-feedback-btn:focus {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+}
 @media (max-width: 574px) {
     .featured {
         padding: 0px 0px!important;
@@ -65,6 +77,11 @@
     }
     .video-item .play-video, .video-item .pause-video {
         right: 25px;
+    }
+    .send-feedback-btn,
+    .send-feedback-btn:hover,
+    .send-feedback-btn:focus {
+        width: 100%;
     }
 }
 </style>
@@ -197,8 +214,8 @@
                     <!-- <div class="video-title d-flex mt-1">
                         <h5 class="mb-0">Congratulation Melissa</h5>
                         <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
-                    </div> -->
-                    <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p>
+                    </div>
+                    <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p> -->
                 </div>
             </div>
             @endforeach
@@ -249,7 +266,7 @@
         @endif
         <div class="col-12 col-sm-12 col-md-12 payment-next">
             <div class="lang-preference mb-3">
-                <div class="row m-0">
+                <div class="row m-0" style="max-width: 1000px;margin:auto !important">
                     <form class="w-100" id="send-review" action="{{ route('send-review') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="col-12 title mb-3 text-center">
@@ -268,7 +285,9 @@
                             <input type="hidden" name="review_fans_id" value="{{ Auth::check() ? Auth::user()->id : '' }}">
                             <input type="hidden" name="review_idol_id" value="{{ $idol->id }}">
                             <textarea style="background:#2b2b2b!important" name="review_feedback" id="review_feedback" class="form-control introduction mb-3 text-white" rows="5" placeholder="Please leave your message about this video." required></textarea>
-                            <button type="button" class="btn custom-btn w-100 send-feedback-btn">Submit</button>
+                            <div class="comment-block">
+                                <button type="button" class="btn custom-btn send-feedback-btn">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -325,8 +344,9 @@ $(document).ready(function() {
     @endif
 
     $('.video-item video').each(function() {
-        $(this).height($(this).width() * 1.5);
+        $(this).height($(this).width() * 1.3);
     })
+
     $('.idol-img').height($('.idol-img').width());
 
     $(document).on('click', '.idol-image', function() {

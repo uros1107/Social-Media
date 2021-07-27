@@ -189,7 +189,7 @@
                     <div class="col-12 col-md-6 col-sm-6" style="margin-bottom: 10px;">
                         <div class="m-auto d-flex">
                             <label class="switch my-auto">
-                                <input type="checkbox" name="request_vocation" value="1" checked>
+                                <input type="checkbox" name="request_vocation" value="1">
                                 <span class="slider"></span>
                             </label>
                             <div class="my-auto" style="padding-top: 26px;">

@@ -185,21 +185,21 @@
                             <div class="col-12 col-sm-12 col-md-7">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Full Name</label>
-                                    <input type="text" name="name" placeholder="Full name" class="custom-input" required>
+                                    <input type="text" name="name" placeholder="Full name" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['name'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-5">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Date Birth</label>
-                                    <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker" required>
+                                    <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker" value="{{ Session::get('signup_info') ? Session::get('signup_info')['birth'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Username</label>
-                                    <input type="text" name="user_name" placeholder="username" class="custom-input" required>
+                                    <input type="text" name="user_name" placeholder="username" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['user_name'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('user_name'))
@@ -211,7 +211,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="email" name="email" placeholder="Email" class="custom-input" required>
+                                    <input type="email" name="email" placeholder="Email" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['email'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                                 @if ($errors->has('email'))
@@ -224,7 +224,7 @@
                                 <div class="inputWithIcon">
                                     <label class="input-label">Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                    <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                    <input type="password" name="password" placeholder="Password" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['password'] : '' }}" required>
                                     <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                     <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
@@ -238,7 +238,7 @@
                                 <div class="inputWithIcon">
                                     <label class="input-label">Confirm Password</label>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                    <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                    <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['password_confirmation'] : '' }}" required>
                                     <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                     <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                 </div>
@@ -306,21 +306,21 @@
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Full Name</label>
-                                        <input type="text" name="name" placeholder="Full Name" class="custom-input" required>
+                                        <input type="text" name="name" placeholder="Full Name" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['name'] : '' }}" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Your Date Birth</label>
-                                        <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker1" required>
+                                        <input type="text" name="birth" placeholder="24 March 2021" class="custom-input" id="datepicker1" value="{{ Session::get('signup_info') ? Session::get('signup_info')['birth'] : '' }}" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/calendar.png') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">User Name</label>
-                                        <input type="text" name="user_name" placeholder="username" class="custom-input" required>
+                                        <input type="text" name="user_name" placeholder="username" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['user_name'] : '' }}" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                     @if ($errors->has('user_name'))
@@ -332,7 +332,7 @@
                                 <div class="col-12 col-sm-12 col-md-12 p-0">
                                     <div class="inputWithIcon">
                                         <label class="input-label">Email</label>
-                                        <input type="email" name="email" placeholder="Email" class="custom-input" required>
+                                        <input type="email" name="email" placeholder="Email" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['email'] : '' }}" required>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                     </div>
                                     @if ($errors->has('email'))
@@ -345,7 +345,7 @@
                                     <div class="inputWithIcon">
                                         <label class="input-label">Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                        <input type="password" name="password" placeholder="Password" class="custom-input" required>
+                                        <input type="password" name="password" placeholder="Password" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['password'] : '' }}" required>
                                         <img class="input-icon eye-hide" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                         <img class="input-icon eye-show d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
@@ -359,7 +359,7 @@
                                     <div class="inputWithIcon">
                                         <label class="input-label">Confirm Password</label>
                                         <img class="input-icon" src="{{ asset('assets/images/icons/password.png') }}">
-                                        <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" required>
+                                        <input type="password" name="password_confirmation" placeholder="Password" class="custom-input" value="{{ Session::get('signup_info') ? Session::get('signup_info')['password_confirmation'] : '' }}" required>
                                         <img class="input-icon eye-hide1" src="{{ asset('assets/images/icons/hide.png') }}" style="right: 0;left:unset">
                                         <img class="input-icon eye-show1 d-none" src="{{ asset('assets/images/icons/show.png') }}" style="right: 0;left:unset">
                                     </div>
