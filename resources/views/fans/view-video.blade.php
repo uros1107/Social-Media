@@ -67,7 +67,7 @@
     <div class="col-12 col-sm-12 col-md-12">
         <div class="title-part d-flex">
             <div>
-                <h2 class="text-white">Congratulation Melissa</h2>
+                <!-- <h2 class="text-white">Congratulation Melissa</h2> -->
                 <p class="text-grey">From <span class="text-main-color">{{ $idol_info->idol_full_name }}</span></p>
             </div>
             <div class="m-auto d-flex share" style="margin-right: 0px!important">
@@ -113,10 +113,9 @@
             </div>
         </div>
         <div class="w-100">
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
-                <h5 class="text-white">Instruction</h5>
-                <br>
-                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">{{ $order->order_introduction }}</p>
             </div>
         </div>

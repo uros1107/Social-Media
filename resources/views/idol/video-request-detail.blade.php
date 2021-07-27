@@ -45,10 +45,9 @@
             </div>
         </div>
         <div class="w-100">
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
-                <h5 class="text-white">Instruction</h5>
-                <br>
-                <p class="mb-0" style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <!-- <p class="mb-0" style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white mb-0" style="font-size: 16px">{{ $order->order_introduction }}</p>
             </div>
         </div>

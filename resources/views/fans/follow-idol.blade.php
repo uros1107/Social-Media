@@ -194,10 +194,10 @@
                     <div class="pause-video text-center d-none">
                         <img src="{{ asset('assets/images/icons/pause-video.png') }}">
                     </div>
-                    <div class="video-title d-flex mt-1">
+                    <!-- <div class="video-title d-flex mt-1">
                         <h5 class="mb-0">Congratulation Melissa</h5>
                         <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
-                    </div>
+                    </div> -->
                     <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p>
                 </div>
             </div>
@@ -207,7 +207,6 @@
 </div>
 @endif
 
-@if(count($reviews))
 <div class="row featured mb-4 m-0">
     <div class="col-12 col-sm-12 col-md-12 featured-video d-flex">
         <div class="title-part">
@@ -216,6 +215,7 @@
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 featured-video">
+        @if(count($reviews))
         <div class="row m-0">
             @foreach($reviews as $review)
             @php
@@ -246,6 +246,7 @@
             </div>
             @endforeach
         </div>
+        @endif
         <div class="col-12 col-sm-12 col-md-12 payment-next">
             <div class="lang-preference mb-3">
                 <div class="row m-0">
@@ -275,7 +276,6 @@
         <div>
     </div>
 </div>
-@endif
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -325,7 +325,7 @@ $(document).ready(function() {
     @endif
 
     $('.video-item video').each(function() {
-        $(this).height($(this).width() * 1.6);
+        $(this).height($(this).width() * 1.5);
     })
     $('.idol-img').height($('.idol-img').width());
 

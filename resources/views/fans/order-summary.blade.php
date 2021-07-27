@@ -110,10 +110,9 @@
             </div>
         </div>
         <div class="w-100">
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
-                <h5 class="text-white">Instruction</h5>
-                <br>
-                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">
                     {{ $order['order_introduction'] }}
                 </p>
@@ -136,10 +135,10 @@
                             <h5 class="text-white">Request Fee</h5>
                             <h5 class="text-white">${{ $order['order_price'] }}</h5>
                         </div>
-                        <div class="d-flex" style="position: relative">
+                        <!-- <div class="d-flex" style="position: relative">
                             <h5 class="text-white">Platform Fee(5%)</h5>
                             <h5 class="text-white">${{ number_format($order['order_price'] * 0.05, 2) }}</h5>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="divider mb-3 ml-0" style="width:100%!important"></div>
                     <div class="d-flex mb-2 total">
@@ -197,14 +196,14 @@
                             <p class="mb-0 text-white">${{ $order['order_price'] }}</p>
                         </div>
                     </div>
-                    <div class="content-item mb-3">
+                    <!-- <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white">Platform Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0 text-white">${{ number_format($order['order_fee'], 2) }}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="content-item">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white" style="font-weight: 700;font-size:16px!important">Total</p>

@@ -424,10 +424,10 @@
                             <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="video-title d-flex mt-1">
+                        <!-- <div class="video-title d-flex mt-1">
                             <h5 class="mb-0">Congratulation Melissa</h5>
                             <h5 class="mb-0 mt-0" id="duration_{{ $order->order_id }}">00:00</h5>
-                        </div>
+                        </div> -->
                         <p class="mb-0 text-left">From <span class="text-main-color">{{ $fans->name }}</span></p>
                     </div>
                 </div>
@@ -541,6 +541,10 @@ $(document).ready(function() {
             $('#duration_' + id).html(format(this.duration));
         };
     });
+
+    $('.video-item video').each(function() {
+        $(this).height($(this).width() * 1.5);
+    })
 
     // play video
     $(document).on('ended', '#video-tag', function() {

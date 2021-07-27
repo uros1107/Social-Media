@@ -165,10 +165,9 @@
             </div>
         </div> -->
         <div class="w-100">
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
-                <h5 class="text-white">Instruction</h5>
-                <br>
-                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">
                     {{ $order['order_introduction'] }}
                 </p>
@@ -186,10 +185,10 @@
                             <h5 class="text-white">Request Fee</h5>
                             <h5 class="text-white">${{ $request_video->request_video_price }}</h5>
                         </div>
-                        <div class="d-flex" style="position: relative">
+                        <!-- <div class="d-flex" style="position: relative">
                             <h5 class="text-white">Platform Fee(5%)</h5>
                             <h5 class="text-white">${{ number_format($request_video->request_video_price * 0.05, 2) }}</h5>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="d-flex mb-2 total">
                         <h5 class="text-white">Total</h5>

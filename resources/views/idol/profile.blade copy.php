@@ -251,10 +251,10 @@
                         <source src="{{ asset('assets/videos/'.$order->order_video) }}" type="video/mkv">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="video-title d-flex mt-1">
+                    <!-- <div class="video-title d-flex mt-1">
                         <h5 class="mb-0">Congratulation Melissa</h5>
                         <h5 class="mb-0" id="duration_{{ $order->order_id }}">00:00</h5>
-                    </div>
+                    </div> -->
                     <p class="mb-0">From <span class="text-main-color">{{ $fans->name }}</span></p>
                 </div>
             </div>

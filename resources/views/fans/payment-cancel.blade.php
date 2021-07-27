@@ -190,10 +190,9 @@
             </div>
         </div>
         <div class="w-100">
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
-                <h5 class="text-white">Instruction</h5>
-                <br>
-                <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br>
+                <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">
                     {{ $order['order_introduction'] }}
                 </p>
@@ -329,14 +328,14 @@
                             <p class="mb-0 text-white">${{ $order['order_price'] }}</p>
                         </div>
                     </div>
-                    <div class="content-item mb-3">
+                    <!-- <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white">Platform Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0 text-white">${{ number_format($order['order_fee'], 2) }}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="content-item">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white" style="font-weight: 700;font-size:16px!important">Total</p>
