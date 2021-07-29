@@ -70,7 +70,7 @@ h3 {
                     Ltd. as final and binding as it relates to the content of this Campaign.
                 </p>
                 <p><strong>3. Campaign Period:</strong>
-                    Entries will be accepted online starting on 15th of June 2021, 2359
+                    Entries will be accepted online starting on 27th July 2021 2359 and ending 16th August 2359
                     and ending 23rd of June 2021 2359. All online entries must be received by the end
                     date.
                 </p>

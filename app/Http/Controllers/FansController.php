@@ -427,12 +427,12 @@ class FansController extends Controller
                 'order' => $order,
             ];
 
-            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
-                $message->to($idol_info->idol_email);
-                $message->subject('New Order Request!');
-            });
+            // Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+            //     $message->to($idol_info->idol_email);
+            //     $message->subject('New Order Request!');
+            // });
 
-            Session::forget('info');
+            // Session::forget('info');
             return view('fans.payment-success', ['order' => $order]);
             // } else {
             //     return view('fans.payment-cancel', ['order' => $order]);

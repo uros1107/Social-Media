@@ -159,10 +159,17 @@
                 $idol_info = DB::table('idol_info')->where('idol_user_id', Auth::user()->id)->first();
             @endphp
             <div class="w-100 mb-3">
-                <label class="pure-material-textfield-outlined w-100">
-                    <input placeholder="" name="issue_type" value="" required>
-                    <span>Issue Type</span>
-                </label>
+                <div class="select mt-1">
+                    <select name="issue_type" class="label ui selection fluid dropdown idol_cat_id w-100" style="color: #898989;" required>
+                        <option value="1">Billing Issues</option>
+                        <option value="2">Payment Method</option>
+                        <option value="3">Profile Setup</option>
+                        <option value="4">Requests</option>
+                        <option value="5">Change Email</option>
+                        <option value="6">Others</option>
+                    </select>
+                    <label class="select-label category-label">Issue Type</label>
+                </div>
             </div>
             <div class="w-100 mb-3">
                 <label class="pure-material-textfield-outlined w-100">

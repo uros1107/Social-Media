@@ -59,7 +59,7 @@ class IdolController extends Controller
     public function index()
     {
         $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->orderBy('created_at', 'desc')->get();
-        $ordered_videos = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->orderBy('created_at', 'desc')->take(4)->get();
+        $ordered_videos = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->orderBy('created_at', 'desc')->take(8)->get();
         $total_request = Order::where('order_idol_id', Auth::user()->id)->get()->count();
         $pending_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->get()->count();
         $refund_request = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 3)->where('order_status', 4)->get()->count();
@@ -630,5 +630,26 @@ class IdolController extends Controller
         $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', $status)->orderBy('created_at', 'desc')->get();
 
         return view('idol.ajax-video-notify', compact('orders'));
+    }
+
+    public function get_status_order(Request $request)
+    {
+        $status = $request->status;
+        
+        if($status == 1) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        } elseif ($status == 2) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 0)->orderBy('created_at', 'desc')->get();
+        } elseif ($status == 3) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 1)->orderBy('created_at', 'desc')->get();
+        } elseif ($status == 4) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 4)->orderBy('created_at', 'desc')->get();
+        } elseif ($status == 5) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 4)->orderBy('created_at', 'desc')->get();
+        }elseif ($status == 6) {
+            $orders = Order::where('order_idol_id', Auth::user()->id)->where('order_status', 3)->orderBy('created_at', 'desc')->get();
+        }
+
+        return view('idol.ajax-video-request', compact('orders'));
     }
 }

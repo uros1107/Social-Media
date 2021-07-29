@@ -784,11 +784,11 @@ $(document).ready(function(){
             img = new Image();
             var objectUrl = _URL.createObjectURL(file);
             img.onload = function () {
-                // if(this.width != 500 || this.height != 500) {
-                //     toastr.error("Image size should be 500px * 500px!");
-                //     $('.upload-photo').addClass('text-main-color');
-                //     photo_img = false;
-                // } else {
+                if(this.width > this.height) {
+                    toastr.error("Image size should be portrait");
+                    $('.upload-photo').addClass('text-main-color');
+                    photo_img = false;
+                } else {
                     // $('.photo_img_label').html($('#photo_img')[0].files[0].name);
                     $('.img-preview').removeClass('d-none');
                     $('#profile-img').attr("src", objectUrl);
@@ -796,7 +796,7 @@ $(document).ready(function(){
                     $('.upload-photo').removeClass('text-main-color');
                     photo_img = true;
                     _URL.revokeObjectURL(objectUrl);
-                // }
+                }
             };
             img.src = objectUrl;
         }
@@ -903,7 +903,7 @@ $(document).ready(function(){
             }
         })
         if(!is_empty) {
-            if(!photo_img && !$('#profile_stage').val()) {
+            if((!photo_img && !$('#profile_stage').val()) || !photo_img) {
                 toastr.error("You should input photo image file correctly!");
             } else if(!word_limit) {
                 toastr.error('You can input maximum 250 characters for bio!');

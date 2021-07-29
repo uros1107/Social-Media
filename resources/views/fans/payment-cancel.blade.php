@@ -31,18 +31,16 @@
 .modal-backdrop {
     background-color: #FF335C;
 }
-.sidebar {
-    display: none;
-}
-.main {
-    margin-left: 0px!important;
-}
 @media (max-width: 574px) {
     .container-fluid {
         padding: 10px!important;
     }
     .footer .container-fluid {
         padding: 0px!important;
+    }
+    .follow-idol .bg-img {
+        object-fit: cover;
+        height: 293px;
     }
 }
 </style>
@@ -294,7 +292,7 @@
                     <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
                         <h5 class="text-white">Payment Method</h5>
                         <div class="d-flex">
-                            <p class="text-main-color mb-0 ml-2">Paypal</p>
+                            <p class="text-main-color mb-0">Paypal</p>
                         </div>
                     </div>
                 </div>

@@ -284,7 +284,7 @@ $(document).ready(function() {
     });
 
     $('.video-item video').each(function() {
-        $(this).height($(this).width() * 1.5);
+        $(this).height($(this).width() * 1.3);
     })
 
     $(document).on('click', '.video-item', function() {

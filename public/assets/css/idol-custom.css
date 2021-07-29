@@ -2502,6 +2502,7 @@ input:checked + .slider {
     width: 100px;
     /* height: 100px; */
     object-fit: cover;
+    border-radius: 15px;
 }
 .edit-profile .left button {
     padding: 4px 14px;

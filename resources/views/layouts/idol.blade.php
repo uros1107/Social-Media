@@ -24,14 +24,12 @@
             <span class="navbar-toggler-icon"></span>
         </button> -->
 
-        <div class="search" style="margin-left: 30px">
-              <!-- Actual search box -->
+        <!-- <div class="search" style="margin-left: 30px">
             <div class="form-group has-search mb-0" style="position:relative">
-                <!-- <span class="fa fa-search form-control-feedback"></span> -->
                 <img src="{{ asset('assets/images/icons/search.png') }}" class="search-icon">
                 <input type="text" class="form-control text-white search-idol" placeholder="Search">
             </div>
-        </div>
+        </div> -->
 
         <div class="header-right d-flex">
             <div class="m-auto">
@@ -88,10 +86,12 @@
         <div class="top-bar">
             <img class="logo-img" src="{{ asset('assets/images/top-left-img.png') }}">
             <div class="right-side-icons">
-                <a id="mobile-search-btn">
+                <!-- <a id="mobile-search-btn">
                     <i class="fa fa-search" style="color: #FF335C"></i>
+                </a> -->
+                <a>
+                    <i class="fa fa-bell-o text-white"></i>
                 </a>
-                <!-- <i class="fa fa-bell-o text-white"></i> -->
                 <a class="sidebar-toggler d-lg-none mr-auto" style="background: #000!important;">
                     <i class="fa fa-navicon text-white"></i>
                 </a>

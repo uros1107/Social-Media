@@ -117,11 +117,12 @@ div.dataTables_wrapper div.dataTables_filter input {
 <div class="row mb-5 order-list m-0">
     <div class="col-12 col-sm-12 col-md-12">
         <div class="tab-btn-group d-flex mb-4">
-            <button type="button" class="btn custom-btn status-btn mr-2">All</button>
-            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Active</button>
-            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Fulfilled</button>
-            <button type="button" class="btn custom-btn status-btn mr-2 deactive">Expired</button>
-            <button type="button" class="btn custom-btn status-btn deactive">Expired(24 hours)</button>
+            <button type="button" class="btn custom-btn status-btn mr-2" data-status="1">All</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive" data-status="2">Active</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive" data-status="3">Fulfilled</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive" data-status="6">Declined</button>
+            <button type="button" class="btn custom-btn status-btn mr-2 deactive" data-status="4">Expired</button>
+            <button type="button" class="btn custom-btn status-btn deactive" data-status="5">Expired(24 hours)</button>
         </div>
         <div class="datatable">
             <div class="table-responsive">
@@ -226,6 +227,18 @@ $(document).ready(function() {
                 $(this).addClass('deactive');
             });
         }
+        $.ajax({
+            url: "{{ route('get-status-order') }}",
+            method: 'get',
+            data: { 
+                status: $(this).data('status')
+            },
+            success: function (res) {
+                $('.datatable').html(res);
+                var table = $('.zero-configuration').DataTable();
+                $('.zero-configuration').DataTable();
+            }
+        });
     });
 });
 </script>

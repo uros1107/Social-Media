@@ -69,15 +69,15 @@
     @endif
     <div class="col-12 col-sm-3 col-md-3 bg-img-part">
         <div class="text-center block left desktop">
-            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" id="profile-img" class="mb-3 mt-5">
+            <img src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}" id="profile-img" class="mb-3 p-2 w-100">
             <div>
                 <button class="btn custom-btn mb-3 change-photo-btn">Change Photo Profile</button>
             </div>
             <div>
                 <button class="btn custom-btn mb-3 change-password-btn">Change Password</button>
             </div>
-            <h3 class="text-white mb-2">{{ $idol_info->idol_full_name }}</h3>
-            <h4 class="mb-3">{{ '@'.$idol_info->idol_user_name }}</h4>
+            <h3 class="text-white mb-2 mt-2">{{ $idol_info->idol_full_name }}</h3>
+            <h4 class="mb-3 mt-2">{{ '@'.$idol_info->idol_user_name }}</h4>
             <div class="rating mb-3">
                 <span class="mr-2">Rating</span>
                 <i class="fa fa-star"></i>
@@ -532,6 +532,7 @@ function format(s) {
 }
 $(document).ready(function() {
     $('.label.ui.dropdown').dropdown();
+    // console.log($('#profile-img').width());
     $('#profile-img').height($('#profile-img').width() * 1.6);
 
     $(".video-item").each(function() {
@@ -543,7 +544,7 @@ $(document).ready(function() {
     });
 
     $('.video-item video').each(function() {
-        $(this).height($(this).width() * 1.5);
+        $(this).height($(this).width() * 1.3);
     })
 
     // play video

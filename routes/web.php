@@ -81,6 +81,7 @@ Route::prefix('idol')->group(function() {
         Route::POST('/change-password', 'IdolController@change_password')->name('idol-change-password');
         Route::get('/edit-profile', 'IdolController@edit_profile')->name('idol-edit-profile');
         Route::get('/video-request', 'IdolController@video_request')->name('idol-video-request');
+        Route::get('/get-status-order', 'IdolController@get_status_order')->name('get-status-order');
         Route::get('/v-request-detail', 'IdolController@video_request_detail')->name('idol-v-request-detail');
         Route::get('/video-record', 'IdolController@video_record')->name('idol-video-record');
         Route::get('/video-notify', 'IdolController@video_notify')->name('idol-video-notify');

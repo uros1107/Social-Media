@@ -56,7 +56,11 @@
         <div class="lang-preference mb-3">
             <div class="row m-0">
                 <div class="col-12 title mb-3 text-center pt-4">
+                    @if($order->order_status != 1)
                     <h4 class="text-white mb-3">Accept this offers?</h4>
+                    @else
+                    <h4 class="text-white mb-3">This order was fulfilled!</h4>
+                    @endif
                     <p style="color:#898989">Your fans want to hear your replies.</p>
                     <h3 class="text-main-color price">${{ $order->order_price }}</h3>
                     @if($order->order_status != 0)
