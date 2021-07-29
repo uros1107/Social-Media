@@ -26,12 +26,12 @@
     p {
         line-height: 30px;
         font-size: 18px;
-        color: #000;
+        color: black!important;
     }
 
     h1 {
         font-size: 30px;
-        color: #000;
+        color: black!important;
     }
 
     nav {
@@ -80,7 +80,7 @@
         padding: 12px 20px;
         border-bottom: 0px;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 16px!important;
     }
 
     @media (max-width: 600px) {
@@ -100,14 +100,15 @@
     </header>
 
     <section style="border-bottom: 1px solid #464040;justify-content: center;display:flex">
+        <h1 style="text-align: center"><u>Confirm your registration</u></h1>
         <article>
             <h1 style="text-align: center">Hello</h1>
-            <p>Forgot your password? We have received a request to reset your Millionk account password. Kindly click on the button below to reset your password.</p>
+            <p>Click below to verify your email and complete your profile:</p>
             <div style="width: 100%;text-align:center;margin: 30px 0px;">
-                <a class="reset-btn" href="">Reset Password</a>
+                <a class="reset-btn" href="">Verify email</a>
             </div>
-            <p>If you did not request for a password reset, kindly ignore this email. Only a person with access to your email can reset your password.</p>
-            <p>If you require any other assistance, kindly contact us at our email vip@millionk.com and we will be glad to assist you.</p>
+            <p>If the above button does not work, kindly try copying and pasting the below URL to your browser's address: https://millionk.com/idol/login</p>
+            <p>And entering your account details which you created in the first step</p>
             <div style="text-align:center">
                 <div style="">
                     <img src="{{ asset('assets/images/top-left-img.png') }}" style="margin: 0px 30px"></img>
@@ -123,8 +124,8 @@
         <div style="max-width: 900px;">
             <p>Copyright © 2021 Lumiworks Pte. Ltd. All rights reserved.</p>
             <div>
-                <a href="{{ route('terms') }}" style="margin-right: 20px;font-size: 18px">Terms</a>
-                <a href="{{ route('privacy') }}" style="margin-left: 20px;font-size: 18px">Privacy</a>
+                <a href="{{ route('terms') }}" style="margin-right: 20px;font-size: 18px!important">Terms</a>
+                <a href="{{ route('privacy') }}" style="margin-left: 20px;font-size: 18px!important">Privacy</a>
             </div>
         </div>
     </footer>
