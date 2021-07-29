@@ -1,5 +1,4 @@
-<h1>Your order has been declined by {{ $data['idol_full_name'] }}!</h1>
-<h3>Your payment has been refunded again.</h3>
+<h1>Your payment has been refunded from MillionK!</h1>
    
 <h3>Order details:</h3>
 <div>

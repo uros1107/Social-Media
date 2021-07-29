@@ -168,6 +168,11 @@ class FansController extends Controller
                     'role' => Session::get('role'),
                     'password' => Hash::make($user->email)
                 ]);
+
+                Mail::send('email.fans-signup', ['user' => $newUser], function($message) use($newUser){
+                    $message->to('hello@millionk.com');
+                    $message->subject('New Fan has been registered!');
+                });
     
                 Auth::login($newUser);
      
@@ -227,6 +232,11 @@ class FansController extends Controller
                 ]);
      
                 Auth::login($newUser);
+
+                Mail::send('email.fans-signup', ['user' => $newUser], function($message) use($newUser){
+                    $message->to('hello@millionk.com');
+                    $message->subject('New Fan has been registered!');
+                });
       
                 if(Session::get('role') == 1) {
                     return redirect()->route('idol-index');
@@ -425,12 +435,31 @@ class FansController extends Controller
             $data = [
                 'fans' => $fans,
                 'order' => $order,
+                'idol_info' => $idol_info,
             ];
 
-            // Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
-            //     $message->to($idol_info->idol_email);
-            //     $message->subject('New Order Request!');
-            // });
+            // To idol
+            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+                $message->to($idol_info->idol_email);
+                $message->subject('New Order Request!');
+            });
+
+            // To fans
+            Mail::send('email.order-fans-request', ['data' => $data], function($message) use($fans){
+                $message->to($fans->email);
+                $message->subject('New Order Submit!');
+            });
+
+            Mail::send('email.paypal', ['data' => $data], function($message) use($fans){
+                $message->to($fans->email);
+                $message->subject('You paid payment for new order with Paypal!');
+            });
+
+            // To admin
+            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+                $message->to('business@millionk.com');
+                $message->subject('New Order Request!');
+            });
 
             // Session::forget('info');
             return view('fans.payment-success', ['order' => $order]);
@@ -440,6 +469,7 @@ class FansController extends Controller
 
         } else {
             Session::forget('info');
+
             return view('fans.payment-cancel', ['order' => $order]);
         }
     }

@@ -92,7 +92,7 @@ class RegisterController extends Controller
 
             Mail::send('email.new-idol', ['idol_information' => $request->all()], function($message) use($request){
                 $message->to('VIP@MILLIONK.COM');
-                $message->subject('New Idol Registration Required!');
+                $message->subject('New Idol Registration is Required!');
             });
     
             return redirect()->back()->with('success', 'Successfully submited');
@@ -116,6 +116,11 @@ class RegisterController extends Controller
 
                 $user = User::where('email', $request->email)->first();
                 Auth::login($user);
+
+                Mail::send('email.idol-signup', ['user' => $user], function($message) use($request){
+                    $message->to('hello@millionk.com');
+                    $message->subject('New Idol has been registered!');
+                });
         
                 return redirect()->route('idol-index');
             } else {
@@ -130,6 +135,11 @@ class RegisterController extends Controller
 
         $user = User::where('email', Session::get('user_info')['email'])->first();
         Auth::login($user);
+
+        Mail::send('email.fans-signup', ['user' => $user], function($message) use($request){
+            $message->to('hello@millionk.com');
+            $message->subject('New Fan has been registered!');
+        });
 
         return redirect()->route('fans-index');
     }

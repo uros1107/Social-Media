@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/forgot', function() {
+    return view('forgot-password');
+});
+
 Route::get('/', 'IdolController@home')->name('index');
 
 Route::post('/send-mail', 'MailChimpController@send_mail')->name('send-mail');

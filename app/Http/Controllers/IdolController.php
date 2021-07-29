@@ -569,8 +569,20 @@ class IdolController extends Controller
             'order' => $order,
         ];
 
+        // To fans
         Mail::send('email.order-decline', ['data' => $data], function($message) use($fans){
             $message->to($fans->email);
+            $message->subject('Order was declined!');
+        });
+
+        Mail::send('email.order-refunded', ['data' => $data], function($message) use($fans){
+            $message->to($fans->email);
+            $message->subject('Your payment has been refunded from Millionk!');
+        });
+
+        // To admin
+        Mail::send('email.order-decline', ['data' => $data], function($message) use($fans){
+            $message->to('business@millionk.com');
             $message->subject('Order was declined!');
         });
 
