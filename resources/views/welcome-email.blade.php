@@ -100,15 +100,15 @@
     </header>
 
     <section style="border-bottom: 1px solid #464040;justify-content: center;display:flex">
-        <h1 style="text-align: center"><u>Confirm your registration</u></h1>
         <article>
+            <h1 style="text-align: center"><u>Welcome to Millionk</u></h1>
             <h1 style="text-align: center">Hello</h1>
-            <p>Click below to verify your email and complete your profile:</p>
+            <p>We are absolutely excited to meet you! Get ready to left your family & friends experience  the magic of the Korean wave Need a last minuite encouragement for your upcoming exams or job interview?</p>
+            <p>We got you covered!</p>
             <div style="width: 100%;text-align:center;margin: 30px 0px;">
-                <a class="reset-btn" href="">Verify email</a>
+                <a class="reset-btn" href="{{ route('fans-index') }}">Browse Idols</a>
+                <a class="reset-btn" href="{{ route('fans-index') }}">Checkout Latest Idols</a>
             </div>
-            <p>If the above button does not work, kindly try copying and pasting the below URL to your browser's address: https://millionk.com/idol/login</p>
-            <p>And entering your account details which you created in the first step</p>
             <div style="text-align:center">
                 <div style="">
                     <img src="{{ asset('assets/images/top-left-img.png') }}" style="margin: 0px 30px"></img>

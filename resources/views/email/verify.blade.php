@@ -100,8 +100,8 @@
     </header>
 
     <section style="border-bottom: 1px solid #464040;justify-content: center;display:flex">
-        <h1 style="text-align: center"><u>Confirm your registration</u></h1>
         <article>
+            <h1 style="text-align: center"><u>Confirm your registration</u></h1>
             <h1 style="text-align: center">Hello</h1>
             <p>Click below to verify your email and complete your profile:</p>
             <div style="width: 100%;text-align:center;margin: 30px 0px;">

@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/forgot', function() {
-    return view('forgot-password');
+    return view('welcome-email');
 });
 
 Route::get('/', 'IdolController@home')->name('index');
