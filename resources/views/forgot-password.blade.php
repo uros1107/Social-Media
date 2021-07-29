@@ -26,10 +26,12 @@
     p {
         line-height: 30px;
         font-size: 18px;
+        color: #000;
     }
 
     h1 {
         font-size: 30px;
+        color: #000;
     }
 
     nav {
@@ -54,6 +56,10 @@
         max-width: 900px;
     }
 
+    section {
+        justify-content: center;
+    }
+
     section::after {
         content: "";
         display: table;
@@ -65,6 +71,7 @@
         padding: 10px;
         text-align: center;
         /* color: white; */
+        justify-content: center;
     }
 
     .reset-btn {
@@ -73,6 +80,7 @@
         padding: 12px 20px;
         border-bottom: 0px;
         text-decoration: none;
+        font-size: 16px;
     }
 
     @media (max-width: 600px) {
@@ -115,8 +123,8 @@
         <div style="max-width: 900px;">
             <p>Copyright © 2021 Lumiworks Pte. Ltd. All rights reserved.</p>
             <div>
-                <a href="{{ route('terms') }}" style="margin-right: 20px">Terms</a>
-                <a href="{{ route('privacy') }}" style="margin-left: 20px">Privacy</a>
+                <a href="{{ route('terms') }}" style="margin-right: 20px;font-size: 18px">Terms</a>
+                <a href="{{ route('privacy') }}" style="margin-left: 20px;font-size: 18px">Privacy</a>
             </div>
         </div>
     </footer>
