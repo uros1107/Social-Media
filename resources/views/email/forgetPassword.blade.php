@@ -69,7 +69,7 @@
 
     .reset-btn {
         background: #FF335C;
-        color: white;
+        color: #fff!important;
         padding: 12px 20px;
         border-bottom: 0px;
         text-decoration: none;
@@ -111,7 +111,7 @@
         </article>
     </section>
 
-    <footer style="display:flex;justify-content:center">
+    <footer style="display:flex;justify-content: center;">
         <div style="max-width: 900px;">
             <p>Copyright © 2021 Lumiworks Pte. Ltd. All rights reserved.</p>
             <div>
