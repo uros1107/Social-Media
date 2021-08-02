@@ -393,7 +393,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('change', '.custom-select1', function() {
+    $(document).on('change', 'td .custom-select1', function() {
         var idol_id = $(this).parent().parent().parent().find('.idol-list').attr('value');
         var idol_status = $(this).val();
         switch (idol_status) {
