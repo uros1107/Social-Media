@@ -252,7 +252,7 @@ class FansController extends Controller
 
     public function index()
     {
-        $idols = User::where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->take(5)->get();
+        $idols = User::where('role', 1)->where('is_setup', 1)->where('status', 1)->where('del_flag', 0)->take(5)->get();
         $new_idols = User::where('role', 1)->where('is_setup', 1)->where('status', 1)->orderBy('completed_at', 'desc')->where('del_flag', 0)->take(5)->get();
         return view('fans.home', compact('idols', 'new_idols'));
     }
@@ -260,7 +260,7 @@ class FansController extends Controller
     public function idol_category_get(Request $request, $name)
     {
         $cat = Category::where('cat_name', $name)->first();
-        $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat->cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->get();
+        $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat->cat_id."','$')=1")->where('role', 1)->where('status', 1)->where('is_setup', 1)->where('del_flag', 0)->get();
 
         return view('fans.idol-category-get', ['idols' => $idols, 'cat' => $cat]);
     }
@@ -570,14 +570,14 @@ class FansController extends Controller
     {
         $search = $request->search;
 
-        $idol_infos = IdolInfo::where('idol_full_name', 'like', '%'.$search.'%')->orWhere('idol_k_name', 'like', '%'.$search.'%')->where('idol_del_flag', 0)->get();
+        $idol_infos = IdolInfo::where('idol_full_name', 'like', '%'.$search.'%')->orWhere('idol_k_name', 'like', '%'.$search.'%')->where('idol_status', 1)->where('idol_del_flag', 0)->get();
 
         return view('fans.search', ['idol_infos' => $idol_infos, 'search' => $search]);
     }
 
     public function get_idol_list()
     {
-        $idol_names = IdolInfo::where('idol_del_flag', 0)->pluck('idol_full_name');
+        $idol_names = IdolInfo::where('idol_del_flag', 0)->where('idol_status', 1)->pluck('idol_full_name');
 
         return response()->json($idol_names);
     }
@@ -591,19 +591,19 @@ class FansController extends Controller
         switch ($sort) {
             case 1:
                 # Newest...
-                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('created_at', 'desc')->get();
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('status', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('created_at', 'desc')->get();
                 return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
                 break;
 
             case 2:
                 # Name(A-Z)...
-                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'asc')->get();
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('status', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'asc')->get();
                 return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
                 break;
 
             case 3:
                 # Name(Z-A)...
-                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'desc')->get();
+                $idols = User::whereRaw("JSON_CONTAINS(cat_id,'".$cat_id."','$')=1")->where('role', 1)->where('status', 1)->where('is_setup', 1)->where('del_flag', 0)->orderBy('name', 'desc')->get();
                 return view('fans.ajax-idol-category-get', ['idols' => $idols, 'cat' => $cat]);
                 break;
 
@@ -615,6 +615,7 @@ class FansController extends Controller
                                     ->select('users.id', 'users.cat_id', 'users.role', 'users.is_setup', 'users.del_flag', 'video_request.request_video_price')
                                     ->whereRaw("JSON_CONTAINS(users.cat_id,'".$cat_id."','$')=1")->where('users.role', 1)
                                     ->where('users.is_setup', 1)
+                                    ->where('users.status', 1)
                                     ->where('users.del_flag', 0)
                                     ->orderby('video_request.request_video_price', 'asc')
                                     ->get();
