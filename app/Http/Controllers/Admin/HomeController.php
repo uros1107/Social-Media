@@ -615,6 +615,8 @@ class HomeController
                 </option>
             </select></div>';
 
+            $visible = $idol->idol_visible == 1? "<div data-id='".$idol->idol_id."' data-visible='".$idol->idol_visible."'><i class='fas fa-eye eye-active'></i></div>" : "<div data-id='".$idol->idol_id."' data-visible='".$idol->idol_visible."'><i class='fas fa-eye eye-deactive'></i></div>";
+
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
                 'idol_user_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
@@ -629,6 +631,7 @@ class HomeController
                 'pending_order_count' => $pending_order_count,
                 'perc' => round($total_order_count != 0 ? $pending_order_count/$total_order_count * 100 : 0, 1).'%',
                 'status' => $idol_status,
+                'visible' => $visible,
             ];
         }
         return response()->json(['data' => $data]);
@@ -643,6 +646,19 @@ class HomeController
         $user = User::where('id', $idol_info->idol_user_id)->first();
         $user->completed_at = $idol_info->updated_at;
         $user->status = $idol_info->idol_status;
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function idol_visible_update(Request $request)
+    {
+        $idol_info = IdolInfo::where('idol_id', $request->idol_id)->first();
+        $idol_info->idol_visible = !$request->visible;
+        $idol_info->save();
+
+        $user = User::where('id', $idol_info->idol_user_id)->first();
+        $user->visible = $idol_info->idol_visible;
         $user->save();
 
         return response()->json(['success' => true]);
@@ -727,6 +743,8 @@ class HomeController
                 </option>
             </select></div>';
 
+            $visible = $idol->idol_visible == 1? "<div data-id='".$idol->idol_id."' data-visible='".$idol->idol_visible."'><i class='fas fa-eye eye-active'></i></div>" : "<div data-id='".$idol->idol_id."' data-visible='".$idol->idol_visible."'><i class='fas fa-eye eye-deactive'></i></div>";
+
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
                 'idol_user_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
@@ -741,6 +759,7 @@ class HomeController
                 'pending_order_count' => $pending_order_count,
                 'perc' => round($total_order_count != 0 ? $pending_order_count/$total_order_count * 100 : 0, 1).'%',
                 'status' => $idol_status,
+                'visible' => $visible
             ];
         }
         return response()->json(['data' => $data]);

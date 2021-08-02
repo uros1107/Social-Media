@@ -34,6 +34,15 @@
     top: 12px;
     width: 16px;
 }
+.eye-deactive {
+    font-size:18px;
+    color:#cacaca;
+    cursor:pointer;
+}
+.eye-active {
+    font-size:18px;
+    cursor:pointer;
+}
 td.details-control {
     background: url('/assets/images/icons/plus.png') no-repeat center center;
     cursor: pointer;
@@ -124,6 +133,7 @@ tr.shown td.details-control {
                             <th>Total Order</th>
                             <th>Pending Order</th>
                             <th>Perc(%)</th>
+                            <th>Visible</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -141,6 +151,7 @@ tr.shown td.details-control {
                             <th>Total Order</th>
                             <th>Pending Order</th>
                             <th>Perc(%)</th>
+                            <th>Visible</th>
                             <th>Status</th>
                         </tr>
                     </tfoot>
@@ -295,6 +306,7 @@ $(document).ready(function() {
             { 'data': 'total_order_count' },
             { 'data': 'pending_order_count' },
             { 'data': 'perc' },
+            { 'data': 'visible' },
             { 'data': 'status' },
         ],
         'order': [[5, 'desc']]
@@ -362,6 +374,7 @@ $(document).ready(function() {
                 { 'data': 'total_order_count' },
                 { 'data': 'pending_order_count' },
                 { 'data': 'perc' },
+                { 'data': 'visible' },
                 { 'data': 'status' },
             ],
             'order': [[5, 'desc']]
@@ -410,7 +423,56 @@ $(document).ready(function() {
                 break;
         }
     });
+
+    $(document).on('click', 'td .fa-eye', function() {
+        var idol_id = $(this).parent().data('id');
+        var visible = $(this).parent().data('visible');
+        
+        switch (visible) {
+            case 0:
+                $(this).parent().html("<i class='fas fa-eye eye-active'></i>")
+                idol_visible_update(idol_id, visible);
+                break;
+            case 1:
+                $(this).parent().html("<i class='fas fa-eye eye-deactive'></i>")
+                idol_visible_update(idol_id, visible);
+                break;
+        
+            default:
+                break;
+        }
+    });
+
 });
+
+function idol_visible_update(idol_id, visible) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "{{ route('admin-idol-visible-update') }}",
+        type: "POST",
+        data: {
+            idol_id: idol_id,
+            visible: visible,
+        },
+        success: function(data) {
+            if(data['success']) {
+                toastr.success('Successfully updated!');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                toastr.error('Server error!');
+            }
+        },
+        error: function() {
+            toastr.error('Server error!');
+        }
+    })
+}
 
 function idol_status_update(idol_id, idol_status) {
     $.ajaxSetup({

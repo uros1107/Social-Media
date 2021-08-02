@@ -57,6 +57,7 @@ class User extends Authenticatable
         'profile_stage',
         'del_flag',
         'completed_at',
+        'visible',
     ];
 
     public function getEmailVerifiedAtAttribute($value)

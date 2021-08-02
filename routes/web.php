@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/idols', 'Admin\HomeController@idol')->name('admin-idol');
         Route::get('/idols-list', 'Admin\HomeController@idol_list')->name('admin-idol-list');
         Route::post('/idol-status-update', 'Admin\HomeController@idol_status_update')->name('admin-idol-status-update');
+        Route::post('/idol-visible-update', 'Admin\HomeController@idol_visible_update')->name('admin-idol-visible-update');
         Route::get('/idol-edit/{idolname}', 'Admin\HomeController@idol_edit')->name('admin-idol-edit');
         Route::POST('/delete-idol', 'Admin\HomeController@delete_idol')->name('admin-idol-delete');
         Route::get('/filter-idol', 'Admin\HomeController@idol_filter')->name('admin-filter-idol');
