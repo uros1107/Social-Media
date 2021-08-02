@@ -253,7 +253,7 @@ class FansController extends Controller
     public function index()
     {
         $idols = User::where('role', 1)->where('is_setup', 1)->where('del_flag', 0)->take(5)->get();
-        $new_idols = User::where('role', 1)->where('is_setup', 1)->orderBy('created_at', 'desc')->where('del_flag', 0)->take(5)->get();
+        $new_idols = User::where('role', 1)->where('is_setup', 1)->orderBy('completed_at', 'desc')->where('del_flag', 0)->take(5)->get();
         return view('fans.home', compact('idols', 'new_idols'));
     }
 

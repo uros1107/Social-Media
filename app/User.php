@@ -23,6 +23,7 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
         'deleted_at',
+        'completed_at',
         'email_verified_at',
     ];
 
@@ -55,6 +56,7 @@ class User extends Authenticatable
         'facebook_id',
         'profile_stage',
         'del_flag',
+        'completed_at',
     ];
 
     public function getEmailVerifiedAtAttribute($value)

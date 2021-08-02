@@ -9,8 +9,12 @@
 <style>
 .custom-select1 {
     color: #2b2b2b!important;
-    padding: 8px 5px!important;
-    background: #e5e5e5;
+    padding: 8px 5px 8px 25px!important;
+}
+.color-status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
 }
 .registered-date {
     border-radius: 14px;
@@ -387,7 +391,51 @@ $(document).ready(function() {
         } else {
             toastr.error('You should select at least 1 idol!');
         }
-    })
+    });
+
+    $(document).on('change', '.custom-select1', function() {
+        var idol_id = $(this).parent().parent().parent().find('.idol-list').attr('value');
+        var idol_status = $(this).val();
+        switch (idol_status) {
+            case '0':
+                $(this).parent().children().first().css('background', '#898989');
+                idol_status_update(idol_id, idol_status);
+                break;
+            case '1':
+                $(this).parent().children().first().css('background', '#2178F9');
+                idol_status_update(idol_id, idol_status);
+                break;
+        
+            default:
+                break;
+        }
+    });
 });
+
+function idol_status_update(idol_id, idol_status) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "{{ route('admin-idol-status-update') }}",
+        type: "POST",
+        data: {
+            idol_id: idol_id,
+            idol_status: idol_status,
+        },
+        success: function(data) {
+            if(data['success']) {
+                toastr.success('Successfully updated!');
+            } else {
+                toastr.error('Server error!');
+            }
+        },
+        error: function() {
+            toastr.error('Server error!');
+        }
+    })
+}
 </script>
 @endsection

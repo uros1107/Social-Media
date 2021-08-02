@@ -599,6 +599,22 @@ class HomeController
             $pending_orders = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get();
             $pending_order_count = Order::where('order_idol_id', $idol->idol_user_id)->where('order_status', 0)->get()->count();
 
+            $status = ['active' => '', 'deactive' => ''];
+            if($idol->idol_status == 1) {
+                $status['active'] = 'selected';
+            } else {
+                $status['deactive'] = 'selected';
+            }
+            $color = $idol->idol_status == 1 ? 'recent-rectangle' : 'paidout-rectangle';
+            $idol_status = '<div style="position: relative"><div class="color-status '.$color.'"></div>'.'<select class="custom-select1">
+                <option value="0"'.$status['deactive'].'>
+                    Deactive
+                </option>
+                <option value="1"'.$status['active'].'>
+                    Active
+                </option>
+            </select></div>';
+
             $data[] = [
                 'checkbox' => '<input type="checkbox" class="idol-list" name="checkbox" value="'.$idol->idol_id.'">',
                 'idol_user_name' => '<a style="color:#2178F9" href="'.url('/admin/idol-edit/'.$idol->idol_user_name).'">'.$idol->idol_user_name.'</a>',
@@ -612,10 +628,23 @@ class HomeController
                 'pending_orders' => $pending_orders,
                 'pending_order_count' => $pending_order_count,
                 'perc' => round($total_order_count != 0 ? $pending_order_count/$total_order_count * 100 : 0, 1).'%',
-                'status' => 'Active',
+                'status' => $idol_status,
             ];
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function idol_status_update(Request $request)
+    {
+        $idol_info = IdolInfo::where('idol_id', $request->idol_id)->first();
+        $idol_info->idol_status = $request->idol_status;
+        $idol_info->save();
+
+        $user = User::where('id', $idol_info->idol_user_id)->first();
+        $user->completed_at = $idol_info->updated_at;
+        $user->save();
+
+        return response()->json(['success' => true]);
     }
 
     public function idol_edit($idol_name)
