@@ -642,6 +642,7 @@ class HomeController
 
         $user = User::where('id', $idol_info->idol_user_id)->first();
         $user->completed_at = $idol_info->updated_at;
+        $user->status = $idol_info->idol_status;
         $user->save();
 
         return response()->json(['success' => true]);
