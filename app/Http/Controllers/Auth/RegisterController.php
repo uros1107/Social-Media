@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
 use Auth;
 use Session;
 
@@ -69,12 +70,29 @@ class RegisterController extends Controller
     protected function idol_register(Request $request)
     {
         if($request->no_password) {
+            Session::put('signup_info', $request->all());
             $request->validate([
                 'email' => 'required|string|email|unique:users',
                 'phone' => 'required|string|numeric|unique:users',
                 'followers' => 'required|numeric',
                 'info' => 'required|string',
             ]);
+
+            $token = '46d7e9cfe7382adae6e0b332ae303ca3';
+            $twilio_sid = 'AC058c6166f273409824849e5c7c062982';
+            $twilio_verify_sid = 'VA483dfd363a4951a1875017e112b6d110';
+
+            $twilio = new Client($twilio_sid, $token);
+
+            try {
+                $status = $twilio->verify->v2->services($twilio_verify_sid)
+                    ->verifications
+                    ->create('+'.$request->phone, "sms");
+            } catch (\Exception $e) {
+                // if($e->getStatusCode() == 400) {
+                    return redirect()->back()->with('unsuccess', 'Youn phone number is invalid!');
+                // }
+            }
     
             User::create([
                 'name' => $request->name,
@@ -97,6 +115,7 @@ class RegisterController extends Controller
     
             return redirect()->back()->with('success', 'Successfully submited');
         } else {
+            Session::put('signup_info', $request->all());
             $request->validate([
                 'name' => 'required|string',
                 // 'k_name' => 'required|string',
@@ -104,6 +123,22 @@ class RegisterController extends Controller
                 'email' => 'required|string|email',
                 'phone' => 'required|string|numeric|unique:users',
             ]);
+
+            $token = '46d7e9cfe7382adae6e0b332ae303ca3';
+            $twilio_sid = 'AC058c6166f273409824849e5c7c062982';
+            $twilio_verify_sid = 'VA483dfd363a4951a1875017e112b6d110';
+
+            $twilio = new Client($twilio_sid, $token);
+
+            try {
+                $status = $twilio->verify->v2->services($twilio_verify_sid)
+                    ->verifications
+                    ->create('+'.$request->phone, "sms");
+            } catch (\Exception $e) {
+                // if($e->getStatusCode() == 400) {
+                    return redirect()->back()->with('unsuccess', 'Youn phone number is invalid!');
+                // }
+            }
     
             $user = User::where('email', $request->email)->first();
             if($user) {

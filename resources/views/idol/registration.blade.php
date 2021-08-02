@@ -83,7 +83,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Your Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Your name" class="custom-input" required>
+                                    <input type="text" name="name" id="name" placeholder="Your name" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['name'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('name'))
@@ -95,7 +95,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Korean Name(Optional)</label>
-                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input">
+                                    <input type="text" name="k_name" placeholder="Korean name" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['k_name'] : '' }}">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user.png') }}">
                                 </div>
                                 @if ($errors->has('k_name'))
@@ -107,7 +107,7 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Email" class="custom-input" required>
+                                    <input type="email" name="email" id="email" placeholder="Email" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['email'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/mail.png') }}">
                                 </div>
                                 @if ($errors->has('email'))
@@ -119,10 +119,14 @@
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">Phone Number(Never Shared)</label>
-                                    <input type="text" name="phone" id="phone" placeholder="Phone number" class="custom-input">
+                                    <input type="text" name="phone" id="phone" placeholder="Phone number" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['phone'] : '' }}">
                                     <img class="input-icon" src="{{ asset('assets/images/icons/phone.png') }}">
                                 </div>
-                                @if ($errors->has('phone'))
+                                @if(Session::get('unsuccess'))
+                                    <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
+                                        <p class="mb-0">{{ Session::get('unsuccess') }}</p>
+                                    </span>
+                                @elseif ($errors->has('phone'))
                                     <span class="help-block pl-3 mb-2 d-block" style="color:#d61919">
                                         <p class="mb-0">{{ $errors->first('phone') }}</p>
                                     </span>
@@ -150,33 +154,33 @@
                                 <div class="form-group">
                                     <label class="text-white" style="margin-left: 16px">Where can we find you?</label>
                                     <select class="form-control" name="where_find" style="height: 50px;border-radius: 15px">
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="YouTube">YouTube</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Tiktok">Tiktok</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'Instagram' ? 'selected' : '' }} value="Instagram">Instagram</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'Twitter' ? 'selected' : '' }} value="Twitter">Twitter</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'YouTube' ? 'selected' : '' }} value="YouTube">YouTube</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'Facebook' ? 'selected' : '' }} value="Facebook">Facebook</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'Twitch' ? 'selected' : '' }} value="Twitch">Twitch</option>
+                                        <option {{ Session::get('signup_info') && Session::get('signup_info')['where_find'] == 'Tiktok' ? 'selected' : '' }} value="Tiktok">Tiktok</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">What's your username on that platform?</label>
-                                    <input type="text" placeholder="User name" name="social_name" id="social_name" class="custom-input" required>
+                                    <input type="text" placeholder="User name" name="social_name" id="social_name" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['social_name'] : '' }}" required>
                                     <img style="top:34px" class="input-icon" src="{{ asset('assets/images/icons/a.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon">
                                     <label class="input-label">How many followers do you have?</label>
-                                    <input type="text" name="followers" id="followers" placeholder="0" class="custom-input" required>
+                                    <input type="text" name="followers" id="followers" placeholder="0" class="custom-input" value="{{ Session::get('signup_info')? Session::get('signup_info')['followers'] : '' }}" required>
                                     <img class="input-icon" src="{{ asset('assets/images/icons/user3.png') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12">
                                 <div class="inputWithIcon mb-0">
                                     <label class="input-label">Anything else we should know about you?</label>
-                                    <textarea class="custom-textarea mb-0" name="info" id="info" placeholder="Let us know about you..." required></textarea>
+                                    <textarea class="custom-textarea mb-0" name="info" id="info" placeholder="Let us know about you..." required>{{ Session::get('signup_info')? Session::get('signup_info')['info'] : '' }}</textarea>
                                 </div>
                                 <p class="text-main-color text-right mb-0 limit-message d-none" style="font-size: 14px">You can input maximum 250 characters!</p>
                                 <p class="text-white text-right mb-0 mr-2 word-count d-none" style="font-size: 12px">Characters: <span>250</span></p>

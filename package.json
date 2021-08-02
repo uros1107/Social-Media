@@ -23,6 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
-        "typed.js": "^2.0.12"
+        "typed.js": "^2.0.12",
+        "videojs-watermark": "^2.0.0"
     }
 }
