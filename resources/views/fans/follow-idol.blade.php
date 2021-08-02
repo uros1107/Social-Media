@@ -7,9 +7,15 @@
 .container-fluid {
     padding: 10px!important;
 }
+.modal-content {
+    max-width: 350px;
+    height: 450px;
+}
 .modal-dialog {
     max-width: 800px;
     margin: 30px auto;
+    display: flex;
+    justify-content: center;
 }
 .modal-body {
   position:relative;
@@ -305,7 +311,7 @@
           <span aria-hidden="true">&times;</span>
         </button>        
         <!-- 16:9 aspect ratio -->
-        <div class="embed-responsive embed-responsive-16by9">
+        <div class="embed-responsive embed-responsive-16by9" style="display:contents">
             <video id="video" controls>
                 <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mp4">
                 <source src="{{ asset('assets/videos/'.$request_video->request_video) }}" type="video/mkv">
