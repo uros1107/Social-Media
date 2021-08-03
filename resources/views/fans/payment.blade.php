@@ -97,23 +97,23 @@
                 @endphp
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile">
-                        <h4 class="text-white">REQUESTED IDOL</h4>
+                        <h4 class="text-white">Requested Idol</h4>
                         <div class="d-flex">
-                            @if($fans->photo)
-                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
+                            @if($idol_info->idol_photo)
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}">
                             @else
                             <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
                             @endif
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">{{ '@'.$fans->user_name }}</p>
-                                <p class="text-main-color mb-0">{{ $fans->name }}</p>
+                                <p class="text-grey mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
+                                <p class="text-main-color mb-0">{{ $idol_info->idol_full_name }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile">
-                        <h4 class="text-white">OCCASION</h4>
+                        <h4 class="text-white">Occasion</h4>
                         <div class="d-flex">
                             @php
                                 $occasion = DB::table('occasions')->where('occasion_id', $order['order_occasion'])->first();
@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">WHO IS THIS FOR?</h4>
+                        <h4 class="text-white">Who Is This For?</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
                                 <!-- <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p> -->
@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">LANGUAGE PREFERANCE</h4>
+                        <h4 class="text-white">Language Preferance</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
                                 <!-- <p class="text-grey mb-2">Language request for this personalized video</p> -->
@@ -165,7 +165,7 @@
             </div>
         </div> -->
         <div class="w-100">
-            <h5 class="text-white">INSTRUCTIONS</h5>
+            <h5 class="text-white">Instructions</h5>
             <div class="instruction">
                 <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">
