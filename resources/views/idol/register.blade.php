@@ -453,19 +453,22 @@ select {
                 <div class="col-sm-8 col-md-8 d-flex" style="margin: 10px 0px">
                     <a href="{{ route('index') }}"><img src="{{ asset('assets/images/top-left-img.png') }}" style="height: 46px;margin: 0px 10px;"></a>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">About</p>
+                        <a href="{{ route('faq') }}" class="text-main-color mb-0">FAQ</a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Request an Idol</p>
+                        <a href="{{ route('request-idol') }}" class="text-main-color mb-0">Request An Idol</a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">FAQ</p>
+                        <a class="text-main-color mb-0" href="{{ route('idol-registration') }}">Apply As An Idol</a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Help</p>
+                        <a class="text-main-color mb-0" href="{{ route('contact-us') }}">Contact Us</a>
                     </div>
                     <div class="footer-text">
-                        <p class="text-main-color mb-0">Contact Us</p>
+                        <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy Policy</a>
+                    </div>
+                    <div class="footer-text">
+                        <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of Service</a>
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-4 d-flex" style="justify-content: flex-end;margin: 10px 0px">
@@ -486,10 +489,10 @@ select {
                     <div class="my-auto">
                         <p class="mb-0" style="color:#898989">Copyright © 2021 Lumiworks.pte.Ltd.All rights reserved.</p>
                     </div>
-                    <div class="my-auto" style="position: absolute;right:15px">
+                    <!-- <div class="my-auto" style="position: absolute;right:15px">
                         <a href="{{ route('privacy') }}" target="_blank" class="text-main-color mr-5">Privacy Policy</a>
                         <a href="{{ route('terms') }}" target="_blank" class="text-main-color">Terms of Service</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="mobile">
@@ -510,39 +513,40 @@ select {
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">About</a>
+                            <a href="{{ route('faq') }}" class="text-main-color mb-0">FAQ</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">Help</a>
+                            <a href="{{ route('request-idol') }}" class="text-main-color mb-0">Request An Idol</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">Request an Idol</a>
+                            <a class="text-main-color mb-0" href="{{ route('idol-registration') }}">Apply As An Idol</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">Contact Us</a>
+                            <a class="text-main-color mb-0" href="{{ route('contact-us') }}">Contact Us</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
-                            <a class="text-main-color mb-0">FAQ</a>
+                            <a href="{{ route('privacy') }}" class="text-main-color mb-0">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="footer-text">
+                            <a href="{{ route('terms') }}" class="text-main-color mb-0">Terms of Service</a>
                         </div>
                     </div>
-                    <div class="col-12 text-center" style="padding: 10px 15px;border-top: 1px solid #2b2b2b;">
+                    <!-- <div class="col-12 text-center" style="padding: 10px 15px;border-top: 1px solid #2b2b2b;">
                         <a href="{{ route('privacy') }}" target="_blank" class="text-main-color">Privacy Policy</a>
                     </div>
                     <div class="col-12 text-center" style="padding: 10px 15px">
                         <a href="{{ route('terms') }}" target="_blank" class="text-main-color">Terms of Service</a>
-                    </div>
+                    </div> -->
                     <div class="col-12 text-center" style="padding: 10px 15px;margin-bottom:20px">
                         <p class="mb-0" style="color:#898989">Copyright © 2021 Lumiworks.pte.Ltd<br>All rights reserved.</p>
                     </div>

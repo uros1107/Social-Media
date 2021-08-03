@@ -87,8 +87,8 @@
         </div>
         <div class="title-part">
             <div class="w-100">
-                <h2 class="text-white">Order Confirmation</h2>
-                <p class="text-grey">Please check your order</p>
+                <h2 class="text-white">Order Summary</h2>
+                <!-- <p class="text-grey">Please check your order</p> -->
                 <div class="divider"></div>
             </div>
             <div class="row mx-0 mb-1">
@@ -97,7 +97,7 @@
                 @endphp
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile">
-                        <h4 class="text-white">Requested from</h4>
+                        <h4 class="text-white">REQUESTED IDOL</h4>
                         <div class="d-flex">
                             @if($fans->photo)
                             <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
@@ -113,13 +113,13 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile">
-                        <h4 class="text-white">Occasion</h4>
+                        <h4 class="text-white">OCCASION</h4>
                         <div class="d-flex">
                             @php
                                 $occasion = DB::table('occasions')->where('occasion_id', $order['order_occasion'])->first();
                             @endphp
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">Occasion Type</p>
+                                <!-- <p class="text-grey mb-2">Occasion Type</p> -->
                                 <p class="text-main-color mb-0">{{ $occasion->occasion_name }}</p>
                             </div>
                         </div>
@@ -127,10 +127,10 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">For who?</h4>
+                        <h4 class="text-white">WHO IS THIS FOR?</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p>
+                                <!-- <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p> -->
                                 <p class="text-main-color mb-0">{{ $order['order_to'] }}</p>
                             </div>
                         </div>
@@ -138,10 +138,10 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">Language </h4>
+                        <h4 class="text-white">LANGUAGE PREFERANCE</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">Language request for this personalized video</p>
+                                <!-- <p class="text-grey mb-2">Language request for this personalized video</p> -->
                                 @if($order['order_lang'] == 1)
                                 <p class="text-main-color mb-0">English</p>
                                 @elseif($order['order_lang'] == 2)
@@ -165,7 +165,7 @@
             </div>
         </div> -->
         <div class="w-100">
-            <h5 class="text-white">Instructions</h5>
+            <h5 class="text-white">INSTRUCTIONS</h5>
             <div class="instruction">
                 <!-- <p style="font-size: 16px;color:#898989">Here is the instruction from you for your idols</p><br> -->
                 <p class="text-white" style="font-size: 16px">
@@ -185,10 +185,10 @@
                             <h5 class="text-white">Request Fee</h5>
                             <h5 class="text-white">${{ $request_video->request_video_price }}</h5>
                         </div>
-                        <!-- <div class="d-flex" style="position: relative">
-                            <h5 class="text-white">Platform Fee(5%)</h5>
+                        <div class="d-flex" style="position: relative">
+                            <h5 class="text-white">Platform Fee</h5>
                             <h5 class="text-white">${{ number_format($request_video->request_video_price * 0.05, 2) }}</h5>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="d-flex mb-2 total">
                         <h5 class="text-white">Total</h5>
