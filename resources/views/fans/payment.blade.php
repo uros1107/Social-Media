@@ -194,7 +194,7 @@
                         <h5 class="text-white">Total</h5>
                         <h5 class="text-main-color">${{ number_format($request_video->request_video_price + $request_video->request_video_price * 0.05, 2) }}</h5>
                     </div>
-                    <form action="{{ route('order-summary') }}" class="d-none" method="post" id="order-summary">
+                    <form action="{{ route('payment-success') }}" class="d-none" method="post" id="order-summary">
                         {{ csrf_field() }}
                         <input type="hidden" name="order_payment_method" id="payment_method" value="">
                         <input type="hidden" name="order_total_price" id="order_total_price" value="{{ $request_video->request_video_price + $request_video->request_video_price * 0.05 }}">

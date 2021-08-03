@@ -129,7 +129,7 @@ Route::prefix('fans')->group(function() {
     Route::get('/new-request', 'FansController@new_request')->name('new-request');
     Route::POST('/payment', 'FansController@payment')->name('payment');
     Route::POST('/card-save', 'FansController@card_save')->name('card-save');
-    Route::get('/payment-success', 'FansController@payment_success')->name('payment-success');
+    Route::POST('/payment-success', 'FansController@payment_success')->name('payment-success');
     Route::get('/payment-cancel', 'FansController@payment_cancel')->name('payment-cancel');
     Route::get('/view-video', 'FansController@view_video')->name('view-video');
     Route::get('/order-list', 'FansController@order_list')->name('order-list');

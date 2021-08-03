@@ -2681,6 +2681,7 @@ input:checked + .slider {
 .order-confirm-profile img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
 }
 .order-confirm-profile > h4 {
     font-size: 18px;

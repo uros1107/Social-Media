@@ -120,16 +120,16 @@
                 @endphp
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile">
-                        <h4 class="text-white">Requested from</h4>
+                        <h4 class="text-white">Requested Idol</h4>
                         <div class="d-flex">
-                            @if($fans->photo)
-                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$fans->photo) }}">
+                            @if($idol_info->idol_photo)
+                            <img class="img-circle mr-3" src="{{ asset('assets/images/img/'.$idol_info->idol_photo) }}">
                             @else
                             <img class="img-circle mr-3" src="{{ asset('assets/images/no-image.jpg') }}">
                             @endif
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">{{ '@'.$fans->user_name }}</p>
-                                <p class="text-main-color mb-0">{{ $fans->name }}</p>
+                                <p class="text-grey mb-2">{{ '@'.$idol_info->idol_user_name }}</p>
+                                <p class="text-main-color mb-0">{{ $idol_info->idol_full_name }}</p>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                 $occasion = DB::table('occasions')->where('occasion_id', $order['order_occasion'])->first();
                             @endphp
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">Occasion Type</p>
+                                <!-- <p class="text-grey mb-2">Occasion Type</p> -->
                                 <p class="text-main-color mb-0">{{ $occasion->occasion_name }}</p>
                             </div>
                         </div>
@@ -150,10 +150,10 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">For who?</h4>
+                        <h4 class="text-white">Who Is This For?</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p>
+                                <!-- <p class="text-grey mb-2">{{ $order['order_who_for'] == 1? 'For me' : 'Someone else' }}</p> -->
                                 <p class="text-main-color mb-0">{{ $order['order_to'] }}</p>
                             </div>
                         </div>
@@ -161,10 +161,10 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-6">
                     <div class="order-confirm-profile pt-0">
-                        <h4 class="text-white">Language </h4>
+                        <h4 class="text-white">Language Preferance</h4>
                         <div class="d-flex">
                             <div class="profile-detail mt-1">
-                                <p class="text-grey mb-2">Language request for this personalized video</p>
+                                <!-- <p class="text-grey mb-2">Language request for this personalized video</p> -->
                                 @if($order['order_lang'] == 1)
                                 <p class="text-main-color mb-0">English</p>
                                 @elseif($order['order_lang'] == 2)
@@ -178,15 +178,15 @@
                 </div>
             </div>
         </div>
-        <div class="title-part d-flex">
+        <!-- <div class="title-part d-flex">
             <div>
                 <h2 class="text-white">Your personalized video request detail</h2>
                 <p class="text-grey">This is your detail request</p>
             </div>
             <div class="m-auto" style="margin-right: 0px!important">
-                <!-- <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p> -->
+                <p class="mb-0" style="font-size: 16px;color:#898989">27 May 2021</p>
             </div>
-        </div>
+        </div> -->
         <div class="w-100">
             <h5 class="text-white">Instructions</h5>
             <div class="instruction">
@@ -285,14 +285,15 @@
             <div class="row m-0">
                 <div class="col-12 title mb-2">
                     <div class="d-flex">
-                        <h4 class="text-white">Transaction Detail</h4>
+                        <h4 class="text-white">Transaction Details</h4>
                     </div>
                 </div>
                 <div class="col-12 mb-2">
-                    <div style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
-                        <h5 class="text-white">Payment Method</h5>
-                        <div class="d-flex">
-                            <p class="text-main-color mb-0">Paypal</p>
+                    <div class="text-center" style="border: 1px solid #fff;border-radius: 10px;padding: 15px">
+                        <h5 class="text-white mb-3">Payment Method</h5>
+                        <div class="d-flex my-auto justify-content-center p-2" style="border-radius:5px;background: #ffc439">
+                            <img src="{{ asset('assets/images/paypal.png') }}" style="height: 25px"></img>
+                            <!-- <p class="text-main-color mb-0">Paypal</p> -->
                         </div>
                     </div>
                 </div>
@@ -326,14 +327,14 @@
                             <p class="mb-0 text-white">${{ $order['order_price'] }}</p>
                         </div>
                     </div>
-                    <!-- <div class="content-item mb-3">
+                    <div class="content-item mb-3">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white">Platform Fee</p>
                         </div>
                         <div class="m-auto user-rating" style="margin-right:0px!important">
                             <p class="mb-0 text-white">${{ number_format($order['order_fee'], 2) }}</p>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="content-item">
                         <div class="my-auto user-name">
                             <p class="mb-0 text-white" style="font-weight: 700;font-size:16px!important">Total</p>

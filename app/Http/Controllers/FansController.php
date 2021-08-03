@@ -413,23 +413,16 @@ class FansController extends Controller
     public function payment_success(Request $request)
     {
         $order = Session::get('info');
-        
-        if(Order::create($order)) {
-            // if($order['order_payment_method'] == 1) {
-            //     $card_token = Auth::user()->visa_card_token;
-            // } else {
-            //     $card_token = Auth::user()->master_card_token;
-            // }
+        $order['order_payment_method'] = $request->order_payment_method;
+        $order['order_price'] = $request->order_price;
+        $order['order_fee'] = $request->order_fee;
+        $order['order_total_price'] = $request->order_total_price;
+        $order['order_fans_id'] = Auth::user()->id;
+        // Session::put('info', $order);
 
-            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            // $status = Stripe\Charge::create ([
-            //         "amount" => $order['order_total_price'] * 100,
-            //         "currency" => "usd",
-            //         "customer" => $card_token,
-            //         "description" => "Fans paid from Millionk.com" 
-            // ]);
+        if($request->order_payment_method) {
+            Order::create($order);
 
-            // if ($status[ 'status' ] == "succeeded") { 
             $fans = User::where('id', $order['order_fans_id'])->first();
             $idol_info = IdolInfo::where('idol_user_id', $order['order_idol_id'])->first();
             $data = [
@@ -438,38 +431,33 @@ class FansController extends Controller
                 'idol_info' => $idol_info,
             ];
 
-            // To idol
-            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
-                $message->to($idol_info->idol_email);
-                $message->subject('New Order Request!');
-            });
+            // // To idol
+            // Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+            //     $message->to($idol_info->idol_email);
+            //     $message->subject('New Order Request!');
+            // });
 
-            // To fans
-            Mail::send('email.order-fans-request', ['data' => $data], function($message) use($fans){
-                $message->to($fans->email);
-                $message->subject('New Order Submit!');
-            });
+            // // To fans
+            // Mail::send('email.order-fans-request', ['data' => $data], function($message) use($fans){
+            //     $message->to($fans->email);
+            //     $message->subject('New Order Submit!');
+            // });
 
-            Mail::send('email.paypal', ['data' => $data], function($message) use($fans){
-                $message->to($fans->email);
-                $message->subject('You paid payment for new order with Paypal!');
-            });
+            // Mail::send('email.paypal', ['data' => $data], function($message) use($fans){
+            //     $message->to($fans->email);
+            //     $message->subject('You paid payment for new order with Paypal!');
+            // });
 
-            // To admin
-            Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
-                $message->to('business@millionk.com');
-                $message->subject('New Order Request!');
-            });
+            // // To admin
+            // Mail::send('email.order-request', ['data' => $data], function($message) use($idol_info){
+            //     $message->to('business@millionk.com');
+            //     $message->subject('New Order Request!');
+            // });
 
             // Session::forget('info');
             return view('fans.payment-success', ['order' => $order]);
-            // } else {
-            //     return view('fans.payment-cancel', ['order' => $order]);
-            // }
 
         } else {
-            Session::forget('info');
-
             return view('fans.payment-cancel', ['order' => $order]);
         }
     }
