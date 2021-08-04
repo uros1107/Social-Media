@@ -90,7 +90,7 @@ class RegisterController extends Controller
                     ->create('+'.$request->phone, "sms");
             } catch (\Exception $e) {
                 // if($e->getStatusCode() == 400) {
-                    return redirect()->back()->with('unsuccess', 'Youn phone number is invalid!');
+                    return redirect()->back()->with('unsuccess', 'Your phone number is invalid!');
                 // }
             }
     

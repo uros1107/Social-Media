@@ -93,10 +93,10 @@
         </div>
         <div class="mobile w-100">
             <div class="follow-idol mb-4">
-                <div style="position: relative">
+                <!-- <div style="position: relative">
                     <img class="bg-img w-100" src="{{ asset('assets/images/img/'.$idol_info->idol_banner) }}" class="w-100">
                     <div class="gradient"></div>    
-                </div>
+                </div> -->
                 <div class="col-12 col-sm-12 col-md-12 user-profile-info">
                     <div class="idol-profile d-flex">
                         <div class="idol-image" style="background-image:unset;display: contents;">
